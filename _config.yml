@@ -1,0 +1,26 @@
+# Site settings
+title: Dra. Victória Laufer | Médica Generalista | Atendimento Pediátrico
+email: victorialaufer@gmail.com
+description: >-
+  Atendimento e serviços pediátricos da Dra. Victória Laufer.
+  Médica muito amada pelo seus pacientinhos e mães, pelo seu empenho, atenção e carinho nos cuidados que presta.
+baseurl: "" 
+url: "https://dravictorialaufer.com.br"
+github_username:  FilipeOliveira94
+
+# Build settings
+theme: minima
+# plugins:
+#   - 
+
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

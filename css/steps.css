@@ -1,0 +1,36 @@
+.steps {
+    padding-top:40px;
+    padding-bottom: 40px;
+}
+
+@media (min-width: 544px) {
+    .steps {
+        padding-top:80;
+        padding-bottom: 80px;
+    }
+}
+
+#steps__img {
+    height: 360px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+@media (min-width: 544px) {
+    #steps__img {
+        height: auto;
+    }
+}
+
+#steps__content_width {
+    max-width: 456px;
+    margin: 0 auto;
+}
+
+#formacao { 
+    background-color: #82519e 
+}
+
+#locais { 
+    background-color: #a3eaff 
+}

@@ -1,0 +1,26 @@
+.header {
+    z-index: 2;
+    background-color: #3eb7ae;
+}
+
+#navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #3eb7ae;
+    z-index: 4;
+}
+
+#dropdown-nav__closeNavBtn {
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    background-color: #3eb7ae;
+}
+
+#dropdown-nav__container {
+    height: 100vh;
+    padding: 0 1rem;
+}
