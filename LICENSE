@@ -1,3 +1,37 @@
+LICENSE SCOPE — READ FIRST
+
+This repository contains two kinds of material, under different terms.
+
+1. SOURCE CODE — MIT License (full text below)
+
+   The source code of this site: templates, stylesheets, scripts, build
+   configuration, workflows, the Makefile and the technical documentation.
+   Copyright (c) 2025 Filipe Oliveira.
+
+2. CONTENT AND IDENTITY — ALL RIGHTS RESERVED. NOT covered by the MIT License.
+
+   - The texts published on the site about Dra. Victória Laufer, including
+     biographical, professional and contact information.
+   - The name "Victória Laufer" and "Dra. Victória Laufer", and her
+     professional registration, as an identity.
+   - The logo and any other brand material of Dra. Victória Laufer.
+   - Photographs and any other image of Dra. Victória Laufer.
+
+   Copyright (c) Victória Laufer. All rights reserved.
+
+   No permission is granted to copy, modify, publish, distribute or reuse
+   this material, in whole or in part, or to use the name, logo or image of
+   Dra. Victória Laufer, without her prior written authorization.
+
+   The original photographs are kept in a separate private repository and
+   are not licensed. The images published on the site are served for viewing
+   only.
+
+If you reuse the source code, remove the content and identity described in
+item 2 and replace them with your own.
+
+-------------------------------------------------------------------------------
+
 MIT License
 
 Copyright (c) 2025 Filipe Oliveira

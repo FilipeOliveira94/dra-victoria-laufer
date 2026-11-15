@@ -1,6 +1,24 @@
+# Jekyll (legacy site, removed by issue 1.1)
 _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
 vendor
 Gemfile.lock
+
+# Node / Astro (target site, from issue 1.1)
+# package-lock.json is committed on purpose: do not ignore it.
+node_modules/
+dist/
+.astro/
+npm-debug.log*
+.lighthouseci/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db

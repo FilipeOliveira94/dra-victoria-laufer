@@ -1,0 +1,43 @@
+# ADR-NNNN: Title
+
+| Field | Value |
+| --- | --- |
+| Status | proposed \| approved \| superseded \| rejected |
+| Date opened | YYYY-MM-DD |
+| Date decided | YYYY-MM-DD or — |
+| Owner | Name / role |
+| Index ID | D-XXX |
+| Related issues | 1.1, … |
+| Supersedes | — \| link to older ADR |
+| Superseded by | — \| link to newer ADR |
+
+## Context / problem
+
+What constraint or question forces a choice? Who is affected?
+
+## Decision
+
+What we will do (one clear paragraph).
+
+## Alternatives considered
+
+| Option | Pros | Cons | Why not (if rejected) |
+| --- | --- | --- | --- |
+| A | … | … | … |
+| B | … | … | … |
+
+## Consequences and trade-offs
+
+Positive, negative, and follow-up work this choice creates.
+
+## Evidence / validation
+
+Commands, check results, and durable links (`docs/status-log.md` and/or architecture docs). Do not rely on `PROJECT_STATUS.md` as the only evidence citation — that ledger is rewritten per phase. Write “none yet” while nothing is built.
+
+## Revisit when
+
+Triggers that should reopen the decision.
+
+## Notes
+
+Optional: known limitations, version pins, or follow-up work.

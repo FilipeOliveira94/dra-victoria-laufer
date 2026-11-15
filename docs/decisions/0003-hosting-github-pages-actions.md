@@ -1,0 +1,42 @@
+# ADR-0003: Hosting — GitHub Pages through Actions
+
+| Field | Value |
+| --- | --- |
+| Status | `approved` |
+| Date opened | 2026-11-15 (recorded from the approved plan v2) |
+| Date decided | 2026-11-15 (recorded) |
+| Owner | Filipe |
+| Index ID | D-003 |
+| Related issues | 1.1, 3.1, 3.2 |
+| Supersedes | — |
+| Superseded by | — |
+
+## Context / problem
+
+The legacy site is published by GitHub Pages from the `main` branch. That classic deploy runs Jekyll only, with no room for a build variable or for checks. The final domain, `victorialaufer.com.br`, will be registered at Registro.br and must work at the root.
+
+## Decision
+
+Host on **GitHub Pages**, with the site **built and deployed by a GitHub Actions workflow**. The Pages source is set to "GitHub Actions" in issue 1.1.
+
+## Alternatives considered
+
+| Option | Pros | Cons | Why not (if rejected) |
+| --- | --- | --- | --- |
+| GitHub Pages through Actions (chosen) | Accepts a root domain with A records in the Registro.br DNS; runs any build and checks; does not write the built site to a branch | The workflow has to be maintained | — |
+| GitHub Pages, classic deploy from a branch | Nothing to set up | Jekyll only; no build variable; no validation in the build | Rejected |
+| Cloudflare Pages | Capable static host | Would require moving the DNS away from Registro.br | Rejected |
+
+## Consequences and trade-offs
+
+- A push to `main` publishes the site, so every merge is a deploy.
+- The built site is never committed. The optimized portrait therefore stays out of this repository's history ([ADR-0010](0010-private-assets-repository.md)).
+- The existing `jekyll-gh-pages.yml` workflow is replaced in 1.1.
+
+## Evidence / validation
+
+None yet.
+
+## Revisit when
+
+GitHub Pages stops meeting a requirement (redirects, headers, private repository on the current plan).
