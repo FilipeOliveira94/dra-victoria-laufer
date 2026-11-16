@@ -129,7 +129,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` |
 | Size | M |
 | Depends on | 1.2 |
 | ADRs | [0002](docs/decisions/0002-own-css-with-tokens.md) |
@@ -471,3 +471,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 1.1 verified: Astro 7.4.12 base, `deploy.yml` workflow, `DEPLOY_TARGET`, `noindex` from `src/config/release.ts`; Jekyll removed. Local builds checked; marked verified by Filipe before the published-site check, which runs after the merge |
 | 2026-11-16 | 1.1 published-site check: the `deploy.yml` deploy serves the Astro page at `/dra-victoria-laufer/` with `noindex`, the staging canonical and no request besides the page; the legacy files return 404 |
 | 2026-11-16 | 1.2 verified on local builds: typed collections, pending report, `captacao.*` off. WhatsApp and Instagram received from Filipe |
+| 2026-11-16 | 1.3 verified on local builds: one-column page with `<main>`, one `h1`, sections from one list (rendered only with published content), anchor navigation without JavaScript, footer with the build year, neutral provisional tokens in `src/styles/tokens.css`, 404 page. html-validate clean, no duplicate ID, no horizontal scroll from 320 to 1600 px, 404 checked at depth on both targets |

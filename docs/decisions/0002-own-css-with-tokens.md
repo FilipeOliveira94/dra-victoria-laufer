@@ -34,7 +34,7 @@ Write the site's **own CSS**, with every color, type and spacing value defined a
 
 ## Evidence / validation
 
-None yet.
+Issue 1.3, 2026-11-16, local builds: every colour, type and spacing value is a custom property in `src/styles/tokens.css` (neutral, provisional); `src/styles/global.css` holds the layout and reads only tokens. The build inlines the CSS in each page, so it adds no request. The five provisional text pairs are 7.55:1 or higher. No framework in `package.json`. Details in `docs/status-log.md`.
 
 ## Revisit when
 

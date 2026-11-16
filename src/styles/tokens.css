@@ -1,0 +1,49 @@
+/*
+ * Design tokens: the only place for colour, type and spacing values (ADR-0002).
+ *
+ * PROVISIONAL and neutral (issue 1.3). They are not the brand. Issue 2.4
+ * replaces them with the identity confirmed in DESIGN.md; its acceptance is
+ * "no provisional token left".
+ *
+ * Text pairs (WCAG 2.1, >= 4.5:1):
+ *   text on ground ............ #1f1f1f / #ffffff  16.48
+ *   text-muted on ground ...... #4d4d4d / #ffffff   8.45
+ *   text on ground-alt ........ #1f1f1f / #f2f2f2  14.72
+ *   text-muted on ground-alt .. #4d4d4d / #f2f2f2   7.55
+ *   text-inverse on footer .... #ffffff / #2e2e2e  13.58
+ */
+:root {
+  /* Colour */
+  --color-ground: #ffffff;
+  --color-ground-alt: #f2f2f2;
+  --color-text: #1f1f1f;
+  --color-text-muted: #4d4d4d;
+  --color-rule: #8c8c8c;
+  --color-footer: #2e2e2e;
+  --color-text-inverse: #ffffff;
+
+  /* Type: system faces only until 1.4 serves the brand fonts from the site */
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-display: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  --leading-body: 1.6;
+  --leading-tight: 1.2;
+
+  /* Space */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Layout (DESIGN.md → Layout) */
+  --measure: 40rem;
+  --gutter: 16px;
+  --gutter-wide: 24px;
+}

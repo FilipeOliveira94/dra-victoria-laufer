@@ -1,25 +1,40 @@
 ---
 import Base from '../layouts/Base.astro';
+import Section from '../components/Section.astro';
 import { crmLabel, medica, published } from '../lib/content';
+import { section, sections, type SectionId } from '../lib/sections';
 
-// Every fact comes from the content model (issue 1.2). Sections for training,
-// roles, "Sobre" and the other channels arrive in issues 2.1 to 2.3.
+// Every fact comes from the content model (issue 1.2). Formação, Atuação and
+// Sobre render from issues 2.2 and 2.3; the other channels from 2.1.
 const id = await medica();
 if (!id) throw new Error('medica is pending: the page cannot be built without identification.');
 
 const email = (await published('contato')).find((c) => c.tipo === 'email');
 const identification = `${id.titulo} · ${crmLabel(id)}`;
+
+// A section is on the page, and in the navigation, only with published content.
+const present: Record<SectionId, boolean> = {
+  formacao: false,
+  atuacao: false,
+  sobre: false,
+  contato: Boolean(email),
+};
+const nav = sections.filter((s) => present[s.id]);
 ---
 
-<Base title={`${id.nome} · ${identification}`}>
+<Base title={`${id.nome} · ${identification}`} nav={nav}>
   <main>
-    <h1>{id.nome}</h1>
-    <p>{identification}</p>
+    <div class="identification wrap">
+      <h1>{id.nome}</h1>
+      <p>{identification}</p>
+    </div>
     {
       email && (
-        <p>
-          <a href={`mailto:${email.valor}`}>{email.valor}</a>
-        </p>
+        <Section section={section('contato')}>
+          <p>
+            <a href={`mailto:${email.valor}`}>{email.valor}</a>
+          </p>
+        </Section>
       )
     }
   </main>
