@@ -6,7 +6,7 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-16 (1.5 verified on local builds, PR open) |
+| Last updated | 2026-11-16 (1.5 verified on local builds and PR CI, PR open) |
 | Current phase | Phase 0 — Product and brand, and Phase 1 — New base (MVP), in parallel |
 | Phase status | Phase 0 verified (0.1, 0.2 and 0.3); Phase 1 in progress (1.1 to 1.5 verified) |
 
@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**1.5** — Accessibility, WCAG 2.1 AA. Verified on local builds, both targets; PR open, its CI run is the remaining evidence.
+**1.5** — Accessibility, WCAG 2.1 AA. Verified on local builds, both targets, and on the PR's CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810), which fetched the private assets; PR open.
 
 Every page starts with a skip link to `<main id="conteudo">`. Keyboard focus shows a 2px ring with 2px offset (`--color-focus`, inverse on the footer); 2.4 swaps the colour for `verde-profundo`. The contact link is read as "E-mail: " plus the address, with the channel as `title` (DESIGN.md). A `prefers-reduced-motion` rule removes any animation, transition or smooth scroll later issues add. The 1.4 merge published cleanly: `published` job of [run 43909335126](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43909335126), 0 failing requests.
 
 ## Next work
 
-1. **1.5** — PR CI, review, Filipe's OK and merge. The `published` job of that deploy is cited in the next PR.
+1. **1.5** — review, Filipe's OK and merge. The `published` job of that deploy is cited in the next PR.
 2. **1.6** and **1.7**. **2.1** can start.
 3. **2.6** (new): cut-out portrait on brand graphics, after 2.4. Filipe made it a condition for publication, so **2.5** (removal of `noindex`) waits for it.
 
@@ -58,7 +58,7 @@ Nothing blocks Phase 1.
 | 1.2 | Typed content model | Verified | Local builds; 8 invalid-data cases fail the build; pending item off the page and in the report. `docs/status-log.md` |
 | 1.3 | Structure and layout of the single page | Verified | Local builds, both targets; html-validate clean, 0 duplicate ids, no horizontal scroll 320–1600 px, 404 at depth. `docs/status-log.md` |
 | 1.4 | Images, favicon and fonts | Verified | Local builds, both targets, with and without the assets; CLS 0.0001; largest image 78.9 KB; PR CI [run 43908574612](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43908574612). `docs/status-log.md` |
-| 1.5 | Accessibility, WCAG 2.1 AA | Verified | Local builds, both targets: axe 0 violations, Lighthouse mobile Accessibility 100 (home and 404), keyboard walk complete, skip link to `<main>`. `docs/status-log.md` |
+| 1.5 | Accessibility, WCAG 2.1 AA | Verified | Local builds, both targets: axe 0 violations, Lighthouse mobile Accessibility 100 (home and 404), keyboard walk complete, skip link to `<main>`; PR CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810). `docs/status-log.md` |
 | 1.6 | Technical SEO | Not started | — |
 | 1.7 | Automatic checks on pull requests | Not started | — |
 | 1.8 | License | Delivered | [`LICENSE`](LICENSE), README note. Review by Filipe pending |
@@ -72,9 +72,9 @@ Acceptance detail: `ROADMAP.md` → Phase 1.
 | | |
 | --- | --- |
 | Date | 2026-11-16 |
-| Environment | Local build, branch `feat/1.5-accessibility`, with the private assets. WSL2, Node.js v22.23.4, Astro 7.4.12; `astro preview` on both bases; Chrome for Testing 157.0.8103.78 headless (scratchpad only, not a project dependency) driven by puppeteer-core, axe-core 4.14.1, Lighthouse 12.8.2. Not deployed |
+| Environment | Local build, branch `feat/1.5-accessibility`, with the private assets. WSL2, Node.js v22.23.4, Astro 7.4.12; `astro preview` on both bases; Chrome for Testing 157.0.8103.78 headless (scratchpad only, not a project dependency) driven by puppeteer-core, axe-core 4.14.1, Lighthouse 12.8.2. CI: [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) on `f19ba4d` (`pull_request`). Not deployed |
 | Checks | axe (WCAG 2.0/2.1 A and AA plus best practice) at 360 and 1280 px on the home and on a 404 at depth, both bases; Tab walk to the end of each page; skip link with Tab + Enter; `prefers-reduced-motion: reduce` emulated; Lighthouse mobile on the home (both bases) and on `404.html`; `make build` both targets; `make check`; `npx html-validate@9`; duplicate ids; `make requests` both bases; `make contrast`; `scrollWidth` vs `clientWidth` at 320–1600 px; vetoed-term grep |
-| Result | axe 0 violations, 0 incomplete on every page and width. Tab order: skip link, "Contato", "E-mail: victorialaufersaude@gmail.com"; on the 404: skip link, "Ir para a página inicial"; each with a 2px solid ring, 2px offset. Skip link moves focus to `#conteudo`; the next Tab lands on the first link in `<main>`. Reduced motion: transition and animation 0 s, scroll `auto`. Lighthouse mobile: Accessibility 100, Performance 100, LCP 1.2 s, CLS 0, on both bases; 404 Accessibility 100. html-validate no errors; 0 duplicate ids; `astro check` 0 errors; 35 requests, 0 failing, both bases; contrast 15/15; no horizontal scroll; no vetoed term. The footer focus ring was not exercised: the footer has no link yet |
+| Result | axe 0 violations, 0 incomplete on every page and width. Tab order: skip link, "Contato", "E-mail: victorialaufersaude@gmail.com"; on the 404: skip link, "Ir para a página inicial"; each with a 2px solid ring, 2px offset. Skip link moves focus to `#conteudo`; the next Tab lands on the first link in `<main>`. Reduced motion: transition and animation 0 s, scroll `auto`. Lighthouse mobile: Accessibility 100, Performance 100, LCP 1.2 s, CLS 0, on both bases; 404 Accessibility 100. html-validate no errors; 0 duplicate ids; `astro check` 0 errors; 35 requests, 0 failing, both bases; contrast 15/15; no horizontal scroll; no vetoed term. CI: assets fetched, portrait and favicon in the build, 35 requests, 0 failing. The footer focus ring was not exercised: the footer has no link yet |
 
 ---
 

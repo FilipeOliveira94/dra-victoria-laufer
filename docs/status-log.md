@@ -6,7 +6,7 @@ Chronological history of project status updates, newest first. The operational l
 
 ### 2026-11-16 — Issue 1.5: accessibility, WCAG 2.1 AA
 
-Built on `feat/1.5-accessibility`, checked on local builds with the private assets (Astro 7.4.12, Node.js v22.23.4). Not deployed.
+Built on `feat/1.5-accessibility`, checked on local builds with the private assets (Astro 7.4.12, Node.js v22.23.4) and on the PR's CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) on `f19ba4d`. Not deployed.
 
 - **Skip link:** "Ir para o conteúdo", the first element of `<body>` in `Base.astro`, so on the home and on the 404. Off screen until focused. It targets `<main id="conteudo" tabindex="-1">` on both pages; `main` shows no ring when it takes focus.
 - **Focus:** `:focus-visible` draws a 2px solid outline, 2px offset, `rounded.sm` (DESIGN.md → Links). New tokens `--color-focus` (provisional `--color-text`, 16.48:1 on white, 14.72:1 on `ground-alt`) and `--color-focus-inverse` for the footer (13.58:1); 2.4 swaps them for `verde-profundo` and `branco`. A mouse click shows no ring.
@@ -32,6 +32,7 @@ Checks:
 | `make contrast` | 15/15 |
 | Horizontal scroll, 320–1600 px, skip link focused | None |
 | Vetoed terms in `src/` and `dist/` | None |
+| PR CI, `deploy.yml` build job, [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) | Passed; private assets fetched (key present), portrait and favicon in the build, 35 requests, 0 failing on `/dra-victoria-laufer/`; deploy and published skipped (PR) |
 
 Not exercised: the inverse focus ring on the footer, which has no link yet.
 

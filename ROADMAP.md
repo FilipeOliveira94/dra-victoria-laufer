@@ -157,7 +157,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `verified` (local builds, both targets; PR CI pending) |
+| Status | `verified` (local builds, both targets, and the PR's CI run, assets fetched) |
 | Size | P |
 | Depends on | 1.3 |
 
@@ -488,4 +488,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 2.6 added at Filipe's request: cut-out portrait on brand graphics generated from the brand. A condition for publication, so 2.5 now depends on it |
 | 2026-11-16 | 1.4 built: read-only deploy key and `ASSETS_DEPLOY_KEY` secret; `deploy.yml` fetches the private assets; portrait cropped 4:5 and served as AVIF/WebP with `srcset`; favicon from the monogram; Source Serif 4 and Source Sans 3 served from the site. Verified on local builds with and without the assets and on the PR's CI [run 43908574612](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43908574612), private-assets step executed. `deploy.yml` now also runs on pull requests and checks the published page after each deploy |
 | 2026-11-16 | 1.3 verified on local builds: one-column page with `<main>`, one `h1`, sections from one list (rendered only with published content), anchor navigation without JavaScript, footer with the build year, neutral provisional tokens in `src/styles/tokens.css`, 404 page. html-validate clean, no duplicate ID, no horizontal scroll from 320 to 1600 px, 404 checked at depth on both targets |
-| 2026-11-16 | 1.5 built: skip link to `<main id="conteudo">` on every page, `:focus-visible` ring (2px, 2px offset, `rounded.sm`; inverse on the footer) from new focus tokens, contact link named "E-mail: " followed by the address with the channel as `title`, global `prefers-reduced-motion` rule. Verified on local builds, both targets: axe 4.14.1 0 violations, Lighthouse 12.8.2 mobile Accessibility 100, keyboard walk complete |
+| 2026-11-16 | 1.5 built: skip link to `<main id="conteudo">` on every page, `:focus-visible` ring (2px, 2px offset, `rounded.sm`; inverse on the footer) from new focus tokens, contact link named "E-mail: " followed by the address with the channel as `title`, global `prefers-reduced-motion` rule. Verified on local builds, both targets: axe 4.14.1 0 violations, Lighthouse 12.8.2 mobile Accessibility 100, keyboard walk complete. PR CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) passed, private-assets step executed |
