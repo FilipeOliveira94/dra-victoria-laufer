@@ -29,7 +29,7 @@ Planned, not built. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`d
 | Styling | Own CSS with tokens in one file. No framework |
 | Content | Typed collections. A pending item is hidden and reported by the build |
 | Hosting | GitHub Pages, built and deployed by GitHub Actions |
-| Domain | `victorialaufer.com.br`, switched on by removing `DEPLOY_TARGET` from the workflow |
+| Domain | `dravictorialaufer.com.br`, switched on by removing `DEPLOY_TARGET` from the workflow |
 | Indexing | `noindex` until the CFM review releases the site (issue 2.5) |
 | Assets | Original photos in a private repository, fetched at build time |
 | Quality | Lighthouse mobile ≥ 90, LCP < 2.5 s, valid HTML, WCAG 2.1 AA, images ≤ 200 KB |

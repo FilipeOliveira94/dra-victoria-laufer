@@ -15,7 +15,7 @@ Filipe asked for the plan of the site to be reviewed and rewritten, in plan mode
 
 ## 3. Facts confirmed by Filipe
 
-- The domain will be `victorialaufer.com.br`, still to be bought. There is no CNAME today.
+- The domain will be `victorialaufer.com.br`, still to be bought. There is no CNAME today. (On 2026-11-16 Filipe changed it to `dravictorialaufer.com.br`.)
 - CRM 240550, São Paulo. She has no RQE.
 - Postgraduate courses: three. The planning conversation named two, pediatric intensive care (Hospital Sírio-Libanês) and pediatrics and neonatology (HC FMUSP), registered at the CREMESP; Filipe later confirmed a third, whose area and institution are pending. The official course names are still missing and are not to be invented.
 - Advertising follows CFM Resolution 2.336/2023: name, CRM with the state, and the word `MÉDICA` on the main page; each postgraduate course written `MÉDICA com pós-graduação em (área)` followed by `NÃO ESPECIALISTA` in capitals (Art. 13). Nothing may suggest a specialty; she cannot present herself as a pediatrician.

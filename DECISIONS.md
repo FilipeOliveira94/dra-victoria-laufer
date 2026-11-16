@@ -28,7 +28,7 @@ Short index of the architecture choices for the portfolio site of Dra. Victória
 | D-001 | Site generator | Astro, static output, no JavaScript shipped to the browser | — (legacy Jekyll until 1.1) | `approved` | [ADR-0001](docs/decisions/0001-static-site-generator-astro.md) |
 | D-002 | CSS | Own CSS with tokens in one file; no framework | — | `approved` | [ADR-0002](docs/decisions/0002-own-css-with-tokens.md) |
 | D-003 | Hosting and deploy | GitHub Pages, built and deployed by GitHub Actions | — (legacy deploy from the `main` branch) | `approved` | [ADR-0003](docs/decisions/0003-hosting-github-pages-actions.md) |
-| D-004 | Domain switch | One workflow variable, `DEPLOY_TARGET: ghpages`, sets `site`, `base` and `noindex`; removing it targets `victorialaufer.com.br` | — | `approved` | [ADR-0004](docs/decisions/0004-deploy-target-switch.md) |
+| D-004 | Domain switch | One workflow variable, `DEPLOY_TARGET: ghpages`, sets `site`, `base` and `noindex`; removing it targets `dravictorialaufer.com.br` | — | `approved` | [ADR-0004](docs/decisions/0004-deploy-target-switch.md) |
 | D-005 | Content data | Typed collections (`medica`, `formacao`, `atuacao`, `contato`) with a `pendente` field | — | `approved` | [ADR-0005](docs/decisions/0005-typed-content-collections.md) |
 | D-006 | Indexing | `noindex` until issue 2.5 | — | `approved` | [ADR-0006](docs/decisions/0006-noindex-until-release.md) |
 | D-007 | Contact and e-mail | `victorialaufersaude@gmail.com` as the only e-mail, open to a later change if she asks; WhatsApp and Instagram public as contact; invitation to schedule behind `captacao.*` flags | — | `approved` | [ADR-0007](docs/decisions/0007-contact-and-single-email.md) |
@@ -52,4 +52,5 @@ Short index of the architecture choices for the portfolio site of Dra. Victória
 
 | Date | Change |
 | --- | --- |
+| 2026-11-16 | D-003 and D-004: final domain changed to `dravictorialaufer.com.br` by Filipe |
 | 2026-11-15 | Initial decision log: D-001 to D-010 recorded from the approved plan v2 and its final adjustments. D-008 implemented by the `LICENSE` in the same commit |
