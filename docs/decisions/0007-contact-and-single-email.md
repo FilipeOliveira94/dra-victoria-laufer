@@ -7,7 +7,7 @@
 | Date decided | 2026-11-15 (recorded) |
 | Owner | Filipe |
 | Index ID | D-007 |
-| Related issues | 1.2, 2.1, 3.1, 3.3 (withdrawn), 5.1, 6.1, 6.2 |
+| Related issues | 1.2, 2.2, 3.1, 3.3 (withdrawn), 5.1, 6.1, 6.2 |
 | Supersedes | — |
 | Superseded by | — |
 

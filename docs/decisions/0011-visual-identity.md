@@ -7,7 +7,7 @@
 | Date decided | 2026-11-16 |
 | Owner | Filipe (brand owner), with Dra. Victória |
 | Index ID | D-011 |
-| Related issues | 0.3, 1.4, 2.4 |
+| Related issues | 0.3, 1.4, 2.1 |
 | Supersedes | — |
 | Superseded by | — |
 
@@ -41,7 +41,7 @@ The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for 
 
 ## Consequences and trade-offs
 
-- Issue 2.4 replaces the provisional tokens with the DESIGN.md tokens; issue 1.4 serves the two fonts as WOFF2 and optimises the logos and the favicon from `brand/`.
+- Issue 2.1 replaces the provisional tokens with the DESIGN.md tokens; issue 1.4 serves the two fonts as WOFF2 and optimises the logos and the favicon from `brand/`.
 - `node scripts/check-contrast.mjs` (`make contrast`) checks the pairs table against the colour values; issue 1.7 can run it on pull requests.
 - The brand exists only as PNG. Logos are raster at every size until a vector source exists.
 - Light theme only; a dark theme needs a new decision.

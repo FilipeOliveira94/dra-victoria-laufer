@@ -4,6 +4,23 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Phase 2 reordered and renumbered
+
+Decided by Filipe. Section issues were defined by their data and left the whole look to the brand issue at the end, so no section would be finished before it. The brand now comes first and each section issue delivers its part complete: content, place on the page and in the navigation, `DESIGN.md` look and layout, access, CFM checklist, checks (`ROADMAP.md` → Phase 2, "A complete section"). IDs follow the order of work:
+
+| New | Was | Issue |
+| --- | --- | --- |
+| 2.1 | 2.4 | Apply the confirmed visual identity |
+| 2.2 | 2.1 | Identification and contact |
+| 2.3 | 2.2 | Training ("Formação") |
+| 2.4 | 2.3 | Roles ("Atuação") and "Sobre" |
+| 2.5 | 2.6 | Cut-out portrait on brand graphics |
+| 2.6 | 2.5 | CFM review and release |
+
+References were updated in the current documents, ADRs and code comments. Entries in this log and in the `ROADMAP.md` changelog written before this one keep the old numbers. The branch `feat/2.1-identification-contact` became `feat/2.1-visual-identity`.
+
+---
+
 ### 2026-11-16 — Issue 1.8: license verified
 
 Filipe reviewed `LICENSE` and approved the wording and the rights holders: MIT for the code, copyright Filipe Oliveira; all rights reserved for the texts, name, logo and photos, copyright Victória Laufer. The code copyright year was corrected from 2025 to 2026, the year the project started. The README note on the private photos repository is unchanged. Both notices are present with the correct holders, which meets the acceptance. Phase 1 is closed.

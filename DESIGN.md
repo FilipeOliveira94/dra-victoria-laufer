@@ -92,7 +92,7 @@ components:
 
 # Design System: Dra. Victória Laufer
 
-Issue 0.3. The brand was confirmed by Filipe on 2026-11-16 from Dra. Victória's own logo and palette. This file records it **before any page is built**: issue 1.1 creates the Astro base, 1.3 the layout with provisional tokens, and 2.4 replaces those tokens with the ones below. After 2.4, run `/impeccable document` in scan mode to refresh this file from the built page.
+Issue 0.3. The brand was confirmed by Filipe on 2026-11-16 from Dra. Victória's own logo and palette. This file records it **before any page is built**: issue 1.1 creates the Astro base, 1.3 the layout with provisional tokens, and 2.1 replaces those tokens with the ones below. After 2.1, run `/impeccable document` in scan mode to refresh this file from the built page.
 
 How it was made: the Impeccable new-surface flow, with the direction roll skipped because the brand was pinned whole by the client — her palette ("Manter paleta no verde, lilás/roxo, azul, amarelo, mas podemos mudar as fontes das letras para fontes mais sóbrias"), her logo, and the page sequence and first fold in [`ROADMAP.md`](ROADMAP.md) → Design brief. Typography (option A of three) and the use of green, yellow and white as the leading colours were chosen by Filipe. Product truth lives in [`PRODUCT.md`](PRODUCT.md); the wording rules in [`docs/compliance/cfm.md`](docs/compliance/cfm.md) bind every visible string, including text inside images.
 
@@ -229,7 +229,7 @@ Files live in the private repository `dra-victoria-laufer-assets` (ADR-0010) and
 | Header, on white | `brand/logo/logo-horizontal-cor.png` | Small; decorative next to the real-text name, so `alt=""` |
 | Footer, on `verde-profundo` | `brand/logo/logo-horizontal-branco.png` | `alt=""` for the same reason |
 | Favicon, app icon | `brand/symbol/simbolo-cor.png` | The monogram; dark fallback `simbolo-preto.png` |
-| Social image (Open Graph) | `brand/logo/logo-horizontal-cor.png` on white | Composed in 2.4; any text in it passes the CFM checklist |
+| Social image (Open Graph) | `brand/logo/logo-horizontal-cor.png` on white | Composed in 2.1; any text in it passes the CFM checklist |
 | Never on the site | everything in `brand/source/` | Their tagline does not follow the Art. 13 format and one variant drops the accent from "Victória" |
 
 The horizontal and vertical logos in `brand/logo/` were derived from her originals by removing the professional tagline, nothing else; the monogram and the name are untouched. Only PNG exists (no vector source). The logo is never recoloured, stretched, outlined or placed on `verde-marca` or `amarelo-marca`, where its own turquoise and gold disappear.

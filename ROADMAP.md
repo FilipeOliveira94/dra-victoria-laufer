@@ -26,14 +26,14 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Verified (1.1 to 1.8) |
-| 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, cut-out portrait, release | Phase 1; inputs from 0.2; brand from 0.3 | In progress (2.1); the active phase |
+| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | In progress (2.1); the active phase |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
-| 4 | Structured data: JSON-LD `Person` | 2.5 and 3.2 | Not started |
-| 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.1, 2.5 | Not started |
-| 6 | Acquisition, off by default: invitation to schedule, care modality | 2.5, 4.1 | Not started |
-| 7 | Monitoring: Search Console, maintenance | 1.1, 2.5, 3.2 | Not started |
+| 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Not started |
+| 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Not started |
+| 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Not started |
+| 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | Not started |
 
-Phase 2 is the active phase, with the site in `noindex` until 2.5. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
 
 ### Design brief (confirmed by Filipe)
 
@@ -136,7 +136,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.5. Blockers are 
 
 - **Objective:** a semantic page that follows the brief.
 - **Scope:** one `h1`, sections with `h2`, `<main>`, anchor navigation without JavaScript, footer with the build year, provisional tokens, 404 page.
-- **Out of scope:** final identity (2.4).
+- **Out of scope:** final identity (2.1).
 - **Acceptance:** HTML validator with no errors; no duplicate ID; layout with no horizontal scroll from 320 px to 1600 px; the 404 works at any URL depth.
 
 ### 1.4 Images, favicon and fonts
@@ -210,87 +210,97 @@ Phase 2 is the active phase, with the site in `noindex` until 2.5. Blockers are 
 
 ## Phase 2 — Credibility content under the CFM rules (MVP)
 
-**Goal:** Real identification, training and roles, approved by her, and the site released for indexing.
+**Goal:** The finished page, approved by her, released for indexing. Phase 2 is the last phase before the initial release: when 2.6 closes, the page is complete and indexable at the staging address (the domain comes in Phase 3).
 
-### 2.1 Identification and contact
+**Order:** the brand first (2.1), because every section is built in it. Then one issue per part of the page, in page order (2.2 to 2.4), each delivering its part complete. Then the cut-out portrait (2.5) and the release (2.6).
 
-| | |
-| --- | --- |
-| Status | `in progress` |
-| Size | P |
-| Depends on | 1.3 |
+**A complete section.** An issue that owns a section, or a block of the page, delivers it finished, not only its data:
 
-- **Objective:** meet the identification required by CFM Resolution 2.336/2023.
-- **Scope:** "Dra. Victória Laufer — MÉDICA — CRM-SP 240550" in the first fold and in the footer; contact with `victorialaufersaude@gmail.com`, WhatsApp and Instagram. That e-mail is the only one on the site. Changing it later is a separate decision ([ADR-0007](docs/decisions/0007-contact-and-single-email.md)).
-- **Out of scope:** invitation to schedule; RQE (she has none).
-- **Acceptance:** the three elements as text in the first fold at 360 px width; a single e-mail on the site.
+- **Content:** every fact from the content collections, in its final wording; nothing pending is visible.
+- **On the page:** rendered in the brief's order, with its `h2` and its entry in the anchor navigation (the identification block has the `h1` and no entry).
+- **Look:** the `DESIGN.md` components, type roles, ground and spacing for that section, on the brand tokens from 2.1. No provisional style is left in it.
+- **Layout:** no horizontal scroll from 320 to 1600 px; screenshots at 360 and 1280 px in the PR for Filipe's review.
+- **Access:** accessible names, full keyboard path, focus visible.
+- **Compliance:** the parts of the CFM checklist that apply to it, reported in the PR.
+- **Checks:** `make lint`, `make requests`, `make axe` and `make lighthouse` on local builds, and the PR's CI run, with the private assets.
 
-### 2.2 Training ("Formação")
-
-| | |
-| --- | --- |
-| Status | `not started` |
-| Size | P |
-| Depends on | 2.1; 0.2 |
-
-- **Objective:** show the postgraduate courses in the Art. 13 format.
-- **Scope:** each course as `MÉDICA com pós-graduação em (official name)` followed by `NÃO ESPECIALISTA` in capitals, with the institution; the degree.
-- **Out of scope:** inventing a course name, year or workload.
-- **Acceptance:** `NÃO ESPECIALISTA` with the same size and contrast as the neighboring text; an item without its official name stays pending and off the page.
-
-### 2.3 Roles ("Atuação") and "Sobre"
+### 2.1 Apply the confirmed visual identity
 
 | | |
 | --- | --- |
-| Status | `not started` |
-| Size | P |
-| Depends on | 2.1; 0.2 |
-
-- **Objective:** demonstrate experience without advertising care.
-- **Scope:** list of roles performed, with the current workplace and a start year, under the wording rule in `docs/compliance/cfm.md` → C; the text "Sobre" approved by her.
-- **Out of scope:** statistics, testimonials, mention of home care, previous workplaces, hospital logos.
-- **Acceptance:** every role follows the wording rule; none suggests a specialty or invites a consultation; the text "Sobre" is published without a change of meaning.
-
-### 2.4 Apply the confirmed visual identity
-
-| | |
-| --- | --- |
-| Status | `not started` |
-| Size | M |
+| Status | `in progress` || Size | M |
 | Depends on | 0.3 |
 
-- **Objective:** replace the provisional look with the real brand.
-- **Scope:** tokens, typography, logo, favicon and social image according to `DESIGN.md`.
-- **Out of scope:** changing structure or content.
-- **Acceptance:** no provisional token left; 1.5 and 1.7 still pass.
+- **Objective:** the brand under the whole page, before any section is finished on it.
+- **Scope:** the tokens of `DESIGN.md` (palette, type scale, spacing, shape) in place of the provisional ones; typography roles; the page frame: header with the small horizontal logo and the anchor navigation, links and focus, section grounds (`section-default`, `section-alt`, `section-sobre`), footer on `verde-profundo` with `logo-horizontal-branco`; favicon and social image composed per `DESIGN.md`.
+- **Out of scope:** the content and inner layout of each section (2.2 to 2.4); the cut-out portrait (2.5).
+- **Acceptance:** no provisional token left; every text pair in the approved table (`make contrast`); 1.5 and 1.7 still pass; screenshots at 360 and 1280 px reviewed by Filipe.
 
-### 2.6 Cut-out portrait on brand graphics
+### 2.2 Identification and contact
+
+| | |
+| --- | --- |
+| Status | `not started` || Size | P |
+| Depends on | 2.1 |
+
+- **Objective:** meet the identification required by CFM Resolution 2.336/2023, with the first fold and the Contato section finished.
+- **Scope:** the identification block complete per `DESIGN.md` → Layout: name (`display`, the only `h1`), identity line `MÉDICA · CRM-SP 240550` (`label`), the 4:5 portrait from 1.4 in its frame, beside the name on wide screens, the `ouro` hairline under the block; the identity line again in the footer; the Contato section complete, with `victorialaufersaude@gmail.com`, WhatsApp and Instagram as text links (channel as `title`, address as link text). That e-mail is the only one on the site. Changing it later is a separate decision ([ADR-0007](docs/decisions/0007-contact-and-single-email.md)). The Instagram handle stays as it is (Filipe's decision, recorded as a risk in `docs/compliance/cfm.md`).
+- **Out of scope:** invitation to schedule or a pre-filled message (6.1); RQE (she has none); the cut-out portrait (2.5).
+- **Acceptance:** the three elements as text in the first fold at 360 px width, and in the footer; a single e-mail on the site; the identification block and Contato meet "a complete section".
+
+### 2.3 Training ("Formação")
+
+| | |
+| --- | --- |
+| Status | `not started` |
+| Size | P |
+| Depends on | 2.2; 0.2 |
+
+- **Objective:** the Formação section finished, with the postgraduate courses in the Art. 13 format.
+- **Scope:** the section on the page and in the navigation; each course as `MÉDICA com pós-graduação em (official name)` followed by `NÃO ESPECIALISTA` in capitals, with the institution; the degree; its `DESIGN.md` look (course line in `title`, the Same-Size Rule).
+- **Out of scope:** inventing a course name, year or workload.
+- **Acceptance:** `NÃO ESPECIALISTA` with the same size and contrast as the neighboring text; an item without its official name stays pending and off the page; the section meets "a complete section".
+
+### 2.4 Roles ("Atuação") and "Sobre"
+
+| | |
+| --- | --- |
+| Status | `not started` |
+| Size | P |
+| Depends on | 2.3; 0.2 |
+
+- **Objective:** the Atuação and Sobre sections finished, demonstrating experience without advertising care.
+- **Scope:** both sections on the page and in the navigation; list of roles performed, with the current workplace and a start year, under the wording rule in `docs/compliance/cfm.md` → C; the text "Sobre" approved by her, on `section-sobre`.
+- **Out of scope:** statistics, testimonials, mention of home care, previous workplaces, hospital logos.
+- **Acceptance:** every role follows the wording rule; none suggests a specialty or invites a consultation; the text "Sobre" is published without a change of meaning; both sections meet "a complete section".
+
+### 2.5 Cut-out portrait on brand graphics
 
 | | |
 | --- | --- |
 | Status | `not started` |
 | Size | M |
-| Depends on | 1.4; 2.4 |
-| Required before | 2.5: Filipe made it a condition for publication (2026-11-16), so indexing waits for it |
+| Depends on | 1.4; 2.1 |
+| Required before | 2.6: Filipe made it a condition for publication (2026-11-16), so indexing waits for it |
 
 - **Objective:** a clean cut-out of her portrait for the identification block, set on graphics generated from the brand.
 - **Scope:** amend `DESIGN.md` with the portrait treatment (which brand graphics sit behind her: palette fields from 0.3 and shapes drawn from the monogram's botanical flourishes; where it appears; what is never done), approved by Filipe; background removal of `photos/portrait-main.jpg`, done once outside the site, with the transparent file stored in `dra-victoria-laufer-assets` only; the cut-out approved by her; the graphics generated as SVG or CSS from the brand, no stock or generic illustration; the composition built and served under the 1.4 rules. The 4:5 crop from 1.4 stays as the fallback and the placeholder still applies without the assets.
 - **Out of scope:** photos behind her (consultório, hospital or any other); text over the photo (anti-goal); retouching her appearance.
 - **Acceptance:** the `DESIGN.md` amendment and her approval of the cut-out recorded in the issue; no photo or cut-out file in the history of this repository; no published image above 200 KB; CLS < 0.1; LCP < 2.5 s; any text near the composition ≥ 4.5:1; the CFM checklist passes, alt text included.
 
-### 2.5 CFM review and release
+### 2.6 CFM review and release
 
 | | |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
-| Depends on | 2.1 to 2.4; 2.6 |
+| Depends on | 2.1 to 2.5 |
 | ADRs | [0006](docs/decisions/0006-noindex-until-release.md) |
 
 - **Objective:** approve the content and open indexing.
 - **Scope:** checklist checked against the full text of the resolution; her written approval; critical pending items at zero; removal of `noindex`.
 - **Out of scope:** formal legal opinion.
-- **Acceptance:** checklist and approval recorded in the issue; pending report empty for identification and training.
+- **Acceptance:** checklist and approval recorded in the issue; pending report empty for identification and training; the whole page reviewed by Filipe at 360 and 1280 px.
 
 ---
 
@@ -343,7 +353,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | --- | --- |
 | Status | `not started` |
 | Size | P |
-| Depends on | 2.5 and 3.2 |
+| Depends on | 2.6 and 3.2 |
 | ADRs | [0009](docs/decisions/0009-schema-person.md) |
 
 - **Objective:** an identity readable by search engines, with real data only.
@@ -361,7 +371,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | --- | --- |
 | Status | `not started` |
 | Size | P |
-| Depends on | 2.1 |
+| Depends on | 2.2 |
 
 - **Objective:** transparency and LGPD.
 - **Scope:** privacy page describing what the site collects and how she handles the messages she receives; notice that the content does not replace a consultation.
@@ -374,7 +384,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | --- | --- |
 | Status | `not started` |
 | Size | M |
-| Depends on | 2.5 |
+| Depends on | 2.6 |
 
 - **Objective:** deepen credibility as she provides material.
 - **Scope:** courses, events or publications; link to the CREMESP public physician lookup; visible review date.
@@ -393,7 +403,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | --- | --- |
 | Status | `not started` |
 | Size | P |
-| Depends on | 2.5 |
+| Depends on | 2.6 |
 
 - **Objective:** switch acquisition on without rework.
 - **Scope:** call-to-action block in the first fold and at the end of the page, with a pre-filled message; flag `captacao.cta`.
@@ -423,7 +433,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | --- | --- |
 | Status | `not started` |
 | Size | P |
-| Depends on | 3.2 and 2.5 |
+| Depends on | 3.2 and 2.6 |
 
 - **Objective:** follow indexing.
 - **Scope:** verification by DNS; sitemap submission.
@@ -463,10 +473,10 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 
 | Risk | Impact | Mitigation |
 | --- | --- | --- |
-| CFM: suggesting a specialty in text, alt, metadata or schema | Ethical infraction | Vetoed terms in CI (1.7); checklist in 2.5 and 6.2 |
-| CFM: Art. 13 with a wrong course name or a barely visible notice | Ethical infraction | Publish only with the official name; acceptance of 2.2 |
-| "Atuação" read as advertising of care | Goes against her guidance and the CFM | Acceptance of 2.3; modality only in 6.2 |
-| The reading of the resolution is limited to the points Filipe passed on | Incomplete checklist | Check the full text in 2.5; in doubt, consult the CREMESP |
+| CFM: suggesting a specialty in text, alt, metadata or schema | Ethical infraction | Vetoed terms in CI (1.7); checklist in 2.6 and 6.2 |
+| CFM: Art. 13 with a wrong course name or a barely visible notice | Ethical infraction | Publish only with the official name; acceptance of 2.3 |
+| "Atuação" read as advertising of care | Goes against her guidance and the CFM | Acceptance of 2.4; modality only in 6.2 |
+| The reading of the resolution is limited to the points Filipe passed on | Incomplete checklist | Check the full text in 2.6; in doubt, consult the CREMESP |
 | Domain with her name registered under Filipe's CPF | His name appears in WHOIS; she depends on him to keep the domain | Written agreement; ownership can be transferred at Registro.br |
 | Brand unconfirmed for a long time | MVP ready but not released | Closed 2026-11-16: brand confirmed in 0.3 |
 | Content inputs arrive late | Empty sections | Pending items stay hidden; identification and contact already carry the page |
@@ -493,3 +503,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 1.7 built: the `build` job of `deploy.yml` runs, on every PR and before every deploy, html-validate, the request and anchor check with the 200 KB limit, the vetoed-term and "Lorem" search on `dist/` (`NÃO ESPECIALISTA` excepted), a photo check on the tree and on every commit of the branch, axe at 360 and 1280 px, and Lighthouse CI mobile (Performance ≥ 90, Accessibility ≥ 95, LCP < 2.5 s, CLS < 0.1). Each rule broken on purpose fails its check. PR CI [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420) passed, private-assets step executed |
 | 2026-11-16 | Phase 2 is the active phase: Phases 0 and 1 closed (0.1 to 0.3 and 1.1 to 1.7 verified; 1.8 delivered, then verified the same day). 2.1 in progress on `feat/2.1-identification-contact`. The 1.7 merge published cleanly (`published` job of [run 43937667606](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937667606)) |
 | 2026-11-16 | 1.8 verified: Filipe reviewed the `LICENSE` wording and the rights holders; the code copyright year corrected from 2025 to 2026. Phase 1 closed |
+| 2026-11-16 | Phase 2 reordered and renumbered by Filipe, so IDs follow the order of work: 2.1 visual identity (was 2.4), 2.2 identification and contact (was 2.1), 2.3 Formação (was 2.2), 2.4 Atuação and Sobre (was 2.3), 2.5 cut-out portrait (was 2.6), 2.6 CFM review and release (was 2.5). Earlier changelog and status-log entries keep the old numbers. Phase 2 now defines "a complete section": each section issue delivers its part finished (content, page, look, layout, access, compliance, checks), on the brand from 2.1 |

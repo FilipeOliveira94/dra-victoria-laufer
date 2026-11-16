@@ -5,13 +5,13 @@ Checklist for medical advertising on this site under **CFM Resolution 2.336/2023
 | | |
 | --- | --- |
 | Applies to | Every published page, its `<head>`, its JSON-LD, the social image, file names and URLs |
-| Run by | Dev before the PR; PO during review; again in issues 2.5 and 6.2 |
+| Run by | Dev before the PR; PO during review; again in issues 2.6 and 6.2 |
 | Automated part | Vetoed terms and "Lorem" in everything the build publishes, file names included: `make lint` (`scripts/check-content.mjs`), run on every pull request since issue 1.7. The other items are checked by hand |
-| Final review | Issue 2.5, against the full text of the resolution, with her written approval |
+| Final review | Issue 2.6, against the full text of the resolution, with her written approval |
 
 ## Limits of this checklist
 
-- It covers the points of the resolution that Filipe passed on during planning. It has **not** been checked against the full text. That check is part of issue 2.5.
+- It covers the points of the resolution that Filipe passed on during planning. It has **not** been checked against the full text. That check is part of issue 2.6.
 - It is not legal advice. In case of doubt, do not publish and consult the CREMESP.
 - A rule here changes only with its source recorded in the changelog below.
 
@@ -21,7 +21,7 @@ Checklist for medical advertising on this site under **CFM Resolution 2.336/2023
 | --- | --- |
 | Registration | CRM 240550, São Paulo. Written on the site as `CRM-SP 240550` |
 | RQE | None. She is not a registered specialist |
-| Postgraduate courses | Three: Especialização em Pediatria Clínica (HCX Fmusp); Especialização em Anestesia e Terapia Intensiva Pediátrica (Faculdade Sírio-Libanês); Especialização em Neonatologia (HCX Fmusp). **None is registered at the CREMESP** (registration frozen by the CREMESP); Neonatologia is in progress (Filipe, 2026-11-15). Shown by Filipe's decision, registered or not; `noindex` is removed in 2.5 regardless of the registration ([`docs/inputs/0.2-pending-inputs.md`](../inputs/0.2-pending-inputs.md)) |
+| Postgraduate courses | Three: Especialização em Pediatria Clínica (HCX Fmusp); Especialização em Anestesia e Terapia Intensiva Pediátrica (Faculdade Sírio-Libanês); Especialização em Neonatologia (HCX Fmusp). **None is registered at the CREMESP** (registration frozen by the CREMESP); Neonatologia is in progress (Filipe, 2026-11-15). Shown by Filipe's decision, registered or not; `noindex` is removed in 2.6 regardless of the registration ([`docs/inputs/0.2-pending-inputs.md`](../inputs/0.2-pending-inputs.md)) |
 | Degree | Medicina, Universidade Federal do Vale do São Francisco (UNIVASF), 2021 |
 | Official course names | As above, received from Filipe on 2026-11-15 |
 
@@ -39,7 +39,7 @@ Checklist for medical advertising on this site under **CFM Resolution 2.336/2023
 - [ ] `NÃO ESPECIALISTA` has the same font size and the same contrast as the text next to it. It is not hidden, shrunk, greyed out or moved away from the course.
 - [ ] A course without its official name is `pendente` and does not appear on the page.
 - [ ] A course not yet completed is marked `(em curso)` right after the area, so the line does not state a completed course (Art. 11, XVI).
-- [ ] A course not registered at the CRM is shown only under a recorded decision by Filipe. Current decision: shown while the CREMESP keeps registration frozen, and the release in 2.5 does not wait for it ([`docs/inputs/0.2-pending-inputs.md`](../inputs/0.2-pending-inputs.md) → 2). Art. 13, §1, d reads "devidamente cadastrado no CRM"; this is a recorded risk.
+- [ ] A course not registered at the CRM is shown only under a recorded decision by Filipe. Current decision: shown while the CREMESP keeps registration frozen, and the release in 2.6 does not wait for it ([`docs/inputs/0.2-pending-inputs.md`](../inputs/0.2-pending-inputs.md) → 2). Art. 13, §1, d reads "devidamente cadastrado no CRM"; this is a recorded risk.
 - [ ] No year, workload or course name was invented.
 
 ## C. Nothing suggests a specialty
@@ -65,6 +65,7 @@ A non-specialist may say **where she works and in what setting** (Art. 7: advert
 - The name of a postgraduate area appears only in the Art. 13 format, followed by `NÃO ESPECIALISTA` (section B).
 - Experience is a start year ("desde 2022"), not a count of years that ages, unless the count is computed at build time from the start year.
 - Workplaces are named in text only, without their logos.
+- [ ] The Instagram account is shown with its existing handle, `pediatria.dravictoria` (URL `https://www.instagram.com/pediatria.dravictoria`), by Filipe's decision of 2026-11-16: the handle is not changed. Recorded risk: the handle names a field ("pediatria") next to a physician without RQE, and this checklist covers URLs. It does not trigger the vetoed-term check (`pediatra`), which is why the decision is written here.
 - [ ] No title, heading, service name or phrase reads as a specialty (the legacy site has "Atendimento Pediátrico", "Puericultura" and "Consultas de Emergência"; none of these returns).
 - [ ] The check covers visible text, `<title>`, meta description, Open Graph tags, the social image, image `alt` text, JSON-LD, file names and URLs.
 - [ ] Structured data is `Person` with `jobTitle: Médica`. It has no `medicalSpecialty`. `Physician` is used only with acquisition switched on (issue 6.2).
@@ -80,7 +81,7 @@ These come from the approved plan and design brief, not from a cited article of 
 - [ ] The only e-mail is `victorialaufersaude@gmail.com`.
 - [ ] No "Lorem ipsum", "TODO" or placeholder text is visible.
 
-## E. Release (issue 2.5 only)
+## E. Release (issue 2.6 only)
 
 - [ ] Sections A to D were checked against the full text of Resolution CFM 2.336/2023, and new findings were added here.
 - [ ] Dra. Victória approved the content in writing. The approval is recorded in the issue.
@@ -98,3 +99,4 @@ Copy sections A to D into the PR description, tick each item, and state how it w
 | 2026-11-15 | First version | Approved plan v2 and the points of the resolution given by Filipe |
 | 2026-11-15 | Course names recorded. Wording rule for roles and experience added; `neonatologista`, `intensivista` and `área de atuação` vetoed. "Atuação" may name current workplaces and a start year; "no numbers" narrowed to statistics | Text of Resolution CFM 2.336/2023 (Art. 4, 7, 11, 13), read in issue 0.2; decision by Filipe |
 | 2026-11-15 | Planning record "two registered" corrected: none is registered, registration frozen by the CREMESP. Unregistered courses shown by Filipe's decision, and the release does not wait for registration; a course in progress is marked `(em curso)` | Art. 13, §1, d; Art. 11, XVI; facts and decision from Filipe |
+| 2026-11-16 | Instagram handle `pediatria.dravictoria` kept as is, recorded as a risk in C | Filipe's decision, 2026-11-16 |

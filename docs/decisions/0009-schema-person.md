@@ -32,7 +32,7 @@ Publish schema.org **`Person`**, with `jobTitle: Médica`, the CRM as identifier
 
 - JSON-LD is built from the typed collections, so no pending field reaches it.
 - The CFM checklist covers JSON-LD like any other text.
-- 4.1 waits for the release (2.5) and the final domain (3.2), so the data and the URL are real.
+- 4.1 waits for the release (2.6) and the final domain (3.2), so the data and the URL are real.
 
 ## Evidence / validation
 

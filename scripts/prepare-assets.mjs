@@ -36,7 +36,7 @@ const SYMBOL = {
 
 // Open Graph image (issue 1.6): the colour horizontal logo on white
 // (DESIGN.md), 1200 x 630, the size social networks crop to. Scaled, never
-// recoloured. Its final composition is issue 2.4.
+// recoloured. Its final composition is issue 2.1.
 const SOCIAL = {
   file: 'brand/logo/logo-horizontal-cor.png',
   size: { width: 1200, height: 630 },

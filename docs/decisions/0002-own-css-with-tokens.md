@@ -7,7 +7,7 @@
 | Date decided | 2026-11-15 (recorded) |
 | Owner | Filipe |
 | Index ID | D-002 |
-| Related issues | 1.3, 0.3, 2.4 |
+| Related issues | 1.3, 0.3, 2.1 |
 | Supersedes | — |
 | Superseded by | — |
 
@@ -17,7 +17,7 @@ The legacy site loads Bootstrap 5.3, Bootstrap Icons and Google Fonts from third
 
 ## Decision
 
-Write the site's **own CSS**, with every color, type and spacing value defined as a **token in one file**. No CSS framework. Until issue 0.3 the tokens are neutral and provisional; issue 2.4 replaces them.
+Write the site's **own CSS**, with every color, type and spacing value defined as a **token in one file**. No CSS framework. Until issue 0.3 the tokens are neutral and provisional; issue 2.1 replaces them.
 
 ## Alternatives considered
 
@@ -29,7 +29,7 @@ Write the site's **own CSS**, with every color, type and spacing value defined a
 ## Consequences and trade-offs
 
 - The provisional tokens are not a brand. Nobody chooses a palette or a typeface before Filipe confirms them.
-- Acceptance of 2.4 is "no provisional token left".
+- Acceptance of 2.1 is "no provisional token left".
 - Every color pair must reach a contrast of at least 4.5:1, checked again when the tokens change.
 
 ## Evidence / validation

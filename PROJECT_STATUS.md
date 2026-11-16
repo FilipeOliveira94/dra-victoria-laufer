@@ -6,8 +6,8 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-16 (Phase 2 active; 2.1 in progress; 1.8 verified) |
-| Current phase | Phase 2 — Credibility content under the CFM rules (MVP) |
+| Last updated | 2026-11-16 (Phase 2 active and renumbered; 2.1 in progress; 1.8 verified) |
+| Current phase | Phase 2 — Credibility content under the CFM rules (MVP), the last phase before the initial release |
 | Phase status | Phase 2 in progress (2.1). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
@@ -22,15 +22,18 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**2.1** — Identification and contact: "Dra. Victória Laufer — MÉDICA — CRM-SP 240550" as text in the first fold at 360 px and in the footer; contact with `victorialaufersaude@gmail.com`, WhatsApp and Instagram; a single e-mail on the site. Branch `feat/2.1-identification-contact`.
+**2.1** — Apply the confirmed visual identity: the `DESIGN.md` tokens, typography and page frame (header with logo and navigation, section grounds, footer), favicon and social image, under the whole page before any section is finished on it. Branch `feat/2.1-visual-identity`.
+
+Phase 2 was reordered and renumbered on 2026-11-16 (Filipe): the brand comes first, then one issue per part of the page, each delivering it as "a complete section" (`ROADMAP.md` → Phase 2), then the cut-out portrait and the release.
 
 The 1.7 merge (`dc075fc`) published cleanly: `published` job of [run 43937667606](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937667606), 23 requests, 0 failing. `build` is a required status check of `main`.
 
 ## Next work
 
 1. **2.1** — plan, build, PR.
-2. **2.2** and **2.3**, after 2.1.
-3. **2.4**, then **2.6** (cut-out portrait on brand graphics). Filipe made 2.6 a condition for publication, so **2.5** (removal of `noindex`) waits for it.
+2. **2.2** identification and contact, **2.3** Formação, **2.4** Atuação and Sobre, in that order, each a complete section.
+3. **2.5** cut-out portrait on brand graphics: Filipe made it a condition for publication.
+4. **2.6** CFM review and release (removal of `noindex`).
 
 ## Blockers
 
@@ -42,12 +45,12 @@ None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inp
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 2.1 | Identification and contact | In progress | — |
-| 2.2 | Training ("Formação") | Not started | — |
-| 2.3 | Roles ("Atuação") and "Sobre" | Not started | — |
-| 2.4 | Apply the confirmed visual identity | Not started | — |
-| 2.6 | Cut-out portrait on brand graphics | Not started | — |
-| 2.5 | CFM review and release | Not started | Depends on 2.1 to 2.4 and 2.6 |
+| 2.1 | Apply the confirmed visual identity | In progress | — |
+| 2.2 | Identification and contact | Not started | — |
+| 2.3 | Training ("Formação") | Not started | — |
+| 2.4 | Roles ("Atuação") and "Sobre" | Not started | — |
+| 2.5 | Cut-out portrait on brand graphics | Not started | — |
+| 2.6 | CFM review and release | Not started | Depends on 2.1 to 2.5 |
 
 Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `docs/status-log.md`.
 
@@ -84,12 +87,12 @@ All eleven decisions are `approved`. Implemented: D-008 (license) and, from 1.1,
 | D-001 | Astro, static, no client JavaScript | 1.1 |
 | D-003 | GitHub Pages through Actions | 1.1 |
 | D-004 | `DEPLOY_TARGET` | 1.1, 3.2 |
-| D-006 | `noindex` until 2.5 | 1.1, 2.5 |
+| D-006 | `noindex` until 2.6 | 1.1, 2.6 |
 | D-010 | Private assets repository | 1.4 |
-| D-011 | Visual identity | 1.4, 2.4 |
+| D-011 | Visual identity | 1.4, 2.1 |
 
 ## Active risks
 
 The full table is in `ROADMAP.md` → Risks. The ones that apply today:
 
-- The CFM checklist covers only the points passed on by Filipe until the full-text check in 2.5.
+- The CFM checklist covers only the points passed on by Filipe until the full-text check in 2.6.
