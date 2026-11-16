@@ -1,6 +1,7 @@
 // Serves dist/ under the configured base path and requests every resource
-// the built pages reference (href and src). Fails on any status other than
-// 200 and on any request to another host.
+// the built pages reference (href, src, srcset, and url() in the CSS they
+// load). Fails on any status other than 200, on any request to another host,
+// and on any published image above 200 KB (AGENTS.md §9).
 //
 // Usage: node scripts/check-requests.mjs [base]   (default base "/")
 // Example: node scripts/check-requests.mjs /dra-victoria-laufer/
@@ -8,6 +9,9 @@
 import { createServer } from 'node:http';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
+
+const MAX_IMAGE_BYTES = 200 * 1024;
+const IMAGE = /\.(avif|webp|png|jpe?g|gif|svg|ico)$/i;
 
 const DIST = 'dist';
 const base = (process.argv[2] || '/').replace(/\/?$/, '/');
@@ -49,12 +53,12 @@ const server = createServer(async (req, res) => {
   res.end(await readFile(file));
 });
 
-async function htmlFiles(dir) {
+async function files(dir, test) {
   const out = [];
   for (const entry of await readdir(dir, { withFileTypes: true })) {
     const p = join(dir, entry.name);
-    if (entry.isDirectory()) out.push(...(await htmlFiles(p)));
-    else if (p.endsWith('.html')) out.push(p);
+    if (entry.isDirectory()) out.push(...(await files(p, test)));
+    else if (test.test(p)) out.push(p);
   }
   return out;
 }
@@ -64,7 +68,7 @@ const origin = `http://127.0.0.1:${server.address().port}`;
 const failures = [];
 let checked = 0;
 
-for (const file of await htmlFiles(DIST)) {
+for (const file of await files(DIST, /\.html$/)) {
   const pageUrl = new URL(base + file.slice(DIST.length + 1).replace(/index\.html$/, ''), origin);
   const html = await readFile(file, 'utf8');
   const refs = new Set();
@@ -77,6 +81,19 @@ for (const file of await htmlFiles(DIST)) {
     // Anchors to other hosts are navigation, not requests at page load.
     if (/^<a\s/i.test(tag) && target.origin !== origin) continue;
     refs.add(ref);
+  }
+  for (const [, set] of html.matchAll(/\ssrcset="([^"]+)"/g)) {
+    for (const candidate of set.split(',')) refs.add(candidate.trim().split(/\s+/)[0]);
+  }
+  // Stylesheets: their url() references (fonts) are requests at page load too.
+  for (const ref of [...refs]) {
+    if (!ref.endsWith('.css')) continue;
+    const cssUrl = new URL(ref, pageUrl);
+    if (cssUrl.origin !== origin) continue;
+    const css = await (await fetch(cssUrl)).text();
+    for (const [, u] of css.matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/g)) {
+      if (!u.startsWith('data:')) refs.add(new URL(u, cssUrl).href);
+    }
   }
   for (const ref of refs) {
     const target = new URL(ref, pageUrl);
@@ -95,6 +112,11 @@ for (const file of await htmlFiles(DIST)) {
 }
 
 server.close();
+
+for (const img of await files(DIST, IMAGE)) {
+  const { size } = await stat(img);
+  if (size > MAX_IMAGE_BYTES) failures.push(`${img}: ${Math.round(size / 1024)} KB, above 200 KB`);
+}
 console.log(`base ${base}: ${checked} requests, ${failures.length} failing`);
 for (const f of failures) console.log(`  ${f}`);
 process.exit(failures.length ? 1 : 0);

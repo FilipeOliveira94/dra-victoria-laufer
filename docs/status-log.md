@@ -4,6 +4,38 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.4: images, favicon and fonts
+
+Built on `feat/1.4-images-favicon-fonts`, checked on local builds (Astro 7.4.12, sharp 0.35.5, Node.js v22.23.4). Not deployed.
+
+- **Deploy key:** an ed25519 key registered on `dra-victoria-laufer-assets` as read-only (GitHub reports `read_only=true`); it cloned the repository and a push with it was refused. Its private half is the repository secret `ASSETS_DEPLOY_KEY` of this repository; no copy was kept on disk.
+- **Workflow:** `deploy.yml` checks the assets out into `.assets/` with that key (`persist-credentials: false`) only when the secret exists; a fork skips the step.
+- **Crops** (`scripts/prepare-assets.mjs`, run before `build` and `dev`; output in the ignored `src/assets/generated/`): the 2000 × 1333 landscape photo left her face about 40 px tall on a 360 px phone, beside a sofa and a laptop. It is cropped to 880 × 1100 (4:5) on her, head room kept, laptop out of frame. The monogram filled about 60% of its canvas, so it is cropped to the ring before scaling to 32 px; a white-ground copy feeds the 180 px apple-touch icon. Cropped only, never recoloured.
+- **Portrait:** `<Picture>` with AVIF and WebP at 320, 480, 640 and 880 w, JPEG fallback, `width`/`height`, `fetchpriority="high"`, `loading="eager"`, alt `Foto de <nome>` from the content model. After the identity line on a phone; beside the name from 768 px. Without the assets: a neutral 4:5 box with `aria-hidden`, no text.
+- **Fonts:** Source Serif 4 600 and Source Sans 3 400/600, Latin and Latin Extended WOFF2 from Fontsource 5.3.1, unmodified, in `src/assets/fonts/` with `OFL.txt`; `font-display: swap`, `unicode-range`, preload of the `h1` face. The tokens name them; sizes stay provisional until 2.4.
+- **Checker:** `scripts/check-requests.mjs` now follows `srcset` and the `url()` in loaded CSS, and fails on any published image above 200 KB.
+- `sharp` became an exact devDependency (it was already installed through Astro); the script imports it directly.
+
+Checks:
+
+| Check | Result |
+| --- | --- |
+| Build with the assets, production and `ghpages` | Exit 0; 12 portrait files, 2 icons, 6 fonts |
+| Build with `ASSETS_DIR=/nonexistent` | Exit 0; placeholder box, `<link rel="icon" href="data:,">`, 0 image files |
+| `make requests`, both bases, with the assets | 35 requests, 0 failing, 0 third party |
+| `make requests` without the assets | 19 requests, 0 failing |
+| 200 KB gate, 253 KB probe copied into `dist/` | Flagged, exit 1 |
+| Largest published image | 78.9 KB (JPEG 880 w); largest AVIF 25.3 KB |
+| CLS / LCP, T3 browser, 360 px, local server | 0.00014; LCP element the portrait, AVIF 640 w |
+| Horizontal scroll at 320, 768, 1600 px | None (`scrollWidth` = `clientWidth`) |
+| `npx html-validate@9`, `make check`, `make contrast` | No errors; 0 errors; 15/15 |
+| Image files in `git log --all` | None |
+| Vetoed terms in `src/` and `dist/` | None |
+
+Not run: the workflow's fetch step (it runs on `main` only; checked on the first deploy after the merge), Lighthouse and axe (1.7).
+
+---
+
 ### 2026-11-16 — Issue 1.3: structure and layout of the single page
 
 Built on `feat/1.3-page-structure`, checked on local builds (Astro 7.4.12, Node.js v22.23.4). Not deployed.

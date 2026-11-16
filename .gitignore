@@ -14,3 +14,8 @@ npm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Private assets (issue 1.4, ADR-0010): checkout of dra-victoria-laufer-assets
+# and the crops made from it. Never commit a photo or a brand file here.
+.assets/
+src/assets/generated/

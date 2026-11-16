@@ -22,6 +22,8 @@ jobs:
       # Staging under /dra-victoria-laufer/ (ADR-0004). Issue 3.2 removes
       # this line to build for https://dravictorialaufer.com.br/.
       DEPLOY_TARGET: ghpages
+      # A secret cannot be read in a step condition; only whether it exists is.
+      HAS_ASSETS_KEY: ${{ secrets.ASSETS_DEPLOY_KEY != '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,6 +32,17 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+      # Photo and brand files from the private repository (ADR-0010), with a
+      # read-only deploy key scoped to it. Without the secret (fork) the step
+      # is skipped and the build uses the neutral placeholder.
+      - name: Fetch private assets
+        if: env.HAS_ASSETS_KEY == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: FilipeOliveira94/dra-victoria-laufer-assets
+          ssh-key: ${{ secrets.ASSETS_DEPLOY_KEY }}
+          path: .assets
+          persist-credentials: false
       - name: Install dependencies
         run: npm ci
       - name: Build

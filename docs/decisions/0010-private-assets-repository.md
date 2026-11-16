@@ -36,7 +36,7 @@ Keep this repository public. Store the **original photos and the brand source fi
 
 ## Evidence / validation
 
-None yet. Acceptance of 1.4: no photo file in the history of this repository, and a build without the secret completes with the placeholder.
+Issue 1.4, local builds (2026-11-16): an ed25519 deploy key, registered read-only on `dra-victoria-laufer-assets` only, cloned the repository and was refused a push; its private half is the `ASSETS_DEPLOY_KEY` repository secret and no copy was kept on disk. `deploy.yml` checks the assets out into `.assets/` only when the secret exists. A build without `.assets/` completes with the placeholder; `git log --all` holds no image file. The workflow step runs for the first time on the deploy after the 1.4 merge; until that run is checked, this decision is not marked Implemented.
 
 ## Revisit when
 

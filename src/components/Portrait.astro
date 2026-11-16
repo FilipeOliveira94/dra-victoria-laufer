@@ -1,0 +1,27 @@
+---
+import { Picture } from 'astro:assets';
+import { portrait } from '../lib/assets';
+
+interface Props {
+  alt: string;
+}
+
+const { alt } = Astro.props;
+---
+
+{
+  portrait ? (
+    <Picture
+      src={portrait}
+      alt={alt}
+      formats={['avif', 'webp']}
+      widths={[320, 480, 640, 880]}
+      sizes="(min-width: 768px) 18rem, min(20rem, calc(100vw - 32px))"
+      priority
+      class="portrait"
+    />
+  ) : (
+    // Neutral placeholder: same 4:5 box, no text, nothing for a screen reader.
+    <div class="portrait portrait-placeholder" aria-hidden="true" />
+  )
+}

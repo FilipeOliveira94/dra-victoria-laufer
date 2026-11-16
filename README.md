@@ -11,9 +11,9 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 | Field | Now |
 | --- | --- |
-| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2) and the **page structure** (issue 1.3): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550` and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Neutral provisional styling; the brand comes in 2.4 |
+| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2) and the **page structure** (issue 1.3) and **images, favicon and fonts** (issue 1.4): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550`, her portrait (AVIF/WebP from the private assets repository) and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Brand fonts served from the site; colours still neutral provisional, the brand comes in 2.4 |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> |
-| Next | Issue 1.4, images, favicon and fonts |
+| Next | Issues 1.5, 1.6 and 1.7; 2.1 |
 | Brand | Confirmed in [`DESIGN.md`](DESIGN.md) (issue 0.3); applied to the site in issue 2.4. `make contrast` checks its colour pairs |
 | Ledger | [`PROJECT_STATUS.md`](PROJECT_STATUS.md) · scope in [`ROADMAP.md`](ROADMAP.md) |
 
@@ -49,13 +49,15 @@ make help
 | `make build` | Build the static site. Without `DEPLOY_TARGET`: production URLs (`https://dravictorialaufer.com.br/`). With `DEPLOY_TARGET=ghpages`: staging under `/dra-victoria-laufer/` |
 | `make preview` | Serve the built site locally |
 | `make check` | Type-check the project (`astro check`) |
-| `make requests` | Serve `dist/` and request everything the pages reference; fails on a non-200 or a third-party request. `BASE=/dra-victoria-laufer/` for a staging build |
+| `make assets` | Crop the private assets in `.assets/` for the build (`make build` and `make dev` run it first). Without `.assets/`, the page gets a neutral placeholder and no favicon |
+| `make requests` | Serve `dist/` and request everything the pages reference (including `srcset` and font URLs in the CSS); fails on a non-200, a third-party request, or a published image above 200 KB. `BASE=/dra-victoria-laufer/` for a staging build |
 | `make contrast` | Check the colour pairs in `DESIGN.md` |
 | `make lint`, `make lighthouse` | Print a notice until issue 1.7 adds the tools |
 
 - Needs Node.js at the version in [`.nvmrc`](.nvmrc) (Astro 7 requires ≥ 22.23.4) and npm.
 - A push to `main` builds and deploys through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The repository's Pages source is "GitHub Actions".
 - Every build carries `noindex` until issue 2.5 sets `indexable` in [`src/config/release.ts`](src/config/release.ts).
+- Photos and brand files live in the private repository `dra-victoria-laufer-assets` (ADR-0010), never here. The deploy workflow checks it out into `.assets/` with the read-only deploy key in the `ASSETS_DEPLOY_KEY` secret. Locally, with access to that repository, clone it into `.assets/`; without it, the build completes with the neutral placeholder.
 - Facts about her live only in [`src/content/data/`](src/content/data/), checked by the schemas in [`src/content.config.ts`](src/content.config.ts). Invalid data stops the build. A missing fact is `pendente: true` with a `motivo`: it stays off the page and `make build` lists it as `[pendente] <collection>/<id>: <motivo>`.
 
 ---

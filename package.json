@@ -12,13 +12,17 @@
     "check": "astro check",
     "lint": "echo \"npm run lint: not available yet. The linter is added by issue 1.7 (see ROADMAP.md).\"",
     "lighthouse": "echo \"npm run lighthouse: not available yet. Lighthouse CI is added by issue 1.7 (see ROADMAP.md).\"",
-    "requests": "node scripts/check-requests.mjs"
+    "requests": "node scripts/check-requests.mjs",
+    "assets": "node scripts/prepare-assets.mjs",
+    "prebuild": "node scripts/prepare-assets.mjs",
+    "predev": "node scripts/prepare-assets.mjs"
   },
   "dependencies": {
     "astro": "7.4.12"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
+    "sharp": "0.35.5",
     "typescript": "6.0.3"
   }
 }

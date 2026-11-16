@@ -143,7 +143,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `not started` |
+| Status | `in progress` (verified on local builds; the CI asset fetch runs on the first deploy after the merge) |
 | Size | M |
 | Depends on | 1.1 and 1.3; photo from 0.2 (neutral placeholder until then) |
 | ADRs | [0010](docs/decisions/0010-private-assets-repository.md) |
@@ -471,4 +471,5 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 1.1 verified: Astro 7.4.12 base, `deploy.yml` workflow, `DEPLOY_TARGET`, `noindex` from `src/config/release.ts`; Jekyll removed. Local builds checked; marked verified by Filipe before the published-site check, which runs after the merge |
 | 2026-11-16 | 1.1 published-site check: the `deploy.yml` deploy serves the Astro page at `/dra-victoria-laufer/` with `noindex`, the staging canonical and no request besides the page; the legacy files return 404 |
 | 2026-11-16 | 1.2 verified on local builds: typed collections, pending report, `captacao.*` off. WhatsApp and Instagram received from Filipe |
+| 2026-11-16 | 1.4 built: read-only deploy key and `ASSETS_DEPLOY_KEY` secret; `deploy.yml` fetches the private assets; portrait cropped 4:5 and served as AVIF/WebP with `srcset`; favicon from the monogram; Source Serif 4 and Source Sans 3 served from the site. Local builds checked with and without the assets; CI fetch pending the first deploy |
 | 2026-11-16 | 1.3 verified on local builds: one-column page with `<main>`, one `h1`, sections from one list (rendered only with published content), anchor navigation without JavaScript, footer with the build year, neutral provisional tokens in `src/styles/tokens.css`, 404 page. html-validate clean, no duplicate ID, no horizontal scroll from 320 to 1600 px, 404 checked at depth on both targets |
