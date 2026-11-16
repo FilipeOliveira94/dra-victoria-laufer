@@ -11,9 +11,9 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 | Field | Now |
 | --- | --- |
-| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2), the **page structure** (issue 1.3), **images, favicon and fonts** (issue 1.4), **accessibility** (issue 1.5: skip link, visible focus, named contact link, reduced motion) and **technical SEO** (issue 1.6: description, Open Graph `pt_BR` with the logo as social image, `sitemap.xml`, `robots.txt`): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550`, her portrait (AVIF/WebP from the private assets repository) and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Brand fonts served from the site; colours still neutral provisional, the brand comes in 2.4 |
+| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2), the **page structure** (issue 1.3), **images, favicon and fonts** (issue 1.4), **accessibility** (issue 1.5: skip link, visible focus, named contact link, reduced motion), **technical SEO** (issue 1.6: description, Open Graph `pt_BR` with the logo as social image, `sitemap.xml`, `robots.txt`) and **automatic checks on pull requests** (issue 1.7: HTML, links and anchors, axe, Lighthouse mobile, 200 KB per image, vetoed terms, no photo in the repository): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550`, her portrait (AVIF/WebP from the private assets repository) and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Brand fonts served from the site; colours still neutral provisional, the brand comes in 2.4 |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> |
-| Next | Issues 1.6 and 1.7; 2.1 |
+| Next | Issue 2.1 |
 | Brand | Confirmed in [`DESIGN.md`](DESIGN.md) (issue 0.3); applied to the site in issue 2.4. `make contrast` checks its colour pairs |
 | Ledger | [`PROJECT_STATUS.md`](PROJECT_STATUS.md) · scope in [`ROADMAP.md`](ROADMAP.md) |
 
@@ -52,9 +52,13 @@ make help
 | `make assets` | Crop the private assets in `.assets/` for the build (`make build` and `make dev` run it first). Without `.assets/`, the page gets a neutral placeholder and no favicon |
 | `make requests` | Serve `dist/` and request everything the pages reference (including `srcset` and font URLs in the CSS); fails on a non-200, a third-party request, or a published image above 200 KB. `BASE=/dra-victoria-laufer/` for a staging build |
 | `make contrast` | Check the colour pairs in `DESIGN.md` |
-| `make lint`, `make lighthouse` | Print a notice until issue 1.7 adds the tools |
+| `make lint` | On a built `dist/`: valid HTML (`html-validate`, duplicate ids included); no "Lorem" and no vetoed term (`pediatra`, `especialista em`; `NÃO ESPECIALISTA` excepted) in the published text or file names; no photo or image source file tracked in the repository or added by a commit of the branch |
+| `make axe` | axe (WCAG 2.1 A/AA and best practice) on the home and the 404 page at 360 and 1280 px; fails on any violation or undecided result. `BASE` as for `make requests` |
+| `make lighthouse` | Lighthouse CI mobile on the home, 3 runs: Performance ≥ 90, Accessibility ≥ 95, LCP < 2.5 s, CLS < 0.1. Reports in `.lighthouseci/`, nothing uploaded. `BASE` as for `make requests` |
 
 - Needs Node.js at the version in [`.nvmrc`](.nvmrc) (Astro 7 requires ≥ 22.23.4) and npm.
+- `make axe` and `make lighthouse` need Chrome: `CHROME_PATH`, or `google-chrome` on `PATH`.
+- Every pull request runs the build and all the checks above in the `build` job of [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) (issue 1.7); any failure fails the job, and on `main` it stops the deploy. Pull requests from forks get no assets secret and are checked on the placeholder.
 - A push to `main` builds and deploys through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The repository's Pages source is "GitHub Actions".
 - Every build carries `noindex` until issue 2.5 sets `indexable` in [`src/config/release.ts`](src/config/release.ts).
 - Photos and brand files live in the private repository `dra-victoria-laufer-assets` (ADR-0010), never here. The deploy workflow checks it out into `.assets/` with the read-only deploy key in the `ASSETS_DEPLOY_KEY` secret. Locally, with access to that repository, clone it into `.assets/`; without it, the build completes with the neutral placeholder.

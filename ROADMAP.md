@@ -183,7 +183,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` (local builds, both targets, with and without the assets, and the PR's CI run, assets fetched) |
 | Size | M |
 | Depends on | 1.3 |
 
@@ -490,3 +490,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 1.3 verified on local builds: one-column page with `<main>`, one `h1`, sections from one list (rendered only with published content), anchor navigation without JavaScript, footer with the build year, neutral provisional tokens in `src/styles/tokens.css`, 404 page. html-validate clean, no duplicate ID, no horizontal scroll from 320 to 1600 px, 404 checked at depth on both targets |
 | 2026-11-16 | 1.5 built: skip link to `<main id="conteudo">` on every page, `:focus-visible` ring (2px, 2px offset, `rounded.sm`; inverse on the footer) from new focus tokens, contact link named "E-mail: " followed by the address with the channel as `title`, global `prefers-reduced-motion` rule. Verified on local builds, both targets: axe 4.14.1 0 violations, Lighthouse 12.8.2 mobile Accessibility 100, keyboard walk complete. PR CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) passed, private-assets step executed |
 | 2026-11-16 | 1.6 built: meta description and Open Graph (`pt_BR`) from the identification only (name, `MÉDICA`, CRM); `og:url` equal to the canonical; 1200 × 630 social image, the colour horizontal logo on white, generated from the private assets; `sitemap.xml` and `robots.txt` as Astro endpoints, no new dependency. Canonical, `og:url`, `og:image`, sitemap and robots follow `DEPLOY_TARGET`, checked on local builds of both targets. PR CI [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802) passed, private-assets step executed, `social.png` generated |
+| 2026-11-16 | 1.7 built: the `build` job of `deploy.yml` runs, on every PR and before every deploy, html-validate, the request and anchor check with the 200 KB limit, the vetoed-term and "Lorem" search on `dist/` (`NÃO ESPECIALISTA` excepted), a photo check on the tree and on every commit of the branch, axe at 360 and 1280 px, and Lighthouse CI mobile (Performance ≥ 90, Accessibility ≥ 95, LCP < 2.5 s, CLS < 0.1). Each rule broken on purpose fails its check. PR CI [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420) passed, private-assets step executed |

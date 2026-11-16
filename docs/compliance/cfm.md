@@ -6,7 +6,7 @@ Checklist for medical advertising on this site under **CFM Resolution 2.336/2023
 | --- | --- |
 | Applies to | Every published page, its `<head>`, its JSON-LD, the social image, file names and URLs |
 | Run by | Dev before the PR; PO during review; again in issues 2.5 and 6.2 |
-| Automated part | Issue 1.7 (vetoed terms, "Lorem"). Until then, by hand |
+| Automated part | Vetoed terms and "Lorem" in everything the build publishes, file names included: `make lint` (`scripts/check-content.mjs`), run on every pull request since issue 1.7. The other items are checked by hand |
 | Final review | Issue 2.5, against the full text of the resolution, with her written approval |
 
 ## Limits of this checklist
