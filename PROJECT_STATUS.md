@@ -30,6 +30,7 @@ The portrait comes from `dra-victoria-laufer-assets` through a read-only deploy 
 
 1. **1.4** — review, Filipe's OK and merge; then check the deploy run (asset fetch step executed) and the published page.
 2. **1.5**, **1.6** and **1.7**, in the dependency order in `ROADMAP.md`. **2.1** can start.
+3. **2.6** (new): cut-out portrait on brand graphics, after 2.4. Filipe made it a condition for publication, so **2.5** (removal of `noindex`) waits for it.
 
 ## Blockers
 

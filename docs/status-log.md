@@ -4,6 +4,12 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 2.6 added: cut-out portrait on brand graphics
+
+Filipe asked for a clean cut-out of her portrait in the identification block, set on graphics generated from the brand (not photos), and made it a condition for publication. `ROADMAP.md` gains issue 2.6 in Phase 2, after 1.4 and 2.4; 2.5, which removes `noindex`, now depends on it. Its scope includes amending `DESIGN.md`, whose current text keeps the portrait in a plain frame and avoids decoration. Documentation only; no code changed.
+
+---
+
 ### 2026-11-16 — Issue 1.4: images, favicon and fonts
 
 Built on `feat/1.4-images-favicon-fonts`, checked on local builds (Astro 7.4.12, sharp 0.35.5, Node.js v22.23.4). Not deployed.
