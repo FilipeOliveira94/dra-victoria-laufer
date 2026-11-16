@@ -54,7 +54,7 @@ make help
 | `make lint`, `make lighthouse` | Print a notice until issue 1.7 adds the tools |
 
 - Needs Node.js at the version in [`.nvmrc`](.nvmrc) (Astro 7 requires ≥ 22.23.4) and npm.
-- A push to `main` builds and deploys through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The repository's Pages source must be "GitHub Actions".
+- A push to `main` builds and deploys through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The repository's Pages source is "GitHub Actions".
 - Every build carries `noindex` until issue 2.5 sets `indexable` in [`src/config/release.ts`](src/config/release.ts).
 
 ---

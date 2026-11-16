@@ -4,6 +4,53 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.1: published-site check
+
+After the 1.1 merge (`d9bddfd`), with the Pages source set to "GitHub Actions" by Filipe, `deploy.yml` published the Astro base. Checked with curl on <https://filipeoliveira94.github.io/dra-victoria-laufer/>:
+
+- 200, the Astro page: `lang="pt-BR"`, `<meta name="robots" content="noindex">`, canonical `https://filipeoliveira94.github.io/dra-victoria-laufer/`.
+- The only references are the canonical, the inline icon `data:,` and a `mailto:` link, so the page makes no request besides itself and none can 404.
+- `/dra-victoria-laufer` without the slash → 301 to `/dra-victoria-laufer/`.
+- Legacy files gone: `img/avatar.svg` and `ROADMAP` → 404.
+
+This meets the last acceptance item of 1.1 ("a push to `main` publishes at `/dra-victoria-laufer/` with no 404 request"). The page was not opened in a browser. The legacy-site risk in `ROADMAP.md` is closed, and D-001, D-003, D-004 and D-006 now have an Implemented value. The legacy-site diagnosis moved from `PROJECT_STATUS.md` to this log, below.
+
+<details>
+<summary>Legacy site diagnosis (archived from PROJECT_STATUS.md)</summary>
+
+State of the Jekyll site before issue 1.1 replaced it. It comes from the diagnosis in the approved plan, which was read against the code. Items marked ✔ were re-checked in the code on 2026-11-15; the others are carried from the plan and were not re-measured.
+
+**Stack:** Jekyll through the `github-pages` gem, Minima theme, Bootstrap 5.3 from a CDN. Published from the `main` branch.
+
+| Area | Finding | Where |
+| --- | --- | --- |
+| Content | All body text is Lorem ipsum ✔ | `_includes/` |
+| CFM | Title "Médica Generalista \| Atendimento Pediátrico" and `<title>` "Atendimento Pediátrico" suggest a specialty ✔ | `_config.yml`, `_includes/head.html` |
+| CFM | Service titles "Atendimento Pediátrico", "Puericultura", "Consultas de Emergência" suggest a specialty | `_includes/servicos.html` |
+| CFM | The site description is self-promotion ✔ | `_config.yml` |
+| Media | Logo `img/logovictoria.png` is referenced and missing (404) ✔; no favicon | `_includes/navbar.html` |
+| Media | `img/avatar.svg` is about 3.9 MB ✔ and is used 7 times, including as the LCP image with `loading="lazy"` ✔ | `_includes/` |
+| Language | The page language falls back to `en` ✔ | `_layouts/base.html` |
+| URLs | `baseurl` is empty while the site lives under `/dra-victoria-laufer/` ✔; `url` points at `dravictorialaufer.com.br`, the final domain since 2026-11-16 ✔ | `_config.yml` |
+| URLs | `href="/"` on the logo and the footer leaves the site; relative paths break the 404 page in nested URLs | `navbar.html`, `footer.html`, `head.html`, `404.html` |
+| Navigation | Menu anchors are swapped; no link to Formação or to `#servicos`; "Conheça Mais" links point at `#` | `_includes/navbar.html`, includes |
+| Contrast | White on `#b78bc5` about 2.8:1; in `#formacao`, text about 2.8:1 and the link about 1.8:1 (manual calculation in the plan) | `css/` |
+| HTML | Several `h1`, duplicate IDs ✔, `</img>` ✔, an unclosed `div` in the footer; no `<main>`, no skip link; `aria-label` in English; social icons without accessible names | includes |
+| CSS | `a:hover` in white disappears on light backgrounds; `padding-top:80` without a unit; native nesting without fallback | `css/` |
+| SEO | No meta description, `jekyll-seo-tag`, sitemap, `robots.txt` or schema.org | `_includes/head.html` |
+| Performance | Bootstrap Icons (a whole font for 5 icons) and Google Fonts block rendering | `_includes/head.html` |
+| Consistency | `_config.yml` has `victorialaufer@gmail.com` and the footer has `victorialaufersaude@gmail.com` ✔; "© 2025" is fixed ✔; WhatsApp only in the footer ✔ | `_config.yml`, `_includes/footer.html` |
+| Build | `Gemfile.lock` is git-ignored ✔; `sass-embedded` in the Gemfile is unused; `_posts/template.markdown` is a sample post ✔ | `.gitignore`, `Gemfile`, `_posts/` |
+| Deploy | `jekyll-gh-pages.yml` triggers on push to `main` ✔; the plan reports it has no runs, which points to the Pages source being "Deploy from a branch". That setting is in the repository settings and was not checked here | `.github/workflows/` |
+
+#### Known side effect of the documentation in this repository
+
+The legacy Jekyll build processes Markdown files at any depth. Until 1.1 removes Jekyll, a push of `main` may publish `ROADMAP.md`, `AGENTS.md`, `DECISIONS.md`, `PROJECT_STATUS.md` and `docs/` as unlinked pages of the site. This was not confirmed with a local build (Bundler is not installed). The repository is public, so nothing private is exposed. Excluding them needs an edit to `_config.yml`, which is legacy site code and was left untouched; the decision is Filipe's.
+
+</details>
+
+---
+
 ### 2026-11-16 — Issue 1.1: Astro base verified
 
 The Jekyll site is replaced by an Astro 7.4.12 project (`package.json`, `package-lock.json`, `astro.config.mjs`, `src/`). Removed: `Gemfile`, `_config.yml`, `_includes/`, `_layouts/`, `_posts/`, `css/`, `img/` (including `avatar.svg`), `index.html`, `404.html`, `jekyll-gh-pages.yml` and the Jekyll lines of `.gitignore`. Bootstrap and Minima went with the includes and the Gemfile.
@@ -17,7 +64,7 @@ The Jekyll site is replaced by an Astro 7.4.12 project (`package.json`, `package
 
 Checks (local build, WSL2, Node.js 22.23.4; not CI, not the published site): `make build` without the variable gives canonical `https://dravictorialaufer.com.br/` and `noindex`; with `DEPLOY_TARGET=ghpages`, canonical `https://filipeoliveira94.github.io/dra-victoria-laufer/` and `noindex`; `DEPLOY_TARGET=foo` fails with the error message. `make requests BASE=/dra-victoria-laufer/`: 1 request, 0 failing; the script fails on a test page with a missing stylesheet (404) and a CDN script (third party). `make check` (`astro check`): 0 errors. `npx html-validate@9 dist/index.html`: no errors. Grep for `lorem`, `pediatra`, `especialista em` in `src/` and `dist/`: no match. `make contrast`: 15/15.
 
-Not yet run: the published-site acceptance ("a push to `main` publishes at `/dra-victoria-laufer/` with no 404 request") needs the merge and the Pages source set to "GitHub Actions" by Filipe. Filipe marked 1.1 `verified` on 2026-11-16 before that check; it runs after the merge and its result is added here.
+The published-site acceptance is in the entry above.
 
 ---
 

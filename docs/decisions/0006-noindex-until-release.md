@@ -36,7 +36,7 @@ The site is published with **`noindex` until issue 2.5**. Issue 2.5 removes it o
 
 ## Evidence / validation
 
-Issue 1.1, local builds on 2026-11-16: both targets emit `<meta name="robots" content="noindex">`. The published staging check follows the 1.1 merge.
+Issue 1.1, local builds on 2026-11-16: both targets emit `<meta name="robots" content="noindex">`. The published staging page carries the same tag after the 1.1 merge (2026-11-16).
 
 ## Revisit when
 
