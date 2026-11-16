@@ -1,0 +1,34 @@
+# Degree and postgraduate courses. Source: docs/inputs/0.2-pending-inputs.md → 1, 2.
+# Rendered in the Art. 13 format (docs/compliance/cfm.md → B). A course without
+# its official name is `pendente: true`.
+
+graduacao-medicina:
+  tipo: graduacao
+  ordem: 0
+  curso: Medicina
+  instituicao: Universidade Federal do Vale do São Francisco (UNIVASF)
+  ano: 2021
+
+pos-pediatria-clinica:
+  tipo: pos-graduacao
+  ordem: 1
+  nomeOficial: Especialização em Pediatria Clínica
+  area: Pediatria Clínica
+  instituicao: HCX Fmusp
+  emCurso: false
+
+pos-anestesia-terapia-intensiva-pediatrica:
+  tipo: pos-graduacao
+  ordem: 2
+  nomeOficial: Especialização em Anestesia e Terapia Intensiva Pediátrica
+  area: Anestesia e Terapia Intensiva Pediátrica
+  instituicao: Faculdade Sírio-Libanês
+  emCurso: false
+
+pos-neonatologia:
+  tipo: pos-graduacao
+  ordem: 3
+  nomeOficial: Especialização em Neonatologia
+  area: Neonatologia
+  instituicao: HCX Fmusp
+  emCurso: true

@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-16 (1.1 verified: Astro base, PR open) |
+| Last updated | 2026-11-16 (1.2 verified on local builds, PR open) |
 | Current phase | Phase 0 — Product and brand, and Phase 1 — New base (MVP), in parallel |
-| Phase status | Phase 0 verified (0.1, 0.2 and 0.3); Phase 1 in progress (1.1 verified) |
+| Phase status | Phase 0 verified (0.1, 0.2 and 0.3); Phase 1 in progress (1.1 and 1.2 verified) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,14 +22,14 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**1.2** — Typed content model. Not started.
+**1.2** — Typed content model. Verified on local builds; PR open, waiting for review and merge.
 
-1.1 is verified: the published site is the Astro 7.4.12 base, one `noindex` page with name, `MÉDICA`, `CRM-SP 240550` and the e-mail, deployed by `deploy.yml`. The legacy Jekyll site is gone; its diagnosis is archived in [`docs/status-log.md`](docs/status-log.md).
+The four collections (`medica`, `formacao`, `atuacao`, `contato`) hold every fact received in 0.2, plus the WhatsApp and Instagram given by Filipe on 2026-11-16. Invalid data stops the build; a pending item stays off the page and is listed in the build log. The page still shows name, `MÉDICA`, `CRM-SP 240550` and the e-mail, now read from the collections; its HTML is unchanged. Formação, Atuação, Sobre and the other channels are rendered in 2.1 to 2.3.
 
 ## Next work
 
-1. **1.2** — Typed content model. Depends on 1.1 (verified). Acceptance: `ROADMAP.md` → 1.2.
-2. **1.3**, then **1.4**, **1.5**, **1.6** and **1.7**, in the dependency order in `ROADMAP.md`.
+1. **1.2** — review, Filipe's OK and merge.
+2. **1.3** — Structure and layout of the single page. Depends on 1.2. Then **1.4**, **1.5**, **1.6** and **1.7**, in the dependency order in `ROADMAP.md`.
 
 ## Blockers
 
@@ -56,7 +56,7 @@ Nothing blocks Phase 1.
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
 | 1.1 | Replace Jekyll with Astro, deployed by Actions | Verified | Local builds, both targets; `make check`, `make requests`, `html-validate`. Published site checked on 2026-11-16 |
-| 1.2 | Typed content model | Not started | — |
+| 1.2 | Typed content model | Verified | Local builds; 8 invalid-data cases fail the build; pending item off the page and in the report. `docs/status-log.md` |
 | 1.3 | Structure and layout of the single page | Not started | — |
 | 1.4 | Images, favicon and fonts | Not started | — |
 | 1.5 | Accessibility, WCAG 2.1 AA | Not started | — |
@@ -73,11 +73,9 @@ Acceptance detail: `ROADMAP.md` → Phase 1.
 | | |
 | --- | --- |
 | Date | 2026-11-16 |
-| Environment | Published site, <https://filipeoliveira94.github.io/dra-victoria-laufer/>, after the 1.1 merge (`d9bddfd`), fetched with curl. The local-build row below is from the same day |
-| Published | 200; `lang="pt-BR"`, `noindex`, canonical `https://filipeoliveira94.github.io/dra-victoria-laufer/`, icon `data:,`, no other `href`/`src` to request. `/dra-victoria-laufer` → 301 to the trailing slash. Legacy `img/avatar.svg` and `ROADMAP` → 404. Not opened in a browser |
-| Local build | WSL2, GNU Make 4.4.1, Node.js v22.23.4, npm 10.9.9, Astro 7.4.12 |
-| Checks | `make build` with and without `DEPLOY_TARGET=ghpages`; `make requests`; `make check`; `npx html-validate@9 dist/index.html`; vetoed-term grep on `src/` and `dist/`; `make contrast` |
-| Result | Staging: canonical `https://filipeoliveira94.github.io/dra-victoria-laufer/`, `noindex` present, 1 request, 0 failing. Production: canonical `https://dravictorialaufer.com.br/`, `noindex` present. Unknown `DEPLOY_TARGET` stops the build. `astro check` 0 errors; html-validate no errors; no vetoed term; contrast 15/15. Lighthouse and axe are 1.7 and were not run |
+| Environment | Local build, branch `feat/1.2-content-model`. WSL2, Node.js v22.23.4, npm 10.9.9, Astro 7.4.12. Not deployed; the published site is still the 1.1 page |
+| Checks | `make build` with and without `DEPLOY_TARGET=ghpages`; eight invalid-data builds; one build with the e-mail set to `pendente`; `make requests`; `make check`; `npx html-validate@9 dist/index.html`; vetoed-term grep on `src/` and `dist/`; `make contrast` |
+| Result | Every invalid-data build exited 1; the valid build exits 0. With the e-mail pending, the page had no e-mail and the log listed `[pendente] contato/email`. Production `index.html` byte-identical to the 1.1 output. Staging: canonical `https://filipeoliveira94.github.io/dra-victoria-laufer/`, `noindex`, 1 request, 0 failing; production 1 request, 0 failing. `astro check` 0 errors; html-validate no errors; no vetoed term; contrast 15/15; `dist/` holds only `index.html`. Lighthouse and axe are 1.7 and were not run |
 
 ---
 

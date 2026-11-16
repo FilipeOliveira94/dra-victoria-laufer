@@ -1,13 +1,26 @@
 ---
 import Base from '../layouts/Base.astro';
+import { crmLabel, medica, published } from '../lib/content';
+
+// Every fact comes from the content model (issue 1.2). Sections for training,
+// roles, "Sobre" and the other channels arrive in issues 2.1 to 2.3.
+const id = await medica();
+if (!id) throw new Error('medica is pending: the page cannot be built without identification.');
+
+const email = (await published('contato')).find((c) => c.tipo === 'email');
+const identification = `${id.titulo} · ${crmLabel(id)}`;
 ---
 
-<Base title="Dra. Victória Laufer · MÉDICA · CRM-SP 240550">
+<Base title={`${id.nome} · ${identification}`}>
   <main>
-    <h1>Dra. Victória Laufer</h1>
-    <p>MÉDICA · CRM-SP 240550</p>
-    <p>
-      <a href="mailto:victorialaufersaude@gmail.com">victorialaufersaude@gmail.com</a>
-    </p>
+    <h1>{id.nome}</h1>
+    <p>{identification}</p>
+    {
+      email && (
+        <p>
+          <a href={`mailto:${email.valor}`}>{email.valor}</a>
+        </p>
+      )
+    }
   </main>
 </Base>

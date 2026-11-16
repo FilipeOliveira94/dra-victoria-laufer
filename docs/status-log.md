@@ -4,6 +4,26 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.2: typed content model
+
+Built on `feat/1.2-content-model`, checked on local builds (Astro 7.4.12, Node.js v22.23.4). Not deployed.
+
+- `src/content.config.ts` defines `medica`, `formacao`, `atuacao` and `contato` with Zod schemas. Each item is either complete (every required field, no unknown one) or `pendente: true` with a `motivo`.
+- `src/content/loader.ts` wraps Astro's `file()`: it stops the build when the data file is missing or unreadable, and it prints the pending report as `[pendente] <collection>/<id>: <motivo>` with a count per collection. `file()` alone only logs those errors and keeps the data cached from the last build.
+- `src/lib/content.ts` (`published()`) is the only reader and drops pending items. `src/config/captacao.ts` holds `cta` and `atendimento`, both `false`.
+- Data in `src/content/data/*.yaml`: name, CRM, the degree, the three postgraduate courses (Neonatologia `emCurso: true`), the six approved "Atuação" lines, "Sobre", the e-mail, WhatsApp `+5512987097380` and Instagram `https://www.instagram.com/pediatria.dravictoria` (both from Filipe, 2026-11-16).
+- Workplace names checked on the web. The Unimed line now reads "Complexo Hospitalar Unimed Guarulhos", the name on Unimed's own site (Filipe's decision); the other three are unchanged. Recorded in `docs/inputs/0.2-pending-inputs.md` → 3.
+- `index.astro` reads the name, `MÉDICA`, the CRM and the e-mail from the collections; the production `index.html` is byte-identical to the 1.1 output.
+
+Checks:
+
+| Check | Result |
+| --- | --- |
+| Invalid data | Each case exited 1: required field removed (`crm`); `titulo` other than `MÉDICA`; unknown field (`instituição`); `ano` as text; e-mail without a domain; `pendente: true` with an empty `motivo`; malformed YAML; data file removed |
+| Pending item | E-mail set to `pendente`: build exit 0, no e-mail in `dist/index.html`, `[pendente] contato/email` in the log. Restored: no pending item |
+| Both targets | `make requests` 1 request, 0 failing, on production and staging; staging canonical and `noindex` as in 1.1 |
+| Other | `astro check` 0 errors; `html-validate@9` no errors; vetoed-term grep on `src/` and `dist/` empty; `make contrast` 15/15 |
+
 ### 2026-11-16 — Issue 1.1: published-site check
 
 After the 1.1 merge (`d9bddfd`), with the Pages source set to "GitHub Actions" by Filipe, `deploy.yml` published the Astro base. Checked with curl on <https://filipeoliveira94.github.io/dra-victoria-laufer/>:

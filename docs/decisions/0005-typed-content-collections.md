@@ -35,7 +35,7 @@ Keep the content in **typed collections** — `medica`, `formacao`, `atuacao`, `
 
 ## Evidence / validation
 
-None yet.
+Issue 1.2, 2026-11-16, local builds: the four collections load from YAML with Zod schemas (`src/content.config.ts`). Eight invalid-data cases each stopped `astro build` (missing field, `titulo` other than `MÉDICA`, unknown field, wrong type, invalid e-mail, `pendente` without `motivo`, malformed YAML, missing file). An item set to `pendente` left the page and appeared in the build log as `[pendente] <collection>/<id>: <motivo>`. Details in `docs/status-log.md`.
 
 ## Revisit when
 

@@ -25,7 +25,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | Phase | Scope | Depends on | Status |
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
-| 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | In progress (1.1 verified, 1.8 delivered) |
+| 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | In progress (1.1 and 1.2 verified, 1.8 delivered) |
 | 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, release | Phase 1; inputs from 0.2; brand from 0.3 | Not started |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
 | 4 | Structured data: JSON-LD `Person` | 2.5 and 3.2 | Not started |
@@ -115,7 +115,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` (local builds, 2026-11-16) |
 | Size | P |
 | Depends on | 1.1 |
 | ADRs | [0005](docs/decisions/0005-typed-content-collections.md), [0007](docs/decisions/0007-contact-and-single-email.md) |
@@ -470,3 +470,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | Domain changed by Filipe from `victorialaufer.com.br` to `dravictorialaufer.com.br` (Phase 3, ADR-0003, ADR-0004) |
 | 2026-11-16 | 1.1 verified: Astro 7.4.12 base, `deploy.yml` workflow, `DEPLOY_TARGET`, `noindex` from `src/config/release.ts`; Jekyll removed. Local builds checked; marked verified by Filipe before the published-site check, which runs after the merge |
 | 2026-11-16 | 1.1 published-site check: the `deploy.yml` deploy serves the Astro page at `/dra-victoria-laufer/` with `noindex`, the staging canonical and no request besides the page; the legacy files return 404 |
+| 2026-11-16 | 1.2 verified on local builds: typed collections, pending report, `captacao.*` off. WhatsApp and Instagram received from Filipe |
