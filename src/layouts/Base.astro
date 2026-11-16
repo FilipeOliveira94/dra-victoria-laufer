@@ -1,12 +1,23 @@
 ---
+import '../styles/global.css';
 import { indexable } from '../config/release';
+import { medica } from '../lib/content';
+import type { Section } from '../lib/sections';
 
 interface Props {
   title: string;
+  // Sections shown on this page, in page order. Empty: no navigation.
+  nav?: readonly Section[];
+  // The 404 page is not a canonical document.
+  canonical?: boolean;
 }
 
-const { title } = Astro.props;
-const canonical = new URL(import.meta.env.BASE_URL, Astro.site);
+const { title, nav = [], canonical = true } = Astro.props;
+const home = import.meta.env.BASE_URL;
+const canonicalUrl = new URL(home, Astro.site);
+const id = await medica();
+// Year of the build, not of the visit: the page ships no JavaScript.
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -15,13 +26,33 @@ const canonical = new URL(import.meta.env.BASE_URL, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    <link rel="canonical" href={canonical.href} />
+    {canonical && <link rel="canonical" href={canonicalUrl.href} />}
     {/* Empty inline icon: stops the browser's automatic /favicon.ico request,
         which would 404 outside the base path. Issue 1.4 adds the real favicon. */}
     <link rel="icon" href="data:," />
     {!indexable && <meta name="robots" content="noindex" />}
   </head>
   <body>
+    {
+      nav.length > 0 && (
+        <header class="site-header">
+          <nav class="site-nav wrap" aria-label="Seções da página">
+            <ul>
+              {nav.map((s) => (
+                <li>
+                  <a href={`#${s.id}`}>{s.titulo}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </header>
+      )
+    }
     <slot />
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>© {year}{id && ` ${id.nome}`}</p>
+      </div>
+    </footer>
   </body>
 </html>

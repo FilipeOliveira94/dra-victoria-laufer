@@ -1,6 +1,6 @@
 # Target site
 
-Overview of the site the roadmap builds. **Built so far:** the Astro base, the deploy workflow, `DEPLOY_TARGET` and `noindex` (issue 1.1). The rest does not exist yet; progress is in [`PROJECT_STATUS.md`](../../PROJECT_STATUS.md). Each section names the issue that builds it and the ADR that explains it. File paths and package versions are chosen in those issues and recorded here when they are verified.
+Overview of the site the roadmap builds. **Built so far:** the Astro base, the deploy workflow, `DEPLOY_TARGET` and `noindex` (issue 1.1); the content model (1.2); the page structure, provisional tokens and the 404 page (1.3). The rest does not exist yet; progress is in [`PROJECT_STATUS.md`](../../PROJECT_STATUS.md). Each section names the issue that builds it and the ADR that explains it. File paths and package versions are chosen in those issues and recorded here when they are verified.
 
 ## Purpose
 
@@ -19,7 +19,13 @@ One page, in `pt-BR`, in this order:
 | 5 | Contato | `victorialaufersaude@gmail.com`, WhatsApp, Instagram | 2.1 |
 | — | Footer | Identification again, the build year, links to privacy and legal notice | 1.3, 5.1 |
 
-Structure (issue 1.3): one `h1`, one `h2` per section, a `<main>`, a skip-navigation link, anchor navigation without JavaScript, and a 404 page that works at any URL depth. Later pages: privacy and legal notice (5.1).
+Structure (issue 1.3, built): one `h1`, one `h2` per section, a `<main>`, anchor navigation without JavaScript, a footer with the build year, and a 404 page that works at any URL depth. The skip-navigation link is issue 1.5. Later pages: privacy and legal notice (5.1).
+
+- `src/lib/sections.ts` lists the four sections in page order (id and name). The navigation and the section ids come from that list, so an id is never typed twice.
+- `src/components/Section.astro` renders `<section id aria-labelledby>` with its `h2`. `index.astro` renders a section, and lists it in the navigation, only when it has published content: an empty section would be a placeholder. Today only Contato (the e-mail) is on the page; Formação, Atuação and Sobre appear with 2.2 and 2.3.
+- `src/layouts/Base.astro` holds the head, the navigation and the footer (`© <build year> <name>`). The year is computed at build time.
+- `src/pages/404.astro` uses the same layout without navigation or canonical. Its links and CSS are absolute from the base path, so the page renders the same at `/x` and `/a/b/c/`. GitHub Pages serves `404.html` for any missing path.
+- CSS: `src/styles/tokens.css` (every value, neutral and provisional until 2.4) and `src/styles/global.css` (layout: one column, measure 40rem, gutter 16 px, 24 px from 600 px). The build inlines it in each page; no extra request.
 
 Not on the page, by design: numbered steps, service cards, a locations section, testimonials, statistics, a full-screen hero with text over the image.
 

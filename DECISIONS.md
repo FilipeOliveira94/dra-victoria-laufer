@@ -26,7 +26,7 @@ Short index of the architecture choices for the portfolio site of Dra. Victória
 | ID | Topic | Decision | Implemented | State | ADR |
 | --- | --- | --- | --- | --- | --- |
 | D-001 | Site generator | Astro, static output, no JavaScript shipped to the browser | Astro 7.4.12, static, no `<script>` in the output (1.1, verified 2026-11-16) | `approved` | [ADR-0001](docs/decisions/0001-static-site-generator-astro.md) |
-| D-002 | CSS | Own CSS with tokens in one file; no framework | — | `approved` | [ADR-0002](docs/decisions/0002-own-css-with-tokens.md) |
+| D-002 | CSS | Own CSS with tokens in one file; no framework | `src/styles/tokens.css` (provisional, neutral) and `global.css`, inlined by the build; no framework (1.3, verified 2026-11-16, local builds) | `approved` | [ADR-0002](docs/decisions/0002-own-css-with-tokens.md) |
 | D-003 | Hosting and deploy | GitHub Pages, built and deployed by GitHub Actions | `deploy.yml` deploys to Pages, source "GitHub Actions" (1.1, verified 2026-11-16) | `approved` | [ADR-0003](docs/decisions/0003-hosting-github-pages-actions.md) |
 | D-004 | Domain switch | One workflow variable, `DEPLOY_TARGET: ghpages`, sets `site` and `base`; removing it targets `dravictorialaufer.com.br`. `noindex` is separate (D-006) | `astro.config.mjs`; staging and production canonicals checked (1.1, verified 2026-11-16) | `approved` | [ADR-0004](docs/decisions/0004-deploy-target-switch.md) |
 | D-005 | Content data | Typed collections (`medica`, `formacao`, `atuacao`, `contato`) with a `pendente` field | `src/content.config.ts`, data in `src/content/data/`; invalid data and pending report checked (1.2, verified 2026-11-16, local builds) | `approved` | [ADR-0005](docs/decisions/0005-typed-content-collections.md) |
@@ -53,6 +53,7 @@ Logo, palette and typography are recorded in [`DESIGN.md`](DESIGN.md) and ADR-00
 
 | Date | Change |
 | --- | --- |
+| 2026-11-16 | D-002 implemented by issue 1.3, local builds |
 | 2026-11-16 | D-011 approved: visual identity (issue 0.3), with Filipe's approval of `DESIGN.md` |
 | 2026-11-16 | D-001, D-003, D-004 and D-006 implemented by issue 1.1, checked on the published site |
 | 2026-11-16 | D-004 and D-006: issue 1.1 defines `noindex` as a constant separate from `DEPLOY_TARGET`, as ADR-0004 left to it; plan approved by Filipe |

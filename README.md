@@ -11,9 +11,9 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 | Field | Now |
 | --- | --- |
-| In the repository | The **Astro base** (issue 1.1) and the **typed content model** (issue 1.2): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550` and e-mail, read from the collections in `src/content/data/`. Layout and brand come in later issues |
+| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2) and the **page structure** (issue 1.3): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550` and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Neutral provisional styling; the brand comes in 2.4 |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> |
-| Next | Issue 1.3, structure and layout of the single page |
+| Next | Issue 1.4, images, favicon and fonts |
 | Brand | Confirmed in [`DESIGN.md`](DESIGN.md) (issue 0.3); applied to the site in issue 2.4. `make contrast` checks its colour pairs |
 | Ledger | [`PROJECT_STATUS.md`](PROJECT_STATUS.md) · scope in [`ROADMAP.md`](ROADMAP.md) |
 
@@ -21,7 +21,7 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 ## ⚙️ Target stack
 
-Generator, hosting, `DEPLOY_TARGET` and `noindex` are built (issue 1.1), and so is the content model (issue 1.2); the rest is planned. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`docs/architecture/target-site.md`](docs/architecture/target-site.md).
+Generator, hosting, `DEPLOY_TARGET` and `noindex` are built (issue 1.1), and so are the content model (issue 1.2) and the page structure (issue 1.3); the rest is planned. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`docs/architecture/target-site.md`](docs/architecture/target-site.md).
 
 | Layer | Choice |
 | --- | --- |

@@ -4,6 +4,31 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.3: structure and layout of the single page
+
+Built on `feat/1.3-page-structure`, checked on local builds (Astro 7.4.12, Node.js v22.23.4). Not deployed.
+
+- `src/styles/tokens.css`: neutral provisional tokens for colour, type (system faces) and space; `src/styles/global.css`: one column, measure 40rem, gutter 16 px and 24 px from 600 px, alternating section grounds, dark footer. The build inlines the CSS; the page still makes one request.
+- `src/lib/sections.ts` (one list of the four sections) feeds the anchor navigation and the ids; `src/components/Section.astro` renders each section with `aria-labelledby` and its `h2`.
+- A section renders only with published content. Today: identification (`h1` and `MÉDICA · CRM-SP 240550`) and Contato with the e-mail. Formação, Atuação and Sobre come with 2.2 and 2.3.
+- Footer: `© <build year> <name>`. 404 page (`src/pages/404.astro`) with links from the base path, no navigation, no canonical.
+- The skip-navigation link stays in 1.5, as `ROADMAP.md` scopes it; `docs/architecture/target-site.md` had listed it under 1.3 and now says 1.5.
+
+Checks:
+
+| Check | Result |
+| --- | --- |
+| Builds | `make build` with and without `DEPLOY_TARGET=ghpages`: 2 pages (`index.html`, `404.html`), exit 0. `make check`: 0 errors |
+| HTML | `npx html-validate@9 dist/index.html dist/404.html`: no errors, both targets. Duplicate `id` count: 0 on both pages |
+| Requests | `make requests`: 3 requests, 0 failing, production and staging (page, 404 page, home link) |
+| Horizontal scroll | T3 browser, staging build under `astro preview`: `scrollWidth` = `clientWidth` at 320, 360, 768, 1024 and 1600 px; at 320 px no element extends past the viewport. At 1600 px the column is 688 px wide, centred |
+| Navigation | Click on "Contato": hash `#contato`, `:target` is the section; 0 `<script>` elements |
+| 404 | `astro preview`, production: `/x` and `/a/b/c/d.html` return 404 with the page and a link to `/`. Staging: `/dra-victoria-laufer/x` and `/dra-victoria-laufer/a/b/c/` return 404 with a link to `/dra-victoria-laufer/`. In the browser at `/dra-victoria-laufer/a/b/c/nao-existe` (320 px) the CSS applies, no horizontal scroll |
+| Contrast | Provisional pairs computed with the WCAG formula: 16.48, 8.45, 14.72, 7.55 and 13.58 (all ≥ 4.5). `make contrast` 15/15 (brand pairs) |
+| Content | Vetoed-term and "Lorem"/"TODO" grep on `src/` and `dist/`: empty |
+
+Not run: Lighthouse and axe (issue 1.7). The production 404 on GitHub Pages is checked after the merge, on the published site.
+
 ### 2026-11-16 — Issue 1.2: typed content model
 
 Built on `feat/1.2-content-model`, checked on local builds (Astro 7.4.12, Node.js v22.23.4). Not deployed.

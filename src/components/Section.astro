@@ -1,0 +1,20 @@
+---
+import type { Section } from '../lib/sections';
+
+// A page section: its id is the navigation anchor, its h2 names it.
+// Render it only when it has published content; an empty section would be a
+// placeholder (AGENTS.md §5).
+interface Props {
+  section: Section;
+}
+
+const { section } = Astro.props;
+const headingId = `${section.id}-titulo`;
+---
+
+<section class="section" id={section.id} aria-labelledby={headingId}>
+  <div class="wrap">
+    <h2 id={headingId}>{section.titulo}</h2>
+    <slot />
+  </div>
+</section>

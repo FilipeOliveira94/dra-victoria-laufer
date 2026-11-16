@@ -1,0 +1,131 @@
+/* Page structure (issue 1.3). Every value comes from tokens.css. */
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-ground);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  /* Long addresses (e-mail, URLs) wrap instead of widening the page at 320 px. */
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  line-height: var(--leading-tight);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--text-display);
+}
+
+h2 {
+  font-size: var(--text-xl);
+  margin-block-end: var(--space-md);
+}
+
+p {
+  margin: 0 0 var(--space-md);
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* One column: measure ~40rem, gutter 16 px, 24 px from 600 px, centred. */
+.wrap {
+  max-width: calc(var(--measure) + 2 * var(--gutter));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@media (min-width: 600px) {
+  .wrap {
+    max-width: calc(var(--measure) + 2 * var(--gutter-wide));
+    padding-inline: var(--gutter-wide);
+  }
+}
+
+.site-header {
+  border-block-end: 1px solid var(--color-rule);
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  margin: 0;
+  padding: var(--space-md) 0;
+  list-style: none;
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.site-nav a {
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  text-decoration: underline;
+}
+
+.identification {
+  padding-block: var(--space-3xl) var(--space-2xl);
+}
+
+.identification p {
+  margin-block-start: var(--space-sm);
+  color: var(--color-text-muted);
+  font-size: var(--text-lg);
+}
+
+.section {
+  padding-block: var(--space-3xl) var(--space-2xl);
+}
+
+.section:nth-of-type(even) {
+  background: var(--color-ground-alt);
+}
+
+.site-footer {
+  background: var(--color-footer);
+  color: var(--color-text-inverse);
+  padding-block: var(--space-xl);
+  font-size: var(--text-sm);
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* Error page (404) */
+.error {
+  padding-block: var(--space-3xl);
+}
+
+.error p {
+  margin-block-start: var(--space-md);
+}

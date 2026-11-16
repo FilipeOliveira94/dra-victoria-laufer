@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+
+// Served by the host for any missing URL, at any depth. Every link and asset
+// is absolute from the base path, so none depends on the requested URL.
+const home = import.meta.env.BASE_URL;
+---
+
+<Base title="Página não encontrada" canonical={false}>
+  <main>
+    <div class="error wrap">
+      <h1>Página não encontrada</h1>
+      <p>Este endereço não existe no site.</p>
+      <p><a href={home}>Ir para a página inicial</a></p>
+    </div>
+  </main>
+</Base>
