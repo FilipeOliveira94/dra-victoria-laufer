@@ -36,7 +36,7 @@ Keep this repository public. Store the **original photos and the brand source fi
 
 ## Evidence / validation
 
-Issue 1.4, local builds (2026-11-16): an ed25519 deploy key, registered read-only on `dra-victoria-laufer-assets` only, cloned the repository and was refused a push; its private half is the `ASSETS_DEPLOY_KEY` repository secret and no copy was kept on disk. `deploy.yml` checks the assets out into `.assets/` only when the secret exists. A build without `.assets/` completes with the placeholder; `git log --all` holds no image file. The workflow step runs for the first time on the deploy after the 1.4 merge; until that run is checked, this decision is not marked Implemented.
+Issue 1.4, local builds (2026-11-16): an ed25519 deploy key, registered read-only on `dra-victoria-laufer-assets` only, cloned the repository and was refused a push; its private half is the `ASSETS_DEPLOY_KEY` repository secret and no copy was kept on disk. `deploy.yml` checks the assets out into `.assets/` only when the secret exists. A build without `.assets/` completes with the placeholder; `git log --all` holds no image file. `deploy.yml` now runs on pull requests too: the PR's CI [run 43908574612](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43908574612) fetched the assets with the key, built the portrait and favicon, and passed the request checks.
 
 ## Revisit when
 

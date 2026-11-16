@@ -38,7 +38,11 @@ Checks:
 | Image files in `git log --all` | None |
 | Vetoed terms in `src/` and `dist/` | None |
 
-Not run: the workflow's fetch step (it runs on `main` only; checked on the first deploy after the merge), Lighthouse and axe (1.7).
+CI on the PR, [run 43908574612](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43908574612) (`f191c3e`): "Fetch private assets" executed and succeeded; `[assets] portrait.jpg` and `icon.png, icon-touch.png`; portrait and favicon found in `dist/index.html`; `base /dra-victoria-laufer/: 35 requests, 0 failing`; built site uploaded as `site-pr-9`. Deploy and `published` skipped, as on every PR.
+
+Process change in the same PR, so an issue no longer needs a second PR for the published-site check: `deploy.yml` runs its build job on pull requests (deploy only from `main`, Pages permissions only on the deploy job); a `published` job runs `check-requests.mjs` in its new remote mode against the live page after each deploy, with retries for the CDN; `AGENTS.md` §4, §12, §13 and `docs/agent-workflow.md` record that an issue is verified in its own PR and that the next PR cites the `published` run. The remote mode was run against the current published page: 1 request, 0 failing.
+
+Not run: Lighthouse and axe (1.7).
 
 ---
 
