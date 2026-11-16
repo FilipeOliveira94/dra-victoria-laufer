@@ -41,7 +41,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 - **Mode:** persuade, with the restraint of a reading page. The proof is the registration and the training, not slogans.
 - **Sequence:** identification with portrait → Formação → Atuação → Sobre → Contato.
 - **First fold:** name, `MÉDICA`, `CRM-SP 240550` and the professional photo, all in real text.
-- **Anti-goals:** generic illustration, card grid, full-screen hero with text over the image, testimonials, numbers, promotional language.
+- **Anti-goals:** generic illustration, card grid, full-screen hero with text over the image, testimonials, statistics, promotional language.
 - **Open:** the visual world (color, typography, logo), until Filipe confirms it.
 
 ---
@@ -67,13 +67,13 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` |
 | Size | P |
 | Depends on | — |
 
 - **Objective:** unblock the content of Phase 2.
 - **Scope:** official names of the three postgraduate courses (area and institution of the third included) and of the degree; list of roles performed; the text "Sobre" written by her; professional photo with authorization of use.
-- **Out of scope:** workplaces, periods, Lattes, LinkedIn, Doctoralia.
+- **Out of scope:** previous workplaces, Lattes, LinkedIn, Doctoralia. (Current workplaces and start year added to scope by Filipe on 2026-11-15.)
 - **Acceptance:** each item is attached to the issue or marked pending with an agreed date.
 
 ### 0.3 Define the visual identity
@@ -247,9 +247,9 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 | Depends on | 2.1; 0.2 |
 
 - **Objective:** demonstrate experience without advertising care.
-- **Scope:** list of roles performed, with no workplace and no period; the text "Sobre" provided by her.
-- **Out of scope:** numbers, testimonials, mention of home care, previous workplaces.
-- **Acceptance:** no role suggests a specialty or invites a consultation; the text "Sobre" is published without a change of meaning.
+- **Scope:** list of roles performed, with the current workplace and a start year, under the wording rule in `docs/compliance/cfm.md` → C; the text "Sobre" approved by her.
+- **Out of scope:** statistics, testimonials, mention of home care, previous workplaces, hospital logos.
+- **Acceptance:** every role follows the wording rule; none suggests a specialty or invites a consultation; the text "Sobre" is published without a change of meaning.
 
 ### 2.4 Apply the confirmed visual identity
 
@@ -464,3 +464,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | Date | Change |
 | --- | --- |
 | 2026-11-15 | Roadmap created from the approved plan v2 with its final adjustments (single e-mail, 3.3 withdrawn, private assets repository in 1.4, extra acceptance in 1.7 and 1.8). 1.8 delivered with the project-structure commit |
+| 2026-11-15 | 0.2 verified: every content input received (`docs/inputs/0.2-pending-inputs.md`). Filipe added current workplaces and a start year to "Atuação" (scope of 0.2 and 2.3), narrowed the "numbers" anti-goal to statistics, and decided to show the postgraduate courses although the CREMESP registration is frozen |

@@ -4,6 +4,21 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-15 — Issue 0.2: pending inputs collected
+
+Every content input that only Dra. Victória can provide was received through Filipe and recorded in [`docs/inputs/0.2-pending-inputs.md`](inputs/0.2-pending-inputs.md): the degree (Medicina, UNIVASF, 2021); the official names and institutions of the three postgraduate courses; the roles for "Atuação" with current workplaces and start years (2022; intensive care since 2024), approved; the text "Sobre", drafted at Filipe's request and approved; the main portrait with its right of use (bought from the photographer).
+
+The portrait is stored as `photos/portrait-main.jpg` in the private repository `dra-victoria-laufer-assets`, created by Filipe. The JPEG (2000 × 1333) had no EXIF, XMP or IPTC segment; it went through a metadata strip that kept only JFIF, the ICC profile and the image data. The assets commit was made locally; Filipe pushes it. Hospital photos are not used or stored: they show patients or staff.
+
+Decisions by Filipe, recorded with their source in `docs/compliance/cfm.md`:
+
+- "Atuação" names current workplaces and a start year. A wording rule for roles and experience was added, from the text of Resolution CFM 2.336/2023 (Art. 4, 7, 11, 13): function and setting, never a specialty title or a treatment claim. `neonatologista`, `intensivista` and `área de atuação` joined the vetoed terms. The "numbers" anti-goal now means statistics.
+- None of the courses is registered at the CREMESP, which has frozen registration; the planning record of two registered courses was wrong. Filipe decided to show them in the Art. 13 format with `NÃO ESPECIALISTA`, without consulting the CREMESP, and to remove `noindex` in 2.5 regardless of the registration. Art. 13, §1, d reads "devidamente cadastrado no CRM"; the divergence is recorded as a risk. Neonatologia is in progress and is shown as "(em curso)".
+
+Checks: the resolution text was read from the CREMERJ copy (PDF text extracted locally); the HCX FMUSP course page confirmed "Especialização em Pediatria Clínica"; the Faculdade Sírio-Libanês page renders by JavaScript and was not read, so that name comes from Filipe. The ledger has no vetoed term (`grep` for `pediatra`, `especialista em`, `Lorem`: no match). No site build exists yet, so no rendered check applies.
+
+---
+
 ### 2026-11-15 — Project structure and planning documents
 
 The repository gains its project structure, following the organization of Filipe's `open-data-platform` project and the approved plan v2 with its final adjustments. Added: `AGENTS.md` (agent rules, roles, pull-request workflow, CFM checklist as a mandatory gate, quality thresholds) with `CLAUDE.md` importing it; `ROADMAP.md` (Phases 0 to 7, every issue with objective, scope, out of scope, acceptance, dependencies and size); `PROJECT_STATUS.md`; `DECISIONS.md` with ADR-0001 to ADR-0010 under `docs/decisions/`; `docs/agent-workflow.md`; `docs/architecture/target-site.md`; `docs/compliance/cfm.md`; `docs/project-genesis.md`; a `Makefile`; and a `README.md`. `LICENSE` now restricts MIT to the code and reserves all rights over the texts, name, logo and photos of Dra. Victória Laufer, which delivers issue 1.8 pending Filipe's review of the wording. `.gitignore` gains the Node and Astro entries and keeps the Jekyll ones.

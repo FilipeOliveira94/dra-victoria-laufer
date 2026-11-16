@@ -14,14 +14,14 @@ One page, in `pt-BR`, in this order:
 | --- | --- | --- | --- |
 | 1 | Identification | Name, `MÉDICA`, `CRM-SP 240550` and the portrait, in real text, within the first fold | 2.1 |
 | 2 | Formação | Each postgraduate course in the Art. 13 format, with the institution; the degree | 2.2 |
-| 3 | Atuação | Roles performed, without workplace or period | 2.3 |
-| 4 | Sobre | The text she wrote | 2.3 |
+| 3 | Atuação | Roles performed, with current workplace and start year, under the wording rule in `docs/compliance/cfm.md` → C | 2.3 |
+| 4 | Sobre | The text she approved | 2.3 |
 | 5 | Contato | `victorialaufersaude@gmail.com`, WhatsApp, Instagram | 2.1 |
 | — | Footer | Identification again, the build year, links to privacy and legal notice | 1.3, 5.1 |
 
 Structure (issue 1.3): one `h1`, one `h2` per section, a `<main>`, a skip-navigation link, anchor navigation without JavaScript, and a 404 page that works at any URL depth. Later pages: privacy and legal notice (5.1).
 
-Not on the page, by design: numbered steps, service cards, a locations section, testimonials, numbers, a full-screen hero with text over the image.
+Not on the page, by design: numbered steps, service cards, a locations section, testimonials, statistics, a full-screen hero with text over the image.
 
 ## Stack
 

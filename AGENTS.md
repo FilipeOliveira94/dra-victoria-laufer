@@ -72,7 +72,7 @@ An entry point that belongs to the issue and was not run is not verified. Name i
 - The only e-mail on the site is `victorialaufersaude@gmail.com`.
 - WhatsApp and Instagram are shown as contact. An invitation to schedule is acquisition and stays behind a flag.
 - The text "Sobre" is hers. Publish it without editing its meaning.
-- "Atuação" lists roles only: no workplace, no period, no invitation to a consultation.
+- "Atuação" lists roles with the current workplace and a start year ("desde 2022"), never an invitation to a consultation. Every sentence about what she does follows the wording rule in [`docs/compliance/cfm.md`](docs/compliance/cfm.md) → C: function and setting, never a specialty title or a treatment claim.
 
 ## 7. Assets and Privacy
 
