@@ -10,18 +10,23 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "lint": "echo \"npm run lint: not available yet. The linter is added by issue 1.7 (see ROADMAP.md).\"",
-    "lighthouse": "echo \"npm run lighthouse: not available yet. Lighthouse CI is added by issue 1.7 (see ROADMAP.md).\"",
+    "lint": "html-validate \"dist/**/*.html\" && node scripts/check-content.mjs && node scripts/check-no-photos.mjs",
+    "lighthouse": "lhci autorun --config=lighthouserc.cjs",
     "requests": "node scripts/check-requests.mjs",
     "assets": "node scripts/prepare-assets.mjs",
     "prebuild": "node scripts/prepare-assets.mjs",
-    "predev": "node scripts/prepare-assets.mjs"
+    "predev": "node scripts/prepare-assets.mjs",
+    "axe": "node scripts/check-axe.mjs"
   },
   "dependencies": {
     "astro": "7.4.12"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
+    "@lhci/cli": "0.16.1",
+    "axe-core": "4.14.1",
+    "html-validate": "11.21.1",
+    "puppeteer-core": "25.17.0",
     "sharp": "0.35.5",
     "typescript": "6.0.3"
   }

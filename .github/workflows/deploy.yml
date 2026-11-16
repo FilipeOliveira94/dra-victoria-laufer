@@ -30,6 +30,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # Full history: the photo check reads every commit of the PR.
+          fetch-depth: 0
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -48,12 +51,38 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build
+        id: build
         run: npm run build
       - name: Check the portrait and favicon are in the build
         if: env.HAS_ASSETS_KEY == 'true'
         run: grep -q '<picture>' dist/index.html && grep -q 'rel="icon" href="/dra-victoria-laufer/_astro/icon' dist/index.html
-      - name: Check every referenced request returns 200
+      # Quality checks (issue 1.7). Each runs even if an earlier one failed,
+      # so one run reports every broken rule; any failure fails the job, and
+      # on main that stops the deploy.
+      - name: Check every referenced request and anchor, and images ≤ 200 KB
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: node scripts/check-requests.mjs /dra-victoria-laufer/
+      - name: Check valid HTML, no Lorem or vetoed term, no photo in the repository
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: npm run lint
+      - name: Check accessibility with axe
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: node scripts/check-axe.mjs /dra-victoria-laufer/
+      # Mobile, on the real photo when the assets were fetched; on the
+      # placeholder for pull requests from forks.
+      - name: Check Lighthouse mobile
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: npm run lighthouse
+        env:
+          BASE: /dra-victoria-laufer/
+      - name: Upload the Lighthouse reports
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-${{ github.event.number || github.sha }}
+          path: .lighthouseci
+          include-hidden-files: true
+          retention-days: 7
       # The exact site a merge would publish, to download from the run.
       - name: Upload the built site for review
         if: github.event_name == 'pull_request'

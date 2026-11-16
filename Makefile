@@ -1,11 +1,12 @@
 # Dra. Victória Laufer portfolio site — common developer commands
 # Requires: GNU make and Node.js (version in .nvmrc) with npm.
 #
-# `lint` and `lighthouse` print a notice until issue 1.7 adds the tools.
+# The quality checks (issue 1.7) run on the built site: `make build` first.
+# axe and Lighthouse need Chrome: CHROME_PATH, or google-chrome on PATH.
 
 NPM ?= npm
 
-.PHONY: help install dev build preview lint check lighthouse requests contrast assets
+.PHONY: help install dev build preview lint check axe lighthouse requests contrast assets
 
 help: ## Show available targets
 	@awk 'BEGIN {FS = ":.*##"; printf "Targets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  %-12s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
@@ -25,14 +26,17 @@ build: ## Build the static site (production URLs unless DEPLOY_TARGET is set)
 preview: ## Serve the built site locally
 	$(NPM) run preview
 
-lint: ## Lint the source (issue 1.7)
+lint: ## Valid HTML, no Lorem or vetoed term in dist/, no photo in the repository
 	$(NPM) run lint
 
 check: ## Type-check the project
 	$(NPM) run check
 
-lighthouse: ## Run Lighthouse CI, mobile (issue 1.7)
-	$(NPM) run lighthouse
+axe: ## axe on the home and the 404, 360 and 1280 px (BASE=/dra-victoria-laufer/ for staging)
+	node scripts/check-axe.mjs $(or $(BASE),/)
+
+lighthouse: ## Lighthouse CI mobile: Performance >= 90, Accessibility >= 95, LCP < 2.5 s, CLS < 0.1 (BASE as above)
+	BASE=$(or $(BASE),/) $(NPM) run lighthouse
 
 requests: ## Request everything dist/ references; fail on non-200 or third party (BASE=/dra-victoria-laufer/ for staging)
 	node scripts/check-requests.mjs $(or $(BASE),/)

@@ -5,6 +5,8 @@ dist/
 .astro/
 npm-debug.log*
 .lighthouseci/
+# Under WSL, Lighthouse's Chrome launcher leaves its profile folders here.
+/C:*
 
 # Environment and secrets
 .env
