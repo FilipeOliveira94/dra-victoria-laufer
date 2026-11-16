@@ -4,6 +4,14 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Phase 2 active
+
+Phases 0 and 1 are closed: 0.1 to 0.3 and 1.1 to 1.7 verified, 1.8 delivered with Filipe's review of the wording pending. Phase 2 is the active phase in `PROJECT_STATUS.md` and `ROADMAP.md`; 2.1 (identification and contact) is in progress on `feat/2.1-identification-contact`.
+
+The 1.7 merge (`dc075fc`) published cleanly: `published` job of [run 43937667606](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937667606), 23 requests, 0 failing, on the live page.
+
+---
+
 ### 2026-11-16 — Issue 1.7: automatic checks on pull requests
 
 Built on `feat/1.7-pr-checks`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless in a scratch directory, not a project dependency), and on the PR's CI [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420) on `84c74e4`. Not deployed.

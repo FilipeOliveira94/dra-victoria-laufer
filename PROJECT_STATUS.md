@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-16 (1.7 verified on local builds and PR CI, PR open) |
-| Current phase | Phase 0 — Product and brand, and Phase 1 — New base (MVP), in parallel |
-| Phase status | Phase 0 verified (0.1, 0.2 and 0.3); Phase 1 in progress (1.1 to 1.7 verified) |
+| Last updated | 2026-11-16 (Phase 2 active; 2.1 in progress) |
+| Current phase | Phase 2 — Credibility content under the CFM rules (MVP) |
+| Phase status | Phase 2 in progress (2.1). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.7 verified, 1.8 delivered |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,48 +22,35 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**1.7** — Automatic checks on pull requests. Verified on local builds of both targets, with and without the assets, and on the PR's CI [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420), which fetched the private assets; PR open.
+**2.1** — Identification and contact: "Dra. Victória Laufer — MÉDICA — CRM-SP 240550" as text in the first fold at 360 px and in the footer; contact with `victorialaufersaude@gmail.com`, WhatsApp and Instagram; a single e-mail on the site. Branch `feat/2.1-identification-contact`.
 
-The `build` job of `deploy.yml` now runs, after the build, on every PR and before every deploy: html-validate; requests, anchors and the 200 KB limit; "Lorem" and vetoed terms in `dist/` (`NÃO ESPECIALISTA` excepted); no photo tracked or added by a commit of the branch; axe at 360 and 1280 px; Lighthouse CI mobile (Performance ≥ 90, Accessibility ≥ 95, LCP < 2.5 s, CLS < 0.1). Each rule was broken on purpose and its check failed. The 1.6 merge published cleanly: `published` job of [run 43930780015](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930780015), 23 requests, 0 failing.
+The 1.7 merge (`dc075fc`) published cleanly: `published` job of [run 43937667606](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937667606), 23 requests, 0 failing. `build` is a required status check of `main`.
 
 ## Next work
 
-1. **1.7** — review, Filipe's OK and merge. `build` is a required status check of `main` (branch protection, set at Filipe's request): a PR with a failing check cannot be merged.
-2. **2.1**.
-3. **2.6**: cut-out portrait on brand graphics, after 2.4. Filipe made it a condition for publication, so **2.5** (removal of `noindex`) waits for it.
+1. **2.1** — plan, build, PR.
+2. **2.2** and **2.3**, after 2.1.
+3. **2.4**, then **2.6** (cut-out portrait on brand graphics). Filipe made 2.6 a condition for publication, so **2.5** (removal of `noindex`) waits for it.
+4. **1.8** — Filipe's review of the `LICENSE` wording.
 
 ## Blockers
 
-None. The assets repository holds the `brand/` logos (pushed, per Filipe on 2026-11-16).
-
-Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md).
-
-Nothing blocks Phase 1.
+None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md). The brand is confirmed in [`DESIGN.md`](DESIGN.md) (0.3).
 
 ---
 
-## Phase 0 progress
+## Phase 2 progress
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 0.1 | Record the product context | Verified | [`PRODUCT.md`](PRODUCT.md), approved by Filipe on 2026-11-16 |
-| 0.2 | Collect pending inputs | Verified | [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md) |
-| 0.3 | Define the visual identity | Verified | [`DESIGN.md`](DESIGN.md), approved by Filipe on 2026-11-16; [ADR-0011](docs/decisions/0011-visual-identity.md); `make contrast` 15/15 |
+| 2.1 | Identification and contact | In progress | — |
+| 2.2 | Training ("Formação") | Not started | — |
+| 2.3 | Roles ("Atuação") and "Sobre" | Not started | — |
+| 2.4 | Apply the confirmed visual identity | Not started | — |
+| 2.6 | Cut-out portrait on brand graphics | Not started | — |
+| 2.5 | CFM review and release | Not started | Depends on 2.1 to 2.4 and 2.6 |
 
-## Phase 1 progress
-
-| ID | Title | Status | Evidence |
-| --- | --- | --- | --- |
-| 1.1 | Replace Jekyll with Astro, deployed by Actions | Verified | Local builds, both targets; `make check`, `make requests`, `html-validate`. Published site checked on 2026-11-16 |
-| 1.2 | Typed content model | Verified | Local builds; 8 invalid-data cases fail the build; pending item off the page and in the report. `docs/status-log.md` |
-| 1.3 | Structure and layout of the single page | Verified | Local builds, both targets; html-validate clean, 0 duplicate ids, no horizontal scroll 320–1600 px, 404 at depth. `docs/status-log.md` |
-| 1.4 | Images, favicon and fonts | Verified | Local builds, both targets, with and without the assets; CLS 0.0001; largest image 78.9 KB; PR CI [run 43908574612](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43908574612). `docs/status-log.md` |
-| 1.5 | Accessibility, WCAG 2.1 AA | Verified | Local builds, both targets: axe 0 violations, Lighthouse mobile Accessibility 100 (home and 404), keyboard walk complete, skip link to `<main>`; PR CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810). `docs/status-log.md` |
-| 1.6 | Technical SEO | Verified | PR CI [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802). Local builds, both targets: description and Open Graph from the identification, canonical/`og:url`/`og:image`/sitemap/robots follow `DEPLOY_TARGET`; social image 60.7 KB; html-validate clean; 35 requests, 0 failing. `docs/status-log.md` |
-| 1.7 | Automatic checks on pull requests | Verified | PR CI [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420). Local builds, both targets, with and without the assets: every check passes; each rule broken on purpose fails its check. `docs/status-log.md` |
-| 1.8 | License | Delivered | [`LICENSE`](LICENSE), README note. Review by Filipe pending |
-
-Acceptance detail: `ROADMAP.md` → Phase 1.
+Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `docs/status-log.md`.
 
 ---
 
