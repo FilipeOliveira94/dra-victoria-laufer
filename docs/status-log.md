@@ -4,6 +4,12 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.8: license verified
+
+Filipe reviewed `LICENSE` and approved the wording and the rights holders: MIT for the code, copyright Filipe Oliveira; all rights reserved for the texts, name, logo and photos, copyright Victória Laufer. The code copyright year was corrected from 2025 to 2026, the year the project started. The README note on the private photos repository is unchanged. Both notices are present with the correct holders, which meets the acceptance. Phase 1 is closed.
+
+---
+
 ### 2026-11-16 — Phase 2 active
 
 Phases 0 and 1 are closed: 0.1 to 0.3 and 1.1 to 1.7 verified, 1.8 delivered with Filipe's review of the wording pending. Phase 2 is the active phase in `PROJECT_STATUS.md` and `ROADMAP.md`; 2.1 (identification and contact) is in progress on `feat/2.1-identification-contact`.

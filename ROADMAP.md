@@ -25,7 +25,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | Phase | Scope | Depends on | Status |
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
-| 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Verified (1.1 to 1.7); 1.8 delivered, Filipe's review pending |
+| 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Verified (1.1 to 1.8) |
 | 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, cut-out portrait, release | Phase 1; inputs from 0.2; brand from 0.3 | In progress (2.1); the active phase |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
 | 4 | Structured data: JSON-LD `Person` | 2.5 and 3.2 | Not started |
@@ -196,7 +196,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.5. Blockers are 
 
 | | |
 | --- | --- |
-| Status | `delivered` (2026-11-15; review by Filipe pending) |
+| Status | `verified` (wording reviewed and approved by Filipe, 2026-11-16) |
 | Size | P |
 | Depends on | — |
 | ADRs | [0008](docs/decisions/0008-license-code-only.md) |
@@ -491,4 +491,5 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 1.5 built: skip link to `<main id="conteudo">` on every page, `:focus-visible` ring (2px, 2px offset, `rounded.sm`; inverse on the footer) from new focus tokens, contact link named "E-mail: " followed by the address with the channel as `title`, global `prefers-reduced-motion` rule. Verified on local builds, both targets: axe 4.14.1 0 violations, Lighthouse 12.8.2 mobile Accessibility 100, keyboard walk complete. PR CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) passed, private-assets step executed |
 | 2026-11-16 | 1.6 built: meta description and Open Graph (`pt_BR`) from the identification only (name, `MÉDICA`, CRM); `og:url` equal to the canonical; 1200 × 630 social image, the colour horizontal logo on white, generated from the private assets; `sitemap.xml` and `robots.txt` as Astro endpoints, no new dependency. Canonical, `og:url`, `og:image`, sitemap and robots follow `DEPLOY_TARGET`, checked on local builds of both targets. PR CI [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802) passed, private-assets step executed, `social.png` generated |
 | 2026-11-16 | 1.7 built: the `build` job of `deploy.yml` runs, on every PR and before every deploy, html-validate, the request and anchor check with the 200 KB limit, the vetoed-term and "Lorem" search on `dist/` (`NÃO ESPECIALISTA` excepted), a photo check on the tree and on every commit of the branch, axe at 360 and 1280 px, and Lighthouse CI mobile (Performance ≥ 90, Accessibility ≥ 95, LCP < 2.5 s, CLS < 0.1). Each rule broken on purpose fails its check. PR CI [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420) passed, private-assets step executed |
-| 2026-11-16 | Phase 2 is the active phase: Phases 0 and 1 closed (0.1 to 0.3 and 1.1 to 1.7 verified, 1.8 delivered). 2.1 in progress on `feat/2.1-identification-contact`. The 1.7 merge published cleanly (`published` job of [run 43937667606](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937667606)) |
+| 2026-11-16 | Phase 2 is the active phase: Phases 0 and 1 closed (0.1 to 0.3 and 1.1 to 1.7 verified; 1.8 delivered, then verified the same day). 2.1 in progress on `feat/2.1-identification-contact`. The 1.7 merge published cleanly (`published` job of [run 43937667606](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937667606)) |
+| 2026-11-16 | 1.8 verified: Filipe reviewed the `LICENSE` wording and the rights holders; the code copyright year corrected from 2025 to 2026. Phase 1 closed |
