@@ -28,7 +28,7 @@ The `build` job of `deploy.yml` now runs, after the build, on every PR and befor
 
 ## Next work
 
-1. **1.7** — review, Filipe's OK and merge. Filipe decides whether `build` becomes a required status check of `main` (branch protection); without it a failing PR is marked failed but can still be merged.
+1. **1.7** — review, Filipe's OK and merge. `build` is a required status check of `main` (branch protection, set at Filipe's request): a PR with a failing check cannot be merged.
 2. **2.1**.
 3. **2.6**: cut-out portrait on brand graphics, after 2.4. Filipe made it a condition for publication, so **2.5** (removal of `noindex`) waits for it.
 

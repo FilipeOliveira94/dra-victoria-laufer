@@ -50,7 +50,7 @@ On the clean builds:
 
 `make check`: 0 errors. `npm audit`: 0 vulnerabilities.
 
-Not done here: making the `build` job a required status check of `main`. The job fails, but GitHub blocks the merge only under branch protection, a repository setting that is Filipe's decision.
+Branch protection on `main`, set at Filipe's request: `build` is a required status check, so a PR whose checks fail cannot be merged. Not strict (the branch need not be up to date with `main`); administrators are not enforced, so a direct documentation commit on `main` authorized by Filipe (AGENTS.md §13) still goes through; no force push, no deletion. The PR showed `build` as required and passing ([run 43937233222](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937233222)).
 
 ---
 
