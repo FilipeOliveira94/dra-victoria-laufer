@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-16T03:34:53.076Z",
+  "title": "Design System: Dra. Victória Laufer",
+  "extensions": {
+    "colorMeta": {
+      "branco": {
+        "role": "neutral",
+        "displayName": "Branco",
+        "tonalRamp": [
+          "#4D4D4D",
+          "#808080",
+          "#B3B3B3",
+          "#E0E0E0",
+          "#FFFFFF",
+          "#FFFFFF",
+          "#FFFFFF",
+          "#FFFFFF"
+        ]
+      },
+      "azul-tinta": {
+        "role": "neutral",
+        "displayName": "Azul tinta",
+        "tonalRamp": [
+          "#0C141D",
+          "#142230",
+          "#1B2F43",
+          "#223B54",
+          "#5D7288",
+          "#93A1B0",
+          "#C9D0D7",
+          "#E9ECEF"
+        ]
+      },
+      "azul-noite": {
+        "role": "neutral",
+        "displayName": "Azul noite",
+        "tonalRamp": [
+          "#080E16",
+          "#0E1824",
+          "#142232",
+          "#192A3F",
+          "#556476",
+          "#8E98A4",
+          "#C6CBD1",
+          "#E8EAED"
+        ]
+      },
+      "azul-cinza": {
+        "role": "neutral",
+        "displayName": "Azul cinza",
+        "tonalRamp": [
+          "#161D24",
+          "#25313C",
+          "#344454",
+          "#41556A",
+          "#77899A",
+          "#A5B0BC",
+          "#D2D8DD",
+          "#EDEFF2"
+        ]
+      },
+      "verde-marca": {
+        "role": "primary",
+        "displayName": "Verde da marca",
+        "tonalRamp": [
+          "#133734",
+          "#1F5C57",
+          "#2B807A",
+          "#37A199",
+          "#6EC9C2",
+          "#9FDBD7",
+          "#CFEDEB",
+          "#ECF8F7"
+        ]
+      },
+      "verde-profundo": {
+        "role": "primary",
+        "displayName": "Verde profundo",
+        "tonalRamp": [
+          "#061B1A",
+          "#0A2D2B",
+          "#0D3F3C",
+          "#114F4B",
+          "#4E8380",
+          "#89ADAA",
+          "#C4D6D5",
+          "#E7EFEE"
+        ]
+      },
+      "verde-claro": {
+        "role": "primary",
+        "displayName": "Verde claro",
+        "tonalRamp": [
+          "#454A49",
+          "#737B7A",
+          "#A1ACAA",
+          "#CAD8D6",
+          "#ECF8F6",
+          "#F3FAF9",
+          "#F9FDFC",
+          "#FDFEFE"
+        ]
+      },
+      "amarelo-marca": {
+        "role": "secondary",
+        "displayName": "Amarelo da marca",
+        "tonalRamp": [
+          "#4D4126",
+          "#806C3F",
+          "#B39758",
+          "#E0BE6E",
+          "#FFE29E",
+          "#FFECBE",
+          "#FFF5DF",
+          "#FFFBF2"
+        ]
+      },
+      "ouro": {
+        "role": "secondary",
+        "displayName": "Ouro",
+        "tonalRamp": [
+          "#312508",
+          "#523E0E",
+          "#735614",
+          "#906C19",
+          "#BB9C55",
+          "#D2BD8E",
+          "#E8DEC6",
+          "#F6F2E8"
+        ]
+      },
+      "lilas": {
+        "role": "tertiary",
+        "displayName": "Lilás",
+        "tonalRamp": [
+          "#372A3B",
+          "#5C4663",
+          "#80618A",
+          "#A17AAD",
+          "#C9A8D4",
+          "#DBC5E2",
+          "#EDE2F1",
+          "#F8F3F9"
+        ]
+      },
+      "lilas-claro": {
+        "role": "tertiary",
+        "displayName": "Lilás claro",
+        "tonalRamp": [
+          "#49474A",
+          "#7A777B",
+          "#AAA6AC",
+          "#D6D1D8",
+          "#F6F2F8",
+          "#F9F6FB",
+          "#FCFBFD",
+          "#FEFDFE"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Her name, once, in the first fold. The only h1."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings: Formação, Atuação, Sobre, Contato."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "A course name, a workplace, a contact channel."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All reading text; also NÃO ESPECIALISTA, at the size of the course line."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "The identity line MÉDICA · CRM-SP 240550 and the navigation."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "150ms ease-out",
+        "purpose": "Link underline and colour change only. No entrance motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "min",
+        "value": "320px"
+      },
+      {
+        "name": "md",
+        "value": "600px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "max",
+        "value": "1600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Identity block",
+      "kind": "custom",
+      "refersTo": "identity-line",
+      "description": "First fold: name in display serif, identity line in tracked capitals, gold hairline below.",
+      "html": "<div class=\"ds-identity\"><p class=\"ds-name\">Victória Laufer</p><p class=\"ds-id\">MÉDICA · CRM-SP 240550</p></div>",
+      "css": ".ds-identity{background:#FFFFFF;padding:24px 16px;border-bottom:2px solid #A47B1C}.ds-name{margin:0;font:600 2.5rem/1.1 'Source Serif 4', Georgia, serif;color:#274360;letter-spacing:-0.01em}.ds-id{margin:8px 0 0;font:600 0.9375rem/1.4 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif;letter-spacing:0.08em;color:#274360}"
+    },
+    {
+      "name": "Text link",
+      "kind": "custom",
+      "refersTo": "link",
+      "description": "Every link, including contact channels. Never a button.",
+      "html": "<a class=\"ds-link\" href=\"#\">victorialaufersaude@gmail.com</a>",
+      "css": ".ds-link{font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif;color:#135A55;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.15em;transition:color 150ms ease-out}.ds-link:hover{color:#1C3048;text-decoration-thickness:2px}.ds-link:focus-visible{outline:2px solid #135A55;outline-offset:2px;border-radius:2px}"
+    },
+    {
+      "name": "Section navigation",
+      "kind": "nav",
+      "description": "Anchor links to the four sections, no JavaScript.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Seções\"><a href=\"#formacao\">Formação</a><a href=\"#atuacao\">Atuação</a><a href=\"#sobre\">Sobre</a><a href=\"#contato\">Contato</a></nav>",
+      "css": ".ds-nav{display:flex;flex-wrap:wrap;gap:8px 24px;font:600 0.9375rem/1.4 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif;letter-spacing:0.08em;text-transform:uppercase}.ds-nav a{color:#274360;text-decoration:none;padding:4px 0}.ds-nav a:hover{color:#135A55;text-decoration:underline}.ds-nav a:focus-visible{outline:2px solid #135A55;outline-offset:2px;border-radius:2px}"
+    },
+    {
+      "name": "Course line",
+      "kind": "custom",
+      "refersTo": "section-default",
+      "description": "Art. 13 format; NÃO ESPECIALISTA at the same size, weight and colour as the line.",
+      "html": "<p class=\"ds-course\">MÉDICA com pós-graduação em (área), (instituição). NÃO ESPECIALISTA</p>",
+      "css": ".ds-course{margin:0;font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif;color:#274360;background:#FFFFFF;padding:16px}"
+    },
+    {
+      "name": "Alternate section",
+      "kind": "card",
+      "refersTo": "section-alt",
+      "description": "Light green section ground with a serif heading in deep green.",
+      "html": "<section class=\"ds-alt\"><h2>Atuação</h2><p>Função, unidade e local de trabalho, desde 2022.</p></section>",
+      "css": ".ds-alt{background:#E6F5F3;color:#274360;padding:40px 16px;font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif}.ds-alt h2{margin:0 0 8px;font:600 1.75rem/1.2 'Source Serif 4', Georgia, serif;color:#135A55}.ds-alt p{margin:0}"
+    },
+    {
+      "name": "Green band",
+      "kind": "card",
+      "refersTo": "band-verde",
+      "description": "The brand turquoise as a field, with azul-noite text. One per page.",
+      "html": "<section class=\"ds-band-verde\"><p>Texto sobre o verde da marca.</p></section>",
+      "css": ".ds-band-verde{background:#3EB7AE;color:#1C3048;padding:40px 16px;font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif}.ds-band-verde p{margin:0}"
+    },
+    {
+      "name": "Yellow band",
+      "kind": "card",
+      "refersTo": "band-amarelo",
+      "description": "The brand yellow as a field, with azul-tinta text. One per page.",
+      "html": "<section class=\"ds-band-amarelo\"><p>Texto sobre o amarelo da marca.</p></section>",
+      "css": ".ds-band-amarelo{background:#FFD87D;color:#274360;padding:40px 16px;font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif}.ds-band-amarelo p{margin:0}"
+    },
+    {
+      "name": "Sobre section",
+      "kind": "card",
+      "refersTo": "section-sobre",
+      "description": "Her own text on light lilac, with a lilac rule at the left edge.",
+      "html": "<section class=\"ds-sobre\"><h2>Sobre</h2><p>Texto dela, sem alteração de sentido.</p></section>",
+      "css": ".ds-sobre{background:#F3EDF6;color:#274360;padding:40px 16px 40px 20px;border-left:4px solid #B78BC5;font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif}.ds-sobre h2{margin:0 0 8px;font:600 1.75rem/1.2 'Source Serif 4', Georgia, serif;color:#135A55}.ds-sobre p{margin:0}"
+    },
+    {
+      "name": "Footer",
+      "kind": "custom",
+      "refersTo": "footer",
+      "description": "Deep green ground, white text, identity repeated, build year.",
+      "html": "<footer class=\"ds-footer\"><p>Victória Laufer · MÉDICA · CRM-SP 240550</p><p><a href=\"#\">victorialaufersaude@gmail.com</a></p></footer>",
+      "css": ".ds-footer{background:#135A55;color:#FFFFFF;padding:24px 16px;font:400 0.9375rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif}.ds-footer p{margin:0}.ds-footer a{color:#FFFFFF;text-decoration:underline}.ds-footer a:focus-visible{outline:2px solid #FFFFFF;outline-offset:2px;border-radius:2px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The registration card, in her colours.",
+    "overview": "A visitor arrives with a question — is she registered, where did she train, where does she work — and the page answers it like a well-set document: name, MÉDICA, CRM-SP 240550, then the evidence in order. Her brand supplies the warmth: the turquoise of her monogram, the yellow and gold of its leaves, the deep blue of her signature. The type supplies the sobriety she asked for.\n\nThe scene: parents on a phone, often between shifts at a maternity ward or at home in daylight; colleagues and hiring services on a laptop at work. Light theme only; white is the ground.",
+    "keyCharacteristics": [
+      "White ground, brand colours as whole fields (sections and bands), never as text on white.",
+      "Serif headings, humanist sans for reading — sober, legible in Portuguese, self-hosted.",
+      "The logo is ornament and signature; identity is always real text.",
+      "Restraint: no cards, no icons for decoration, no shadows, no gradients except inside the logo artwork itself."
+    ],
+    "rules": [
+      {
+        "name": "The Fields-Not-Ink Rule",
+        "body": "verde-marca, amarelo-marca, ouro, lilas and lilas-claro are grounds or ornament. None of them is ever a text colour on white.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Band Rule",
+        "body": "At most one band-verde and one band-amarelo on the page. A band marks a moment; repeated, it becomes decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Same-Size Rule",
+        "body": "NÃO ESPECIALISTA is set in the same token, size, weight and colour as the course line it follows (CFM Art. 13). It is never a label, a badge, smaller type or a lighter colour.",
+        "section": "typography"
+      },
+      {
+        "name": "The Real-Text Rule",
+        "body": "Name, MÉDICA and CRM-SP 240550 are always live text in the first fold at 360 px. No logo, image or SVG stands in for them.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do use green, yellow and white as the leading colours, with green and yellow as fields and white as the ground.",
+      "Do take every text colour from the approved pairs table, and run node scripts/check-contrast.mjs when a colour changes.",
+      "Do keep name, MÉDICA and CRM-SP 240550 as live text in the first fold and in the footer.",
+      "Do set NÃO ESPECIALISTA exactly like the course line around it.",
+      "Do serve both fonts and every logo from the site itself."
+    ],
+    "donts": [
+      "Don't set text in verde-marca, amarelo-marca, ouro or lilas, or white text on verde-marca (2.44:1).",
+      "Don't publish any file from brand/source/, or write a professional tagline into the logo.",
+      "Don't use cards, icon tiles, shadows, gradients, or a full-screen hero with text over the photo (anti-goals in PRODUCT.md).",
+      "Don't use the commercial script face or Lucida Sans Unicode as web fonts.",
+      "Don't add a dark theme without a new decision; the palette was checked on light grounds only."
+    ]
+  }
+}

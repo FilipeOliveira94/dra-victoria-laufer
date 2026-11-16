@@ -68,7 +68,7 @@ An entry point that belongs to the issue and was not run is not verified. Name i
 ## 6. Content Rules
 
 - Do not invent personal data, biographical text, course names, dates, numbers, workplaces or testimonials. Missing data is `pendente`.
-- Do not create or guess the logo, palette or typography. They are blocked on Filipe's confirmation (issue 0.3). Until then the site uses neutral provisional tokens.
+- The logo, palette and typography are the ones in [`DESIGN.md`](DESIGN.md), confirmed by Filipe in issue 0.3. Do not add a colour, a typeface or a logo variant outside it; a change is Filipe's decision. Until issue 2.4 applies them, the site uses neutral provisional tokens.
 - The only e-mail on the site is `victorialaufersaude@gmail.com`.
 - WhatsApp and Instagram are shown as contact. An invitation to schedule is acquisition and stays behind a flag.
 - The text "Sobre" is hers. Publish it without editing its meaning.

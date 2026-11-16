@@ -24,7 +24,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Phase | Scope | Depends on | Status |
 | --- | --- | --- | --- |
-| 0 | Product and brand: product context, pending inputs, visual identity | — | In progress (0.1 and 0.2 verified, 0.3 blocked) |
+| 0 | Product and brand: product context, pending inputs, visual identity | — | In progress (0.1 and 0.2 verified, 0.3 in review) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Not started (1.8 delivered) |
 | 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, release | Phase 1; inputs from 0.2; brand from 0.3 | Not started |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
@@ -80,7 +80,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `blocked` (waiting for Filipe to confirm logo, palette and typography) |
+| Status | `in progress` (`DESIGN.md` waiting for Filipe's approval) |
 | Size | M |
 | Depends on | Filipe's confirmation; 0.1 |
 
@@ -255,7 +255,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `blocked` (depends on 0.3) |
+| Status | `not started` |
 | Size | M |
 | Depends on | 0.3 |
 
@@ -441,7 +441,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 **For Filipe**
 
-1. When does the confirmation of logo, palette and typography come? It blocks 0.3 and 2.4, and therefore the release in 2.5.
+1. ~~When does the confirmation of logo, palette and typography come?~~ Answered 2026-11-16: confirmed and recorded in `DESIGN.md` (0.3).
 
 Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may change later if she asks, for example because of spam; that is a future decision); the photo stays out of the public repository; the design brief is correct.
 
@@ -454,7 +454,7 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | "Atuação" read as advertising of care | Goes against her guidance and the CFM | Acceptance of 2.3; modality only in 6.2 |
 | The reading of the resolution is limited to the points Filipe passed on | Incomplete checklist | Check the full text in 2.5; in doubt, consult the CREMESP |
 | Domain with her name registered under Filipe's CPF | His name appears in WHOIS; she depends on him to keep the domain | Written agreement; ownership can be transferred at Registro.br |
-| Brand unconfirmed for a long time | MVP ready but not released | Everything except 0.3 and 2.4 moves in parallel; the site stays `noindex` |
+| Brand unconfirmed for a long time | MVP ready but not released | Closed 2026-11-16: brand confirmed in 0.3 |
 | Content inputs arrive late | Empty sections | Pending items stay hidden; identification and contact already carry the page |
 | Public e-mail and WhatsApp | Spam and clinical messages through an informal channel | Notice in 5.1 |
 | Current site indexable with Lorem ipsum and "Atendimento Pediátrico" | Credibility and CFM exposure today | 1.1 is the first delivery and already publishes with `noindex` |
@@ -466,4 +466,5 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-15 | Roadmap created from the approved plan v2 with its final adjustments (single e-mail, 3.3 withdrawn, private assets repository in 1.4, extra acceptance in 1.7 and 1.8). 1.8 delivered with the project-structure commit |
 | 2026-11-15 | 0.2 verified: every content input received (`docs/inputs/0.2-pending-inputs.md`). Filipe added current workplaces and a start year to "Atuação" (scope of 0.2 and 2.3), narrowed the "numbers" anti-goal to statistics, and decided to show the postgraduate courses although the CREMESP registration is frozen |
 | 2026-11-16 | 0.1 verified: `PRODUCT.md` approved by Filipe, written through the Impeccable init flow from the confirmed brief, the 0.2 inputs and the CFM checklist. The brief's page sequence and mode stay here, linked from `PRODUCT.md` (Filipe's decision) |
+| 2026-11-16 | 0.3 in progress: brand confirmed by Filipe and recorded in `DESIGN.md` (ADR-0011); 2.4 no longer blocked by the brand |
 | 2026-11-16 | Domain changed by Filipe from `victorialaufer.com.br` to `dravictorialaufer.com.br` (Phase 3, ADR-0003, ADR-0004) |

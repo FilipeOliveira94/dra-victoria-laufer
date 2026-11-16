@@ -4,6 +4,20 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 0.3: visual identity recorded
+
+[`DESIGN.md`](../DESIGN.md) records the brand Filipe confirmed from Dra. Victória's logo and palette, through the Impeccable new-surface flow. The direction roll was skipped under the flow's pinned-direction exception: the client fixed the palette ("Manter paleta no verde, lilás/roxo, azul, amarelo, mas podemos mudar as fontes das letras para fontes mais sóbrias") and the logo, and the brief in `ROADMAP.md` fixes the page sequence and first fold. `.impeccable/design.json` carries the sidecar (colour ramps, nine component snippets, narrative). ADR-0011 and D-011 (`proposed`) record the decision.
+
+Decisions by Filipe: Source Serif 4 with Source Sans 3 (option A of three); green, yellow and white lead, her original theme, over the first blue-on-cream proposal; lilac `#B78BC5` (sampled from the image she sent, the same value as the legacy site) as a secondary colour. To keep her green and yellow without failing contrast, they are used as grounds only and text uses her blue or `#135A55`, her green darkened. Fifteen text pairs are allowed; any other pair is not.
+
+Logo: her files carry a tagline that does not follow the Art. 13 format, and the only variant without it drops the accent from "Victória". At Filipe's request the tagline was removed from the horizontal (colour, white, black) and vertical (white, black) logos by deleting the connected components of the artwork below the name. Each file lost 94 components and no kept component crosses the cut; the horizontal colour and vertical black results were inspected. Rewriting the tagline in the Art. 13 format was not done: the original font is not available and the condensed course names are not the official ones. The derived logos, her three monogram files and every original are in `dra-victoria-laufer-assets` under `brand/`, metadata stripped (commit `c36549d`, local; the push was blocked by the session's policy and is left to Filipe). Only PNG sources exist.
+
+Other files: `scripts/check-contrast.mjs` and `make contrast`; `AGENTS.md` §6, `PRODUCT.md`, `README.md` and `docs/architecture/target-site.md` now point to `DESIGN.md` instead of saying the brand is undecided. 2.4 is no longer blocked by the brand.
+
+Checks: `make contrast` passes 15 of 15 pairs (lowest 4.70:1); a copy with `verde-marca` text on `branco` fails at 2.44:1. `grep -niE` for `pediatra`, `especialista em`, `neonatologista`, `intensivista`, `área de atuação`, `lorem` on the new and changed files: no match. No site build exists, so no rendered check applies. Acceptance is met when Filipe approves `DESIGN.md`.
+
+---
+
 ### 2026-11-16 — Issue 0.1: product context recorded
 
 [`PRODUCT.md`](../PRODUCT.md) records the product context through the Impeccable init flow (schema 1): platform `web`; the decided stack; users (parents, colleagues, contracting parties checking who she is); purpose (credibility first, acquisition behind flags); positioning (checkable facts in the CFM form); operating context; what the page shows and its hard limits; brand commitments limited to name, registration, voice and the absence of a confirmed brand; the evidence received in 0.2 and what must not be fabricated; five product principles; the accessibility standard. Rules are linked to `cfm.md`, the 0.2 ledger and the ADRs, not copied.
