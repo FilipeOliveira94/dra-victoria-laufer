@@ -6,7 +6,7 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-16 (2.1 built and checked on local builds; PR CI pending) |
+| Last updated | 2026-11-16 (2.1 checked on local builds and PR CI; Filipe's screenshot review pending) |
 | Current phase | Phase 2 — Credibility content under the CFM rules (MVP), the last phase before the initial release |
 | Phase status | Phase 2 in progress (2.1). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
 
@@ -30,7 +30,7 @@ The 1.7 merge (`dc075fc`) published cleanly: `published` job of [run 43937667606
 
 ## Next work
 
-1. **2.1** — PR, its CI run, PO and Reviewer approval, Filipe's OK.
+1. **2.1** — [PR #13](https://github.com/FilipeOliveira94/dra-victoria-laufer/pull/13): Filipe's review of the screenshots, PO and Reviewer approval, Filipe's OK.
 2. **2.2** identification and contact, **2.3** Formação, **2.4** Atuação and Sobre, in that order, each a complete section.
 3. **2.5** cut-out portrait on brand graphics: Filipe made it a condition for publication.
 4. **2.6** CFM review and release (removal of `noindex`).
@@ -45,7 +45,7 @@ None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inp
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 2.1 | Apply the confirmed visual identity | In progress | Built; local builds, both targets, with and without the assets: every check passes. PR CI pending. `docs/status-log.md` |
+| 2.1 | Apply the confirmed visual identity | In progress | PR CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307); local builds, both targets, with and without the assets: every check passes. Filipe's screenshot review pending. `docs/status-log.md` |
 | 2.2 | Identification and contact | Not started | — |
 | 2.3 | Training ("Formação") | Not started | — |
 | 2.4 | Roles ("Atuação") and "Sobre" | Not started | — |
@@ -61,7 +61,7 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 | | |
 | --- | --- |
 | Date | 2026-11-16 |
-| Environment | Local build, branch `feat/2.1-visual-identity`: production and `DEPLOY_TARGET=ghpages` with the private assets, staging with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless (scratchpad only). Not deployed; PR CI pending |
+| Environment | Local build, branch `feat/2.1-visual-identity`: production and `DEPLOY_TARGET=ghpages` with the private assets, staging with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless (scratchpad only). CI: [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307) on `4c87890` (`pull_request`), assets fetched. Not deployed |
 | Checks | `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse` on each build; `make check`; scroll width at 320, 360, 1280 and 1600 px; screenshots at 360 and 1280 px; `impeccable detect`; Impeccable finish review |
 | Result | Contrast 12 pairs, 0 failing. html-validate 0 errors; content 0 failing; photos 0 failing. Requests: 71, 0 failing (19 without the assets); largest image 80 KB (portrait). axe 0 violations, 0 incomplete on 4 runs per build. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1431 ms, CLS ≤ 0.0002. No horizontal scroll at 320–1600 px. Detector: no finding. Finish review: `fix` (selection invisible on `verde-claro`, DESIGN.md out of step, contract quote), all three fixed, verdict pass `ship`. `astro check` 0 errors |
 
