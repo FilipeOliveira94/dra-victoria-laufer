@@ -22,9 +22,10 @@
   --color-footer: #2e2e2e;
   --color-text-inverse: #ffffff;
 
-  /* Type: system faces only until 1.4 serves the brand fonts from the site */
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-display: Georgia, 'Times New Roman', serif;
+  /* Type: the DESIGN.md faces, served from the site (issue 1.4, fonts.css).
+     Sizes and weights stay provisional until 2.4. */
+  --font-body: 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.25rem;
@@ -46,4 +47,6 @@
   --measure: 40rem;
   --gutter: 16px;
   --gutter-wide: 24px;
+  --portrait-max: 20rem;
+  --portrait-wide: 18rem;
 }

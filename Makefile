@@ -5,7 +5,7 @@
 
 NPM ?= npm
 
-.PHONY: help install dev build preview lint check lighthouse requests contrast
+.PHONY: help install dev build preview lint check lighthouse requests contrast assets
 
 help: ## Show available targets
 	@awk 'BEGIN {FS = ":.*##"; printf "Targets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  %-12s %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
@@ -15,6 +15,9 @@ install: ## Install dependencies from the lockfile
 
 dev: ## Start the local development server
 	$(NPM) run dev
+
+assets: ## Crop the private assets in .assets/ into src/assets/generated/ (also run by build and dev)
+	node scripts/prepare-assets.mjs
 
 build: ## Build the static site (production URLs unless DEPLOY_TARGET is set)
 	$(NPM) run build

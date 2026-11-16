@@ -4,6 +4,48 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 2.6 added: cut-out portrait on brand graphics
+
+Filipe asked for a clean cut-out of her portrait in the identification block, set on graphics generated from the brand (not photos), and made it a condition for publication. `ROADMAP.md` gains issue 2.6 in Phase 2, after 1.4 and 2.4; 2.5, which removes `noindex`, now depends on it. Its scope includes amending `DESIGN.md`, whose current text keeps the portrait in a plain frame and avoids decoration. Documentation only; no code changed.
+
+---
+
+### 2026-11-16 — Issue 1.4: images, favicon and fonts
+
+Built on `feat/1.4-images-favicon-fonts`, checked on local builds (Astro 7.4.12, sharp 0.35.5, Node.js v22.23.4). Not deployed.
+
+- **Deploy key:** an ed25519 key registered on `dra-victoria-laufer-assets` as read-only (GitHub reports `read_only=true`); it cloned the repository and a push with it was refused. Its private half is the repository secret `ASSETS_DEPLOY_KEY` of this repository; no copy was kept on disk.
+- **Workflow:** `deploy.yml` checks the assets out into `.assets/` with that key (`persist-credentials: false`) only when the secret exists; a fork skips the step.
+- **Crops** (`scripts/prepare-assets.mjs`, run before `build` and `dev`; output in the ignored `src/assets/generated/`): the 2000 × 1333 landscape photo left her face about 40 px tall on a 360 px phone, beside a sofa and a laptop. It is cropped to 880 × 1100 (4:5) on her, head room kept, laptop out of frame. The monogram filled about 60% of its canvas, so it is cropped to the ring before scaling to 32 px; a white-ground copy feeds the 180 px apple-touch icon. Cropped only, never recoloured.
+- **Portrait:** `<Picture>` with AVIF and WebP at 320, 480, 640 and 880 w, JPEG fallback, `width`/`height`, `fetchpriority="high"`, `loading="eager"`, alt `Foto de <nome>` from the content model. After the identity line on a phone; beside the name from 768 px. Without the assets: a neutral 4:5 box with `aria-hidden`, no text.
+- **Fonts:** Source Serif 4 600 and Source Sans 3 400/600, Latin and Latin Extended WOFF2 from Fontsource 5.3.1, unmodified, in `src/assets/fonts/` with `OFL.txt`; `font-display: swap`, `unicode-range`, preload of the `h1` face. The tokens name them; sizes stay provisional until 2.4.
+- **Checker:** `scripts/check-requests.mjs` now follows `srcset` and the `url()` in loaded CSS, and fails on any published image above 200 KB.
+- `sharp` became an exact devDependency (it was already installed through Astro); the script imports it directly.
+
+Checks:
+
+| Check | Result |
+| --- | --- |
+| Build with the assets, production and `ghpages` | Exit 0; 12 portrait files, 2 icons, 6 fonts |
+| Build with `ASSETS_DIR=/nonexistent` | Exit 0; placeholder box, `<link rel="icon" href="data:,">`, 0 image files |
+| `make requests`, both bases, with the assets | 35 requests, 0 failing, 0 third party |
+| `make requests` without the assets | 19 requests, 0 failing |
+| 200 KB gate, 253 KB probe copied into `dist/` | Flagged, exit 1 |
+| Largest published image | 78.9 KB (JPEG 880 w); largest AVIF 25.3 KB |
+| CLS / LCP, T3 browser, 360 px, local server | 0.00014; LCP element the portrait, AVIF 640 w |
+| Horizontal scroll at 320, 768, 1600 px | None (`scrollWidth` = `clientWidth`) |
+| `npx html-validate@9`, `make check`, `make contrast` | No errors; 0 errors; 15/15 |
+| Image files in `git log --all` | None |
+| Vetoed terms in `src/` and `dist/` | None |
+
+CI on the PR, [run 43908574612](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43908574612) (`f191c3e`): "Fetch private assets" executed and succeeded; `[assets] portrait.jpg` and `icon.png, icon-touch.png`; portrait and favicon found in `dist/index.html`; `base /dra-victoria-laufer/: 35 requests, 0 failing`; built site uploaded as `site-pr-9`. Deploy and `published` skipped, as on every PR.
+
+Process change in the same PR, so an issue no longer needs a second PR for the published-site check: `deploy.yml` runs its build job on pull requests (deploy only from `main`, Pages permissions only on the deploy job); a `published` job runs `check-requests.mjs` in its new remote mode against the live page after each deploy, with retries for the CDN; `AGENTS.md` §4, §12, §13 and `docs/agent-workflow.md` record that an issue is verified in its own PR and that the next PR cites the `published` run. The remote mode was run against the current published page: 1 request, 0 failing.
+
+Not run: Lighthouse and axe (1.7).
+
+---
+
 ### 2026-11-16 — Issue 1.3: structure and layout of the single page
 
 Built on `feat/1.3-page-structure`, checked on local builds (Astro 7.4.12, Node.js v22.23.4). Not deployed.

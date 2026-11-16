@@ -1,5 +1,6 @@
 /* Page structure (issue 1.3). Every value comes from tokens.css. */
 @import './tokens.css';
+@import './fonts.css';
 
 *,
 *::before,
@@ -100,6 +101,35 @@ a:hover {
   margin-block-start: var(--space-sm);
   color: var(--color-text-muted);
   font-size: var(--text-lg);
+}
+
+/* Portrait (issue 1.4): after the name on a phone, beside it from 768 px
+   (DESIGN.md → Layout). Box ratio fixed in CSS, so nothing shifts on load. */
+.portrait {
+  display: block;
+  width: 100%;
+  max-width: var(--portrait-max);
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  margin-block-start: var(--space-xl);
+}
+
+.portrait-placeholder {
+  background: var(--color-ground-alt);
+}
+
+@media (min-width: 768px) {
+  .identification {
+    display: grid;
+    grid-template-columns: 1fr var(--portrait-wide);
+    gap: var(--space-xl);
+    align-items: center;
+  }
+
+  .portrait {
+    margin-block-start: 0;
+  }
 }
 
 .section {

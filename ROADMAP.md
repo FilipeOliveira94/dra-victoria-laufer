@@ -25,8 +25,8 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | Phase | Scope | Depends on | Status |
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
-| 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | In progress (1.1 and 1.2 verified, 1.8 delivered) |
-| 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, release | Phase 1; inputs from 0.2; brand from 0.3 | Not started |
+| 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | In progress (1.1 to 1.3 verified, 1.4 verified, 1.8 delivered) |
+| 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, cut-out portrait, release | Phase 1; inputs from 0.2; brand from 0.3 | Not started |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
 | 4 | Structured data: JSON-LD `Person` | 2.5 and 3.2 | Not started |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.1, 2.5 | Not started |
@@ -143,7 +143,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` (local builds and the PR's CI run, assets fetched) |
 | Size | M |
 | Depends on | 1.1 and 1.3; photo from 0.2 (neutral placeholder until then) |
 | ADRs | [0010](docs/decisions/0010-private-assets-repository.md) |
@@ -264,13 +264,27 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 - **Out of scope:** changing structure or content.
 - **Acceptance:** no provisional token left; 1.5 and 1.7 still pass.
 
+### 2.6 Cut-out portrait on brand graphics
+
+| | |
+| --- | --- |
+| Status | `not started` |
+| Size | M |
+| Depends on | 1.4; 2.4 |
+| Required before | 2.5: Filipe made it a condition for publication (2026-11-16), so indexing waits for it |
+
+- **Objective:** a clean cut-out of her portrait for the identification block, set on graphics generated from the brand.
+- **Scope:** amend `DESIGN.md` with the portrait treatment (which brand graphics sit behind her: palette fields from 0.3 and shapes drawn from the monogram's botanical flourishes; where it appears; what is never done), approved by Filipe; background removal of `photos/portrait-main.jpg`, done once outside the site, with the transparent file stored in `dra-victoria-laufer-assets` only; the cut-out approved by her; the graphics generated as SVG or CSS from the brand, no stock or generic illustration; the composition built and served under the 1.4 rules. The 4:5 crop from 1.4 stays as the fallback and the placeholder still applies without the assets.
+- **Out of scope:** photos behind her (consultório, hospital or any other); text over the photo (anti-goal); retouching her appearance.
+- **Acceptance:** the `DESIGN.md` amendment and her approval of the cut-out recorded in the issue; no photo or cut-out file in the history of this repository; no published image above 200 KB; CLS < 0.1; LCP < 2.5 s; any text near the composition ≥ 4.5:1; the CFM checklist passes, alt text included.
+
 ### 2.5 CFM review and release
 
 | | |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
-| Depends on | 2.1 to 2.4 |
+| Depends on | 2.1 to 2.4; 2.6 |
 | ADRs | [0006](docs/decisions/0006-noindex-until-release.md) |
 
 - **Objective:** approve the content and open indexing.
@@ -471,4 +485,6 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 1.1 verified: Astro 7.4.12 base, `deploy.yml` workflow, `DEPLOY_TARGET`, `noindex` from `src/config/release.ts`; Jekyll removed. Local builds checked; marked verified by Filipe before the published-site check, which runs after the merge |
 | 2026-11-16 | 1.1 published-site check: the `deploy.yml` deploy serves the Astro page at `/dra-victoria-laufer/` with `noindex`, the staging canonical and no request besides the page; the legacy files return 404 |
 | 2026-11-16 | 1.2 verified on local builds: typed collections, pending report, `captacao.*` off. WhatsApp and Instagram received from Filipe |
+| 2026-11-16 | 2.6 added at Filipe's request: cut-out portrait on brand graphics generated from the brand. A condition for publication, so 2.5 now depends on it |
+| 2026-11-16 | 1.4 built: read-only deploy key and `ASSETS_DEPLOY_KEY` secret; `deploy.yml` fetches the private assets; portrait cropped 4:5 and served as AVIF/WebP with `srcset`; favicon from the monogram; Source Serif 4 and Source Sans 3 served from the site. Verified on local builds with and without the assets and on the PR's CI [run 43908574612](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43908574612), private-assets step executed. `deploy.yml` now also runs on pull requests and checks the published page after each deploy |
 | 2026-11-16 | 1.3 verified on local builds: one-column page with `<main>`, one `h1`, sections from one list (rendered only with published content), anchor navigation without JavaScript, footer with the build year, neutral provisional tokens in `src/styles/tokens.css`, 404 page. html-validate clean, no duplicate ID, no horizontal scroll from 320 to 1600 px, 404 checked at depth on both targets |

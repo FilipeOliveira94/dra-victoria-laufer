@@ -1,19 +1,21 @@
 name: Build and deploy to GitHub Pages
 
+# Pull requests run the same build and checks as a deploy, private assets
+# included, so an issue is verified before its merge. Only main deploys.
 on:
   push:
+    branches: ["main"]
+  pull_request:
     branches: ["main"]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
-# One deployment at a time; a running deployment is never cancelled.
+# A new push to a pull request replaces its running check; on main, runs queue.
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
@@ -22,6 +24,9 @@ jobs:
       # Staging under /dra-victoria-laufer/ (ADR-0004). Issue 3.2 removes
       # this line to build for https://dravictorialaufer.com.br/.
       DEPLOY_TARGET: ghpages
+      # A secret cannot be read in a step condition; only whether it exists is.
+      # Pull requests from forks do not receive it and build the placeholder.
+      HAS_ASSETS_KEY: ${{ secrets.ASSETS_DEPLOY_KEY != '' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,24 +35,76 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: npm
+      # Photo and brand files from the private repository (ADR-0010), with a
+      # read-only deploy key scoped to it.
+      - name: Fetch private assets
+        if: env.HAS_ASSETS_KEY == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: FilipeOliveira94/dra-victoria-laufer-assets
+          ssh-key: ${{ secrets.ASSETS_DEPLOY_KEY }}
+          path: .assets
+          persist-credentials: false
       - name: Install dependencies
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Check the portrait and favicon are in the build
+        if: env.HAS_ASSETS_KEY == 'true'
+        run: grep -q '<picture>' dist/index.html && grep -q 'rel="icon" href="/dra-victoria-laufer/_astro/icon' dist/index.html
       - name: Check every referenced request returns 200
         run: node scripts/check-requests.mjs /dra-victoria-laufer/
-      - name: Upload artifact
+      # The exact site a merge would publish, to download from the run.
+      - name: Upload the built site for review
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-pr-${{ github.event.number }}
+          path: dist
+          retention-days: 7
+      - name: Upload Pages artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    # One deployment at a time; a running deployment is never cancelled.
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    outputs:
+      page_url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # The published-site check: the run is the evidence, no document commit.
+  published:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      # Retries cover the CDN serving the previous page for a short while.
+      - name: Check the published page and everything it loads
+        run: |
+          for attempt in 1 2 3 4; do
+            node scripts/check-requests.mjs "${{ needs.deploy.outputs.page_url }}" && exit 0
+            sleep 30
+          done
+          exit 1

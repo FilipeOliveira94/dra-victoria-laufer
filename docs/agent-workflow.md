@@ -57,7 +57,8 @@ Review the current diff against the agreed plan and acceptance criteria. Do not 
 - Check for unrelated changes, secrets, generated files, portrait or brand source files, and undocumented behavior.
 - Apply the AGENTS.md §12 "Issue Close Checklist".
 - Commit with Conventional Commits. Push only this feature branch. Never push main.
-- Open one PR for this issue. The description lists: issue ID, each acceptance criterion and how it was verified, check results with values, and the CFM checklist result.
+- Open one PR for this issue. The description lists: issue ID, each acceptance criterion and how it was verified, check results with values, the CI run of the PR, and the CFM checklist result.
+- If the previous merge's `published` job has not been recorded yet, cite its run in this PR's `docs/status-log.md` entry. Never open a PR just for that.
 
 Do not merge. Return the PR link and the completion report.
 ```

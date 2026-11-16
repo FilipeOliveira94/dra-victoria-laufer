@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Portrait from '../components/Portrait.astro';
 import Section from '../components/Section.astro';
 import { crmLabel, medica, published } from '../lib/content';
 import { section, sections, type SectionId } from '../lib/sections';
@@ -25,8 +26,11 @@ const nav = sections.filter((s) => present[s.id]);
 <Base title={`${id.nome} · ${identification}`} nav={nav}>
   <main>
     <div class="identification wrap">
-      <h1>{id.nome}</h1>
-      <p>{identification}</p>
+      <div class="identification-text">
+        <h1>{id.nome}</h1>
+        <p>{identification}</p>
+      </div>
+      <Portrait alt={`Foto de ${id.nome}`} />
     </div>
     {
       email && (
