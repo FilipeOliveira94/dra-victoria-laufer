@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (legacy Jekyll site) |
-| Last updated | 2026-11-15 (project structure and planning documents added) |
+| Last updated | 2026-11-15 (0.2 verified: every input received) |
 | Current phase | Phase 0 — Product and brand, and Phase 1 — New base (MVP), in parallel |
-| Phase status | Not started |
+| Phase status | In progress (0.2 verified) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -30,17 +30,15 @@ The repository holds the legacy Jekyll site plus the project structure. No part 
 
 1. **0.1** — Record the product context (`PRODUCT.md`). Unblocked: the design brief is confirmed. Acceptance: `ROADMAP.md` → 0.1.
 2. **1.1** — Replace Jekyll with Astro, deployed by Actions. No dependency. Acceptance: `ROADMAP.md` → 1.1.
-3. **0.2** — Collect pending inputs from Dra. Victória. Can run alongside.
-4. **1.2 → 1.3**, then **1.4**, **1.5**, **1.6** and **1.7**, in the dependency order in `ROADMAP.md`.
+3. **1.2 → 1.3**, then **1.4**, **1.5**, **1.6** and **1.7**, in the dependency order in `ROADMAP.md`.
 
 ## Blockers
 
 | Pending | Who | Blocks |
 | --- | --- | --- |
 | Confirmation of logo, palette and typography | Filipe | 0.3 and 2.4, and therefore the release in 2.5 |
-| Official names of the three postgraduate courses and of the degree; area and institution of the third | Dra. Victória | 2.2 |
-| List of roles for "Atuação" | Dra. Victória | 2.3 |
-| Text "Sobre" and professional photo | Dra. Victória | 2.3 and 1.4 (placeholder until then) |
+
+Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md).
 
 Nothing blocks 0.1 or Phase 1.
 
@@ -51,7 +49,7 @@ Nothing blocks 0.1 or Phase 1.
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
 | 0.1 | Record the product context | Not started | — |
-| 0.2 | Collect pending inputs | Not started | — |
+| 0.2 | Collect pending inputs | Verified | [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md) |
 | 0.3 | Define the visual identity | Blocked | Waiting for Filipe |
 
 ## Phase 1 progress
