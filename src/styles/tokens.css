@@ -11,6 +11,11 @@
  *   text on ground-alt ........ #1f1f1f / #f2f2f2  14.72
  *   text-muted on ground-alt .. #4d4d4d / #f2f2f2   7.55
  *   text-inverse on footer .... #ffffff / #2e2e2e  13.58
+ *
+ * Focus ring (WCAG 2.1 1.4.11, >= 3:1 against the ground it sits on):
+ *   focus on ground ........... #1f1f1f / #ffffff  16.48
+ *   focus on ground-alt ....... #1f1f1f / #f2f2f2  14.72
+ *   focus-inverse on footer ... #ffffff / #2e2e2e  13.58
  */
 :root {
   /* Colour */
@@ -21,6 +26,9 @@
   --color-rule: #8c8c8c;
   --color-footer: #2e2e2e;
   --color-text-inverse: #ffffff;
+  /* DESIGN.md: verde-profundo on light grounds, branco on the footer (2.4). */
+  --color-focus: var(--color-text);
+  --color-focus-inverse: var(--color-text-inverse);
 
   /* Type: the DESIGN.md faces, served from the site (issue 1.4, fonts.css).
      Sizes and weights stay provisional until 2.4. */
@@ -33,6 +41,10 @@
   --text-display: clamp(2rem, 1.5rem + 2.5vw, 3rem);
   --leading-body: 1.6;
   --leading-tight: 1.2;
+
+  /* Shape (DESIGN.md: rounded.sm for the focus ring) */
+  --radius-sm: 2px;
+  --focus-width: 2px;
 
   /* Space */
   --space-xs: 0.25rem;

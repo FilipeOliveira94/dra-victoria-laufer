@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Portrait from '../components/Portrait.astro';
 import Section from '../components/Section.astro';
-import { crmLabel, medica, published } from '../lib/content';
+import { channelLabel, crmLabel, medica, published } from '../lib/content';
 import { section, sections, type SectionId } from '../lib/sections';
 
 // Every fact comes from the content model (issue 1.2). Formação, Atuação and
@@ -24,7 +24,7 @@ const nav = sections.filter((s) => present[s.id]);
 ---
 
 <Base title={`${id.nome} · ${identification}`} nav={nav}>
-  <main>
+  <main id="conteudo" tabindex="-1">
     <div class="identification wrap">
       <div class="identification-text">
         <h1>{id.nome}</h1>
@@ -35,8 +35,14 @@ const nav = sections.filter((s) => present[s.id]);
     {
       email && (
         <Section section={section('contato')}>
+          {/* DESIGN.md: the address is the link text and the channel its title.
+              A title is not a reliable name, so the channel is also in the
+              link text for assistive technology: "E-mail: <address>". */}
           <p>
-            <a href={`mailto:${email.valor}`}>{email.valor}</a>
+            <a href={`mailto:${email.valor}`} title={channelLabel.email}>
+              <span class="visually-hidden">{channelLabel.email}: </span>
+              {email.valor}
+            </a>
           </p>
         </Section>
       )

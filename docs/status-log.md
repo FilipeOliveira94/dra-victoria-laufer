@@ -4,6 +4,40 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.5: accessibility, WCAG 2.1 AA
+
+Built on `feat/1.5-accessibility`, checked on local builds with the private assets (Astro 7.4.12, Node.js v22.23.4) and on the PR's CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) on `f19ba4d`. Not deployed.
+
+- **Skip link:** "Ir para o conteúdo", the first element of `<body>` in `Base.astro`, so on the home and on the 404. Off screen until focused. It targets `<main id="conteudo" tabindex="-1">` on both pages; `main` shows no ring when it takes focus.
+- **Focus:** `:focus-visible` draws a 2px solid outline, 2px offset, `rounded.sm` (DESIGN.md → Links). New tokens `--color-focus` (provisional `--color-text`, 16.48:1 on white, 14.72:1 on `ground-alt`) and `--color-focus-inverse` for the footer (13.58:1); 2.4 swaps them for `verde-profundo` and `branco`. A mouse click shows no ring.
+- **Contact names:** the e-mail link text stays the address, with the channel as `title` (DESIGN.md). A `title` is not a reliable accessible name, so a visually hidden "E-mail: " starts the link text; the name is "E-mail: victorialaufersaude@gmail.com". The channel names live in `channelLabel` (`src/lib/content.ts`), ready for WhatsApp and Instagram in 2.1.
+- **Reduced motion:** under `prefers-reduced-motion: reduce`, every animation and transition is cut to 0.01 ms and scrolling is `auto`. The page has no motion today; the rule covers what 2.4 adds.
+- **Tools:** axe-core 4.14.1 and Lighthouse 12.8.2, run on Chrome for Testing 157.0.8103.78 headless through puppeteer-core, all installed in a scratch directory outside the repository. No project dependency added; 1.7 automates them.
+
+The 1.4 merge (`869bbe3`) published cleanly: `published` job of [run 43909335126](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43909335126), 23 requests, 0 failing, on the live page.
+
+Checks:
+
+| Check | Result |
+| --- | --- |
+| axe, WCAG 2.0/2.1 A + AA + best practice, 360 and 1280 px | 0 violations, 0 incomplete: home (34 passes) and 404 at depth (21), both bases |
+| Keyboard, Tab to the end | Home: skip link → "Contato" → "E-mail: victorialaufersaude@gmail.com". 404: skip link → "Ir para a página inicial". Every stop with the 2px ring and inside the viewport |
+| Skip link, Tab + Enter | Focus on `#conteudo`; the next Tab lands on the first link in `<main>` |
+| `prefers-reduced-motion: reduce` emulated | Query matches; transition and animation 0 s; scroll `auto` |
+| Lighthouse 12.8.2, mobile, home | Accessibility 100, Performance 100, Best Practices 100; LCP 1.2 s, CLS 0 (production base). Staging base: Accessibility 100, Performance 100 |
+| Lighthouse, 404 page | Accessibility 100, measured at `/404.html`: Lighthouse refuses a 404 status |
+| `make build` both targets, `make check` | Exit 0; 0 errors |
+| `npx html-validate@9`, duplicate ids | No errors; none |
+| `make requests`, both bases | 35 requests, 0 failing |
+| `make contrast` | 15/15 |
+| Horizontal scroll, 320–1600 px, skip link focused | None |
+| Vetoed terms in `src/` and `dist/` | None |
+| PR CI, `deploy.yml` build job, [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) | Passed; private assets fetched (key present), portrait and favicon in the build, 35 requests, 0 failing on `/dra-victoria-laufer/`; deploy and published skipped (PR) |
+
+Not exercised: the inverse focus ring on the footer, which has no link yet.
+
+---
+
 ### 2026-11-16 — Issue 2.6 added: cut-out portrait on brand graphics
 
 Filipe asked for a clean cut-out of her portrait in the identification block, set on graphics generated from the brand (not photos), and made it a condition for publication. `ROADMAP.md` gains issue 2.6 in Phase 2, after 1.4 and 2.4; 2.5, which removes `noindex`, now depends on it. Its scope includes amending `DESIGN.md`, whose current text keeps the portrait in a plain frame and avoids decoration. Documentation only; no code changed.
