@@ -4,6 +4,36 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.6: technical SEO
+
+Built on `feat/1.6-technical-seo`, checked on local builds with and without the private assets (Astro 7.4.12, sharp 0.35.5, Node.js v22.23.4) and on the PR's CI [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802) on `0da9aef`. Not deployed.
+
+- **Description:** `<meta name="description">` and `og:description` read "Dra. Victória Laufer, MÉDICA, CRM-SP 240550.", composed in `Base.astro` from the identification entry (name, `titulo`, `crmLabel`). Filipe chose identification only: the "Sobre" text names postgraduate courses without `NÃO ESPECIALISTA`, so it is not cut into a summary.
+- **Open Graph:** `og:locale` `pt_BR`, `og:type` `website`, `og:site_name` (her name), `og:title` (the page `<title>`), `og:description`; `og:url` only where the canonical exists, so not on the 404.
+- **Social image:** `scripts/prepare-assets.mjs` writes `social.png`, 1200 × 630, `brand/logo/logo-horizontal-cor.png` scaled to 900 px wide and centred on white (DESIGN.md → Logo). Scaled, never recoloured; 2.4 owns the final composition. Astro fingerprints it; `og:image` is absolute with type, width, height and alt "Logotipo de Dra. Victória Laufer". Without the assets the tag is not rendered.
+- **Sitemap and robots:** `src/pages/sitemap.xml.ts` lists the home; `src/pages/robots.txt.ts` allows crawling and names the sitemap. No `Disallow`: a robot must fetch the page to read its `noindex` (ADR-0006). Under the GitHub Pages project path the robots file is not at the host root and is ignored there; the `noindex` still applies. No new dependency (`@astrojs/sitemap` not needed for one page).
+
+The 1.5 merge (`63da065`) published cleanly: `published` job of [run 43928471220](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928471220), 23 requests, 0 failing, on the live page.
+
+Checks:
+
+| Check | Result |
+| --- | --- |
+| `make build`, production | canonical, `og:url`, sitemap `<loc>`: `https://dravictorialaufer.com.br/`; `og:image` `https://dravictorialaufer.com.br/_astro/social.*.png`; robots `Sitemap: https://dravictorialaufer.com.br/sitemap.xml` |
+| `DEPLOY_TARGET=ghpages` build | The same five URLs under `https://filipeoliveira94.github.io/dra-victoria-laufer/`; the fingerprinted image exists at that path in `dist/` |
+| `<head>`, home and 404 | Description, `og:locale` `pt_BR`, title, site name, image tags on both; canonical and `og:url` on the home only; `noindex` on both |
+| Social image | 1200 × 630, 60.7 KB; viewed: logo on white, no tagline, no other text |
+| `ASSETS_DIR=/nonexistent` build | Passes; no `og:image`; description present; 19 requests, 0 failing |
+| `make requests`, both bases | 35 requests, 0 failing; every image in `dist/` under 200 KB |
+| `npx html-validate@9`, duplicate ids | No errors; none |
+| `make check` | 0 errors |
+| Vetoed terms and "Lorem" in `dist/` (HTML, sitemap, robots) | None |
+| PR CI, `deploy.yml` build job, [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802) | Passed; private assets fetched, `portrait.jpg`, icons and `social.png` generated, 35 requests, 0 failing on `/dra-victoria-laufer/`; deploy and published skipped (PR) |
+
+Not run: Lighthouse SEO. Its "page is blocked from indexing" audit fails by design while `noindex` stays (until 2.5).
+
+---
+
 ### 2026-11-16 — Issue 1.5: accessibility, WCAG 2.1 AA
 
 Built on `feat/1.5-accessibility`, checked on local builds with the private assets (Astro 7.4.12, Node.js v22.23.4) and on the PR's CI [run 43928172810](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43928172810) on `f19ba4d`. Not deployed.
