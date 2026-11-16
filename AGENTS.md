@@ -70,7 +70,7 @@ An issue is verified in its own PR: local checks plus the PR's CI run. Do not op
 ## 6. Content Rules
 
 - Do not invent personal data, biographical text, course names, dates, numbers, workplaces or testimonials. Missing data is `pendente`.
-- The logo, palette and typography are the ones in [`DESIGN.md`](DESIGN.md), confirmed by Filipe in issue 0.3. Do not add a colour, a typeface or a logo variant outside it; a change is Filipe's decision. Until issue 2.1 applies them, the site uses neutral provisional tokens.
+- The logo, palette and typography are the ones in [`DESIGN.md`](DESIGN.md), confirmed by Filipe in issue 0.3. Do not add a colour, a typeface or a logo variant outside it; a change is Filipe's decision. Issue 2.1 applied them: every value is a token in `src/styles/tokens.css`.
 - The only e-mail on the site is `victorialaufersaude@gmail.com`.
 - WhatsApp and Instagram are shown as contact. An invitation to schedule is acquisition and stays behind a flag.
 - The text "Sobre" is hers. Publish it without editing its meaning.

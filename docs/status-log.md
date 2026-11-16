@@ -4,6 +4,23 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 2.1: confirmed visual identity applied
+
+Built on `feat/2.1-visual-identity` through the Impeccable flow: the world is pinned by `DESIGN.md` and the brief, so no concept round; code-led; direction contract in `.impeccable/surfaces/src-pages-index-astro.md` (`seed: none (pinned)`). Checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless in a scratch directory). Not deployed; PR CI pending.
+
+- **Tokens:** `src/styles/tokens.css` holds the 11 brand colours under their `DESIGN.md` names and the semantic roles the stylesheets use (text `azul-tinta`, muted `azul-cinza`, headings and links `verde-profundo`, hover `azul-noite`, focus `verde-profundo` and `branco` on the footer, selection `amarelo-marca`), the five type roles, `rounded`, spacing and layout. No provisional token is left.
+- **Type:** `h1` in `display`, `h2` in `headline` (`verde-profundo`), body 17 px; `.title` and `.label` classes for 2.2 to 2.4.
+- **Frame:** header with the colour horizontal logo (40 px, 48 px from 600 px; `alt=""`, the name is the `h1`) and the navigation in `label`; footer on `verde-profundo` with the white logo (44 px). Without the assets, no logo.
+- **Grounds:** Filipe chose light grounds only, no bands. Each section names its ground in `src/lib/sections.ts` (`fundo`): Formação and Contato `verde-claro`, Atuação white, Sobre `lilas-claro` with the 4px `lilas` rule. Fixed per section, so a missing section never shifts the others.
+- **Logos and social image:** `scripts/prepare-assets.mjs` moves the logo's written name down about 50 px, so it shares the monogram's vertical centre (Filipe's request), and trims the canvas; colours and shapes untouched. The social image is the colour logo on white with a 96 px `verde-marca` field and a 4 px `ouro` hairline along the bottom, no text (Filipe's choice).
+- **DESIGN.md:** merged with the build at Filipe's choice: bands removed (frontmatter, characteristics, colour roles, pairs table, sections), The One Band Rule replaced by The Light-Grounds Rule, the social image and the recentred name recorded. The pairs table went from 15 to 12; D-011 and ADR-0011 updated. `.impeccable/design.json` updated to match.
+
+Checks, each on the production, staging and placeholder builds unless noted: `make contrast` 12 pairs, 0 failing; html-validate 0 errors; content and photos 0 failing; requests 71, 0 failing (19 without the assets), largest image 80 KB; axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404 at depth; Lighthouse mobile with the assets Performance 100, Accessibility 100, LCP 1428–1431 ms, CLS ≤ 0.0002, and every assertion passing on the placeholder build; no horizontal scroll at 320, 360, 1280 and 1600 px (production); `make check` 0 errors. The `<img>` fallback of each logo is sized (210 and 190 px), so no full-size PNG is served. Impeccable detector on the changed files: no finding. Impeccable finish review (a fresh general-purpose agent running the skill's reviewer instructions, since the dedicated reviewer agent is not installed): `fix` with three items (text selection invisible on `verde-claro`, `DESIGN.md` out of step, the contract's pin quote incomplete), all fixed; verdict pass `ship`. Its out-of-scope notes for 2.2 (identity line style, name on three lines at 1280 px, `ouro` hairline, portrait frame, footer identity line, contact channels) carry to 2.2.
+
+Review captures live in `.impeccable/review/`, now ignored by git: they show the portrait.
+
+---
+
 ### 2026-11-16 — Phase 2 reordered and renumbered
 
 Decided by Filipe. Section issues were defined by their data and left the whole look to the brand issue at the end, so no section would be finished before it. The brand now comes first and each section issue delivers its part complete: content, place on the page and in the navigation, `DESIGN.md` look and layout, access, CFM checklist, checks (`ROADMAP.md` → Phase 2, "A complete section"). IDs follow the order of work:

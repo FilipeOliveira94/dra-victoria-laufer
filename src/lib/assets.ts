@@ -14,3 +14,6 @@ export const portrait = pick('portrait.jpg');
 export const icon = pick('icon.png');
 export const iconTouch = pick('icon-touch.png');
 export const social = pick('social.png');
+// Horizontal logos, name centred on the monogram (issue 2.1).
+export const logoColour = pick('logo-cor.png');
+export const logoWhite = pick('logo-branco.png');

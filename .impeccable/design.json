@@ -249,22 +249,6 @@
       "css": ".ds-alt{background:#E6F5F3;color:#274360;padding:40px 16px;font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif}.ds-alt h2{margin:0 0 8px;font:600 1.75rem/1.2 'Source Serif 4', Georgia, serif;color:#135A55}.ds-alt p{margin:0}"
     },
     {
-      "name": "Green band",
-      "kind": "card",
-      "refersTo": "band-verde",
-      "description": "The brand turquoise as a field, with azul-noite text. One per page.",
-      "html": "<section class=\"ds-band-verde\"><p>Texto sobre o verde da marca.</p></section>",
-      "css": ".ds-band-verde{background:#3EB7AE;color:#1C3048;padding:40px 16px;font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif}.ds-band-verde p{margin:0}"
-    },
-    {
-      "name": "Yellow band",
-      "kind": "card",
-      "refersTo": "band-amarelo",
-      "description": "The brand yellow as a field, with azul-tinta text. One per page.",
-      "html": "<section class=\"ds-band-amarelo\"><p>Texto sobre o amarelo da marca.</p></section>",
-      "css": ".ds-band-amarelo{background:#FFD87D;color:#274360;padding:40px 16px;font:400 1.0625rem/1.6 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif}.ds-band-amarelo p{margin:0}"
-    },
-    {
       "name": "Sobre section",
       "kind": "card",
       "refersTo": "section-sobre",
@@ -285,7 +269,7 @@
     "northStar": "The registration card, in her colours.",
     "overview": "A visitor arrives with a question — is she registered, where did she train, where does she work — and the page answers it like a well-set document: name, MÉDICA, CRM-SP 240550, then the evidence in order. Her brand supplies the warmth: the turquoise of her monogram, the yellow and gold of its leaves, the deep blue of her signature. The type supplies the sobriety she asked for.\n\nThe scene: parents on a phone, often between shifts at a maternity ward or at home in daylight; colleagues and hiring services on a laptop at work. Light theme only; white is the ground.",
     "keyCharacteristics": [
-      "White ground, brand colours as whole fields (sections and bands), never as text on white.",
+      "White ground, light brand fields behind whole sections (verde-claro, lilas-claro) and a deep green footer; brand colours are never text on white. No bands (Filipe, 2026-11-16).",
       "Serif headings, humanist sans for reading — sober, legible in Portuguese, self-hosted.",
       "The logo is ornament and signature; identity is always real text.",
       "Restraint: no cards, no icons for decoration, no shadows, no gradients except inside the logo artwork itself."
@@ -297,8 +281,8 @@
         "section": "colors"
       },
       {
-        "name": "The One Band Rule",
-        "body": "At most one band-verde and one band-amarelo on the page. A band marks a moment; repeated, it becomes decoration.",
+        "name": "The Light-Grounds Rule",
+        "body": "Sections sit on branco, verde-claro or lilas-claro; the only dark field is the footer. No verde-marca or amarelo-marca band on the page (Filipe, 2026-11-16, issue 2.1).",
         "section": "colors"
       },
       {

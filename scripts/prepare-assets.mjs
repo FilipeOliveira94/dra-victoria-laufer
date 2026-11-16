@@ -34,22 +34,90 @@ const SYMBOL = {
   crop: { left: 380, top: 380, width: 1240, height: 1240 },
 };
 
-// Open Graph image (issue 1.6): the colour horizontal logo on white
-// (DESIGN.md), 1200 x 630, the size social networks crop to. Scaled, never
-// recoloured. Its final composition is issue 2.1.
+// Horizontal logos (issue 2.1): colour for the header, white for the footer
+// (DESIGN.md → Logo). In the originals the written name sits about 50 px above
+// the monogram's vertical centre; at Filipe's request (2026-11-16) the name is
+// moved down so both share one centre line. Moved only: never recoloured,
+// stretched or redrawn. Then trimmed, so the page sets the spacing.
+const LOGOS = [
+  { file: 'brand/logo/logo-horizontal-cor.png', out: 'logo-cor.png' },
+  { file: 'brand/logo/logo-horizontal-branco.png', out: 'logo-branco.png' },
+];
+
+// Open Graph image (issues 1.6 and 2.1): the centred colour logo on white, a
+// verde-marca field along the bottom and an ouro hairline above it
+// (DESIGN.md). No text in the image. 1200 x 630, the size social networks crop to.
 const SOCIAL = {
-  file: 'brand/logo/logo-horizontal-cor.png',
   size: { width: 1200, height: 630 },
-  logoWidth: 900,
+  logoWidth: 860,
+  band: 96,
+  hairline: 4,
+  white: '#FFFFFF',
+  verdeMarca: '#3EB7AE',
+  ouro: '#A47B1C',
 };
+
+// Rows [top, bottom] holding visible pixels between columns x0 and x1.
+function rowsWithInk({ data, info }, x0, x1) {
+  let top = info.height;
+  let bottom = -1;
+  for (let y = 0; y < info.height; y++) {
+    for (let x = x0; x < x1; x++) {
+      if (data[(y * info.width + x) * 4 + 3] > 16) {
+        top = Math.min(top, y);
+        bottom = y;
+        break;
+      }
+    }
+  }
+  return [top, bottom];
+}
+
+// The monogram and the name are separated by the first run of at least 20
+// empty columns. Returns the logo with the name centred on the monogram.
+async function centredLogo(file) {
+  const raw = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  const { width, height } = raw.info;
+  const empty = (x) => {
+    for (let y = 0; y < height; y++) if (raw.data[(y * width + x) * 4 + 3] > 16) return false;
+    return true;
+  };
+  let split = -1;
+  for (let x = 1, run = 0, seenInk = false; x < width; x++) {
+    if (!empty(x)) {
+      seenInk = true;
+      run = 0;
+    } else if (seenInk && ++run === 20) {
+      split = x;
+      break;
+    }
+  }
+  if (split < 0) throw new Error(`${file}: no gap between monogram and name.`);
+  const [mTop, mBottom] = rowsWithInk(raw, 0, split);
+  const [nTop, nBottom] = rowsWithInk(raw, split, width);
+  const shift = Math.round((mTop + mBottom) / 2 - (nTop + nBottom) / 2);
+  const input = { raw: { width, height, channels: 4 } };
+  const monogram = await sharp(raw.data, input).extract({ left: 0, top: 0, width: split, height }).png().toBuffer();
+  const name = await sharp(raw.data, input)
+    .extract({ left: split, top: nTop, width: width - split, height: nBottom - nTop + 1 })
+    .png()
+    .toBuffer();
+  return sharp({ create: { width, height, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } } })
+    .composite([
+      { input: monogram, left: 0, top: 0 },
+      { input: name, left: split, top: nTop + shift },
+    ])
+    .png()
+    .toBuffer()
+    .then((buffer) => sharp(buffer).trim({ threshold: 1 }).png().toBuffer());
+}
 
 await rm(OUT, { recursive: true, force: true });
 
 const portraitSrc = join(SRC, PORTRAIT.file);
 const symbolSrc = join(SRC, SYMBOL.file);
-const socialSrc = join(SRC, SOCIAL.file);
-if (!existsSync(portraitSrc) && !existsSync(symbolSrc) && !existsSync(socialSrc)) {
-  console.log(`[assets] ${SRC}/ not found: building with the neutral placeholder, no favicon and no Open Graph image.`);
+if (!existsSync(portraitSrc) && !existsSync(symbolSrc) && !LOGOS.some((l) => existsSync(join(SRC, l.file)))) {
+  console.log(`[assets] ${SRC}/ not found: building with the neutral placeholder, no favicon, no logo and no Open Graph image.`);
   process.exit(0);
 }
 
@@ -82,15 +150,33 @@ if (existsSync(symbolSrc)) {
   console.log(`[assets] ${SYMBOL.file} not found: no favicon.`);
 }
 
-if (existsSync(socialSrc)) {
-  const logo = await sharp(socialSrc).resize({ width: SOCIAL.logoWidth }).png().toBuffer();
-  await sharp({
-    create: { ...SOCIAL.size, channels: 3, background: '#ffffff' },
-  })
-    .composite([{ input: logo, gravity: 'center' }])
+const logos = {};
+for (const { file, out } of LOGOS) {
+  const src = join(SRC, file);
+  if (!existsSync(src)) {
+    console.log(`[assets] ${file} not found: no logo.`);
+    continue;
+  }
+  logos[out] = await centredLogo(src);
+  await sharp(logos[out]).toFile(join(OUT, out));
+  console.log(`[assets] ${out}`);
+}
+
+if (logos['logo-cor.png']) {
+  const { width, height, band, hairline, logoWidth } = { ...SOCIAL.size, ...SOCIAL };
+  const logo = await sharp(logos['logo-cor.png']).resize({ width: logoWidth }).png().toBuffer();
+  const { height: logoHeight } = await sharp(logo).metadata();
+  const field = height - band - hairline;
+  const solid = (w, h, colour) => ({ create: { width: w, height: h, channels: 3, background: colour } });
+  await sharp(solid(width, height, SOCIAL.white))
+    .composite([
+      { input: logo, left: Math.round((width - logoWidth) / 2), top: Math.round((field - logoHeight) / 2) },
+      { input: await sharp(solid(width, hairline, SOCIAL.ouro)).png().toBuffer(), left: 0, top: field },
+      { input: await sharp(solid(width, band, SOCIAL.verdeMarca)).png().toBuffer(), left: 0, top: field + hairline },
+    ])
     .png()
     .toFile(join(OUT, 'social.png'));
   console.log('[assets] social.png');
 } else {
-  console.log(`[assets] ${SOCIAL.file} not found: no Open Graph image.`);
+  console.log('[assets] no colour logo: no Open Graph image.');
 }

@@ -6,7 +6,7 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-16 (Phase 2 active and renumbered; 2.1 in progress; 1.8 verified) |
+| Last updated | 2026-11-16 (2.1 built and checked on local builds; PR CI pending) |
 | Current phase | Phase 2 — Credibility content under the CFM rules (MVP), the last phase before the initial release |
 | Phase status | Phase 2 in progress (2.1). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
 
@@ -30,7 +30,7 @@ The 1.7 merge (`dc075fc`) published cleanly: `published` job of [run 43937667606
 
 ## Next work
 
-1. **2.1** — plan, build, PR.
+1. **2.1** — PR, its CI run, PO and Reviewer approval, Filipe's OK.
 2. **2.2** identification and contact, **2.3** Formação, **2.4** Atuação and Sobre, in that order, each a complete section.
 3. **2.5** cut-out portrait on brand graphics: Filipe made it a condition for publication.
 4. **2.6** CFM review and release (removal of `noindex`).
@@ -45,7 +45,7 @@ None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inp
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 2.1 | Apply the confirmed visual identity | In progress | — |
+| 2.1 | Apply the confirmed visual identity | In progress | Built; local builds, both targets, with and without the assets: every check passes. PR CI pending. `docs/status-log.md` |
 | 2.2 | Identification and contact | Not started | — |
 | 2.3 | Training ("Formação") | Not started | — |
 | 2.4 | Roles ("Atuação") and "Sobre" | Not started | — |
@@ -61,9 +61,9 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 | | |
 | --- | --- |
 | Date | 2026-11-16 |
-| Environment | Local build, branch `feat/1.7-pr-checks`, production and `DEPLOY_TARGET=ghpages` with the private assets, staging with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless (scratchpad only). CI: [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420) on `84c74e4` (`pull_request`). Not deployed |
-| Checks | `make lint`, `make requests`, `make axe`, `make lighthouse` on each build; the same checks on a copy of the staging build with one rule broken at a time; `check-no-photos.mjs` on a throwaway branch with a committed and then removed `retrato.JPG`; `make check`; `npm audit` |
-| Result | Clean builds: html-validate 0 errors; content 0 failing; photos 0 failing; 35 requests, 0 failing (19 without the assets); axe 0 violations, 0 incomplete on 4 runs; Lighthouse mobile Performance 100, Accessibility 100, LCP 1204 ms (752 ms on the placeholder), CLS 0. Every broken rule failed its check (14 cases, `docs/status-log.md`). `astro check` 0 errors; 0 vulnerabilities. CI: every check step passed, assets fetched; Lighthouse Performance 100, Accessibility 100, LCP 1205 ms, CLS 0 |
+| Environment | Local build, branch `feat/2.1-visual-identity`: production and `DEPLOY_TARGET=ghpages` with the private assets, staging with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless (scratchpad only). Not deployed; PR CI pending |
+| Checks | `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse` on each build; `make check`; scroll width at 320, 360, 1280 and 1600 px; screenshots at 360 and 1280 px; `impeccable detect`; Impeccable finish review |
+| Result | Contrast 12 pairs, 0 failing. html-validate 0 errors; content 0 failing; photos 0 failing. Requests: 71, 0 failing (19 without the assets); largest image 80 KB (portrait). axe 0 violations, 0 incomplete on 4 runs per build. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1431 ms, CLS ≤ 0.0002. No horizontal scroll at 320–1600 px. Detector: no finding. Finish review: `fix` (selection invisible on `verde-claro`, DESIGN.md out of step, contract quote), all three fixed, verdict pass `ship`. `astro check` 0 errors |
 
 ---
 
@@ -72,9 +72,9 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 | | |
 | --- | --- |
 | Date | 2026-11-16 |
-| Environment | Local build, branch `feat/1.6-technical-seo`, with the private assets and with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, Astro 7.4.12, sharp 0.35.5. CI: [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802) on `0da9aef` (`pull_request`). Not deployed |
-| Checks | `make build` (production) and `DEPLOY_TARGET=ghpages`; `<head>` of `index.html` and `404.html`; `dist/sitemap.xml` and `dist/robots.txt`; social image viewed; `make requests` both bases and without the assets; `npx html-validate@9`; `make check`; duplicate ids; vetoed-term and "Lorem" grep on `dist/` |
-| Result | Production: canonical, `og:url` and sitemap `https://dravictorialaufer.com.br/`, `og:image` on the same host, robots `Sitemap: https://dravictorialaufer.com.br/sitemap.xml`. Staging: the same four under `https://filipeoliveira94.github.io/dra-victoria-laufer/`. Description and `og:description` "Dra. Victória Laufer, MÉDICA, CRM-SP 240550."; `og:locale` `pt_BR`; 404 without canonical and `og:url`; `noindex` on both pages. Social image 1200 × 630, 60.7 KB, logo only. Without the assets: no `og:image`, build passes, 19 requests, 0 failing. With them: 35 requests, 0 failing, both bases. html-validate no errors; `astro check` 0 errors; 0 duplicate ids; no vetoed term. CI: assets fetched, `social.png` generated, 35 requests, 0 failing |
+| Environment | Local build, branch `feat/1.7-pr-checks`, production and `DEPLOY_TARGET=ghpages` with the private assets, staging with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless (scratchpad only). CI: [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420) on `84c74e4` (`pull_request`). Not deployed |
+| Checks | `make lint`, `make requests`, `make axe`, `make lighthouse` on each build; the same checks on a copy of the staging build with one rule broken at a time; `check-no-photos.mjs` on a throwaway branch with a committed and then removed `retrato.JPG`; `make check`; `npm audit` |
+| Result | Clean builds: html-validate 0 errors; content 0 failing; photos 0 failing; 35 requests, 0 failing (19 without the assets); axe 0 violations, 0 incomplete on 4 runs; Lighthouse mobile Performance 100, Accessibility 100, LCP 1204 ms (752 ms on the placeholder), CLS 0. Every broken rule failed its check (14 cases, `docs/status-log.md`). `astro check` 0 errors; 0 vulnerabilities. CI: every check step passed, assets fetched; Lighthouse Performance 100, Accessibility 100, LCP 1205 ms, CLS 0 |
 
 ---
 

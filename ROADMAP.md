@@ -228,7 +228,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | | |
 | --- | --- |
-| Status | `in progress` || Size | M |
+| Status | `in progress` (built; local builds pass every check; PR CI pending) | Size | M |
 | Depends on | 0.3 |
 
 - **Objective:** the brand under the whole page, before any section is finished on it.
@@ -504,3 +504,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | Phase 2 is the active phase: Phases 0 and 1 closed (0.1 to 0.3 and 1.1 to 1.7 verified; 1.8 delivered, then verified the same day). 2.1 in progress on `feat/2.1-identification-contact`. The 1.7 merge published cleanly (`published` job of [run 43937667606](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937667606)) |
 | 2026-11-16 | 1.8 verified: Filipe reviewed the `LICENSE` wording and the rights holders; the code copyright year corrected from 2025 to 2026. Phase 1 closed |
 | 2026-11-16 | Phase 2 reordered and renumbered by Filipe, so IDs follow the order of work: 2.1 visual identity (was 2.4), 2.2 identification and contact (was 2.1), 2.3 Formação (was 2.2), 2.4 Atuação and Sobre (was 2.3), 2.5 cut-out portrait (was 2.6), 2.6 CFM review and release (was 2.5). Earlier changelog and status-log entries keep the old numbers. Phase 2 now defines "a complete section": each section issue delivers its part finished (content, page, look, layout, access, compliance, checks), on the brand from 2.1 |
+| 2026-11-16 | 2.1 built: `DESIGN.md` tokens with semantic roles in `tokens.css`; type roles; header with the colour horizontal logo and the anchor navigation; links, focus and selection from the palette; a ground fixed per section (light grounds only, no bands, Filipe's choice); footer on `verde-profundo` with the white logo; social image with a `verde-marca` field and an `ouro` hairline. The logo's written name is recentred on the monogram at build time (Filipe's request). `DESIGN.md` merged with these decisions (bands removed, 12 text pairs). Local builds, both targets, with and without the assets: every check passes; Impeccable detector clean; finish review `ship` |

@@ -25,7 +25,7 @@ Three constraints shape the choice:
 
 The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for tokens, pairs and logo usage:
 
-- **Palette:** her four colours kept as they are, plus derived tones of the same hues. Green (`#3EB7AE`) and yellow (`#FFD87D`) are fields, never text; text uses her blue (`#274360`) and a deep green of her hue (`#135A55`). Lilac (`#B78BC5`, from her legacy site) is a quiet secondary. Only the 15 pairs in the DESIGN.md table may carry text; all are ≥ 4.5:1.
+- **Palette:** her four colours kept as they are, plus derived tones of the same hues. Green (`#3EB7AE`) and yellow (`#FFD87D`) are fields, never text; text uses her blue (`#274360`) and a deep green of her hue (`#135A55`). Lilac (`#B78BC5`, from her legacy site) is a quiet secondary. Only the pairs in the DESIGN.md table may carry text; all are ≥ 4.5:1. Issue 2.1 removed the bands at Filipe's request (2026-11-16), which took the table from 15 pairs to 12; `amarelo-marca` now carries the text selection.
 - **Typography:** Source Serif 4 for headings, Source Sans 3 for text (option A of three shown to Filipe), both SIL OFL 1.1, self-hosted.
 - **Logo:** horizontal and vertical versions derived from her PNG originals by removing the tagline only, so the name reads "Victória"; the monogram ("Símbolo") for the favicon. All files in the private repository `dra-victoria-laufer-assets` under `brand/` (ADR-0010). The original files are kept there for reference and never published.
 
