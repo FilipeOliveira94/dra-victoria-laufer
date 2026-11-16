@@ -11,9 +11,9 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 | Field | Now |
 | --- | --- |
-| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2) and the **page structure** (issue 1.3) and **images, favicon and fonts** (issue 1.4): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550`, her portrait (AVIF/WebP from the private assets repository) and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Brand fonts served from the site; colours still neutral provisional, the brand comes in 2.4 |
+| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2), the **page structure** (issue 1.3), **images, favicon and fonts** (issue 1.4) and **accessibility** (issue 1.5: skip link, visible focus, named contact link, reduced motion): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550`, her portrait (AVIF/WebP from the private assets repository) and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Brand fonts served from the site; colours still neutral provisional, the brand comes in 2.4 |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> |
-| Next | Issues 1.5, 1.6 and 1.7; 2.1 |
+| Next | Issues 1.6 and 1.7; 2.1 |
 | Brand | Confirmed in [`DESIGN.md`](DESIGN.md) (issue 0.3); applied to the site in issue 2.4. `make contrast` checks its colour pairs |
 | Ledger | [`PROJECT_STATUS.md`](PROJECT_STATUS.md) · scope in [`ROADMAP.md`](ROADMAP.md) |
 

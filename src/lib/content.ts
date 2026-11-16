@@ -29,3 +29,11 @@ export async function medica(): Promise<Published<'medica'> | undefined> {
 
 /** "CRM-SP 240550" */
 export const crmLabel = ({ crm }: Published<'medica'>) => `CRM-${crm.uf} ${crm.numero}`;
+
+// Channel names: the title of each contact link and the start of its
+// accessible name (issue 1.5); the address alone does not say the channel.
+export const channelLabel: Record<Published<'contato'>['tipo'], string> = {
+  email: 'E-mail',
+  whatsapp: 'WhatsApp',
+  instagram: 'Instagram',
+};

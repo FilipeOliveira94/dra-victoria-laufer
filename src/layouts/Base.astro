@@ -49,6 +49,8 @@ const touchIcon =
     {!indexable && <meta name="robots" content="noindex" />}
   </head>
   <body>
+    {/* First stop for the keyboard (issue 1.5). Every page puts its <main> at #conteudo. */}
+    <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
     {
       nav.length > 0 && (
         <header class="site-header">
