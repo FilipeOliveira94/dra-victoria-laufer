@@ -13,3 +13,4 @@ const pick = (name: string): ImageMetadata | undefined => generated[`../assets/g
 export const portrait = pick('portrait.jpg');
 export const icon = pick('icon.png');
 export const iconTouch = pick('icon-touch.png');
+export const social = pick('social.png');

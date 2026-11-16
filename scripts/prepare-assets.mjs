@@ -34,12 +34,22 @@ const SYMBOL = {
   crop: { left: 380, top: 380, width: 1240, height: 1240 },
 };
 
+// Open Graph image (issue 1.6): the colour horizontal logo on white
+// (DESIGN.md), 1200 x 630, the size social networks crop to. Scaled, never
+// recoloured. Its final composition is issue 2.4.
+const SOCIAL = {
+  file: 'brand/logo/logo-horizontal-cor.png',
+  size: { width: 1200, height: 630 },
+  logoWidth: 900,
+};
+
 await rm(OUT, { recursive: true, force: true });
 
 const portraitSrc = join(SRC, PORTRAIT.file);
 const symbolSrc = join(SRC, SYMBOL.file);
-if (!existsSync(portraitSrc) && !existsSync(symbolSrc)) {
-  console.log(`[assets] ${SRC}/ not found: building with the neutral placeholder and no favicon.`);
+const socialSrc = join(SRC, SOCIAL.file);
+if (!existsSync(portraitSrc) && !existsSync(symbolSrc) && !existsSync(socialSrc)) {
+  console.log(`[assets] ${SRC}/ not found: building with the neutral placeholder, no favicon and no Open Graph image.`);
   process.exit(0);
 }
 
@@ -70,4 +80,17 @@ if (existsSync(symbolSrc)) {
   console.log('[assets] icon.png, icon-touch.png');
 } else {
   console.log(`[assets] ${SYMBOL.file} not found: no favicon.`);
+}
+
+if (existsSync(socialSrc)) {
+  const logo = await sharp(socialSrc).resize({ width: SOCIAL.logoWidth }).png().toBuffer();
+  await sharp({
+    create: { ...SOCIAL.size, channels: 3, background: '#ffffff' },
+  })
+    .composite([{ input: logo, gravity: 'center' }])
+    .png()
+    .toFile(join(OUT, 'social.png'));
+  console.log('[assets] social.png');
+} else {
+  console.log(`[assets] ${SOCIAL.file} not found: no Open Graph image.`);
 }
