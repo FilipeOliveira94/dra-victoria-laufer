@@ -2,7 +2,7 @@
 
 <!-- impeccable:product-schema 1 -->
 
-Product record for the portfolio site of Dra. Victória Laufer (issue 0.1). It holds who the site serves, what it is for and what it must never do. Rules live in their own files and are linked here, not copied: CFM checklist in [`docs/compliance/cfm.md`](docs/compliance/cfm.md), content facts in [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md), architecture in [`DECISIONS.md`](DECISIONS.md). Visual identity is out of scope here; it waits for issue 0.3 and goes to `DESIGN.md`.
+Product record for the portfolio site of Dra. Victória Laufer (issue 0.1). It holds who the site serves, what it is for and what it must never do. Rules live in their own files and are linked here, not copied: CFM checklist in [`docs/compliance/cfm.md`](docs/compliance/cfm.md), content facts in [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md), architecture in [`DECISIONS.md`](DECISIONS.md). Visual identity is out of scope here; it lives in [`DESIGN.md`](DESIGN.md) (issue 0.3).
 
 ## Platform
 
@@ -62,13 +62,12 @@ The proof is checkable fact, not claims: her CRM registration, her degree, her p
 
 **Open:**
 
-- Logo, palette and typography: waiting for Filipe (issue 0.3).
 - The e-mail may change later if she asks (D-007); a future decision.
 - The courses are shown while CREMESP registration is frozen, by Filipe's decision; recorded risk in `cfm.md` → B.
 
 ## Brand Commitments
 
-- Her name, registration and the word `MÉDICA` are the identity. The legacy logo file is missing, and no logo, palette or typeface is committed until issue 0.3. Until then the site uses neutral provisional tokens.
+- Her name, registration and the word `MÉDICA` are the identity, always as real text. Her logo, palette (green, yellow and white leading; lilac as secondary) and the site typography were confirmed in issue 0.3 and are recorded in [`DESIGN.md`](DESIGN.md).
 - Voice: plain, factual, restrained. First person only in her own text ("Sobre"). No superlatives, no "referência em", no promotional language (Art. 11, XVI).
 - Workplaces are named in text, never with their logos.
 

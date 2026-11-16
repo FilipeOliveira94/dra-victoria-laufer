@@ -33,7 +33,7 @@ Not on the page, by design: numbered steps, service cards, a locations section, 
 | Hosting | GitHub Pages, built and deployed by GitHub Actions | [0003](../decisions/0003-hosting-github-pages-actions.md) |
 | Local commands | `make` targets wrapping the package scripts | [`Makefile`](../../Makefile) |
 
-The tokens are neutral and provisional until the brand is confirmed (issue 0.3) and applied (issue 2.4). Logo, palette and typography are not decided.
+The tokens are neutral and provisional until issue 2.4 applies the brand confirmed in issue 0.3: palette, typography and logo usage in [`DESIGN.md`](../../DESIGN.md).
 
 ## Content model
 

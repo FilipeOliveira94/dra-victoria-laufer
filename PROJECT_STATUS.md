@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (legacy Jekyll site) |
-| Last updated | 2026-11-16 (0.1 verified; final domain `dravictorialaufer.com.br`) |
+| Last updated | 2026-11-16 (0.3 verified: `DESIGN.md` approved) |
 | Current phase | Phase 0 — Product and brand, and Phase 1 — New base (MVP), in parallel |
-| Phase status | In progress (0.1 and 0.2 verified) |
+| Phase status | Phase 0 verified (0.1, 0.2 and 0.3); Phase 1 not started |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -35,7 +35,7 @@ The repository holds the legacy Jekyll site plus the project structure. No part 
 
 | Pending | Who | Blocks |
 | --- | --- | --- |
-| Confirmation of logo, palette and typography | Filipe | 0.3 and 2.4, and therefore the release in 2.5 |
+| Push of assets commit `c36549d` (`brand/` logos) | Filipe | 1.4 and 2.4 fetching the logos |
 
 Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md).
 
@@ -49,7 +49,7 @@ Nothing blocks Phase 1.
 | --- | --- | --- | --- |
 | 0.1 | Record the product context | Verified | [`PRODUCT.md`](PRODUCT.md), approved by Filipe on 2026-11-16 |
 | 0.2 | Collect pending inputs | Verified | [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md) |
-| 0.3 | Define the visual identity | Blocked | Waiting for Filipe |
+| 0.3 | Define the visual identity | Verified | [`DESIGN.md`](DESIGN.md), approved by Filipe on 2026-11-16; [ADR-0011](docs/decisions/0011-visual-identity.md); `make contrast` 15/15 |
 
 ## Phase 1 progress
 
@@ -72,10 +72,10 @@ Acceptance detail: `ROADMAP.md` → Phase 1.
 
 | | |
 | --- | --- |
-| Date | 2026-11-15 |
-| Environment | Local checkout, WSL2. GNU Make 4.4.1, Node.js v22.23.4. Bundler is not installed |
-| Checks | `make help` and each Astro target (`install`, `dev`, `build`, `preview`, `lint`, `check`, `lighthouse`) with no `package.json` present |
-| Result | Each target prints the "not available until issue 1.1" notice and exits 0. No site build was run: the Jekyll build was not executed locally, and no Lighthouse, validator or axe run exists yet |
+| Date | 2026-11-16 |
+| Environment | Local checkout, WSL2. GNU Make 4.4.1, Node.js v22.23.4 |
+| Checks | `make contrast` (`node scripts/check-contrast.mjs`) on `DESIGN.md`; the same script on a copy with a failing pair added |
+| Result | 15 pairs, 0 failing, lowest 4.70:1; the copy fails with 2.44:1 as expected. No site build exists, so no Lighthouse, validator or axe run applies |
 
 ---
 
@@ -114,7 +114,7 @@ The legacy Jekyll build processes Markdown files at any depth. Until 1.1 removes
 
 ## Decisions (active)
 
-All ten decisions of the plan are `approved` and none is implemented, except the license: [`DECISIONS.md`](DECISIONS.md). The ones that gate the current work:
+All eleven decisions are `approved` and none is implemented, except the license: [`DECISIONS.md`](DECISIONS.md). The ones that gate the current work:
 
 | ID | Topic | Gates |
 | --- | --- | --- |
@@ -123,11 +123,11 @@ All ten decisions of the plan are `approved` and none is implemented, except the
 | D-004 | `DEPLOY_TARGET` | 1.1, 3.2 |
 | D-006 | `noindex` until 2.5 | 1.1, 2.5 |
 | D-010 | Private assets repository | 1.4 |
+| D-011 | Visual identity | 1.4, 2.4 |
 
 ## Active risks
 
 The full table is in `ROADMAP.md` → Risks. The ones that apply today:
 
 - The live site is indexable with Lorem ipsum and "Atendimento Pediátrico". Mitigation: 1.1 first.
-- The brand has no confirmation date. Everything except 0.3 and 2.4 moves in parallel.
 - The CFM checklist covers only the points passed on by Filipe until the full-text check in 2.5.

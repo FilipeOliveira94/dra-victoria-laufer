@@ -8,7 +8,7 @@
 
 NPM ?= npm
 
-.PHONY: help install dev build preview lint check lighthouse
+.PHONY: help install dev build preview lint check lighthouse contrast
 
 # Run $(1) when the Astro project exists; otherwise explain and exit 0.
 define astro
@@ -49,3 +49,6 @@ check: ## Type-check and validate the content collections
 
 lighthouse: ## Run Lighthouse CI (mobile) against the built site
 	$(call astro,$(NPM) run lighthouse)
+
+contrast: ## Check every approved text pair in DESIGN.md (WCAG >= 4.5:1)
+	node scripts/check-contrast.mjs
