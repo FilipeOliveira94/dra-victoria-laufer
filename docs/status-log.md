@@ -4,6 +4,56 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.7: automatic checks on pull requests
+
+Built on `feat/1.7-pr-checks`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless in a scratch directory, not a project dependency), and on the PR's CI [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420) on `84c74e4`. Not deployed.
+
+- **Where:** new steps in the `build` job of `deploy.yml`, after the build. They run on every pull request and on every push to `main`, so a failing check stops the deploy. Each step runs even when an earlier one failed, so one run lists every broken rule. The checkout now takes the full history (`fetch-depth: 0`) for the photo check.
+- **HTML:** `html-validate` 11.21.1 (recommended preset, which includes `no-dup-id`) on every page in `dist/`, in `make lint`. Offline: no request to the W3C service.
+- **Links and anchors:** `scripts/check-requests.mjs` now also fails when a link to `#id` (same page or another page of the site) has no element with that id. The rest is unchanged: every referenced resource returns 200, no third-party request, no image above 200 KB.
+- **Content:** `scripts/check-content.mjs`, in `make lint`, searches every file name in `dist/` and the text of every HTML, XML, TXT, JSON, SVG, CSS and JS file for `lorem`, `pediatra` and `especialista em`. Case, accents, HTML entities and line breaks are ignored; `NÃO ESPECIALISTA` is removed first, the only exception.
+- **Photos:** `scripts/check-no-photos.mjs`, in `make lint`, fails if a raster image or image source file (JPEG, PNG, WebP, AVIF, GIF, HEIC, TIFF, RAW, PSD…) is tracked, or was added by any commit between `origin/main` and `HEAD`, so a portrait added and removed in the same PR also fails. No image is tracked today, so there is no allow list.
+- **axe:** `scripts/check-axe.mjs` (puppeteer-core 25.17.0, axe-core 4.14.1) on the home and a 404 at depth, at 360 and 1280 px, WCAG 2.0/2.1 A and AA plus best practice; fails on any violation and on any incomplete result. `make axe`.
+- **Lighthouse:** `@lhci/cli` 0.16.1, `lighthouserc.cjs`, mobile, 3 runs on the home, median: Performance ≥ 0.9, Accessibility ≥ 0.95, LCP ≤ 2500 ms, CLS ≤ 0.1. Reports go to `.lighthouseci/` and to a run artifact; nothing is uploaded to a third party. `make lighthouse`. The SEO category is not asserted: it fails by design while `noindex` stays (ADR-0006).
+- **Server:** the static server of `check-requests.mjs` moved to `scripts/lib/serve-dist.mjs`, shared by the three checks; a missing path now answers 404 with `dist/404.html`, as GitHub Pages does.
+- **Forks:** a PR from a fork gets no `ASSETS_DEPLOY_KEY`; every check, Lighthouse included, runs on the placeholder build.
+
+The 1.6 merge (`71171f2`) published cleanly: `published` job of [run 43930780015](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930780015), 23 requests, 0 failing, on the live page.
+
+Checks, each rule broken on purpose on a copy of the staging build, then restored:
+
+| Rule broken | Check | Result |
+| --- | --- | --- |
+| `Pedi&aacute;tra` in the page | content | Fails, "pediatra" |
+| `Especialista&nbsp;EM pediatria` | content | Fails, "especialista em" |
+| `Lorem ipsum` in a `<meta>` | content | Fails |
+| File `pediatra-sp.txt` in `dist/` | content | Fails on the file name |
+| "MÉDICA com pós-graduação em Pediatria Clínica NÃO ESPECIALISTA em …; Pediátrica" | content | Passes (exception and the course names) |
+| Second `id="conteudo"` | html-validate | Fails, `no-dup-id` |
+| Link to `#nao-existe` | requests | Fails, missing anchor |
+| Link to `/dra-victoria-laufer/sumiu/` | requests | Fails, 404 |
+| 250 KB PNG in `dist/` | requests | Fails, above 200 KB |
+| `<img>` without `alt` | axe; html-validate | Fail, `image-alt` at 360 and 1280 px; `wcag/h37` |
+| 4 MB image above `<main>` | Lighthouse | Fails: Performance 0.58, LCP 6604 ms, CLS 0.42 |
+| `retrato.JPG` committed | photos | Fails: tracked and added in the commit |
+| The same file removed in a later commit | photos | Fails: added in the earlier commit |
+| Base ref missing | photos | Fails, says the commits were not checked |
+
+On the clean builds:
+
+| Build | lint | requests | axe | Lighthouse mobile (median of 3) |
+| --- | --- | --- | --- | --- |
+| Production, with the assets | 0 errors; 27 paths, 0 failing; 0 photos | 35, 0 failing | 4 runs, 0 violations, 0 incomplete | Performance 100, Accessibility 100, LCP 1204 ms, CLS 0 |
+| Staging, with the assets | Same | 35, 0 failing | Same | Performance 100, Accessibility 100, LCP 1204 ms, CLS 0 |
+| Staging, `ASSETS_DIR=/nonexistent` | 0 errors; 12 paths, 0 failing; 0 photos | 19, 0 failing | Same | Performance 100, Accessibility 100, LCP 752 ms, CLS 0 |
+| PR CI, [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420), staging with the assets (private-assets step executed) | 0 errors; 27 paths, 0 failing; 0 photos | 35, 0 failing | 4 runs, 0 violations, 0 incomplete | Performance 100, Accessibility 100, LCP 1205 ms, CLS 0 |
+
+`make check`: 0 errors. `npm audit`: 0 vulnerabilities.
+
+Not done here: making the `build` job a required status check of `main`. The job fails, but GitHub blocks the merge only under branch protection, a repository setting that is Filipe's decision.
+
+---
+
 ### 2026-11-16 — Issue 1.6: technical SEO
 
 Built on `feat/1.6-technical-seo`, checked on local builds with and without the private assets (Astro 7.4.12, sharp 0.35.5, Node.js v22.23.4) and on the PR's CI [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802) on `0da9aef`. Not deployed.
