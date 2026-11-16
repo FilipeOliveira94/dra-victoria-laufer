@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | | |
 | --- | --- |
-| Last updated | 2026-11-15 |
+| Last updated | 2026-11-16 |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -24,10 +24,10 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Phase | Scope | Depends on | Status |
 | --- | --- | --- | --- |
-| 0 | Product and brand: product context, pending inputs, visual identity | — | Not started (0.3 blocked) |
+| 0 | Product and brand: product context, pending inputs, visual identity | — | In progress (0.1 and 0.2 verified, 0.3 blocked) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Not started (1.8 delivered) |
 | 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, release | Phase 1; inputs from 0.2; brand from 0.3 | Not started |
-| 3 | Domain and DNS: `victorialaufer.com.br` | 1.1 | Not started |
+| 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
 | 4 | Structured data: JSON-LD `Person` | 2.5 and 3.2 | Not started |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.1, 2.5 | Not started |
 | 6 | Acquisition, off by default: invitation to schedule, care modality | 2.5, 4.1 | Not started |
@@ -54,7 +54,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` |
 | Size | P |
 | Depends on | — |
 
@@ -282,7 +282,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 ## Phase 3 — Domain and DNS
 
-**Goal:** The site served at `victorialaufer.com.br`.
+**Goal:** The site served at `dravictorialaufer.com.br`.
 
 ### 3.1 Register the domain and configure DNS
 
@@ -292,7 +292,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 | Size | P |
 | Depends on | — |
 
-- **Objective:** `victorialaufer.com.br` pointing at GitHub Pages.
+- **Objective:** `dravictorialaufer.com.br` pointing at GitHub Pages.
 - **Scope:** registration under Filipe's CPF; A and AAAA records for the root domain and a CNAME for `www` in the Registro.br DNS; domain verified in the GitHub account. The DNS holds only the site records.
 - **Out of scope:** e-mail on the domain (none; see 3.3).
 - **Acceptance:** root and `www` resolve; HTTPS certificate issued.
@@ -465,3 +465,5 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | --- | --- |
 | 2026-11-15 | Roadmap created from the approved plan v2 with its final adjustments (single e-mail, 3.3 withdrawn, private assets repository in 1.4, extra acceptance in 1.7 and 1.8). 1.8 delivered with the project-structure commit |
 | 2026-11-15 | 0.2 verified: every content input received (`docs/inputs/0.2-pending-inputs.md`). Filipe added current workplaces and a start year to "Atuação" (scope of 0.2 and 2.3), narrowed the "numbers" anti-goal to statistics, and decided to show the postgraduate courses although the CREMESP registration is frozen |
+| 2026-11-16 | 0.1 verified: `PRODUCT.md` approved by Filipe, written through the Impeccable init flow from the confirmed brief, the 0.2 inputs and the CFM checklist. The brief's page sequence and mode stay here, linked from `PRODUCT.md` (Filipe's decision) |
+| 2026-11-16 | Domain changed by Filipe from `victorialaufer.com.br` to `dravictorialaufer.com.br` (Phase 3, ADR-0003, ADR-0004) |

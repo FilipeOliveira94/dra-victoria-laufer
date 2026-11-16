@@ -13,7 +13,7 @@
 
 ## Context / problem
 
-The legacy site is published by GitHub Pages from the `main` branch. That classic deploy runs Jekyll only, with no room for a build variable or for checks. The final domain, `victorialaufer.com.br`, will be registered at Registro.br and must work at the root.
+The legacy site is published by GitHub Pages from the `main` branch. That classic deploy runs Jekyll only, with no room for a build variable or for checks. The final domain, `dravictorialaufer.com.br` (changed from `victorialaufer.com.br` by Filipe on 2026-11-16), will be registered at Registro.br and must work at the root.
 
 ## Decision
 

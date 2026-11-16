@@ -59,7 +59,7 @@ The table shows which facts each collection carries. The field names, and where 
 
 | | Staging (now) | Production (after 3.2) |
 | --- | --- | --- |
-| URL | `https://filipeoliveira94.github.io/dra-victoria-laufer/` | `https://victorialaufer.com.br/` |
+| URL | `https://filipeoliveira94.github.io/dra-victoria-laufer/` | `https://dravictorialaufer.com.br/` |
 | Base path | `/dra-victoria-laufer` | `/` |
 | `DEPLOY_TARGET` | `ghpages` | not set |
 | Indexing | `noindex` | Indexable once 2.5 has released it |

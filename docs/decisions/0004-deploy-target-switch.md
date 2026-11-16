@@ -13,7 +13,7 @@
 
 ## Context / problem
 
-Today the site lives under `https://filipeoliveira94.github.io/dra-victoria-laufer/`. It will move to the root of `victorialaufer.com.br`, which is not registered yet. The legacy configuration gets both wrong: an empty base path and a different domain. The move must not require touching pages, links or metadata.
+Today the site lives under `https://filipeoliveira94.github.io/dra-victoria-laufer/`. It will move to the root of `dravictorialaufer.com.br`, which is not registered yet (changed from `victorialaufer.com.br` by Filipe on 2026-11-16). The legacy configuration has an empty base path; its `url` already names the final domain. The move must not require touching pages, links or metadata.
 
 ## Decision
 

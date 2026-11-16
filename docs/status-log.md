@@ -4,6 +4,18 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 0.1: product context recorded
+
+[`PRODUCT.md`](../PRODUCT.md) records the product context through the Impeccable init flow (schema 1): platform `web`; the decided stack; users (parents, colleagues, contracting parties checking who she is); purpose (credibility first, acquisition behind flags); positioning (checkable facts in the CFM form); operating context; what the page shows and its hard limits; brand commitments limited to name, registration, voice and the absence of a confirmed brand; the evidence received in 0.2 and what must not be fabricated; five product principles; the accessibility standard. Rules are linked to `cfm.md`, the 0.2 ledger and the ADRs, not copied.
+
+Filipe decided that the brief's page sequence and mode are surface strategy: they stay in `ROADMAP.md` → Design brief, linked from `PRODUCT.md`. The anti-goals and the first-fold identification (a CFM requirement) are in `PRODUCT.md`. No `.impeccable/` config and no live mode were set up: the Jekyll site is replaced in 1.1 and the scope is the product record only.
+
+Checks: `grep -niE` for `pediatra`, `especialista em`, `neonatologista`, `intensivista`, `área de atuação`, `lorem` and `todo` on `PRODUCT.md`: no match. Every fact was compared with `cfm.md` and the 0.2 ledger. No site build applies. Filipe approved the file on 2026-11-16, which meets the acceptance.
+
+In the same review Filipe changed the final domain from `victorialaufer.com.br` to `dravictorialaufer.com.br`. Updated: `PRODUCT.md`, `ROADMAP.md` (Phase 3), `README.md`, `DECISIONS.md`, ADR-0003, ADR-0004, `docs/architecture/target-site.md`, and the legacy diagnosis in `PROJECT_STATUS.md` (the legacy `_config.yml` `url` already names it). `docs/project-genesis.md` keeps the original with a dated note. Legacy site code was not changed.
+
+---
+
 ### 2026-11-15 — Issue 0.2: pending inputs collected
 
 Every content input that only Dra. Victória can provide was received through Filipe and recorded in [`docs/inputs/0.2-pending-inputs.md`](inputs/0.2-pending-inputs.md): the degree (Medicina, UNIVASF, 2021); the official names and institutions of the three postgraduate courses; the roles for "Atuação" with current workplaces and start years (2022; intensive care since 2024), approved; the text "Sobre", drafted at Filipe's request and approved; the main portrait with its right of use (bought from the photographer).
