@@ -51,6 +51,7 @@ The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for 
 - `make contrast` on 2026-11-16: 15 pairs, 0 failing (lowest 4.70:1, `azul-cinza` on `amarelo-marca`). A copy of DESIGN.md with `verde-marca` on `branco` added fails with 2.44:1, so the check fails when it should.
 - Logo edit: connected components of the artwork below the name were removed; 94 components in each of the five files, and no kept component crosses the cut line. The horizontal colour and vertical black results were inspected visually. Assets commit `c36549d` in `dra-victoria-laufer-assets`.
 - Status log entry: [`docs/status-log.md`](../status-log.md) → 2026-11-16, issue 0.3.
+- Issue 2.1, 2026-11-16: the tokens, type roles, header and footer logos, section grounds and social image applied; `make contrast` 12 pairs, 0 failing; axe and Lighthouse pass on local builds and the PR's CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307).
 
 ## Revisit when
 

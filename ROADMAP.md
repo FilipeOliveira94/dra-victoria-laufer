@@ -26,7 +26,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Verified (1.1 to 1.8) |
-| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | In progress (2.1); the active phase |
+| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | In progress (2.1 verified); the active phase |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
 | 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Not started |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Not started |
@@ -228,7 +228,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | | |
 | --- | --- |
-| Status | `in progress` (checks verified on local builds and the PR's CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307), assets fetched; Filipe's review of the 360 and 1280 px screenshots pending) | Size | M |
+| Status | `verified` (local builds and the PR's CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307), assets fetched; screenshots approved by Filipe as the base, 2026-11-16) | Size | M |
 | Depends on | 0.3 |
 
 - **Objective:** the brand under the whole page, before any section is finished on it.
@@ -298,9 +298,9 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 | ADRs | [0006](docs/decisions/0006-noindex-until-release.md) |
 
 - **Objective:** approve the content and open indexing.
-- **Scope:** checklist checked against the full text of the resolution; her written approval; critical pending items at zero; removal of `noindex`.
+- **Scope:** a design pass on the whole finished page before release: `/impeccable critique` at 360 and 1280 px, then `/impeccable polish` on its findings (frame from 2.1 included: header logo legibility, header with few links, vertical rhythm), within `DESIGN.md`; checklist checked against the full text of the resolution; her written approval; critical pending items at zero; removal of `noindex`.
 - **Out of scope:** formal legal opinion.
-- **Acceptance:** checklist and approval recorded in the issue; pending report empty for identification and training; the whole page reviewed by Filipe at 360 and 1280 px.
+- **Acceptance:** the critique and the polish recorded, with Filipe's approval of the result; checklist and approval recorded in the issue; pending report empty for identification and training; the whole page reviewed by Filipe at 360 and 1280 px.
 
 ---
 
@@ -506,3 +506,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | Phase 2 reordered and renumbered by Filipe, so IDs follow the order of work: 2.1 visual identity (was 2.4), 2.2 identification and contact (was 2.1), 2.3 Formação (was 2.2), 2.4 Atuação and Sobre (was 2.3), 2.5 cut-out portrait (was 2.6), 2.6 CFM review and release (was 2.5). Earlier changelog and status-log entries keep the old numbers. Phase 2 now defines "a complete section": each section issue delivers its part finished (content, page, look, layout, access, compliance, checks), on the brand from 2.1 |
 | 2026-11-16 | 2.1 built: `DESIGN.md` tokens with semantic roles in `tokens.css`; type roles; header with the colour horizontal logo and the anchor navigation; links, focus and selection from the palette; a ground fixed per section (light grounds only, no bands, Filipe's choice); footer on `verde-profundo` with the white logo; social image with a `verde-marca` field and an `ouro` hairline. The logo's written name is recentred on the monogram at build time (Filipe's request). `DESIGN.md` merged with these decisions (bands removed, 12 text pairs). Local builds, both targets, with and without the assets: every check passes; Impeccable detector clean; finish review `ship` |
 | 2026-11-16 | 2.1 PR CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307) on `4c87890` passed, private-assets step executed (portrait, icons, both logos and the social image generated): 71 requests, 0 failing; axe 4 runs, 0 failing; Lighthouse assertions pass. Verified once Filipe approves the screenshots |
+| 2026-11-16 | 2.1 verified: Filipe approved the screenshots as the base ("bom mas não excelente"); the design is raised in 2.2 to 2.5, and 2.6 gains a critique and polish pass on the whole page before release (Filipe's decision) |

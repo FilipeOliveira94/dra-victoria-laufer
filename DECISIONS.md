@@ -26,7 +26,7 @@ Short index of the architecture choices for the portfolio site of Dra. Victória
 | ID | Topic | Decision | Implemented | State | ADR |
 | --- | --- | --- | --- | --- | --- |
 | D-001 | Site generator | Astro, static output, no JavaScript shipped to the browser | Astro 7.4.12, static, no `<script>` in the output (1.1, verified 2026-11-16) | `approved` | [ADR-0001](docs/decisions/0001-static-site-generator-astro.md) |
-| D-002 | CSS | Own CSS with tokens in one file; no framework | `src/styles/tokens.css` (provisional, neutral) and `global.css`, inlined by the build; no framework (1.3, verified 2026-11-16, local builds) | `approved` | [ADR-0002](docs/decisions/0002-own-css-with-tokens.md) |
+| D-002 | CSS | Own CSS with tokens in one file; no framework | `src/styles/tokens.css` (brand tokens since 2.1) and `global.css`, inlined by the build; no framework (1.3, verified 2026-11-16, local builds) | `approved` | [ADR-0002](docs/decisions/0002-own-css-with-tokens.md) |
 | D-003 | Hosting and deploy | GitHub Pages, built and deployed by GitHub Actions | `deploy.yml` deploys to Pages, source "GitHub Actions" (1.1, verified 2026-11-16) | `approved` | [ADR-0003](docs/decisions/0003-hosting-github-pages-actions.md) |
 | D-004 | Domain switch | One workflow variable, `DEPLOY_TARGET: ghpages`, sets `site` and `base`; removing it targets `dravictorialaufer.com.br`. `noindex` is separate (D-006) | `astro.config.mjs`; staging and production canonicals checked (1.1, verified 2026-11-16) | `approved` | [ADR-0004](docs/decisions/0004-deploy-target-switch.md) |
 | D-005 | Content data | Typed collections (`medica`, `formacao`, `atuacao`, `contato`) with a `pendente` field | `src/content.config.ts`, data in `src/content/data/`; invalid data and pending report checked (1.2, verified 2026-11-16, local builds) | `approved` | [ADR-0005](docs/decisions/0005-typed-content-collections.md) |
@@ -35,7 +35,7 @@ Short index of the architecture choices for the portfolio site of Dra. Victória
 | D-008 | License | MIT for the code only; texts, photos, name and logo with all rights reserved | `LICENSE` and README note (1.8, delivered 2026-11-15) | `approved` | [ADR-0008](docs/decisions/0008-license-code-only.md) |
 | D-009 | Structured data | schema.org `Person` without `medicalSpecialty`; `Physician` only with acquisition switched on | — | `approved` | [ADR-0009](docs/decisions/0009-schema-person.md) |
 | D-010 | Assets | Original photos and brand source files in the private repository `dra-victoria-laufer-assets`; the build fetches them with a read-only deploy key | `deploy.yml` fetches them with `ASSETS_DEPLOY_KEY` (read-only, one repository); placeholder without it (1.4, verified 2026-11-16, local builds and PR CI) | `approved` | [ADR-0010](docs/decisions/0010-private-assets-repository.md) |
-| D-011 | Visual identity | Her palette with green, yellow and white leading and lilac as secondary; text only in the approved pairs of DESIGN.md (≥ 4.5:1; 12 since 2.1 removed the bands); Source Serif 4 and Source Sans 3, self-hosted; logo without the tagline. Normative detail in `DESIGN.md` | — (tokens applied in 2.1) | `approved` | [ADR-0011](docs/decisions/0011-visual-identity.md) |
+| D-011 | Visual identity | Her palette with green, yellow and white leading and lilac as secondary; text only in the approved pairs of DESIGN.md (≥ 4.5:1; 12 since 2.1 removed the bands); Source Serif 4 and Source Sans 3, self-hosted; logo without the tagline. Normative detail in `DESIGN.md` | `DESIGN.md` tokens in `src/styles/tokens.css`, header and footer logos, section grounds, social image (2.1, verified 2026-11-16, local builds and PR CI) | `approved` | [ADR-0011](docs/decisions/0011-visual-identity.md) |
 
 `—` means not yet implemented or not yet verified in the repository.
 
@@ -55,6 +55,7 @@ Logo, palette and typography are recorded in [`DESIGN.md`](DESIGN.md) and ADR-00
 | --- | --- |
 | 2026-11-16 | D-002 implemented by issue 1.3, local builds |
 | 2026-11-16 | D-011 approved: visual identity (issue 0.3), with Filipe's approval of `DESIGN.md` |
+| 2026-11-16 | D-011 implemented by issue 2.1, local builds and PR CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307) |
 | 2026-11-16 | D-001, D-003, D-004 and D-006 implemented by issue 1.1, checked on the published site |
 | 2026-11-16 | D-004 and D-006: issue 1.1 defines `noindex` as a constant separate from `DEPLOY_TARGET`, as ADR-0004 left to it; plan approved by Filipe |
 | 2026-11-16 | D-003 and D-004: final domain changed to `dravictorialaufer.com.br` by Filipe |
