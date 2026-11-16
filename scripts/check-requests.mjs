@@ -5,6 +5,11 @@
 //
 // Usage: node scripts/check-requests.mjs [base]   (default base "/")
 // Example: node scripts/check-requests.mjs /dra-victoria-laufer/
+//
+// Remote mode, for the published site (run after each deploy): pass the page
+// URL instead of a base. It checks that page and every resource it loads, and
+// the 200 KB limit on the image bytes it receives.
+// Example: node scripts/check-requests.mjs https://filipeoliveira94.github.io/dra-victoria-laufer/
 
 import { createServer } from 'node:http';
 import { readFile, readdir, stat } from 'node:fs/promises';
@@ -14,7 +19,9 @@ const MAX_IMAGE_BYTES = 200 * 1024;
 const IMAGE = /\.(avif|webp|png|jpe?g|gif|svg|ico)$/i;
 
 const DIST = 'dist';
-const base = (process.argv[2] || '/').replace(/\/?$/, '/');
+const arg = process.argv[2] || '/';
+const remote = /^https?:\/\//.test(arg) ? new URL(arg) : null;
+const base = (remote ? remote.pathname : arg).replace(/\/?$/, '/');
 const types = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css',
@@ -63,14 +70,24 @@ async function files(dir, test) {
   return out;
 }
 
-await new Promise((r) => server.listen(0, '127.0.0.1', r));
-const origin = `http://127.0.0.1:${server.address().port}`;
+let origin;
+const pages = [];
+if (remote) {
+  origin = remote.origin;
+  const res = await fetch(remote);
+  pages.push({ file: remote.href, pageUrl: remote, html: res.ok ? await res.text() : '' });
+} else {
+  await new Promise((r) => server.listen(0, '127.0.0.1', r));
+  origin = `http://127.0.0.1:${server.address().port}`;
+  for (const file of await files(DIST, /\.html$/)) {
+    const pageUrl = new URL(base + file.slice(DIST.length + 1).replace(/index\.html$/, ''), origin);
+    pages.push({ file, pageUrl, html: await readFile(file, 'utf8') });
+  }
+}
 const failures = [];
 let checked = 0;
 
-for (const file of await files(DIST, /\.html$/)) {
-  const pageUrl = new URL(base + file.slice(DIST.length + 1).replace(/index\.html$/, ''), origin);
-  const html = await readFile(file, 'utf8');
+for (const { file, pageUrl, html } of pages) {
   const refs = new Set();
   for (const [tag] of html.matchAll(/<[a-z]+\s[^>]*>/gi)) {
     const ref = tag.match(/\s(?:href|src)="([^"]+)"/)?.[1];
@@ -104,6 +121,10 @@ for (const file of await files(DIST, /\.html$/)) {
     const res = await fetch(target);
     checked++;
     if (res.status !== 200) failures.push(`${file}: ${res.status} ${target.pathname}`);
+    else if (remote && IMAGE.test(target.pathname)) {
+      const bytes = (await res.arrayBuffer()).byteLength;
+      if (bytes > MAX_IMAGE_BYTES) failures.push(`${target.pathname}: ${Math.round(bytes / 1024)} KB, above 200 KB`);
+    }
   }
   // The page itself must also be served at the base path.
   const page = await fetch(pageUrl);
@@ -111,12 +132,13 @@ for (const file of await files(DIST, /\.html$/)) {
   if (page.status !== 200) failures.push(`${file}: ${page.status} ${pageUrl.pathname}`);
 }
 
-server.close();
-
-for (const img of await files(DIST, IMAGE)) {
-  const { size } = await stat(img);
-  if (size > MAX_IMAGE_BYTES) failures.push(`${img}: ${Math.round(size / 1024)} KB, above 200 KB`);
+if (!remote) {
+  server.close();
+  for (const img of await files(DIST, IMAGE)) {
+    const { size } = await stat(img);
+    if (size > MAX_IMAGE_BYTES) failures.push(`${img}: ${Math.round(size / 1024)} KB, above 200 KB`);
+  }
 }
-console.log(`base ${base}: ${checked} requests, ${failures.length} failing`);
+console.log(`${remote ? origin : 'base'} ${base}: ${checked} requests, ${failures.length} failing`);
 for (const f of failures) console.log(`  ${f}`);
 process.exit(failures.length ? 1 : 0);

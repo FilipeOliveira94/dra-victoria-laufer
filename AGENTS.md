@@ -40,7 +40,7 @@ One issue, one feature branch, one pull request.
 6. Implement the smallest coherent increment that satisfies the issue.
 7. Run the checks in §9 and the CFM checklist in §8. Fix regressions caused by the change.
 8. Update documentation and `PROJECT_STATUS.md` (current-phase ledger only; older narrative goes to `docs/status-log.md`).
-9. Push the feature branch and open the PR. The PR description lists the issue ID, the acceptance criteria with how each was verified, the check results, and the CFM checklist result.
+9. Push the feature branch and open the PR. The PR description lists the issue ID, the acceptance criteria with how each was verified, the check results, and the CFM checklist result. The PR's CI run (`deploy.yml`, build job) runs the same build as a deploy, private assets included; it must pass, and its run is cited as evidence.
 10. PO and Reviewer each review the PR. Both approvals are required.
 11. Filipe gives the OK. Only then does the Reviewer merge.
 
@@ -51,6 +51,8 @@ Do not silently change architecture, dependencies or acceptance criteria.
 Record what was implemented and what the checks showed. Do not record pauses, retries, or other recovery steps that do not change how to operate the result.
 
 An entry point that belongs to the issue and was not run is not verified. Name it and say why before treating the issue as done.
+
+An issue is verified in its own PR: local checks plus the PR's CI run. Do not open a pull request only to record the published-site check. After each merge, the `published` job of `deploy.yml` checks the live page; its run is the evidence. The next PR cites that run in `docs/status-log.md`. A failing `published` job is a defect: fix it in its own PR.
 
 `PROJECT_STATUS.md` tracks the **current phase** (progress, blockers, latest validation, next work). Issue inventory lives in `ROADMAP.md`; ADRs in `DECISIONS.md` and `docs/decisions/`; chronological archive in `docs/status-log.md`. Do **not** treat `PROJECT_STATUS.md` as durable evidence storage: architecture docs, ADRs and the status log carry the verified facts.
 
@@ -144,7 +146,8 @@ Before asking for the merge, check each item and update only what the verified e
 
 - `ROADMAP.md`: the issue status, a Changelog line, and Last updated.
 - `PROJECT_STATUS.md`: the phase table, Blockers, Next work, and Last updated.
-- `docs/status-log.md`: a new entry.
+- `docs/status-log.md`: a new entry, with the PR's CI run and, if not yet recorded, the `published` run of the previous merge.
+- The PR's CI run passed, with the private-assets step executed (not skipped).
 - An ADR or `DECISIONS.md` row gets an Implemented value only with evidence from a verified issue.
 - `docs/compliance/cfm.md` changes only when a rule changes, with the source of the change.
 - `README.md` changes when how to run the site or the current state changes.
@@ -158,7 +161,7 @@ Prompts for planning, implementing and closing an issue are in [`docs/agent-work
 - The Dev pushes only its own feature branch. Never push `main`. Never force-push a branch someone else is reviewing.
 - Open one PR per issue. Do not merge your own PR.
 - Merge is done by the Reviewer, after PO and Reviewer approval and Filipe's OK.
-- A push to `main` publishes the site. Treat every merge as a deploy.
+- A push to `main` publishes the site. Treat every merge as a deploy, and read the `published` job of its run.
 - Documentation-only bootstrap commits made directly on `main` need Filipe's explicit authorization and a status-log entry.
 
 AGENTS.md is the single source; CLAUDE.md imports it.
