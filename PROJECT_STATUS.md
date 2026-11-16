@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (legacy Jekyll site) |
-| Last updated | 2026-11-16 (0.3 in review: brand recorded in `DESIGN.md`) |
+| Last updated | 2026-11-16 (0.3 verified: `DESIGN.md` approved) |
 | Current phase | Phase 0 — Product and brand, and Phase 1 — New base (MVP), in parallel |
-| Phase status | In progress (0.1 and 0.2 verified; 0.3 in review) |
+| Phase status | Phase 0 verified (0.1, 0.2 and 0.3); Phase 1 not started |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -28,15 +28,13 @@ The repository holds the legacy Jekyll site plus the project structure. No part 
 
 ## Next work
 
-1. **0.3** — Filipe reviews and approves `DESIGN.md` in the pull request; D-011 then becomes `approved`.
-2. **1.1** — Replace Jekyll with Astro, deployed by Actions. No dependency. Acceptance: `ROADMAP.md` → 1.1.
-3. **1.2 → 1.3**, then **1.4**, **1.5**, **1.6** and **1.7**, in the dependency order in `ROADMAP.md`.
+1. **1.1** — Replace Jekyll with Astro, deployed by Actions. No dependency. Acceptance: `ROADMAP.md` → 1.1.
+2. **1.2 → 1.3**, then **1.4**, **1.5**, **1.6** and **1.7**, in the dependency order in `ROADMAP.md`.
 
 ## Blockers
 
 | Pending | Who | Blocks |
 | --- | --- | --- |
-| Approval of `DESIGN.md` | Filipe | Closing 0.3 |
 | Push of assets commit `c36549d` (`brand/` logos) | Filipe | 1.4 and 2.4 fetching the logos |
 
 Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md).
@@ -51,7 +49,7 @@ Nothing blocks Phase 1.
 | --- | --- | --- | --- |
 | 0.1 | Record the product context | Verified | [`PRODUCT.md`](PRODUCT.md), approved by Filipe on 2026-11-16 |
 | 0.2 | Collect pending inputs | Verified | [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md) |
-| 0.3 | Define the visual identity | In progress (in review) | [`DESIGN.md`](DESIGN.md), [ADR-0011](docs/decisions/0011-visual-identity.md), `make contrast` |
+| 0.3 | Define the visual identity | Verified | [`DESIGN.md`](DESIGN.md), approved by Filipe on 2026-11-16; [ADR-0011](docs/decisions/0011-visual-identity.md); `make contrast` 15/15 |
 
 ## Phase 1 progress
 
@@ -116,7 +114,7 @@ The legacy Jekyll build processes Markdown files at any depth. Until 1.1 removes
 
 ## Decisions (active)
 
-The ten decisions of the plan are `approved` and none is implemented, except the license: [`DECISIONS.md`](DECISIONS.md). The ones that gate the current work:
+All eleven decisions are `approved` and none is implemented, except the license: [`DECISIONS.md`](DECISIONS.md). The ones that gate the current work:
 
 | ID | Topic | Gates |
 | --- | --- | --- |
@@ -125,7 +123,7 @@ The ten decisions of the plan are `approved` and none is implemented, except the
 | D-004 | `DEPLOY_TARGET` | 1.1, 3.2 |
 | D-006 | `noindex` until 2.5 | 1.1, 2.5 |
 | D-010 | Private assets repository | 1.4 |
-| D-011 | Visual identity (`proposed`) | 0.3, 1.4, 2.4 |
+| D-011 | Visual identity | 1.4, 2.4 |
 
 ## Active risks
 

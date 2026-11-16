@@ -2,9 +2,9 @@
 
 | Field | Value |
 | --- | --- |
-| Status | proposed |
+| Status | approved |
 | Date opened | 2026-11-16 |
-| Date decided | — |
+| Date decided | 2026-11-16 |
 | Owner | Filipe (brand owner), with Dra. Victória |
 | Index ID | D-011 |
 | Related issues | 0.3, 1.4, 2.4 |

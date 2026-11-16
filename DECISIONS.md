@@ -35,7 +35,7 @@ Short index of the architecture choices for the portfolio site of Dra. Victória
 | D-008 | License | MIT for the code only; texts, photos, name and logo with all rights reserved | `LICENSE` and README note (1.8, delivered 2026-11-15) | `approved` | [ADR-0008](docs/decisions/0008-license-code-only.md) |
 | D-009 | Structured data | schema.org `Person` without `medicalSpecialty`; `Physician` only with acquisition switched on | — | `approved` | [ADR-0009](docs/decisions/0009-schema-person.md) |
 | D-010 | Assets | Original photos and brand source files in the private repository `dra-victoria-laufer-assets`; the build fetches them with a read-only deploy key | — | `approved` | [ADR-0010](docs/decisions/0010-private-assets-repository.md) |
-| D-011 | Visual identity | Her palette with green, yellow and white leading and lilac as secondary; text only in the 15 approved pairs (≥ 4.5:1); Source Serif 4 and Source Sans 3, self-hosted; logo without the tagline. Normative detail in `DESIGN.md` | — (tokens applied in 2.4) | `proposed` | [ADR-0011](docs/decisions/0011-visual-identity.md) |
+| D-011 | Visual identity | Her palette with green, yellow and white leading and lilac as secondary; text only in the 15 approved pairs (≥ 4.5:1); Source Serif 4 and Source Sans 3, self-hosted; logo without the tagline. Normative detail in `DESIGN.md` | — (tokens applied in 2.4) | `approved` | [ADR-0011](docs/decisions/0011-visual-identity.md) |
 
 `—` means not yet implemented or not yet verified in the repository.
 
@@ -53,6 +53,6 @@ Logo, palette and typography are recorded in [`DESIGN.md`](DESIGN.md) and ADR-00
 
 | Date | Change |
 | --- | --- |
-| 2026-11-16 | D-011 proposed: visual identity (issue 0.3), approved when Filipe approves `DESIGN.md` |
+| 2026-11-16 | D-011 approved: visual identity (issue 0.3), with Filipe's approval of `DESIGN.md` |
 | 2026-11-16 | D-003 and D-004: final domain changed to `dravictorialaufer.com.br` by Filipe |
 | 2026-11-15 | Initial decision log: D-001 to D-010 recorded from the approved plan v2 and its final adjustments. D-008 implemented by the `LICENSE` in the same commit |

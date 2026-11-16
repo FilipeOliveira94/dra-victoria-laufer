@@ -24,7 +24,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Phase | Scope | Depends on | Status |
 | --- | --- | --- | --- |
-| 0 | Product and brand: product context, pending inputs, visual identity | — | In progress (0.1 and 0.2 verified, 0.3 in review) |
+| 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Not started (1.8 delivered) |
 | 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, release | Phase 1; inputs from 0.2; brand from 0.3 | Not started |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
@@ -80,7 +80,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `in progress` (`DESIGN.md` waiting for Filipe's approval) |
+| Status | `verified` |
 | Size | M |
 | Depends on | Filipe's confirmation; 0.1 |
 
@@ -466,5 +466,5 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-15 | Roadmap created from the approved plan v2 with its final adjustments (single e-mail, 3.3 withdrawn, private assets repository in 1.4, extra acceptance in 1.7 and 1.8). 1.8 delivered with the project-structure commit |
 | 2026-11-15 | 0.2 verified: every content input received (`docs/inputs/0.2-pending-inputs.md`). Filipe added current workplaces and a start year to "Atuação" (scope of 0.2 and 2.3), narrowed the "numbers" anti-goal to statistics, and decided to show the postgraduate courses although the CREMESP registration is frozen |
 | 2026-11-16 | 0.1 verified: `PRODUCT.md` approved by Filipe, written through the Impeccable init flow from the confirmed brief, the 0.2 inputs and the CFM checklist. The brief's page sequence and mode stay here, linked from `PRODUCT.md` (Filipe's decision) |
-| 2026-11-16 | 0.3 in progress: brand confirmed by Filipe and recorded in `DESIGN.md` (ADR-0011); 2.4 no longer blocked by the brand |
+| 2026-11-16 | 0.3 verified: brand confirmed by Filipe and recorded in `DESIGN.md`, approved by Filipe; every text pair ≥ 4.5:1 (`make contrast`). D-011 approved; 2.4 no longer blocked by the brand |
 | 2026-11-16 | Domain changed by Filipe from `victorialaufer.com.br` to `dravictorialaufer.com.br` (Phase 3, ADR-0003, ADR-0004) |
