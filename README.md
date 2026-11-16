@@ -11,9 +11,9 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 | Field | Now |
 | --- | --- |
-| In the repository | The **Astro base** (issue 1.1): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550` and e-mail. Content model, layout and brand come in later issues |
+| In the repository | The **Astro base** (issue 1.1) and the **typed content model** (issue 1.2): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550` and e-mail, read from the collections in `src/content/data/`. Layout and brand come in later issues |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> |
-| Next | Issue 1.2, typed content model |
+| Next | Issue 1.3, structure and layout of the single page |
 | Brand | Confirmed in [`DESIGN.md`](DESIGN.md) (issue 0.3); applied to the site in issue 2.4. `make contrast` checks its colour pairs |
 | Ledger | [`PROJECT_STATUS.md`](PROJECT_STATUS.md) · scope in [`ROADMAP.md`](ROADMAP.md) |
 
@@ -21,7 +21,7 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 ## ⚙️ Target stack
 
-Generator, hosting, `DEPLOY_TARGET` and `noindex` are built (issue 1.1); the rest is planned. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`docs/architecture/target-site.md`](docs/architecture/target-site.md).
+Generator, hosting, `DEPLOY_TARGET` and `noindex` are built (issue 1.1), and so is the content model (issue 1.2); the rest is planned. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`docs/architecture/target-site.md`](docs/architecture/target-site.md).
 
 | Layer | Choice |
 | --- | --- |
@@ -56,6 +56,7 @@ make help
 - Needs Node.js at the version in [`.nvmrc`](.nvmrc) (Astro 7 requires ≥ 22.23.4) and npm.
 - A push to `main` builds and deploys through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The repository's Pages source is "GitHub Actions".
 - Every build carries `noindex` until issue 2.5 sets `indexable` in [`src/config/release.ts`](src/config/release.ts).
+- Facts about her live only in [`src/content/data/`](src/content/data/), checked by the schemas in [`src/content.config.ts`](src/content.config.ts). Invalid data stops the build. A missing fact is `pendente: true` with a `motivo`: it stays off the page and `make build` lists it as `[pendente] <collection>/<id>: <motivo>`.
 
 ---
 

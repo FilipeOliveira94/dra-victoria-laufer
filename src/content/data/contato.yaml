@@ -1,0 +1,17 @@
+# Public contact channels (ADR-0007). The e-mail is the only one on the site.
+# An invitation to schedule is acquisition and lives behind src/config/captacao.ts.
+
+email:
+  tipo: email
+  ordem: 0
+  valor: victorialaufersaude@gmail.com
+
+whatsapp:
+  tipo: whatsapp
+  ordem: 1
+  valor: "+5512987097380"
+
+instagram:
+  tipo: instagram
+  ordem: 2
+  valor: https://www.instagram.com/pediatria.dravictoria

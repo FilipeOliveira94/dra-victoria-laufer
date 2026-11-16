@@ -1,0 +1,35 @@
+# Approved role lines. Source: docs/inputs/0.2-pending-inputs.md → 3.
+# Wording rule: docs/compliance/cfm.md → C (function and setting, never a
+# specialty title or a treatment claim). `desde` renders ", desde <ano>".
+
+maternidade-jesus-jose-maria:
+  grupo: local
+  ordem: 0
+  texto: Médica na neonatologia da Maternidade Jesus, José e Maria — Guarulhos
+
+hospital-unimed-guarulhos:
+  grupo: local
+  ordem: 1
+  texto: Médica na neonatologia e na UTI pediátrica do Complexo Hospitalar Unimed Guarulhos
+
+hospital-carlos-chagas:
+  grupo: local
+  ordem: 2
+  texto: Médica na neonatologia e na UTI pediátrica do Hospital Carlos Chagas — Guarulhos
+
+hospital-sao-francisco-de-assis:
+  grupo: local
+  ordem: 3
+  texto: Médica na UTI pediátrica do Hospital São Francisco de Assis — Jacareí
+
+atendimento-clinico:
+  grupo: experiencia
+  ordem: 4
+  texto: Atendimento clínico de crianças, pronto-socorro infantil e maternidade de baixo risco
+  desde: 2022
+
+terapia-intensiva:
+  grupo: experiencia
+  ordem: 5
+  texto: UTI pediátrica e neonatal
+  desde: 2024

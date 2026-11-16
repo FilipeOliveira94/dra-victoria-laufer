@@ -39,19 +39,21 @@ The tokens are neutral and provisional until issue 2.4 applies the brand confirm
 
 Issue 1.2, [ADR-0005](../decisions/0005-typed-content-collections.md).
 
-| Collection | Holds |
-| --- | --- |
-| `medica` | Name, registration, the word `MÉDICA` |
-| `formacao` | Postgraduate courses and the degree: official name, institution |
-| `atuacao` | Roles performed |
-| `contato` | E-mail, WhatsApp, Instagram |
+Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src/content.config.ts`; pages read through `src/lib/content.ts`.
+
+| Collection | Holds | Fields |
+| --- | --- | --- |
+| `medica` | Name, registration, the word `MÉDICA`, the text "Sobre" | `nome`; `titulo` (only `MÉDICA`); `crm.uf`, `crm.numero`; `sobre` (list of paragraphs, her text as approved) |
+| `formacao` | The degree and the postgraduate courses | `tipo: graduacao` with `curso`, `instituicao`, `ano`; `tipo: pos-graduacao` with `nomeOficial`, `area`, `instituicao`, `emCurso`. Both carry `ordem` |
+| `atuacao` | Approved role lines | `grupo` (`local` or `experiencia`), `ordem`, `texto`, optional `desde` (rendered ", desde <ano>") |
+| `contato` | E-mail, WhatsApp, Instagram | `tipo` (`email`, `whatsapp` in E.164, `instagram` as an `https://www.instagram.com/` URL), `ordem`, `valor` |
 
 - Every collection has a schema. Invalid data breaks the build.
-- Every item can be `pendente`. A pending item is not rendered and is listed in the build's pending report.
+- An item is either complete or `pendente: true` with a non-empty `motivo`. A complete item has every required field and no unknown one. A pending item may keep partial fields, which are not checked.
+- A pending item is not rendered: `published()` in `src/lib/content.ts` drops it. The build log lists it as `[pendente] <collection>/<id>: <motivo>`, with a count per collection. The report is not written to `dist/`.
+- The loader (`src/content/loader.ts`) wraps Astro's `file()` and stops the build when the file is missing or unreadable, which `file()` alone only logs.
 - Pages and JSON-LD read from the collections. No fact is typed twice.
-- Flags `captacao.cta` and `captacao.atendimento` are off. Off means no HTML and no JSON-LD for those blocks (Phase 6).
-
-The table shows which facts each collection carries. The field names, and where the text "Sobre" is stored, are defined in issue 1.2.
+- Flags `captacao.cta` and `captacao.atendimento` in `src/config/captacao.ts` are off. Off means no HTML and no JSON-LD for those blocks (Phase 6).
 
 ## Environments
 

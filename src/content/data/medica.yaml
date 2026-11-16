@@ -1,0 +1,14 @@
+# Identification and the text "Sobre". Source: docs/inputs/0.2-pending-inputs.md.
+# Schema and rules: src/content.config.ts. A missing fact is `pendente: true`
+# with a `motivo`; never a placeholder.
+
+victoria:
+  nome: Dra. Victória Laufer
+  titulo: MÉDICA
+  crm:
+    uf: SP
+    numero: "240550"
+  # Approved by her (relayed by Filipe, 2026-11-15). Published as is.
+  sobre:
+    - Sou médica e trabalho no cuidado de recém-nascidos e crianças, em maternidade e em unidade de terapia intensiva. Ao longo da formação, busquei pós-graduações em pediatria clínica, neonatologia e terapia intensiva pediátrica, listadas em Formação.
+    - No dia a dia, procuro explicar com clareza cada etapa do cuidado e responder às dúvidas das famílias com calma e respeito.
