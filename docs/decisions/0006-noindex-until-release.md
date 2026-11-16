@@ -30,12 +30,13 @@ The site is published with **`noindex` until issue 2.5**. Issue 2.5 removes it o
 ## Consequences and trade-offs
 
 - Issue 1.1 is the first delivery because it replaces the indexable legacy site with a `noindex` one.
+- `noindex` comes from one constant, `indexable = false` in `src/config/release.ts`, rendered by the base layout. It does not depend on `DEPLOY_TARGET`, so a production build is also `noindex` until 2.5 flips the constant.
 - A brand that stays unconfirmed delays release, since 2.5 depends on 2.4.
 - `noindex` asks engines not to index; it does not hide the page from someone with the URL.
 
 ## Evidence / validation
 
-None yet.
+Issue 1.1, local builds on 2026-11-16: both targets emit `<meta name="robots" content="noindex">`. The published staging check follows the 1.1 merge.
 
 ## Revisit when
 

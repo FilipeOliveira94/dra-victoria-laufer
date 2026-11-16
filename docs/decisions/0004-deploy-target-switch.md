@@ -17,7 +17,7 @@ Today the site lives under `https://filipeoliveira94.github.io/dra-victoria-lauf
 
 ## Decision
 
-One variable in the workflow, **`DEPLOY_TARGET: ghpages`**, sets the site URL, the base path and `noindex` for staging. A build **without** the variable generates the URLs of the final domain. The switch in issue 3.2 is removing that line.
+One variable in the workflow, **`DEPLOY_TARGET: ghpages`**, sets the site URL and the base path for staging. A build **without** the variable generates the URLs of the final domain. The switch in issue 3.2 is removing that line.
 
 ## Alternatives considered
 
@@ -31,11 +31,11 @@ One variable in the workflow, **`DEPLOY_TARGET: ghpages`**, sets the site URL, t
 
 - No page, link or metadata value may hard-code a host or a base path.
 - Acceptance of 3.2 is a one-line diff.
-- `DEPLOY_TARGET` also carries `noindex`. Releasing indexing in 2.5 before the domain switch needs the flag handled separately from the URL; issue 1.1 defines how ([ADR-0006](0006-noindex-until-release.md)).
+- `noindex` is not carried by `DEPLOY_TARGET`. Issue 1.1 defined it as a separate constant, `indexable` in `src/config/release.ts`, so 2.5 and 3.2 can happen in either order ([ADR-0006](0006-noindex-until-release.md)). Plan approved by Filipe on 2026-11-16.
 
 ## Evidence / validation
 
-None yet.
+Issue 1.1, local builds on 2026-11-16: without the variable the canonical is `https://dravictorialaufer.com.br/`; with `ghpages` it is `https://filipeoliveira94.github.io/dra-victoria-laufer/`; an unknown value stops the build. The published staging check follows the 1.1 merge.
 
 ## Revisit when
 

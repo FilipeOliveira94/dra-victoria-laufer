@@ -1,6 +1,6 @@
 # Target site
 
-Overview of the site the roadmap builds. **None of it exists yet.** The repository holds the legacy Jekyll site until issue 1.1; its state is in [`PROJECT_STATUS.md`](../../PROJECT_STATUS.md). Each section names the issue that builds it and the ADR that explains it. File paths and package versions are chosen in those issues and recorded here when they are verified.
+Overview of the site the roadmap builds. **Built so far:** the Astro base, the deploy workflow, `DEPLOY_TARGET` and `noindex` (issue 1.1). The rest does not exist yet; progress is in [`PROJECT_STATUS.md`](../../PROJECT_STATUS.md). Each section names the issue that builds it and the ADR that explains it. File paths and package versions are chosen in those issues and recorded here when they are verified.
 
 ## Purpose
 
@@ -62,9 +62,9 @@ The table shows which facts each collection carries. The field names, and where 
 | URL | `https://filipeoliveira94.github.io/dra-victoria-laufer/` | `https://dravictorialaufer.com.br/` |
 | Base path | `/dra-victoria-laufer` | `/` |
 | `DEPLOY_TARGET` | `ghpages` | not set |
-| Indexing | `noindex` | Indexable once 2.5 has released it |
+| Indexing | `noindex` | `noindex` until 2.5 sets `indexable` in `src/config/release.ts` |
 
-A build without `DEPLOY_TARGET` produces the production URLs. Canonical, sitemap and Open Graph URLs follow the target by themselves. The domain switch is a one-line diff in the workflow.
+`astro.config.mjs` maps the variable to `site` and `base`; an unknown value stops the build. `noindex` does not depend on it. A build without `DEPLOY_TARGET` produces the production URLs. Canonical, sitemap and Open Graph URLs follow the target by themselves. The domain switch is a one-line diff in the workflow.
 
 ## Build and deploy
 
@@ -74,7 +74,8 @@ pull request ──► checks (1.7) ──► PO + Reviewer approval ──► F
 private assets repo ──(read-only deploy key)──► fetch ──► build ──► GitHub Pages ◄┘
 ```
 
-- A push to `main` builds and publishes. The built site is not committed to any branch.
+- A push to `main` runs `.github/workflows/deploy.yml`: `npm ci`, build with `DEPLOY_TARGET: ghpages`, `scripts/check-requests.mjs` (every referenced request must return 200 from the site itself), upload `dist/`, deploy. The built site is not committed to any branch.
+- Astro 7.4.12 on Node.js 22.23.4 (`.nvmrc`); `package-lock.json` is committed.
 - The workflow fetches `dra-victoria-laufer-assets` before the build. Without the secret, the build uses a neutral placeholder and still completes.
 - The portrait is published as AVIF and WebP with `srcset` and declared dimensions, and the main image has high priority (issue 1.4).
 

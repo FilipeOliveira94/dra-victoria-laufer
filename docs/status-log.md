@@ -4,6 +4,23 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 1.1: Astro base verified
+
+The Jekyll site is replaced by an Astro 7.4.12 project (`package.json`, `package-lock.json`, `astro.config.mjs`, `src/`). Removed: `Gemfile`, `_config.yml`, `_includes/`, `_layouts/`, `_posts/`, `css/`, `img/` (including `avatar.svg`), `index.html`, `404.html`, `jekyll-gh-pages.yml` and the Jekyll lines of `.gitignore`. Bootstrap and Minima went with the includes and the Gemfile.
+
+- One page, `lang="pt-BR"`, with the facts Filipe approved for it: "Dra. Victória Laufer", `MÉDICA · CRM-SP 240550`, the e-mail. No CSS, no script.
+- `DEPLOY_TARGET` (ADR-0004) sets `site` and `base` in `astro.config.mjs`; unset is production, `ghpages` is staging, any other value stops the build.
+- `noindex` comes from `indexable = false` in `src/config/release.ts`, independent of the host (ADR-0006, defined here as ADR-0004 asked; approved by Filipe).
+- `<link rel="canonical">` is emitted so the build shows its URLs; issue 1.6 completes the metadata. `<link rel="icon" href="data:,">` stops the browser's automatic `/favicon.ico` request, which would 404 at the root of `github.io`; 1.4 adds the real favicon.
+- `.github/workflows/deploy.yml` builds with `DEPLOY_TARGET: ghpages`, runs `scripts/check-requests.mjs`, uploads `dist/` and deploys. `.nvmrc` pins Node.js 22.23.4, the minimum Astro 7 accepts.
+- `make` targets call the npm scripts directly; `make requests` is new; `lint` and `lighthouse` print a notice until 1.7.
+
+Checks (local build, WSL2, Node.js 22.23.4; not CI, not the published site): `make build` without the variable gives canonical `https://dravictorialaufer.com.br/` and `noindex`; with `DEPLOY_TARGET=ghpages`, canonical `https://filipeoliveira94.github.io/dra-victoria-laufer/` and `noindex`; `DEPLOY_TARGET=foo` fails with the error message. `make requests BASE=/dra-victoria-laufer/`: 1 request, 0 failing; the script fails on a test page with a missing stylesheet (404) and a CDN script (third party). `make check` (`astro check`): 0 errors. `npx html-validate@9 dist/index.html`: no errors. Grep for `lorem`, `pediatra`, `especialista em` in `src/` and `dist/`: no match. `make contrast`: 15/15.
+
+Not yet run: the published-site acceptance ("a push to `main` publishes at `/dra-victoria-laufer/` with no 404 request") needs the merge and the Pages source set to "GitHub Actions" by Filipe. Filipe marked 1.1 `verified` on 2026-11-16 before that check; it runs after the merge and its result is added here.
+
+---
+
 ### 2026-11-16 — Issue 0.3: visual identity verified
 
 [`DESIGN.md`](../DESIGN.md) records the brand Filipe confirmed from Dra. Victória's logo and palette, through the Impeccable new-surface flow. The direction roll was skipped under the flow's pinned-direction exception: the client fixed the palette ("Manter paleta no verde, lilás/roxo, azul, amarelo, mas podemos mudar as fontes das letras para fontes mais sóbrias") and the logo, and the brief in `ROADMAP.md` fixes the page sequence and first fold. `.impeccable/design.json` carries the sidecar (colour ramps, nine component snippets, narrative). ADR-0011 and D-011 record the decision.

@@ -34,7 +34,7 @@ Build the site with **Astro**, with static output and **no JavaScript shipped to
 
 ## Evidence / validation
 
-None yet. Issue 1.1 records the first build.
+Issue 1.1, 2026-11-16: Astro 7.4.12 (`package-lock.json` committed) builds one static page with no `<script>`; `astro check` 0 errors. Requires Node.js ≥ 22.23.4 (`.nvmrc`).
 
 ## Revisit when
 
