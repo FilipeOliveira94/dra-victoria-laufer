@@ -35,7 +35,7 @@ Host on **GitHub Pages**, with the site **built and deployed by a GitHub Actions
 
 ## Evidence / validation
 
-Issue 1.1 replaces `jekyll-gh-pages.yml` with `.github/workflows/deploy.yml` (build with `DEPLOY_TARGET: ghpages`, request check, upload `dist/`, deploy). The Pages source is set by Filipe in the repository settings. The first run is checked after the 1.1 merge.
+Issue 1.1 replaces `jekyll-gh-pages.yml` with `.github/workflows/deploy.yml` (build with `DEPLOY_TARGET: ghpages`, request check, upload `dist/`, deploy). Filipe set the Pages source to "GitHub Actions". After the 1.1 merge (`d9bddfd`, 2026-11-16) the site at `/dra-victoria-laufer/` is the Astro build and the legacy files return 404.
 
 ## Revisit when
 

@@ -101,7 +101,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `verified` (marked verified by Filipe on 2026-11-16 before the published-site check, which runs after the merge) |
+| Status | `verified` (local builds and the published site checked on 2026-11-16) |
 | Size | M |
 | Depends on | — |
 | ADRs | [0001](docs/decisions/0001-static-site-generator-astro.md), [0003](docs/decisions/0003-hosting-github-pages-actions.md), [0004](docs/decisions/0004-deploy-target-switch.md), [0006](docs/decisions/0006-noindex-until-release.md) |
@@ -457,7 +457,7 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | Brand unconfirmed for a long time | MVP ready but not released | Closed 2026-11-16: brand confirmed in 0.3 |
 | Content inputs arrive late | Empty sections | Pending items stay hidden; identification and contact already carry the page |
 | Public e-mail and WhatsApp | Spam and clinical messages through an informal channel | Notice in 5.1 |
-| Current site indexable with Lorem ipsum and "Atendimento Pediátrico" | Credibility and CFM exposure today | 1.1 is the first delivery and already publishes with `noindex` |
+| Current site indexable with Lorem ipsum and "Atendimento Pediátrico" | Credibility and CFM exposure today | Closed 2026-11-16: the 1.1 deploy replaced it with a `noindex` page |
 
 ## Changelog
 
@@ -469,3 +469,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 0.3 verified: brand confirmed by Filipe and recorded in `DESIGN.md`, approved by Filipe; every text pair ≥ 4.5:1 (`make contrast`). D-011 approved; 2.4 no longer blocked by the brand |
 | 2026-11-16 | Domain changed by Filipe from `victorialaufer.com.br` to `dravictorialaufer.com.br` (Phase 3, ADR-0003, ADR-0004) |
 | 2026-11-16 | 1.1 verified: Astro 7.4.12 base, `deploy.yml` workflow, `DEPLOY_TARGET`, `noindex` from `src/config/release.ts`; Jekyll removed. Local builds checked; marked verified by Filipe before the published-site check, which runs after the merge |
+| 2026-11-16 | 1.1 published-site check: the `deploy.yml` deploy serves the Astro page at `/dra-victoria-laufer/` with `noindex`, the staging canonical and no request besides the page; the legacy files return 404 |

@@ -35,7 +35,7 @@ One variable in the workflow, **`DEPLOY_TARGET: ghpages`**, sets the site URL an
 
 ## Evidence / validation
 
-Issue 1.1, local builds on 2026-11-16: without the variable the canonical is `https://dravictorialaufer.com.br/`; with `ghpages` it is `https://filipeoliveira94.github.io/dra-victoria-laufer/`; an unknown value stops the build. The published staging check follows the 1.1 merge.
+Issue 1.1, local builds on 2026-11-16: without the variable the canonical is `https://dravictorialaufer.com.br/`; with `ghpages` it is `https://filipeoliveira94.github.io/dra-victoria-laufer/`; an unknown value stops the build. Published staging site after the 1.1 merge: canonical `https://filipeoliveira94.github.io/dra-victoria-laufer/`, no request outside the base path.
 
 ## Revisit when
 
