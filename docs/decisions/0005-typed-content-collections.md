@@ -7,7 +7,7 @@
 | Date decided | 2026-11-15 (recorded) |
 | Owner | Filipe |
 | Index ID | D-005 |
-| Related issues | 1.2, 2.1, 2.2, 2.3 |
+| Related issues | 1.2, 2.2, 2.3, 2.4 |
 | Supersedes | — |
 | Superseded by | — |
 
@@ -29,7 +29,7 @@ Keep the content in **typed collections** — `medica`, `formacao`, `atuacao`, `
 
 ## Consequences and trade-offs
 
-- The pending report is the measure for release: issue 2.5 requires it empty for identification and training.
+- The pending report is the measure for release: issue 2.6 requires it empty for identification and training.
 - The Art. 13 wording is produced from the data, so a course without its official name cannot be half-published.
 - The `captacao.*` flags live in the same model and default to off.
 

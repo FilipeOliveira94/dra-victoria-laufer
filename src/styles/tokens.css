@@ -1,59 +1,82 @@
 /*
  * Design tokens: the only place for colour, type and spacing values (ADR-0002).
  *
- * PROVISIONAL and neutral (issue 1.3). They are not the brand. Issue 2.4
- * replaces them with the identity confirmed in DESIGN.md; its acceptance is
- * "no provisional token left".
+ * The confirmed identity from DESIGN.md (issue 0.3), applied in issue 2.1.
+ * Brand tokens carry the DESIGN.md names; the semantic tokens below them are
+ * what the stylesheets use. Text and background pairs come only from the
+ * approved table in DESIGN.md (`make contrast`).
  *
- * Text pairs (WCAG 2.1, >= 4.5:1):
- *   text on ground ............ #1f1f1f / #ffffff  16.48
- *   text-muted on ground ...... #4d4d4d / #ffffff   8.45
- *   text on ground-alt ........ #1f1f1f / #f2f2f2  14.72
- *   text-muted on ground-alt .. #4d4d4d / #f2f2f2   7.55
- *   text-inverse on footer .... #ffffff / #2e2e2e  13.58
- *
- * Focus ring (WCAG 2.1 1.4.11, >= 3:1 against the ground it sits on):
- *   focus on ground ........... #1f1f1f / #ffffff  16.48
- *   focus on ground-alt ....... #1f1f1f / #f2f2f2  14.72
- *   focus-inverse on footer ... #ffffff / #2e2e2e  13.58
+ * Fields-Not-Ink: verde-marca, amarelo-marca, ouro, lilas and lilas-claro are
+ * grounds or ornament, never text on white.
  */
 :root {
-  /* Colour */
-  --color-ground: #ffffff;
-  --color-ground-alt: #f2f2f2;
-  --color-text: #1f1f1f;
-  --color-text-muted: #4d4d4d;
-  --color-rule: #8c8c8c;
-  --color-footer: #2e2e2e;
-  --color-text-inverse: #ffffff;
-  /* DESIGN.md: verde-profundo on light grounds, branco on the footer (2.4). */
-  --color-focus: var(--color-text);
-  --color-focus-inverse: var(--color-text-inverse);
+  /* Brand palette (DESIGN.md → Colors) */
+  --branco: #ffffff;
+  --azul-tinta: #274360;
+  --azul-noite: #1c3048;
+  --azul-cinza: #4a6178;
+  --verde-marca: #3eb7ae;
+  --verde-profundo: #135a55;
+  --verde-claro: #e6f5f3;
+  --amarelo-marca: #ffd87d;
+  --ouro: #a47b1c;
+  --lilas: #b78bc5;
+  --lilas-claro: #f3edf6;
 
-  /* Type: the DESIGN.md faces, served from the site (issue 1.4, fonts.css).
-     Sizes and weights stay provisional until 2.4. */
+  /* Colour roles */
+  --color-ground: var(--branco);
+  --color-ground-alt: var(--verde-claro);
+  --color-ground-sobre: var(--lilas-claro);
+  --color-text: var(--azul-tinta);
+  --color-text-muted: var(--azul-cinza);
+  --color-heading: var(--verde-profundo);
+  --color-link: var(--verde-profundo);
+  --color-link-hover: var(--azul-noite);
+  --color-hairline: var(--ouro);
+  --color-rule-sobre: var(--lilas);
+  --color-footer: var(--verde-profundo);
+  --color-text-inverse: var(--branco);
+  /* Selection: azul-tinta on amarelo-marca (7.47), distinct from every ground. */
+  --color-selection: var(--amarelo-marca);
+  /* DESIGN.md → Links: verde-profundo on light grounds, branco on the footer. */
+  --color-focus: var(--verde-profundo);
+  --color-focus-inverse: var(--branco);
+
+  /* Type (DESIGN.md → Typography), served from the site (fonts.css) */
   --font-body: 'Source Sans 3', 'Segoe UI', Roboto, Arial, sans-serif;
   --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.25rem;
-  --text-xl: 1.5rem;
-  --text-display: clamp(2rem, 1.5rem + 2.5vw, 3rem);
-  --leading-body: 1.6;
-  --leading-tight: 1.2;
+  --weight-regular: 400;
+  --weight-strong: 600;
 
-  /* Shape (DESIGN.md: rounded.sm for the focus ring) */
+  --display-size: clamp(2.25rem, 1.6rem + 3vw, 3.5rem);
+  --display-leading: 1.1;
+  --display-tracking: -0.01em;
+  --headline-size: clamp(1.625rem, 1.4rem + 1vw, 2rem);
+  --headline-leading: 1.2;
+  --title-size: 1.125rem;
+  --title-leading: 1.4;
+  --body-size: 1.0625rem;
+  --body-leading: 1.6;
+  --label-size: 0.9375rem;
+  --label-leading: 1.4;
+  --label-tracking: 0.08em;
+
+  /* Shape (DESIGN.md → Shapes) */
+  --radius-none: 0;
   --radius-sm: 2px;
+  --radius-md: 6px;
   --focus-width: 2px;
+  --hairline: 2px;
+  --rule-sobre: 4px;
 
-  /* Space */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4rem;
+  /* Space (DESIGN.md → spacing) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
 
   /* Layout (DESIGN.md → Layout) */
   --measure: 40rem;
@@ -61,4 +84,8 @@
   --gutter-wide: 24px;
   --portrait-max: 20rem;
   --portrait-wide: 18rem;
+  /* Logo height: small in the header, a signature in the footer. */
+  --logo-header: 40px;
+  --logo-header-wide: 48px;
+  --logo-footer: 44px;
 }

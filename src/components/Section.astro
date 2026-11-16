@@ -12,7 +12,11 @@ const { section } = Astro.props;
 const headingId = `${section.id}-titulo`;
 ---
 
-<section class="section" id={section.id} aria-labelledby={headingId}>
+<section
+  class:list={['section', { 'section-alt': section.fundo === 'alt', 'section-sobre': section.fundo === 'sobre' }]}
+  id={section.id}
+  aria-labelledby={headingId}
+>
   <div class="wrap">
     <h2 id={headingId}>{section.titulo}</h2>
     <slot />

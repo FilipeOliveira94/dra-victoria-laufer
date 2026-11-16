@@ -65,14 +65,6 @@ components:
     backgroundColor: "{colors.verde-claro}"
     textColor: "{colors.azul-tinta}"
     typography: "{typography.body}"
-  band-verde:
-    backgroundColor: "{colors.verde-marca}"
-    textColor: "{colors.azul-noite}"
-    typography: "{typography.body}"
-  band-amarelo:
-    backgroundColor: "{colors.amarelo-marca}"
-    textColor: "{colors.azul-tinta}"
-    typography: "{typography.body}"
   section-sobre:
     backgroundColor: "{colors.lilas-claro}"
     textColor: "{colors.azul-tinta}"
@@ -92,7 +84,7 @@ components:
 
 # Design System: Dra. Victória Laufer
 
-Issue 0.3. The brand was confirmed by Filipe on 2026-11-16 from Dra. Victória's own logo and palette. This file records it **before any page is built**: issue 1.1 creates the Astro base, 1.3 the layout with provisional tokens, and 2.4 replaces those tokens with the ones below. After 2.4, run `/impeccable document` in scan mode to refresh this file from the built page.
+Issue 0.3. The brand was confirmed by Filipe on 2026-11-16 from Dra. Victória's own logo and palette. This file records it **before any page is built**: issue 1.1 creates the Astro base, 1.3 the layout with provisional tokens, and 2.1 replaced those tokens with the ones below (`src/styles/tokens.css`). The 2.1 build was merged back into this file: no bands, the social image composition, the recentred logo name.
 
 How it was made: the Impeccable new-surface flow, with the direction roll skipped because the brand was pinned whole by the client — her palette ("Manter paleta no verde, lilás/roxo, azul, amarelo, mas podemos mudar as fontes das letras para fontes mais sóbrias"), her logo, and the page sequence and first fold in [`ROADMAP.md`](ROADMAP.md) → Design brief. Typography (option A of three) and the use of green, yellow and white as the leading colours were chosen by Filipe. Product truth lives in [`PRODUCT.md`](PRODUCT.md); the wording rules in [`docs/compliance/cfm.md`](docs/compliance/cfm.md) bind every visible string, including text inside images.
 
@@ -106,7 +98,7 @@ The scene: parents on a phone, often between shifts at a maternity ward or at ho
 
 **Key Characteristics:**
 
-- White ground, brand colours as whole fields (sections and bands), never as text on white.
+- White ground, light brand fields behind whole sections (`verde-claro`, `lilas-claro`) and a deep green footer; brand colours are never text on white. No bands (Filipe, 2026-11-16).
 - Serif headings, humanist sans for reading — sober, legible in Portuguese, self-hosted.
 - The logo is ornament and signature; identity is always real text.
 - Restraint: no cards, no icons for decoration, no shadows, no gradients except inside the logo artwork itself.
@@ -117,13 +109,13 @@ Full palette, four roles: green leads, yellow supports, blue carries the text, l
 
 ### Primary
 
-- **Verde da marca** (`verde-marca`): the monogram's turquoise. Section bands and large ornament. Text on it is `azul-noite`, never white.
+- **Verde da marca** (`verde-marca`): the monogram's turquoise. Large ornament: the field along the bottom of the social image. Not a section ground on the page. Text on it would be `azul-noite`, never white.
 - **Verde profundo** (`verde-profundo`): the same hue at text strength. Section headings, links, focus ring, footer ground.
 - **Verde claro** (`verde-claro`): an alternate section ground that keeps the green present at reading scale.
 
 ### Secondary
 
-- **Amarelo da marca** (`amarelo-marca`): the logo's light gold. One highlight band or field, with `azul-tinta` text. Never a text colour.
+- **Amarelo da marca** (`amarelo-marca`): the logo's light gold. The text-selection highlight, with `azul-tinta` text, and footer accent text on `verde-profundo`. Never a text colour on white.
 - **Ouro** (`ouro`): the gold of the circle. Hairlines and dividers only, 1–2 px.
 
 ### Tertiary
@@ -152,10 +144,7 @@ Every text and background combination the site may use. Any pair not in this tab
 | azul-tinta | verde-claro | 9.10 | Body text in alternate sections |
 | verde-profundo | verde-claro | 7.14 | Headings and links in alternate sections |
 | azul-cinza | verde-claro | 5.72 | Secondary text in alternate sections |
-| azul-noite | verde-marca | 5.49 | Text and headings on the green band |
-| azul-tinta | amarelo-marca | 7.47 | Text on the yellow band |
-| verde-profundo | amarelo-marca | 5.86 | Headings and links on the yellow band |
-| azul-cinza | amarelo-marca | 4.70 | Secondary text on the yellow band |
+| azul-tinta | amarelo-marca | 7.47 | Selected text |
 | azul-tinta | lilas-claro | 8.87 | Text in "Sobre" |
 | verde-profundo | lilas-claro | 6.96 | Headings and links in "Sobre" |
 | branco | verde-profundo | 8.01 | Footer text and links |
@@ -166,7 +155,7 @@ Every text and background combination the site may use. Any pair not in this tab
 
 **The Fields-Not-Ink Rule.** `verde-marca`, `amarelo-marca`, `ouro`, `lilas` and `lilas-claro` are grounds or ornament. None of them is ever a text colour on white.
 
-**The One Band Rule.** At most one `band-verde` and one `band-amarelo` on the page. A band marks a moment; repeated, it becomes decoration.
+**The Light-Grounds Rule.** Sections sit on `branco`, `verde-claro` or `lilas-claro`; the only dark field is the footer. No `verde-marca` or `amarelo-marca` band on the page (Filipe, 2026-11-16, issue 2.1).
 
 ## Typography
 
@@ -214,7 +203,7 @@ Anchor links to the four sections, in `label` style, no JavaScript. Current sect
 
 ### Sections
 
-`section-default` (white) and `section-alt` (`verde-claro`) alternate. "Sobre" uses `section-sobre` with a 4px `lilas` rule at its left edge. The page may use one `band-verde` and one `band-amarelo` (The One Band Rule).
+`section-default` (white) and `section-alt` (`verde-claro`), fixed per section so a missing section never shifts the others: Formação `verde-claro`, Atuação white, Sobre `section-sobre`, Contato `verde-claro`. The identification block sits on white. "Sobre" uses `section-sobre` with a 4px `lilas` rule at its left edge. No bands (The Light-Grounds Rule).
 
 ### Footer
 
@@ -229,10 +218,12 @@ Files live in the private repository `dra-victoria-laufer-assets` (ADR-0010) and
 | Header, on white | `brand/logo/logo-horizontal-cor.png` | Small; decorative next to the real-text name, so `alt=""` |
 | Footer, on `verde-profundo` | `brand/logo/logo-horizontal-branco.png` | `alt=""` for the same reason |
 | Favicon, app icon | `brand/symbol/simbolo-cor.png` | The monogram; dark fallback `simbolo-preto.png` |
-| Social image (Open Graph) | `brand/logo/logo-horizontal-cor.png` on white | Composed in 2.4; any text in it passes the CFM checklist |
+| Social image (Open Graph) | `brand/logo/logo-horizontal-cor.png` | 1200 × 630: the logo centred on white, a `verde-marca` field along the bottom with a 4px `ouro` hairline above it (Filipe, 2026-11-16). No text in the image; any text added later passes the CFM checklist |
 | Never on the site | everything in `brand/source/` | Their tagline does not follow the Art. 13 format and one variant drops the accent from "Victória" |
 
 The horizontal and vertical logos in `brand/logo/` were derived from her originals by removing the professional tagline, nothing else; the monogram and the name are untouched. Only PNG exists (no vector source). The logo is never recoloured, stretched, outlined or placed on `verde-marca` or `amarelo-marca`, where its own turquoise and gold disappear.
+
+On the site, the horizontal logos have the written name moved down so it shares the monogram's vertical centre; in the originals it sits about 50 px higher (Filipe, 2026-11-16). The build does this from the originals (`scripts/prepare-assets.mjs`): moved and trimmed only, never recoloured, stretched or redrawn. Sizes: 40 px high in the header on a phone, 48 px from 600 px, 44 px in the footer.
 
 ## Do's and Don'ts
 

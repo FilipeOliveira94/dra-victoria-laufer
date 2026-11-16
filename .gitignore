@@ -5,6 +5,8 @@ dist/
 .astro/
 npm-debug.log*
 .lighthouseci/
+# Impeccable review captures: they show the portrait (never in this repository).
+.impeccable/review/
 # Under WSL, Lighthouse's Chrome launcher leaves its profile folders here.
 /C:*
 

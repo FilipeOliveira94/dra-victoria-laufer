@@ -6,7 +6,7 @@ import { channelLabel, crmLabel, medica, published } from '../lib/content';
 import { section, sections, type SectionId } from '../lib/sections';
 
 // Every fact comes from the content model (issue 1.2). Formação, Atuação and
-// Sobre render from issues 2.2 and 2.3; the other channels from 2.1.
+// Sobre render from issues 2.3 and 2.4; the other channels from 2.2.
 const id = await medica();
 if (!id) throw new Error('medica is pending: the page cannot be built without identification.');
 

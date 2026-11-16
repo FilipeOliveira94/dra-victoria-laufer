@@ -7,7 +7,7 @@
 | Date decided | 2026-11-16 |
 | Owner | Filipe (brand owner), with Dra. Victória |
 | Index ID | D-011 |
-| Related issues | 0.3, 1.4, 2.4 |
+| Related issues | 0.3, 1.4, 2.1 |
 | Supersedes | — |
 | Superseded by | — |
 
@@ -25,7 +25,7 @@ Three constraints shape the choice:
 
 The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for tokens, pairs and logo usage:
 
-- **Palette:** her four colours kept as they are, plus derived tones of the same hues. Green (`#3EB7AE`) and yellow (`#FFD87D`) are fields, never text; text uses her blue (`#274360`) and a deep green of her hue (`#135A55`). Lilac (`#B78BC5`, from her legacy site) is a quiet secondary. Only the 15 pairs in the DESIGN.md table may carry text; all are ≥ 4.5:1.
+- **Palette:** her four colours kept as they are, plus derived tones of the same hues. Green (`#3EB7AE`) and yellow (`#FFD87D`) are fields, never text; text uses her blue (`#274360`) and a deep green of her hue (`#135A55`). Lilac (`#B78BC5`, from her legacy site) is a quiet secondary. Only the pairs in the DESIGN.md table may carry text; all are ≥ 4.5:1. Issue 2.1 removed the bands at Filipe's request (2026-11-16), which took the table from 15 pairs to 12; `amarelo-marca` now carries the text selection.
 - **Typography:** Source Serif 4 for headings, Source Sans 3 for text (option A of three shown to Filipe), both SIL OFL 1.1, self-hosted.
 - **Logo:** horizontal and vertical versions derived from her PNG originals by removing the tagline only, so the name reads "Victória"; the monogram ("Símbolo") for the favicon. All files in the private repository `dra-victoria-laufer-assets` under `brand/` (ADR-0010). The original files are kept there for reference and never published.
 
@@ -41,7 +41,7 @@ The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for 
 
 ## Consequences and trade-offs
 
-- Issue 2.4 replaces the provisional tokens with the DESIGN.md tokens; issue 1.4 serves the two fonts as WOFF2 and optimises the logos and the favicon from `brand/`.
+- Issue 2.1 replaces the provisional tokens with the DESIGN.md tokens; issue 1.4 serves the two fonts as WOFF2 and optimises the logos and the favicon from `brand/`.
 - `node scripts/check-contrast.mjs` (`make contrast`) checks the pairs table against the colour values; issue 1.7 can run it on pull requests.
 - The brand exists only as PNG. Logos are raster at every size until a vector source exists.
 - Light theme only; a dark theme needs a new decision.
@@ -51,6 +51,7 @@ The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for 
 - `make contrast` on 2026-11-16: 15 pairs, 0 failing (lowest 4.70:1, `azul-cinza` on `amarelo-marca`). A copy of DESIGN.md with `verde-marca` on `branco` added fails with 2.44:1, so the check fails when it should.
 - Logo edit: connected components of the artwork below the name were removed; 94 components in each of the five files, and no kept component crosses the cut line. The horizontal colour and vertical black results were inspected visually. Assets commit `c36549d` in `dra-victoria-laufer-assets`.
 - Status log entry: [`docs/status-log.md`](../status-log.md) → 2026-11-16, issue 0.3.
+- Issue 2.1, 2026-11-16: the tokens, type roles, header and footer logos, section grounds and social image applied; `make contrast` 12 pairs, 0 failing; axe and Lighthouse pass on local builds and the PR's CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307).
 
 ## Revisit when
 

@@ -31,7 +31,7 @@ One variable in the workflow, **`DEPLOY_TARGET: ghpages`**, sets the site URL an
 
 - No page, link or metadata value may hard-code a host or a base path.
 - Acceptance of 3.2 is a one-line diff.
-- `noindex` is not carried by `DEPLOY_TARGET`. Issue 1.1 defined it as a separate constant, `indexable` in `src/config/release.ts`, so 2.5 and 3.2 can happen in either order ([ADR-0006](0006-noindex-until-release.md)). Plan approved by Filipe on 2026-11-16.
+- `noindex` is not carried by `DEPLOY_TARGET`. Issue 1.1 defined it as a separate constant, `indexable` in `src/config/release.ts`, so 2.6 and 3.2 can happen in either order ([ADR-0006](0006-noindex-until-release.md)). Plan approved by Filipe on 2026-11-16.
 
 ## Evidence / validation
 
@@ -39,4 +39,4 @@ Issue 1.1, local builds on 2026-11-16: without the variable the canonical is `ht
 
 ## Revisit when
 
-A third environment appears (for example PR previews), or the order of 2.5 and 3.2 makes one variable insufficient.
+A third environment appears (for example PR previews), or the order of 2.6 and 3.2 makes one variable insufficient.

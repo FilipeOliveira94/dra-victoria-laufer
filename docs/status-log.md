@@ -4,6 +4,54 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-16 — Issue 2.1: confirmed visual identity applied
+
+Built on `feat/2.1-visual-identity` through the Impeccable flow: the world is pinned by `DESIGN.md` and the brief, so no concept round; code-led; direction contract in `.impeccable/surfaces/src-pages-index-astro.md` (`seed: none (pinned)`). Checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless in a scratch directory). Not deployed. PR CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307) on `4c87890` passed with the private-assets step executed: the build generated the portrait, icons, both logos and the social image; 71 requests, 0 failing; html, content and photo checks pass; axe 4 runs, 0 failing; Lighthouse assertions pass. Filipe reviewed the 360 and 1280 px screenshots and approved them as the base: good, not yet excellent. The design is raised by 2.2 to 2.5, and 2.6 now opens with an `/impeccable critique` and `polish` pass on the whole page, the 2.1 frame included (his decision). Every acceptance item is met: 2.1 verified. D-011 implemented.
+
+- **Tokens:** `src/styles/tokens.css` holds the 11 brand colours under their `DESIGN.md` names and the semantic roles the stylesheets use (text `azul-tinta`, muted `azul-cinza`, headings and links `verde-profundo`, hover `azul-noite`, focus `verde-profundo` and `branco` on the footer, selection `amarelo-marca`), the five type roles, `rounded`, spacing and layout. No provisional token is left.
+- **Type:** `h1` in `display`, `h2` in `headline` (`verde-profundo`), body 17 px; `.title` and `.label` classes for 2.2 to 2.4.
+- **Frame:** header with the colour horizontal logo (40 px, 48 px from 600 px; `alt=""`, the name is the `h1`) and the navigation in `label`; footer on `verde-profundo` with the white logo (44 px). Without the assets, no logo.
+- **Grounds:** Filipe chose light grounds only, no bands. Each section names its ground in `src/lib/sections.ts` (`fundo`): Formação and Contato `verde-claro`, Atuação white, Sobre `lilas-claro` with the 4px `lilas` rule. Fixed per section, so a missing section never shifts the others.
+- **Logos and social image:** `scripts/prepare-assets.mjs` moves the logo's written name down about 50 px, so it shares the monogram's vertical centre (Filipe's request), and trims the canvas; colours and shapes untouched. The social image is the colour logo on white with a 96 px `verde-marca` field and a 4 px `ouro` hairline along the bottom, no text (Filipe's choice).
+- **DESIGN.md:** merged with the build at Filipe's choice: bands removed (frontmatter, characteristics, colour roles, pairs table, sections), The One Band Rule replaced by The Light-Grounds Rule, the social image and the recentred name recorded. The pairs table went from 15 to 12; D-011 and ADR-0011 updated. `.impeccable/design.json` updated to match.
+
+Checks, each on the production, staging and placeholder builds unless noted: `make contrast` 12 pairs, 0 failing; html-validate 0 errors; content and photos 0 failing; requests 71, 0 failing (19 without the assets), largest image 80 KB; axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404 at depth; Lighthouse mobile with the assets Performance 100, Accessibility 100, LCP 1428–1431 ms, CLS ≤ 0.0002, and every assertion passing on the placeholder build; no horizontal scroll at 320, 360, 1280 and 1600 px (production); `make check` 0 errors. The `<img>` fallback of each logo is sized (210 and 190 px), so no full-size PNG is served. Impeccable detector on the changed files: no finding. Impeccable finish review (a fresh general-purpose agent running the skill's reviewer instructions, since the dedicated reviewer agent is not installed): `fix` with three items (text selection invisible on `verde-claro`, `DESIGN.md` out of step, the contract's pin quote incomplete), all fixed; verdict pass `ship`. Its out-of-scope notes for 2.2 (identity line style, name on three lines at 1280 px, `ouro` hairline, portrait frame, footer identity line, contact channels) carry to 2.2.
+
+Review captures live in `.impeccable/review/`, now ignored by git: they show the portrait.
+
+---
+
+### 2026-11-16 — Phase 2 reordered and renumbered
+
+Decided by Filipe. Section issues were defined by their data and left the whole look to the brand issue at the end, so no section would be finished before it. The brand now comes first and each section issue delivers its part complete: content, place on the page and in the navigation, `DESIGN.md` look and layout, access, CFM checklist, checks (`ROADMAP.md` → Phase 2, "A complete section"). IDs follow the order of work:
+
+| New | Was | Issue |
+| --- | --- | --- |
+| 2.1 | 2.4 | Apply the confirmed visual identity |
+| 2.2 | 2.1 | Identification and contact |
+| 2.3 | 2.2 | Training ("Formação") |
+| 2.4 | 2.3 | Roles ("Atuação") and "Sobre" |
+| 2.5 | 2.6 | Cut-out portrait on brand graphics |
+| 2.6 | 2.5 | CFM review and release |
+
+References were updated in the current documents, ADRs and code comments. Entries in this log and in the `ROADMAP.md` changelog written before this one keep the old numbers. The branch `feat/2.1-identification-contact` became `feat/2.1-visual-identity`.
+
+---
+
+### 2026-11-16 — Issue 1.8: license verified
+
+Filipe reviewed `LICENSE` and approved the wording and the rights holders: MIT for the code, copyright Filipe Oliveira; all rights reserved for the texts, name, logo and photos, copyright Victória Laufer. The code copyright year was corrected from 2025 to 2026, the year the project started. The README note on the private photos repository is unchanged. Both notices are present with the correct holders, which meets the acceptance. Phase 1 is closed.
+
+---
+
+### 2026-11-16 — Phase 2 active
+
+Phases 0 and 1 are closed: 0.1 to 0.3 and 1.1 to 1.7 verified, 1.8 delivered with Filipe's review of the wording pending. Phase 2 is the active phase in `PROJECT_STATUS.md` and `ROADMAP.md`; 2.1 (identification and contact) is in progress on `feat/2.1-identification-contact`.
+
+The 1.7 merge (`dc075fc`) published cleanly: `published` job of [run 43937667606](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937667606), 23 requests, 0 failing, on the live page.
+
+---
+
 ### 2026-11-16 — Issue 1.7: automatic checks on pull requests
 
 Built on `feat/1.7-pr-checks`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless in a scratch directory, not a project dependency), and on the PR's CI [run 43936782420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43936782420) on `84c74e4`. Not deployed.
@@ -50,7 +98,7 @@ On the clean builds:
 
 `make check`: 0 errors. `npm audit`: 0 vulnerabilities.
 
-Not done here: making the `build` job a required status check of `main`. The job fails, but GitHub blocks the merge only under branch protection, a repository setting that is Filipe's decision.
+Branch protection on `main`, set at Filipe's request: `build` is a required status check, so a PR whose checks fail cannot be merged. Not strict (the branch need not be up to date with `main`); administrators are not enforced, so a direct documentation commit on `main` authorized by Filipe (AGENTS.md §13) still goes through; no force push, no deletion. The PR showed `build` as required and passing ([run 43937233222](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43937233222)).
 
 ---
 

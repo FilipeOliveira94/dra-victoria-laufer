@@ -1,6 +1,6 @@
 # Target site
 
-Overview of the site the roadmap builds. **Built so far:** the Astro base, the deploy workflow, `DEPLOY_TARGET` and `noindex` (issue 1.1); the content model (1.2); the page structure, provisional tokens and the 404 page (1.3). The rest does not exist yet; progress is in [`PROJECT_STATUS.md`](../../PROJECT_STATUS.md). Each section names the issue that builds it and the ADR that explains it. File paths and package versions are chosen in those issues and recorded here when they are verified.
+Overview of the site the roadmap builds. **Built so far:** the Astro base, the deploy workflow, `DEPLOY_TARGET` and `noindex` (issue 1.1); the content model (1.2); the page structure and the 404 page (1.3); images, favicon and fonts (1.4); accessibility (1.5); technical SEO (1.6); PR checks (1.7); the brand tokens and page frame (2.1). The rest does not exist yet; progress is in [`PROJECT_STATUS.md`](../../PROJECT_STATUS.md). Each section names the issue that builds it and the ADR that explains it. File paths and package versions are chosen in those issues and recorded here when they are verified.
 
 ## Purpose
 
@@ -12,20 +12,20 @@ One page, in `pt-BR`, in this order:
 
 | # | Section | Shows | Issue |
 | --- | --- | --- | --- |
-| 1 | Identification | Name, `MÉDICA`, `CRM-SP 240550` and the portrait, in real text, within the first fold | 2.1 |
-| 2 | Formação | Each postgraduate course in the Art. 13 format, with the institution; the degree | 2.2 |
-| 3 | Atuação | Roles performed, with current workplace and start year, under the wording rule in `docs/compliance/cfm.md` → C | 2.3 |
-| 4 | Sobre | The text she approved | 2.3 |
-| 5 | Contato | `victorialaufersaude@gmail.com`, WhatsApp, Instagram | 2.1 |
-| — | Footer | Identification again, the build year, links to privacy and legal notice | 1.3, 5.1 |
+| 1 | Identification | Name, `MÉDICA`, `CRM-SP 240550` and the portrait, in real text, within the first fold | 2.2 |
+| 2 | Formação | Each postgraduate course in the Art. 13 format, with the institution; the degree | 2.3 |
+| 3 | Atuação | Roles performed, with current workplace and start year, under the wording rule in `docs/compliance/cfm.md` → C | 2.4 |
+| 4 | Sobre | The text she approved | 2.4 |
+| 5 | Contato | `victorialaufersaude@gmail.com`, WhatsApp, Instagram | 2.2 |
+| — | Footer | Identification again, the build year, links to privacy and legal notice | 1.3, 2.1, 2.2, 5.1 |
 
 Structure (issue 1.3, built): one `h1`, one `h2` per section, a `<main>`, anchor navigation without JavaScript, a footer with the build year, and a 404 page that works at any URL depth. The skip-navigation link is issue 1.5. Later pages: privacy and legal notice (5.1).
 
 - `src/lib/sections.ts` lists the four sections in page order (id and name). The navigation and the section ids come from that list, so an id is never typed twice.
-- `src/components/Section.astro` renders `<section id aria-labelledby>` with its `h2`. `index.astro` renders a section, and lists it in the navigation, only when it has published content: an empty section would be a placeholder. Today only Contato (the e-mail) is on the page; Formação, Atuação and Sobre appear with 2.2 and 2.3.
+- `src/components/Section.astro` renders `<section id aria-labelledby>` with its `h2`. `index.astro` renders a section, and lists it in the navigation, only when it has published content: an empty section would be a placeholder. Today only Contato (the e-mail) is on the page; Formação, Atuação and Sobre appear with 2.3 and 2.4.
 - `src/layouts/Base.astro` holds the head, the navigation and the footer (`© <build year> <name>`). The year is computed at build time.
 - `src/pages/404.astro` uses the same layout without navigation or canonical. Its links and CSS are absolute from the base path, so the page renders the same at `/x` and `/a/b/c/`. GitHub Pages serves `404.html` for any missing path.
-- CSS: `src/styles/tokens.css` (every value, neutral and provisional until 2.4) and `src/styles/global.css` (layout: one column, measure 40rem, gutter 16 px, 24 px from 600 px). The build inlines it in each page; no extra request.
+- CSS: `src/styles/tokens.css` (every value: the `DESIGN.md` palette, type roles, spacing and shape, issue 2.1) and `src/styles/global.css` (layout: one column, measure 40rem, gutter 16 px, 24 px from 600 px). The build inlines it in each page; no extra request.
 
 Not on the page, by design: numbered steps, service cards, a locations section, testimonials, statistics, a full-screen hero with text over the image.
 
@@ -39,7 +39,7 @@ Not on the page, by design: numbered steps, service cards, a locations section, 
 | Hosting | GitHub Pages, built and deployed by GitHub Actions | [0003](../decisions/0003-hosting-github-pages-actions.md) |
 | Local commands | `make` targets wrapping the package scripts | [`Makefile`](../../Makefile) |
 
-The tokens are neutral and provisional until issue 2.4 applies the brand confirmed in issue 0.3: palette, typography and logo usage in [`DESIGN.md`](../../DESIGN.md).
+Issue 2.1 applied the brand confirmed in issue 0.3 ([`DESIGN.md`](../../DESIGN.md)): brand tokens with semantic roles in `tokens.css`; header with the colour horizontal logo and the anchor navigation; a ground fixed per section in `src/lib/sections.ts` (`fundo`: white, `verde-claro` or `lilas-claro`; no bands); footer on `verde-profundo` with the white logo. `scripts/prepare-assets.mjs` writes the two logos with the name recentred on the monogram and composes the social image (logo on white, `verde-marca` field, `ouro` hairline). Without the assets, no logo is rendered.
 
 ## Content model
 
@@ -70,7 +70,7 @@ Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src
 | URL | `https://filipeoliveira94.github.io/dra-victoria-laufer/` | `https://dravictorialaufer.com.br/` |
 | Base path | `/dra-victoria-laufer` | `/` |
 | `DEPLOY_TARGET` | `ghpages` | not set |
-| Indexing | `noindex` | `noindex` until 2.5 sets `indexable` in `src/config/release.ts` |
+| Indexing | `noindex` | `noindex` until 2.6 sets `indexable` in `src/config/release.ts` |
 
 `astro.config.mjs` maps the variable to `site` and `base`; an unknown value stops the build. `noindex` does not depend on it. A build without `DEPLOY_TARGET` produces the production URLs. Canonical, sitemap and Open Graph URLs follow the target by themselves. The domain switch is a one-line diff in the workflow.
 
