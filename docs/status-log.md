@@ -6,7 +6,7 @@ Chronological history of project status updates, newest first. The operational l
 
 ### 2026-11-16 — Issue 1.6: technical SEO
 
-Built on `feat/1.6-technical-seo`, checked on local builds with and without the private assets (Astro 7.4.12, sharp 0.35.5, Node.js v22.23.4). Not deployed; PR CI pending.
+Built on `feat/1.6-technical-seo`, checked on local builds with and without the private assets (Astro 7.4.12, sharp 0.35.5, Node.js v22.23.4) and on the PR's CI [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802) on `0da9aef`. Not deployed.
 
 - **Description:** `<meta name="description">` and `og:description` read "Dra. Victória Laufer, MÉDICA, CRM-SP 240550.", composed in `Base.astro` from the identification entry (name, `titulo`, `crmLabel`). Filipe chose identification only: the "Sobre" text names postgraduate courses without `NÃO ESPECIALISTA`, so it is not cut into a summary.
 - **Open Graph:** `og:locale` `pt_BR`, `og:type` `website`, `og:site_name` (her name), `og:title` (the page `<title>`), `og:description`; `og:url` only where the canonical exists, so not on the 404.
@@ -28,6 +28,7 @@ Checks:
 | `npx html-validate@9`, duplicate ids | No errors; none |
 | `make check` | 0 errors |
 | Vetoed terms and "Lorem" in `dist/` (HTML, sitemap, robots) | None |
+| PR CI, `deploy.yml` build job, [run 43930485802](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43930485802) | Passed; private assets fetched, `portrait.jpg`, icons and `social.png` generated, 35 requests, 0 failing on `/dra-victoria-laufer/`; deploy and published skipped (PR) |
 
 Not run: Lighthouse SEO. Its "page is blocked from indexing" audit fails by design while `noindex` stays (until 2.5).
 
