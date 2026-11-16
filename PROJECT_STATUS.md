@@ -5,10 +5,10 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | | |
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
-| Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (legacy Jekyll site) |
-| Last updated | 2026-11-16 (0.3 verified: `DESIGN.md` approved) |
+| Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (legacy Jekyll site until the 1.1 merge deploys the Astro base) |
+| Last updated | 2026-11-16 (1.1 verified: Astro base, PR open) |
 | Current phase | Phase 0 — Product and brand, and Phase 1 — New base (MVP), in parallel |
-| Phase status | Phase 0 verified (0.1, 0.2 and 0.3); Phase 1 not started |
+| Phase status | Phase 0 verified (0.1, 0.2 and 0.3); Phase 1 in progress (1.1 verified) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**1.1** — Replace Jekyll with Astro, deployed by Actions. Not started.
+**1.1** — Replace Jekyll with Astro, deployed by Actions. Verified on branch `feat/1.1-astro-base`: local builds checked, marked verified by Filipe on 2026-11-16 before the published-site check, which runs after the merge (acceptance: `ROADMAP.md` → 1.1).
 
-The repository holds the legacy Jekyll site plus the project structure. No part of the target site exists yet. The legacy site is live and indexable, with placeholder text and wording that suggests a specialty, so 1.1 comes first: it publishes the new base as `noindex`.
+The branch holds an Astro 7.4.12 base with one `noindex` page (name, `MÉDICA`, `CRM-SP 240550`, e-mail). Jekyll and its files are removed. The live site is still the legacy Jekyll site until the merge.
 
 ## Next work
 
-1. **1.1** — Replace Jekyll with Astro, deployed by Actions. No dependency. Acceptance: `ROADMAP.md` → 1.1.
+1. **1.1 after merge** — Filipe sets the Pages source to "GitHub Actions" before the merge; after it, check the run and the published page (`noindex`, canonical, no 404).
 2. **1.2 → 1.3**, then **1.4**, **1.5**, **1.6** and **1.7**, in the dependency order in `ROADMAP.md`.
 
 ## Blockers
@@ -36,10 +36,11 @@ The repository holds the legacy Jekyll site plus the project structure. No part 
 | Pending | Who | Blocks |
 | --- | --- | --- |
 | Push of assets commit `c36549d` (`brand/` logos) | Filipe | 1.4 and 2.4 fetching the logos |
+| Pages source set to "GitHub Actions" (repository setting) | Filipe | The 1.1 deploy; without it the `deploy` job fails |
 
 Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-pending-inputs.md).
 
-Nothing blocks Phase 1.
+Nothing else blocks Phase 1.
 
 ---
 
@@ -55,7 +56,7 @@ Nothing blocks Phase 1.
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 1.1 | Replace Jekyll with Astro, deployed by Actions | Not started | — |
+| 1.1 | Replace Jekyll with Astro, deployed by Actions | Verified | Local builds, both targets; `make check`, `make requests`, `html-validate`. Marked verified by Filipe; published-site check after merge |
 | 1.2 | Typed content model | Not started | — |
 | 1.3 | Structure and layout of the single page | Not started | — |
 | 1.4 | Images, favicon and fonts | Not started | — |
@@ -73,15 +74,15 @@ Acceptance detail: `ROADMAP.md` → Phase 1.
 | | |
 | --- | --- |
 | Date | 2026-11-16 |
-| Environment | Local checkout, WSL2. GNU Make 4.4.1, Node.js v22.23.4 |
-| Checks | `make contrast` (`node scripts/check-contrast.mjs`) on `DESIGN.md`; the same script on a copy with a failing pair added |
-| Result | 15 pairs, 0 failing, lowest 4.70:1; the copy fails with 2.44:1 as expected. No site build exists, so no Lighthouse, validator or axe run applies |
+| Environment | Local build, WSL2. GNU Make 4.4.1, Node.js v22.23.4, npm 10.9.9, Astro 7.4.12. Not a CI run, not the published site |
+| Checks | `make build` with and without `DEPLOY_TARGET=ghpages`; `make requests`; `make check`; `npx html-validate@9 dist/index.html`; vetoed-term grep on `src/` and `dist/`; `make contrast` |
+| Result | Staging: canonical `https://filipeoliveira94.github.io/dra-victoria-laufer/`, `noindex` present, 1 request, 0 failing. Production: canonical `https://dravictorialaufer.com.br/`, `noindex` present. Unknown `DEPLOY_TARGET` stops the build. `astro check` 0 errors; html-validate no errors; no vetoed term; contrast 15/15. Lighthouse and axe are 1.7 and were not run |
 
 ---
 
 ## Legacy site diagnosis
 
-State of the Jekyll site that issue 1.1 replaces. It comes from the diagnosis in the approved plan, which was read against the code. Items marked ✔ were re-checked in the code on 2026-11-15; the others are carried from the plan and were not re-measured.
+State of the Jekyll site that issue 1.1 replaces (removed on the 1.1 branch; still live until the merge). It comes from the diagnosis in the approved plan, which was read against the code. Items marked ✔ were re-checked in the code on 2026-11-15; the others are carried from the plan and were not re-measured.
 
 **Stack:** Jekyll through the `github-pages` gem, Minima theme, Bootstrap 5.3 from a CDN. Published from the `main` branch.
 

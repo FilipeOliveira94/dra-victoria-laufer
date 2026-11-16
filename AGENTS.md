@@ -8,7 +8,7 @@ Build and maintain the portfolio site of Dra. Victória Laufer: a single static 
 - Patient acquisition and scheduling are secondary. The structure is prepared and stays switched off behind flags.
 - Every published word follows CFM Resolution 2.336/2023. The checklist is [`docs/compliance/cfm.md`](docs/compliance/cfm.md).
 
-The target stack and its rationale are in [`DECISIONS.md`](DECISIONS.md). The repository still holds the legacy Jekyll site until issue 1.1.
+The target stack and its rationale are in [`DECISIONS.md`](DECISIONS.md). Issue 1.1 replaced the legacy Jekyll site with the Astro base.
 
 ## 2. Working Language
 
@@ -114,7 +114,7 @@ When in doubt, do not publish. Ask Filipe; the open point may need the CREMESP.
 - Do not claim a check passed if it was not executed.
 - Distinguish a local build, a CI run, and the published site. Say which one a result comes from.
 - If a tool or service is unavailable, report the limitation. Do not invent a result, a score or a metric.
-- Until issue 1.1 lands, the `make` targets for Astro print a notice and do nothing. Until issue 1.7 lands, the checks are run by hand.
+- Until issue 1.7 lands, `make lint` and `make lighthouse` print a notice and the checks are run by hand.
 
 ## 10. Scope Control
 

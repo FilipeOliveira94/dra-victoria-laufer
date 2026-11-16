@@ -35,7 +35,7 @@ Host on **GitHub Pages**, with the site **built and deployed by a GitHub Actions
 
 ## Evidence / validation
 
-None yet.
+Issue 1.1 replaces `jekyll-gh-pages.yml` with `.github/workflows/deploy.yml` (build with `DEPLOY_TARGET: ghpages`, request check, upload `dist/`, deploy). The Pages source is set by Filipe in the repository settings. The first run is checked after the 1.1 merge.
 
 ## Revisit when
 

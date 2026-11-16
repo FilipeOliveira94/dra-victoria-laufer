@@ -25,7 +25,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | Phase | Scope | Depends on | Status |
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
-| 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Not started (1.8 delivered) |
+| 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | In progress (1.1 verified, 1.8 delivered) |
 | 2 | Credibility content under the CFM rules (MVP): identification, training, roles, brand, release | Phase 1; inputs from 0.2; brand from 0.3 | Not started |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
 | 4 | Structured data: JSON-LD `Person` | 2.5 and 3.2 | Not started |
@@ -101,7 +101,7 @@ Issue 0.1 and all of Phase 1 can start now, with the site in `noindex`. Blockers
 
 | | |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` (marked verified by Filipe on 2026-11-16 before the published-site check, which runs after the merge) |
 | Size | M |
 | Depends on | — |
 | ADRs | [0001](docs/decisions/0001-static-site-generator-astro.md), [0003](docs/decisions/0003-hosting-github-pages-actions.md), [0004](docs/decisions/0004-deploy-target-switch.md), [0006](docs/decisions/0006-noindex-until-release.md) |
@@ -468,3 +468,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 0.1 verified: `PRODUCT.md` approved by Filipe, written through the Impeccable init flow from the confirmed brief, the 0.2 inputs and the CFM checklist. The brief's page sequence and mode stay here, linked from `PRODUCT.md` (Filipe's decision) |
 | 2026-11-16 | 0.3 verified: brand confirmed by Filipe and recorded in `DESIGN.md`, approved by Filipe; every text pair ≥ 4.5:1 (`make contrast`). D-011 approved; 2.4 no longer blocked by the brand |
 | 2026-11-16 | Domain changed by Filipe from `victorialaufer.com.br` to `dravictorialaufer.com.br` (Phase 3, ADR-0003, ADR-0004) |
+| 2026-11-16 | 1.1 verified: Astro 7.4.12 base, `deploy.yml` workflow, `DEPLOY_TARGET`, `noindex` from `src/config/release.ts`; Jekyll removed. Local builds checked; marked verified by Filipe before the published-site check, which runs after the merge |

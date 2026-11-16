@@ -11,9 +11,9 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 | Field | Now |
 | --- | --- |
-| In the repository | The **legacy Jekyll site** (placeholder text) and the project structure. The target site does not exist yet |
+| In the repository | The **Astro base** (issue 1.1): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550` and e-mail. Content model, layout and brand come in later issues |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> |
-| Next | Issue 1.1 replaces Jekyll with Astro and publishes as `noindex` |
+| Next | Issue 1.2, typed content model |
 | Brand | Confirmed in [`DESIGN.md`](DESIGN.md) (issue 0.3); applied to the site in issue 2.4. `make contrast` checks its colour pairs |
 | Ledger | [`PROJECT_STATUS.md`](PROJECT_STATUS.md) · scope in [`ROADMAP.md`](ROADMAP.md) |
 
@@ -21,7 +21,7 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 ## ⚙️ Target stack
 
-Planned, not built. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`docs/architecture/target-site.md`](docs/architecture/target-site.md).
+Generator, hosting, `DEPLOY_TARGET` and `noindex` are built (issue 1.1); the rest is planned. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`docs/architecture/target-site.md`](docs/architecture/target-site.md).
 
 | Layer | Choice |
 | --- | --- |
@@ -46,29 +46,16 @@ make help
 | --- | --- |
 | `make install` | Install dependencies from the lockfile |
 | `make dev` | Start the local development server |
-| `make build` | Build the static site |
+| `make build` | Build the static site. Without `DEPLOY_TARGET`: production URLs (`https://dravictorialaufer.com.br/`). With `DEPLOY_TARGET=ghpages`: staging under `/dra-victoria-laufer/` |
 | `make preview` | Serve the built site locally |
-| `make lint` | Lint the source |
-| `make check` | Type-check and validate the content collections |
-| `make lighthouse` | Run Lighthouse CI (mobile) |
+| `make check` | Type-check the project (`astro check`) |
+| `make requests` | Serve `dist/` and request everything the pages reference; fails on a non-200 or a third-party request. `BASE=/dra-victoria-laufer/` for a staging build |
+| `make contrast` | Check the colour pairs in `DESIGN.md` |
+| `make lint`, `make lighthouse` | Print a notice until issue 1.7 adds the tools |
 
-- Until issue 1.1 creates the Astro project, each of these prints a notice and does nothing. They do not fail.
-- After 1.1 they need Node.js with npm.
-
-<details>
-<summary>Run the legacy Jekyll site</summary>
-
-The current site is Jekyll through the `github-pages` gem. It needs Ruby and Bundler, and has no `make` target because issue 1.1 removes it.
-
-```bash
-bundle install
-bundle exec jekyll serve
-```
-
-- These commands were not run when this README was written: Bundler was not installed on the machine.
-- `Gemfile.lock` is git-ignored in the legacy setup, so gem versions are not pinned.
-
-</details>
+- Needs Node.js at the version in [`.nvmrc`](.nvmrc) (Astro 7 requires ≥ 22.23.4) and npm.
+- A push to `main` builds and deploys through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The repository's Pages source must be "GitHub Actions".
+- Every build carries `noindex` until issue 2.5 sets `indexable` in [`src/config/release.ts`](src/config/release.ts).
 
 ---
 
