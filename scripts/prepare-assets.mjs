@@ -20,11 +20,12 @@ const OUT = 'src/assets/generated';
 
 // The original is 2000 x 1333, landscape, with the subject left of centre and
 // wide margins of wall, sofa and a laptop. In a one-column page that frame
-// leaves her face a few dozen pixels tall on a phone. 4:5 crop on the subject,
-// head room kept, laptop out of frame.
+// leaves her face a few dozen pixels tall on a phone. 3:4 crop on head and
+// shoulders for the arch frame (DESIGN.md → Portrait, issue 2.2), head room kept,
+// laptop and hands out of frame.
 const PORTRAIT = {
   file: 'photos/portrait-main.jpg',
-  crop: { left: 470, top: 60, width: 880, height: 1100 },
+  crop: { left: 610, top: 70, width: 570, height: 760 },
 };
 
 // The monogram fills about 60% of its 2000 x 2000 canvas. Cropped to the ring

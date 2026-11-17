@@ -5,7 +5,7 @@ import displayFont from '../assets/fonts/source-serif-4-latin-600-normal.woff2?u
 import { Picture } from 'astro:assets';
 import { icon, iconTouch, logoColour, logoWhite, social } from '../lib/assets';
 import { indexable } from '../config/release';
-import { crmLabel, medica } from '../lib/content';
+import { crmLabel, identityLine, medica } from '../lib/content';
 import type { Section } from '../lib/sections';
 
 interface Props {
@@ -112,6 +112,7 @@ const touchIcon =
     }
     <slot />
     <footer class="site-footer">
+      <span class="footer-hill" aria-hidden="true"></span>
       <div class="wrap">
         {
           logoWhite && (
@@ -127,7 +128,16 @@ const touchIcon =
             />
           )
         }
-        <p>© {year}{id && ` ${id.nome}`}</p>
+        {/* DESIGN.md → Footer: the identity line again, as text (CFM). */}
+        {
+          id && (
+            <p class="footer-identity">
+              <span class="title">{id.nome}</span>
+              <span class="label">{identityLine(id)}</span>
+            </p>
+          )
+        }
+        <p class="footer-year">© {year}</p>
       </div>
     </footer>
   </body>

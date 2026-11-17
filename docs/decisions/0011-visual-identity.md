@@ -7,7 +7,7 @@
 | Date decided | 2026-11-16 |
 | Owner | Filipe (brand owner), with Dra. Victória |
 | Index ID | D-011 |
-| Related issues | 0.3, 1.4, 2.1 |
+| Related issues | 0.3, 1.4, 2.1, 2.2 |
 | Supersedes | — |
 | Superseded by | — |
 
@@ -29,6 +29,15 @@ The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for 
 - **Typography:** Source Serif 4 for headings, Source Sans 3 for text (option A of three shown to Filipe), both SIL OFL 1.1, self-hosted.
 - **Logo:** horizontal and vertical versions derived from her PNG originals by removing the tagline only, so the name reads "Victória"; the monogram ("Símbolo") for the favicon. All files in the private repository `dra-victoria-laufer-assets` under `brand/` (ADR-0010). The original files are kept there for reference and never published.
 
+### Amendment, 2026-11-17 (issue 2.2): "Caminho do jardim"
+
+Filipe found the 2.1 page correct but without personality and released the rules that kept it flat: square corners, `ouro` only as a hairline, no icons, no shapes. With the Impeccable direction flow (Persuade mode; to avoid a generic clinic look, a cold or corporate tone, an overloaded page) he compared two profiles: A, abstract garden shapes without lilac; B, geometric and institutional, with lilac turned purple and yellow turned gold. He chose A1, "Caminho do jardim", from full-page mock-ups: she loves nature, and the garden becomes part of her brand without losing credibility.
+
+- A dotted `ouro` path winds down the page; each section heading sits on a stone. The portrait is a 3:4 arch in a `verde-claro` clearing with an `amarelo-marca` sun and a `verde-marca` leaf. Rounded course cards, contact rows with drawn icons, a footer hill. Motion on load and on scroll, CSS only, off under reduced motion.
+- Lilac leaves the page and stays in the brand palette; its pairs stay in the table for brand pieces.
+- Descriptive section headings, approved by her, with the navigation name as a small label (none on "Sobre mim").
+- Unchanged: the palette values, the text pairs (still 12, all ≥ 4.5:1), the fonts, the logo rules, the Real-Text and Same-Size rules, no shadows, no gradients outside the logo, no children's motifs.
+
 ## Alternatives considered
 
 | Option | Pros | Cons | Why not (if rejected) |
@@ -37,6 +46,7 @@ The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for 
 | Blue-led palette with cream ground (first proposal) | Highest contrast with little effort | Moves away from her green, yellow and white | Filipe chose to keep her original theme |
 | Keep the logo's fonts | Continuity | Lucida Sans Unicode cannot be served; script face is commercial and not sober | Fails ADR-0002 and her request |
 | Newsreader + Public Sans; Atkinson Hyperlegible Next | Sober, OFL | — | Filipe chose option A |
+| Profile B (geometric, institutional: green band, gold rule, purple accents), 2026-11-17 | Highest formality | Less of her; reads as an institution | Filipe chose A1, which keeps credibility with her own character |
 | Rewrite the tagline in the logo in the Art. 13 format | Keeps the full lock-up | Original font unavailable; condensed course names are not the official ones | The page states each course in real text, which the CFM checklist requires anyway |
 
 ## Consequences and trade-offs
@@ -51,6 +61,7 @@ The brand is recorded in [`DESIGN.md`](../../DESIGN.md), which is normative for 
 - `make contrast` on 2026-11-16: 15 pairs, 0 failing (lowest 4.70:1, `azul-cinza` on `amarelo-marca`). A copy of DESIGN.md with `verde-marca` on `branco` added fails with 2.44:1, so the check fails when it should.
 - Logo edit: connected components of the artwork below the name were removed; 94 components in each of the five files, and no kept component crosses the cut line. The horizontal colour and vertical black results were inspected visually. Assets commit `c36549d` in `dra-victoria-laufer-assets`.
 - Status log entry: [`docs/status-log.md`](../status-log.md) → 2026-11-16, issue 0.3.
+- Issue 2.2, 2026-11-17: the "Caminho do jardim" direction built on local builds; `make contrast` 12 pairs, 0 failing; axe 0 violations, 0 incomplete; Lighthouse mobile 100/100. PR CI pending.
 - Issue 2.1, 2026-11-16: the tokens, type roles, header and footer logos, section grounds and social image applied; `make contrast` 12 pairs, 0 failing; axe and Lighthouse pass on local builds and the PR's CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307).
 
 ## Revisit when

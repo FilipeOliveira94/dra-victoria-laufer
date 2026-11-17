@@ -30,10 +30,34 @@ export async function medica(): Promise<Published<'medica'> | undefined> {
 /** "CRM-SP 240550" */
 export const crmLabel = ({ crm }: Published<'medica'>) => `CRM-${crm.uf} ${crm.numero}`;
 
-// Channel names: the title of each contact link and the start of its
-// accessible name (issue 1.5); the address alone does not say the channel.
-export const channelLabel: Record<Published<'contato'>['tipo'], string> = {
+/** "MÉDICA · CRM-SP 240550": the identity line (DESIGN.md → Label). */
+export const identityLine = (id: Published<'medica'>) => `${id.titulo} · ${crmLabel(id)}`;
+
+type Channel = Published<'contato'>;
+
+// Channel names, shown in `title` above each address (DESIGN.md → Links).
+export const channelLabel: Record<Channel['tipo'], string> = {
   email: 'E-mail',
   whatsapp: 'WhatsApp',
   instagram: 'Instagram',
 };
+
+/**
+ * A contact channel as a plain link: the address is the link text. No
+ * pre-filled message or invitation to schedule (issue 6.1, behind captacao).
+ */
+export function channelLink(c: Channel): { href: string; text: string } {
+  switch (c.tipo) {
+    case 'email':
+      return { href: `mailto:${c.valor}`, text: c.valor };
+    case 'whatsapp': {
+      // "+5512987097380" → "+55 12 98709-7380" (Filipe, 2026-11-16).
+      const [, area, head, tail] = c.valor.match(/^\+55(\d{2})(\d{4,5})(\d{4})$/)!;
+      return { href: `https://wa.me/${c.valor.slice(1)}`, text: `+55 ${area} ${head}-${tail}` };
+    }
+    case 'instagram': {
+      const handle = new URL(c.valor).pathname.replaceAll('/', '');
+      return { href: c.valor, text: `@${handle}` };
+    }
+  }
+}

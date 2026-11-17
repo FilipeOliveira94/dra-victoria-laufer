@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | | |
 | --- | --- |
-| Last updated | 2026-11-16 |
+| Last updated | 2026-11-17 |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -240,11 +240,11 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | | |
 | --- | --- |
-| Status | `not started` || Size | P |
+| Status | `delivered` (local builds; PR CI and Filipe's screenshot review pending) | Size | M |
 | Depends on | 2.1 |
 
-- **Objective:** meet the identification required by CFM Resolution 2.336/2023, with the first fold and the Contato section finished.
-- **Scope:** the identification block complete per `DESIGN.md` → Layout: name (`display`, the only `h1`), identity line `MÉDICA · CRM-SP 240550` (`label`), the 4:5 portrait from 1.4 in its frame, beside the name on wide screens, the `ouro` hairline under the block; the identity line again in the footer; the Contato section complete, with `victorialaufersaude@gmail.com`, WhatsApp and Instagram as text links (channel as `title`, address as link text). That e-mail is the only one on the site. Changing it later is a separate decision ([ADR-0007](docs/decisions/0007-contact-and-single-email.md)). The Instagram handle stays as it is (Filipe's decision, recorded as a risk in `docs/compliance/cfm.md`).
+- **Objective:** meet the identification required by CFM Resolution 2.336/2023, with the first fold and the Contato section finished, in the "Caminho do jardim" direction (Filipe, 2026-11-17).
+- **Scope:** the page frame of the direction (`DESIGN.md`): the garden path, section label, descriptive heading and stone, page column, motion; the identification block: name (`display`, the only `h1`), `ouro` hairline and identity line `MÉDICA · CRM-SP 240550` (`label`), the portrait from 1.4 as a 3:4 arch in its clearing with the sun and the leaf, beside the name on wide screens; the identity line again in the footer; the Contato section complete, with `victorialaufersaude@gmail.com`, WhatsApp and Instagram as rounded rows with a drawn icon, the channel as a label and the address as link text. That e-mail is the only one on the site. Changing it later is a separate decision ([ADR-0007](docs/decisions/0007-contact-and-single-email.md)). The Instagram handle stays as it is (Filipe's decision, recorded as a risk in `docs/compliance/cfm.md`).
 - **Out of scope:** invitation to schedule or a pre-filled message (6.1); RQE (she has none); the cut-out portrait (2.5).
 - **Acceptance:** the three elements as text in the first fold at 360 px width, and in the footer; a single e-mail on the site; the identification block and Contato meet "a complete section".
 
@@ -257,7 +257,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 | Depends on | 2.2; 0.2 |
 
 - **Objective:** the Formação section finished, with the postgraduate courses in the Art. 13 format.
-- **Scope:** the section on the page and in the navigation; each course as `MÉDICA com pós-graduação em (official name)` followed by `NÃO ESPECIALISTA` in capitals, with the institution; the degree; its `DESIGN.md` look (course line in `title`, the Same-Size Rule).
+- **Scope:** the section on the page and in the navigation; each course as `MÉDICA com pós-graduação em (official name)` followed by `NÃO ESPECIALISTA` in capitals, with the institution; the degree; its `DESIGN.md` look (course cards in `rounded.card`, two columns from 900 px, "EM CURSO" marker, course line in `title`, the Same-Size Rule).
 - **Out of scope:** inventing a course name, year or workload.
 - **Acceptance:** `NÃO ESPECIALISTA` with the same size and contrast as the neighboring text; an item without its official name stays pending and off the page; the section meets "a complete section".
 
@@ -270,7 +270,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 | Depends on | 2.3; 0.2 |
 
 - **Objective:** the Atuação and Sobre sections finished, demonstrating experience without advertising care.
-- **Scope:** both sections on the page and in the navigation; list of roles performed, with the current workplace and a start year, under the wording rule in `docs/compliance/cfm.md` → C; the text "Sobre" approved by her, on `section-sobre`.
+- **Scope:** both sections on the page and in the navigation; list of roles performed, with the current workplace and a start year, under the wording rule in `docs/compliance/cfm.md` → C, with the leaf markers and the "Experiência" group of `DESIGN.md`; the text "Sobre" approved by her, in the `section-clareira` clearing, its first sentence in the serif face.
 - **Out of scope:** statistics, testimonials, mention of home care, previous workplaces, hospital logos.
 - **Acceptance:** every role follows the wording rule; none suggests a specialty or invites a consultation; the text "Sobre" is published without a change of meaning; both sections meet "a complete section".
 
@@ -284,7 +284,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 | Required before | 2.6: Filipe made it a condition for publication (2026-11-16), so indexing waits for it |
 
 - **Objective:** a clean cut-out of her portrait for the identification block, set on graphics generated from the brand.
-- **Scope:** amend `DESIGN.md` with the portrait treatment (which brand graphics sit behind her: palette fields from 0.3 and shapes drawn from the monogram's botanical flourishes; where it appears; what is never done), approved by Filipe; background removal of `photos/portrait-main.jpg`, done once outside the site, with the transparent file stored in `dra-victoria-laufer-assets` only; the cut-out approved by her; the graphics generated as SVG or CSS from the brand, no stock or generic illustration; the composition built and served under the 1.4 rules. The 4:5 crop from 1.4 stays as the fallback and the placeholder still applies without the assets.
+- **Scope:** amend `DESIGN.md` with the portrait treatment (which brand graphics sit behind her: palette fields from 0.3 and shapes drawn from the monogram's botanical flourishes; where it appears; what is never done), approved by Filipe; background removal of `photos/portrait-main.jpg`, done once outside the site, with the transparent file stored in `dra-victoria-laufer-assets` only; the cut-out approved by her; the graphics generated as SVG or CSS from the brand, no stock or generic illustration; the composition built and served under the 1.4 rules. The composition sits in the clearing, sun and leaf built in 2.2 (`DESIGN.md` → Garden shapes); the 3:4 arch crop stays as the fallback and the placeholder still applies without the assets.
 - **Out of scope:** photos behind her (consultório, hospital or any other); text over the photo (anti-goal); retouching her appearance.
 - **Acceptance:** the `DESIGN.md` amendment and her approval of the cut-out recorded in the issue; no photo or cut-out file in the history of this repository; no published image above 200 KB; CLS < 0.1; LCP < 2.5 s; any text near the composition ≥ 4.5:1; the CFM checklist passes, alt text included.
 
@@ -507,3 +507,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 2.1 built: `DESIGN.md` tokens with semantic roles in `tokens.css`; type roles; header with the colour horizontal logo and the anchor navigation; links, focus and selection from the palette; a ground fixed per section (light grounds only, no bands, Filipe's choice); footer on `verde-profundo` with the white logo; social image with a `verde-marca` field and an `ouro` hairline. The logo's written name is recentred on the monogram at build time (Filipe's request). `DESIGN.md` merged with these decisions (bands removed, 12 text pairs). Local builds, both targets, with and without the assets: every check passes; Impeccable detector clean; finish review `ship` |
 | 2026-11-16 | 2.1 PR CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307) on `4c87890` passed, private-assets step executed (portrait, icons, both logos and the social image generated): 71 requests, 0 failing; axe 4 runs, 0 failing; Lighthouse assertions pass. Verified once Filipe approves the screenshots |
 | 2026-11-16 | 2.1 verified: Filipe approved the screenshots as the base ("bom mas não excelente"); the design is raised in 2.2 to 2.5, and 2.6 gains a critique and polish pass on the whole page before release (Filipe's decision) |
+| 2026-11-17 | 2.2 built in the "Caminho do jardim" direction chosen by Filipe (variant A1): garden path and stones, descriptive section headings, portrait arch in a clearing with sun and leaf, Contato rows with drawn icons, footer with the identity line in `amarelo-marca`, motion; lilac off the page. Scope widened to the frame and size P → M (Filipe). `DESIGN.md`, ADR-0011 updated. Local builds of both targets, with and without the assets: every check passes |

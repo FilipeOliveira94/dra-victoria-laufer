@@ -67,7 +67,7 @@ The proof is checkable fact, not claims: her CRM registration, her degree, her p
 
 ## Brand Commitments
 
-- Her name, registration and the word `MÉDICA` are the identity, always as real text. Her logo, palette (green, yellow and white leading; lilac as secondary) and the site typography were confirmed in issue 0.3 and are recorded in [`DESIGN.md`](DESIGN.md).
+- Her name, registration and the word `MÉDICA` are the identity, always as real text. Her logo, palette (green, yellow and white leading; lilac in the brand, off the page) and the site typography were confirmed in issue 0.3 and are recorded in [`DESIGN.md`](DESIGN.md).
 - Voice: plain, factual, restrained. First person only in her own text ("Sobre"). No superlatives, no "referência em", no promotional language (Art. 11, XVI).
 - Workplaces are named in text, never with their logos.
 
@@ -92,7 +92,7 @@ Absent, and never to be fabricated: testimonials, ratings, patient counts or any
 4. **One source per fact.** Each fact lives in one typed collection and the page renders it.
 5. **Her words are hers.** "Sobre" and any approved line are published without a change of meaning.
 
-Anti-goals from the confirmed design brief: generic illustration, card grid, full-screen hero with text over the image, testimonials, statistics, promotional language. The page sequence and mode of the brief are surface strategy and live in [`ROADMAP.md`](ROADMAP.md) → Design brief.
+Anti-goals from the confirmed design brief: generic illustration, card grid (the course cards of the "Caminho do jardim" direction are the one approved exception, `DESIGN.md` → Shapes), full-screen hero with text over the image, testimonials, statistics, promotional language. The page sequence and mode of the brief are surface strategy and live in [`ROADMAP.md`](ROADMAP.md) → Design brief.
 
 ## Accessibility & Inclusion
 
