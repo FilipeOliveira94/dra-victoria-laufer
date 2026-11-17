@@ -187,7 +187,7 @@ The logo's own faces (a commercial script and Lucida Sans Unicode) stay inside t
 
 Reading order fixed by the brief: identification with portrait → Formação → Atuação → Sobre → Contato. Page column up to 70 rem; side gutter 16 px at 320–599 px, 24 px from 600 px. Reading text keeps a 40 rem measure. Sections separate by space (`xl`–`3xl`), more above a heading than below it. No horizontal scroll from 320 to 1600 px.
 
-The path runs at `--trail-x` from the column's edge (30 px, 40 px from 900 px); section content starts at `--trail-indent` (60 px, 104 px from 900 px), plus or minus the stone's shift. From 900 px each section is two columns: label and heading on the left (up to 18 rem), content on the right. "Sobre" is one column inside its clearing.
+The path runs at `--trail-x` from the column's edge (30 px, 40 px from 900 px); section content starts at `--trail-indent` (60 px, 104 px from 900 px), plus the stone's shift. From 900 px each section is two columns: label and heading on the left (up to 18 rem), content on the right. "Sobre" is one column inside its clearing.
 
 First fold on a phone: logo (horizontal, small) → name (`display`) → hairline and identity line (`label`) → the scene (clearing, sun, portrait, leaf), indented to the path. The name block is white, so the path starts below it. From 900 px: name and identity line on the left, the scene on the right; the portrait never sits behind the text and text never sits on the photo.
 
@@ -209,8 +209,8 @@ Rounded and organic, never sharp-cornered boxes:
 
 All decorative, `aria-hidden`, drawn in CSS or inline SVG from the tokens; no stock or generic illustration, no request.
 
-- **Path:** a dotted `ouro` line, 3.5 px round dots every 12 px, down the left edge of the page at `--trail-x`. It is drawn in stretches that meet on that line: one through the first fold, bending once, then two per section, into its stone and out of it. The stones interrupt it: the dots run up to each stone and stop short of it.
-- **Stone:** a 22 px `ouro` disc on the path, centred on the first line of each section heading. It sits 12 px (`--stone-shift`) to one side of the path's line, to the right on the first section and then alternating, and the path bends out to meet it. The section's label, heading and content move with the stone. A 10 px ring of the ground around it is the gap the dots leave, the same on every side.
+- **Path:** a dotted `ouro` line, 3.5 px round dots every 12 px, down the left edge of the page at `--trail-x`. It is a gentle wave, 12 px each side of that line: its right crests are the stones and its left crests sit 64 px (`--trail-lead`) above each section. It is drawn in stretches from crest to crest, where the line runs straight down, so they join without a kink: one full wave through the first fold, then two half-waves per section, into its stone and out of it. The stones interrupt it: the dots run up to each stone and stop short of it.
+- **Stone:** a 22 px `ouro` disc on the path, centred on the first line of each section heading. It sits at the wave's right crest, 12 px (`--stone-shift`) right of the path's line. The section's label, heading and content move with the stone. A 10 px ring of the ground around it is the gap the dots leave, the same on every side.
 - **Clearing:** `verde-claro`, organic outline behind the portrait; a rounded field around "Sobre".
 - **Sun:** an `amarelo-marca` disc, top right of the portrait, partly behind it.
 - **Leaf:** `verde-marca` with a white vein, at the portrait's lower left; small leaf shapes (`rounded.card` turned) mark the Atuação list (2.4).

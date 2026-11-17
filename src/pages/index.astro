@@ -31,10 +31,11 @@ const nav = sections.filter((s) => present[s.id]);
         the sun and a leaf. The shapes are decorative and hidden from assistive
         technology. */}
     <div class="identification wrap">
-      {/* DESIGN.md → Garden shapes: the path starts here and bends once
-          before the first section. Decorative. */}
-      <svg class="trail" viewBox="0 0 44 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <path d="M22 0C22 25 10 25 10 50C10 75 22 75 22 100" />
+      {/* DESIGN.md → Garden shapes: the path starts here with one full wave,
+          from its left crest to its left crest, ending --trail-lead above the
+          first section. Decorative. */}
+      <svg class="trail trail-fold" viewBox="0 0 44 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M10 0C10 25 34 25 34 50C34 75 10 75 10 100" />
       </svg>
       <div class="identification-text">
         <h1>{id.nome}</h1>
@@ -54,7 +55,7 @@ const nav = sections.filter((s) => present[s.id]);
     </div>
     {
       channels.length > 0 && (
-        <Section section={section('contato')} step={nav.findIndex((s) => s.id === 'contato')}>
+        <Section section={section('contato')}>
           {/* DESIGN.md → Contact: the channel as a label with its drawn icon,
               the address as the link text. The dt names each link for
               assistive technology. */}

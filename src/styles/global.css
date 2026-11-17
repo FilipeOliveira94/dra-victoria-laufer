@@ -216,12 +216,13 @@ main:focus {
   }
 }
 
-/* The garden path (DESIGN.md → Garden shapes): dotted gold, at --trail-x from
-   the page column's edge. Drawn in stretches: one through the first fold, then
-   two per section, into its stone and out of it. Each stretch is an inline SVG
-   stretched down only; the stroke keeps its size, so the dots stay round and
-   12 px apart. Every stretch starts and ends on the column's line, upright, so
-   they join without a kink. Hidden from assistive technology. */
+/* The garden path (DESIGN.md → Garden shapes): dotted gold, a wave about the
+   line at --trail-x from the page column's edge. Its right crests are the
+   stones; its left crests sit --trail-lead above each section's top. Drawn in
+   stretches from crest to crest: one full wave through the first fold, then
+   two half-waves per section, into its stone and out of it. Each stretch is an
+   inline SVG stretched down only; the stroke keeps its size, so the dots stay
+   round and 12 px apart. Hidden from assistive technology. */
 .trail {
   position: absolute;
   z-index: 0;
@@ -245,6 +246,10 @@ main:focus {
 
 .trail path {
   vector-effect: non-scaling-stroke;
+}
+
+.trail-fold {
+  height: calc(100% - var(--trail-lead));
 }
 
 /* Identification (issue 2.2; DESIGN.md → First fold): name and identity line,
@@ -378,8 +383,8 @@ main:focus {
 
 /* Sections (DESIGN.md → Sections). Each heading sits on a gold stone on the
    path; the stone is centred on the first line of the h2. The stone sits
-   --stone-shift to one side of the column's line, and the section's content
-   moves with it. --stone-y is the stone's centre from the section's top: the
+   --stone-shift right of the path's line, and the section's content moves
+   with it. --stone-y is the stone's centre from the section's top: the
    path's stretch into the stone ends there, the stretch out of it starts. */
 .section {
   --pad-start: var(--space-xl);
@@ -398,26 +403,23 @@ main:focus {
   --label-block: calc(var(--label-small) * var(--label-leading) + var(--space-sm));
 }
 
-.stone-right {
-  --shift: var(--stone-shift);
-}
-
-.stone-left {
-  --shift: calc(-1 * var(--stone-shift));
-}
-
 .trail-in {
-  inset-block: 0 auto;
-  height: var(--stone-y);
+  inset-block: calc(-1 * var(--trail-lead)) auto;
+  height: calc(var(--trail-lead) + var(--stone-y));
 }
 
 .trail-out {
   inset-block: var(--stone-y) auto;
+  height: calc(100% - var(--stone-y) - var(--trail-lead));
+}
+
+/* After the last section the path runs out at the footer. */
+.section:last-child .trail-out {
   height: calc(100% - var(--stone-y));
 }
 
 .section-inner {
-  padding-inline-start: calc(var(--trail-indent) + var(--shift, 0px));
+  padding-inline-start: calc(var(--trail-indent) + var(--stone-shift));
 }
 
 .section-head {
