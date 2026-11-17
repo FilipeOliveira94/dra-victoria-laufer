@@ -26,7 +26,7 @@ build: ## Build the static site (production URLs unless DEPLOY_TARGET is set)
 preview: ## Serve the built site locally
 	$(NPM) run preview
 
-lint: ## Valid HTML, no Lorem or vetoed term in dist/, no photo in the repository
+lint: ## Valid HTML, no Lorem or vetoed term in dist/, no photo in the repository, no empty table header in the docs
 	$(NPM) run lint
 
 check: ## Type-check the project

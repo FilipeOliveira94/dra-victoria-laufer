@@ -2,7 +2,7 @@
 
 Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is the source of truth for **scope, dependencies, issue status and acceptance criteria**. `PROJECT_STATUS.md` is the **current-phase** operational ledger. Longer history lives in `docs/status-log.md`. The plan comes from the approved plan v2, summarized in [`docs/project-genesis.md`](docs/project-genesis.md).
 
-| | |
+| Roadmap | Current |
 | --- | --- |
 | Last updated | 2026-11-17 |
 | MVP | Phases 1 and 2 |
@@ -52,7 +52,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 0.1 Record the product context
 
-| | |
+| Issue 0.1 | Detail |
 | --- | --- |
 | Status | `verified` |
 | Size | P |
@@ -65,7 +65,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 0.2 Collect pending inputs
 
-| | |
+| Issue 0.2 | Detail |
 | --- | --- |
 | Status | `verified` |
 | Size | P |
@@ -78,7 +78,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 0.3 Define the visual identity
 
-| | |
+| Issue 0.3 | Detail |
 | --- | --- |
 | Status | `verified` |
 | Size | M |
@@ -99,7 +99,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 1.1 Replace Jekyll with Astro, deployed by Actions
 
-| | |
+| Issue 1.1 | Detail |
 | --- | --- |
 | Status | `verified` (local builds and the published site checked on 2026-11-16) |
 | Size | M |
@@ -113,7 +113,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 1.2 Typed content model
 
-| | |
+| Issue 1.2 | Detail |
 | --- | --- |
 | Status | `verified` (local builds, 2026-11-16) |
 | Size | P |
@@ -127,7 +127,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 1.3 Structure and layout of the single page
 
-| | |
+| Issue 1.3 | Detail |
 | --- | --- |
 | Status | `verified` |
 | Size | M |
@@ -141,7 +141,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 1.4 Images, favicon and fonts
 
-| | |
+| Issue 1.4 | Detail |
 | --- | --- |
 | Status | `verified` (local builds and the PR's CI run, assets fetched) |
 | Size | M |
@@ -155,7 +155,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 1.5 Accessibility, WCAG 2.1 AA
 
-| | |
+| Issue 1.5 | Detail |
 | --- | --- |
 | Status | `verified` (local builds, both targets, and the PR's CI run, assets fetched) |
 | Size | P |
@@ -168,7 +168,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 1.6 Technical SEO
 
-| | |
+| Issue 1.6 | Detail |
 | --- | --- |
 | Status | `verified` (local builds, both targets, and the PR's CI run, assets fetched) |
 | Size | P |
@@ -181,7 +181,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 1.7 Automatic checks on pull requests
 
-| | |
+| Issue 1.7 | Detail |
 | --- | --- |
 | Status | `verified` (local builds, both targets, with and without the assets, and the PR's CI run, assets fetched) |
 | Size | M |
@@ -194,7 +194,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 1.8 License
 
-| | |
+| Issue 1.8 | Detail |
 | --- | --- |
 | Status | `verified` (wording reviewed and approved by Filipe, 2026-11-16) |
 | Size | P |
@@ -226,7 +226,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 2.1 Apply the confirmed visual identity
 
-| | |
+| Issue 2.1 | Detail |
 | --- | --- |
 | Status | `verified` (local builds and the PR's CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307), assets fetched; screenshots approved by Filipe as the base, 2026-11-16) | Size | M |
 | Depends on | 0.3 |
@@ -238,7 +238,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 2.2 Identification and contact
 
-| | |
+| Issue 2.2 | Detail |
 | --- | --- |
 | Status | `verified` (local builds and the CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315) of PR #15, assets fetched; screenshots approved by Filipe, 2026-11-17) | Size | M |
 | Depends on | 2.1 |
@@ -250,7 +250,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 2.3 Training ("Formação")
 
-| | |
+| Issue 2.3 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -263,7 +263,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 2.4 Roles ("Atuação") and "Sobre"
 
-| | |
+| Issue 2.4 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -276,7 +276,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 2.5 Cut-out portrait on brand graphics
 
-| | |
+| Issue 2.5 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | M |
@@ -290,7 +290,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 2.6 CFM review and release
 
-| | |
+| Issue 2.6 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -310,7 +310,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 3.1 Register the domain and configure DNS
 
-| | |
+| Issue 3.1 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -323,7 +323,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 3.2 Switch to the domain
 
-| | |
+| Issue 3.2 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -337,7 +337,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 ### 3.3 E-mail on the domain
 
-| | |
+| Issue 3.3 | Detail |
 | --- | --- |
 | Status | `withdrawn` |
 
@@ -349,7 +349,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 ### 4.1 JSON-LD Person
 
-| | |
+| Issue 4.1 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -367,7 +367,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 ### 5.1 Privacy and legal notice
 
-| | |
+| Issue 5.1 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -380,7 +380,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 ### 5.2 Further evidence
 
-| | |
+| Issue 5.2 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | M |
@@ -399,7 +399,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 ### 6.1 Invitation to schedule by WhatsApp
 
-| | |
+| Issue 6.1 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -412,7 +412,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 ### 6.2 Care modality
 
-| | |
+| Issue 6.2 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | M |
@@ -429,7 +429,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 ### 7.1 Search Console and Bing Webmaster
 
-| | |
+| Issue 7.1 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |
@@ -442,7 +442,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 ### 7.2 Maintenance
 
-| | |
+| Issue 7.2 | Detail |
 | --- | --- |
 | Status | `not started` |
 | Size | P |

@@ -2,11 +2,11 @@
 
 Operational ledger for the **current phase**. Issue backlog and acceptance text live in [`ROADMAP.md`](ROADMAP.md). Decision index: [`DECISIONS.md`](DECISIONS.md). Chronological archive: [`docs/status-log.md`](docs/status-log.md).
 
-| | |
+| Project | Current |
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-17 (2.2 verified; PR #15 open with the CLS fix and the wave path) |
+| Last updated | 2026-11-17 (2.2 merged and published; table headers in the docs, with a lint check) |
 | Current phase | Phase 2 — Credibility content under the CFM rules (MVP), the last phase before the initial release |
 | Phase status | Phase 2 in progress (2.1 and 2.2 verified). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
 
@@ -24,14 +24,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 **2.3** — Formação: the course cards in the Art. 13 format, on the 2.2 frame.
 
-2.2 is verified. #14 (`a39f022`) was merged while its CI [run 44156463768](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156463768) was failing (Lighthouse CLS 0.197); its deploy published cleanly anyway: `published` job of [run 44156637063](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156637063), success. PR #15 fixes the cause and carries Filipe's path adjustment; it waits for PO and Reviewer approval and Filipe's OK.
+2.2 is verified. #14 (`a39f022`) was merged while its CI [run 44156463768](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156463768) was failing (Lighthouse CLS 0.197); its deploy published cleanly anyway: `published` job of [run 44156637063](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156637063), success. PR #15 fixed the cause and carried Filipe's path adjustment; its merge (`04ebf57`) published cleanly: `published` job of [run 44161929920](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161929920), success.
 
 ## Next work
 
-1. **2.2** — PR #15: PO and Reviewer approval, Filipe's OK, merge; read its `published` job.
-2. **2.3** Formação (course cards), then **2.4** Atuação (leaf markers) and Sobre (clearing), each a complete section on the 2.2 frame.
-3. **2.5** cut-out portrait on brand graphics: Filipe made it a condition for publication.
-4. **2.6** design critique and polish on the whole page, CFM review and release (removal of `noindex`).
+1. **2.3** Formação (course cards), then **2.4** Atuação (leaf markers) and Sobre (clearing), each a complete section on the 2.2 frame.
+2. **2.5** cut-out portrait on brand graphics: Filipe made it a condition for publication.
+3. **2.6** design critique and polish on the whole page, CFM review and release (removal of `noindex`).
 
 ## Blockers
 
@@ -56,7 +55,7 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 
 ## Latest validation
 
-| | |
+| Validation | Detail |
 | --- | --- |
 | Date | 2026-11-17 |
 | Environment | Local build, branch `feat/2.2-identification-contact` at `6952116`: production and `DEPLOY_TARGET=ghpages` with the private assets, staging with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless (scratchpad only). CI: [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315) on `6952116` (`pull_request`), assets fetched. Not deployed |
@@ -67,7 +66,7 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 
 ## Previous validation
 
-| | |
+| Validation | Detail |
 | --- | --- |
 | Date | 2026-11-17 |
 | Environment | Local build, branch `feat/2.2-identification-contact`: production and `DEPLOY_TARGET=ghpages` with the private assets, staging with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless (scratchpad only). Not deployed |
