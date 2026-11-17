@@ -216,35 +216,47 @@ main:focus {
   }
 }
 
-/* The garden path (DESIGN.md → Garden shapes): a dotted gold line drawn down
-   the left edge of <main>, at --trail-x from the page column's edge. One tile,
-   repeated; the gold comes from the token through a mask. An empty element,
-   hidden from assistive technology (a pseudo-element would leave axe unable to
-   read the grounds behind the text). */
-main {
-  position: relative;
-}
-
+/* The garden path (DESIGN.md → Garden shapes): dotted gold, a wave about the
+   line at --trail-x from the page column's edge. Its right crests are the
+   stones; its left crests sit --trail-lead above each section's top. Drawn in
+   stretches from crest to crest: one full wave through the first fold, then
+   two half-waves per section, into its stone and out of it. Each stretch is an
+   inline SVG stretched down only; the stroke keeps its size, so the dots stay
+   round and 12 px apart. Hidden from assistive technology. */
 .trail {
   position: absolute;
   z-index: 0;
-  inset-block: 0;
   inset-inline-start: calc(
     max(0px, (100% - var(--page-max)) / 2) + var(--trail-x) - var(--trail-width) / 2
   );
+  inset-block: 0;
   width: var(--trail-width);
-  background: var(--color-path);
-  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='420'%3E%3Cpath d='M22 0C40 70 40 140 22 210S4 350 22 420' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-dasharray='0.1 12'/%3E%3C/svg%3E")
-    top center / var(--trail-width) 420px repeat-y;
-  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='420'%3E%3Cpath d='M22 0C40 70 40 140 22 210S4 350 22 420' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-dasharray='0.1 12'/%3E%3C/svg%3E")
-    top center / var(--trail-width) 420px repeat-y;
+  height: 100%;
+  overflow: visible;
   pointer-events: none;
+  fill: none;
+  stroke: var(--color-path);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 0.1 12;
+  /* The first dot sits half a step in, so two stretches never put two dots
+     together where they meet. */
+  stroke-dashoffset: -6;
+}
+
+.trail path {
+  vector-effect: non-scaling-stroke;
+}
+
+.trail-fold {
+  height: calc(100% - var(--trail-lead));
 }
 
 /* Identification (issue 2.2; DESIGN.md → First fold): name and identity line,
    then the portrait in its clearing. On a phone the text block is white, so
    the path starts below it. */
 .identification {
+  position: relative;
   padding-block-end: var(--space-xl);
 }
 
@@ -272,6 +284,7 @@ main {
 
 /* The scene: clearing, sun, portrait, leaf, painted in that order. */
 .scene {
+  --portrait-size: var(--portrait-max);
   position: relative;
   z-index: 1;
   display: flex;
@@ -320,12 +333,18 @@ main {
 
 /* Portrait (issues 1.4, 2.2): a 3:4 arch with a white edge. The top corners are
    half the width (50% across, 37.5% of the 3:4 height), so the arch is a true
-   semicircle at every size. Box ratio fixed in CSS: nothing shifts on load. */
-.portrait {
+   semicircle at every size. The box in the scene (the <picture>, or the
+   placeholder) has a definite width, so the portrait's size never depends on
+   which image has loaded: nothing shifts on load. */
+.scene > :is(picture, .portrait) {
   position: relative;
   display: block;
+  width: min(var(--portrait-size), 100%);
+}
+
+.portrait {
+  display: block;
   width: 100%;
-  max-width: var(--portrait-max);
   height: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
@@ -355,34 +374,57 @@ main {
   }
 
   .scene {
+    --portrait-size: var(--portrait-wide);
     justify-content: center;
     margin: 0;
     padding: var(--space-xl) var(--space-xl) var(--space-xl) 0;
   }
-
-  .portrait {
-    max-width: var(--portrait-wide);
-  }
 }
 
 /* Sections (DESIGN.md → Sections). Each heading sits on a gold stone on the
-   path; the stone is centred on the first line of the h2. */
+   path; the stone is centred on the first line of the h2. The stone sits
+   --stone-shift right of the path's line, and the section's content moves
+   with it. --stone-y is the stone's centre from the section's top: the
+   path's stretch into the stone ends there, the stretch out of it starts. */
 .section {
-  padding-block: var(--space-xl) var(--space-2xl);
+  --pad-start: var(--space-xl);
+  --pad-end: var(--space-2xl);
+  --inner-start: 0px;
+  --label-block: 0px;
+  --stone-y: calc(
+    var(--pad-start) + var(--inner-start) + var(--label-block) + var(--headline-size) *
+      var(--headline-leading) / 2
+  );
+  position: relative;
+  padding-block: var(--pad-start) var(--pad-end);
+}
+
+.section.has-label {
+  --label-block: calc(var(--label-small) * var(--label-leading) + var(--space-sm));
+}
+
+.trail-in {
+  inset-block: calc(-1 * var(--trail-lead)) auto;
+  height: calc(var(--trail-lead) + var(--stone-y));
+}
+
+.trail-out {
+  inset-block: var(--stone-y) auto;
+  height: calc(100% - var(--stone-y) - var(--trail-lead));
+}
+
+/* After the last section the path runs out at the footer. */
+.section:last-child .trail-out {
+  height: calc(100% - var(--stone-y));
 }
 
 .section-inner {
-  padding-inline-start: var(--trail-indent);
+  padding-inline-start: calc(var(--trail-indent) + var(--stone-shift));
 }
 
 .section-head {
-  --label-block: 0px;
   position: relative;
   margin-block-end: var(--space-lg);
-}
-
-.section-head.has-label {
-  --label-block: calc(var(--label-small) * var(--label-leading) + var(--space-sm));
 }
 
 .section-label {
@@ -395,8 +437,7 @@ main {
   margin: 0;
 }
 
-.section-head::before {
-  content: '';
+.stone {
   position: absolute;
   inset-inline-start: calc(var(--trail-x) - var(--trail-indent) - var(--stone) / 2 - var(--stone-ring));
   inset-block-start: calc(
@@ -417,7 +458,9 @@ main {
 /* Sobre (issue 2.4): her words in a verde-claro clearing that covers the path;
    its stone sits inside the clearing, on the path's line. */
 .section-clareira {
-  padding-block: var(--space-lg);
+  --pad-start: var(--space-lg);
+  --pad-end: var(--space-lg);
+  --inner-start: var(--space-xl);
 }
 
 .section-clareira .section-inner {
@@ -425,7 +468,7 @@ main {
   position: relative;
   z-index: 1;
   isolation: isolate;
-  padding-block: var(--space-xl);
+  padding-block: var(--inner-start);
 }
 
 .section-clareira .section-inner::before {
@@ -440,7 +483,8 @@ main {
 
 @media (min-width: 900px) {
   .section {
-    padding-block: var(--space-2xl) var(--space-3xl);
+    --pad-start: var(--space-2xl);
+    --pad-end: var(--space-3xl);
   }
 
   .section-default .section-inner {
@@ -454,8 +498,8 @@ main {
     margin: 0;
   }
 
-  .section-clareira .section-inner {
-    padding-block: var(--space-2xl);
+  .section-clareira {
+    --inner-start: var(--space-2xl);
   }
 }
 
@@ -644,7 +688,7 @@ main {
   }
 
   @supports (animation-timeline: view()) {
-    .section-head::before {
+    .stone {
       animation: stone-set linear both;
       animation-timeline: view();
       animation-range: entry 10% cover 30%;

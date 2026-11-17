@@ -26,13 +26,17 @@ const nav = sections.filter((s) => present[s.id]);
 
 <Base title={`${id.nome} · ${identification}`} nav={nav}>
   <main id="conteudo" tabindex="-1">
-    {/* DESIGN.md → Garden shapes: the path down the page. Decorative. */}
-    <span class="trail" aria-hidden="true"></span>
     {/* DESIGN.md → First fold ("Caminho do jardim"): name and identity line as
         real text; the portrait in an arch inside a verde-claro clearing, with
         the sun and a leaf. The shapes are decorative and hidden from assistive
         technology. */}
     <div class="identification wrap">
+      {/* DESIGN.md → Garden shapes: the path starts here with one full wave,
+          from its left crest to its left crest, ending --trail-lead above the
+          first section. Decorative. */}
+      <svg class="trail trail-fold" viewBox="0 0 44 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M10 0C10 25 34 25 34 50C34 75 10 75 10 100" />
+      </svg>
       <div class="identification-text">
         <h1>{id.nome}</h1>
         <p class="label identity-line">{identification}</p>

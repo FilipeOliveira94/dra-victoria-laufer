@@ -5,7 +5,13 @@ import type { Section } from '../lib/sections';
 // Render it only when it has published content; an empty section would be a
 // placeholder (AGENTS.md §5).
 // DESIGN.md → Sections: the label names the section as the navigation does; the
-// heading's gold stone sits on the garden path (the trail drawn on <main>).
+// heading's gold stone sits on the garden path. The path is a wave: it swings
+// to its right crest at each stone and to its left crest --trail-lead above
+// each section's top. Each section draws its two half-waves, into the stone
+// and out of it, as S curves stretched down only; they meet the next stretch
+// at a crest, where the line runs straight down, so the wave has no kink. The
+// stone sits --stone-shift right of the path's line and the section's content
+// moves with it.
 interface Props {
   section: Section;
 }
@@ -14,9 +20,24 @@ const { section } = Astro.props;
 const headingId = `${section.id}-titulo`;
 ---
 
-<section class:list={['section', `section-${section.fundo}`]} id={section.id} aria-labelledby={headingId}>
+<section
+  class:list={['section', `section-${section.fundo}`, { 'has-label': section.rotulo }]}
+  id={section.id}
+  aria-labelledby={headingId}
+>
+  {/* The path's box is --trail-width (44 px) wide and drawn 1:1 across: the
+      line's axis at x = 22, the crests at 10 and 34 (± --stone-shift). */}
+  <svg class="trail trail-in" viewBox="0 0 44 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M10 0C10 50 34 50 34 100" />
+  </svg>
+  <svg class="trail trail-out" viewBox="0 0 44 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d="M34 0C34 50 10 50 10 100" />
+  </svg>
   <div class="wrap section-inner">
-    <div class:list={['section-head', { 'has-label': section.rotulo }]}>
+    <div class="section-head">
+      {/* An element, not a pseudo-element: axe could not read the ground
+          behind the label next to one this size. */}
+      <span class="stone" aria-hidden="true"></span>
       {section.rotulo && <p class="label section-label">{section.titulo}</p>}
       <h2 id={headingId}>{section.cabecalho}</h2>
     </div>
