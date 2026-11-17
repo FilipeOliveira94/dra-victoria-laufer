@@ -4,6 +4,17 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-17 — Issue 2.2 verified: portrait CLS fixed, the path as a wave through the stones
+
+#14 was merged while its CI [run 44156463768](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156463768) on `3e5a178` was failing: Lighthouse mobile CLS 0.197 against a maximum of 0.1. The deploy of the merge (`a39f022`) passed, `published` job of [run 44156637063](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156637063) included, so the live page carries the defect only when the portrait loads late.
+
+- **Cause:** the portrait's `<picture>` was a flex item without a width, so the portrait took its size from whichever image had loaded. At 412 px it measured 223 × 298 px before load and 240 × 320 px after, and Contato moved down 23 px. The box in the scene now has a definite width; with images blocked and loaded, it measures the same at 320, 412 and 1280 px.
+- **Path (Filipe's condition for approving 2.2):** the stones interrupt the dotted path and the sections follow the stone's horizontal position. The path is a gentle wave, 12 px each side of its line. Its right crests are the stones, and its left crests sit 64 px (`--trail-lead`) above each section. It is drawn crest to crest in inline SVG stretched down only, so the pieces join without a kink and the dots stay round. The dots stop 10 px short of each stone, on every side. Each section's content moves right with the stone's 12 px shift. An earlier version alternated the stones' side and joined the pieces on the line itself; Filipe found the line crooked, and the crest-to-crest wave replaced it. The stone is now an element instead of a pseudo-element: with the wider ring, axe could not read the ground behind the label. `DESIGN.md` is updated. Filipe validated the result on screenshots at 360 and 1280 px.
+
+Checks, on production, `DEPLOY_TARGET=ghpages` and the placeholder build: `astro check` 0 errors; html-validate 0 errors; content and photos 0 failing; requests 68, 0 failing (19 without the assets); axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404; Lighthouse mobile Performance 100, Accessibility 100, LCP 1504–1581 ms, CLS ≤ 0.0002. On production: no horizontal scroll at any width from 320 to 1600 px in 40 px steps; at 360 × 640 px the identity line ends at 286 px; the footer repeats `MÉDICA · CRM-SP 240550`; `victorialaufersaude@gmail.com` is the only e-mail address in `dist/`. PR #15 CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315) on `6952116` passed with the private-assets step executed: requests 68, 0 failing; html, content and photo checks pass; axe 4 runs, 0 failing; Lighthouse assertions pass. Every acceptance item is met: 2.2 verified.
+
+---
+
 ### 2026-11-17 — Issue 2.2: identification and contact, in the "Caminho do jardim" direction
 
 Built on `feat/2.2-identification-contact`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless in a scratch directory). Not deployed. The 2.1 merge (`c5ec2d7`) published cleanly: `published` job of [run 43982853827](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43982853827), 41 requests, 0 failing, on the live page.

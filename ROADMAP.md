@@ -240,7 +240,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | | |
 | --- | --- |
-| Status | `delivered` (local builds; PR CI and Filipe's screenshot review pending) | Size | M |
+| Status | `verified` (local builds and the CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315) of PR #15, assets fetched; screenshots approved by Filipe, 2026-11-17) | Size | M |
 | Depends on | 2.1 |
 
 - **Objective:** meet the identification required by CFM Resolution 2.336/2023, with the first fold and the Contato section finished, in the "Caminho do jardim" direction (Filipe, 2026-11-17).
@@ -508,3 +508,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-16 | 2.1 PR CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307) on `4c87890` passed, private-assets step executed (portrait, icons, both logos and the social image generated): 71 requests, 0 failing; axe 4 runs, 0 failing; Lighthouse assertions pass. Verified once Filipe approves the screenshots |
 | 2026-11-16 | 2.1 verified: Filipe approved the screenshots as the base ("bom mas não excelente"); the design is raised in 2.2 to 2.5, and 2.6 gains a critique and polish pass on the whole page before release (Filipe's decision) |
 | 2026-11-17 | 2.2 built in the "Caminho do jardim" direction chosen by Filipe (variant A1): garden path and stones, descriptive section headings, portrait arch in a clearing with sun and leaf, Contato rows with drawn icons, footer with the identity line in `amarelo-marca`, motion; lilac off the page. Scope widened to the frame and size P → M (Filipe). `DESIGN.md`, ADR-0011 updated. Local builds of both targets, with and without the assets: every check passes |
+| 2026-11-17 | 2.2 verified. #14 had been merged while its CI [run 44156463768](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156463768) was failing (Lighthouse CLS 0.197, from the portrait box resizing on load); PR #15 fixes the portrait box and, at Filipe's request, draws the path as a smooth wave whose right crests are the stones, with each section shifted with its stone. Local builds of both targets and the PR's CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315) pass |
