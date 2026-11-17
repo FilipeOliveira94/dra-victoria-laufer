@@ -272,6 +272,7 @@ main {
 
 /* The scene: clearing, sun, portrait, leaf, painted in that order. */
 .scene {
+  --portrait-size: var(--portrait-max);
   position: relative;
   z-index: 1;
   display: flex;
@@ -320,12 +321,18 @@ main {
 
 /* Portrait (issues 1.4, 2.2): a 3:4 arch with a white edge. The top corners are
    half the width (50% across, 37.5% of the 3:4 height), so the arch is a true
-   semicircle at every size. Box ratio fixed in CSS: nothing shifts on load. */
-.portrait {
+   semicircle at every size. The box in the scene (the <picture>, or the
+   placeholder) has a definite width, so the portrait's size never depends on
+   which image has loaded: nothing shifts on load. */
+.scene > :is(picture, .portrait) {
   position: relative;
   display: block;
+  width: min(var(--portrait-size), 100%);
+}
+
+.portrait {
+  display: block;
   width: 100%;
-  max-width: var(--portrait-max);
   height: auto;
   aspect-ratio: 3 / 4;
   object-fit: cover;
@@ -355,13 +362,10 @@ main {
   }
 
   .scene {
+    --portrait-size: var(--portrait-wide);
     justify-content: center;
     margin: 0;
     padding: var(--space-xl) var(--space-xl) var(--space-xl) 0;
-  }
-
-  .portrait {
-    max-width: var(--portrait-wide);
   }
 }
 
