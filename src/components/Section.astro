@@ -5,18 +5,41 @@ import type { Section } from '../lib/sections';
 // Render it only when it has published content; an empty section would be a
 // placeholder (AGENTS.md §5).
 // DESIGN.md → Sections: the label names the section as the navigation does; the
-// heading's gold stone sits on the garden path (the trail drawn on <main>).
+// heading's gold stone sits on the garden path. Each section draws its own
+// stretch of the path: from the top of the section into the stone, and from the
+// stone to the bottom. The path meets the column's line at every section edge
+// and swings out to the stone, to the right on the first rendered section and
+// then alternating; the section's content moves with the stone.
 interface Props {
   section: Section;
+  /** Order among the rendered sections, from 0. */
+  step: number;
 }
 
-const { section } = Astro.props;
+const { section, step } = Astro.props;
 const headingId = `${section.id}-titulo`;
+const side = step % 2 === 0 ? 'right' : 'left';
+// The path's box is --trail-width (44 px) wide and drawn 1:1 across: the line
+// runs at x = 22, the stone at 22 ± --stone-shift (12 px). Stretched down only.
+const stoneX = side === 'right' ? 34 : 10;
 ---
 
-<section class:list={['section', `section-${section.fundo}`]} id={section.id} aria-labelledby={headingId}>
+<section
+  class:list={['section', `section-${section.fundo}`, `stone-${side}`, { 'has-label': section.rotulo }]}
+  id={section.id}
+  aria-labelledby={headingId}
+>
+  <svg class="trail trail-in" viewBox="0 0 44 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d={`M22 0C22 50 ${stoneX} 50 ${stoneX} 100`} />
+  </svg>
+  <svg class="trail trail-out" viewBox="0 0 44 100" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+    <path d={`M${stoneX} 0C${stoneX} 50 22 50 22 100`} />
+  </svg>
   <div class="wrap section-inner">
-    <div class:list={['section-head', { 'has-label': section.rotulo }]}>
+    <div class="section-head">
+      {/* An element, not a pseudo-element: axe could not read the ground
+          behind the label next to one this size. */}
+      <span class="stone" aria-hidden="true"></span>
       {section.rotulo && <p class="label section-label">{section.titulo}</p>}
       <h2 id={headingId}>{section.cabecalho}</h2>
     </div>

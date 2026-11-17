@@ -91,12 +91,15 @@
   --portrait-edge: 8px;
 
   /* The garden path (DESIGN.md → Garden shapes): a dotted gold line that winds
-     down the left edge of the page; each section heading sits on a stone. */
+     down the left edge of the page; each section heading sits on a stone, set
+     --stone-shift to one side of the line. The ring is the gap the dots leave
+     around the stone. */
   --trail-width: 44px;
   --trail-x: 30px;
   --trail-indent: 60px;
   --stone: 22px;
-  --stone-ring: 6px;
+  --stone-ring: 10px;
+  --stone-shift: 12px;
 
   /* Space (DESIGN.md → spacing) */
   --space-xs: 4px;
