@@ -2,48 +2,82 @@
 import Base from '../layouts/Base.astro';
 import Portrait from '../components/Portrait.astro';
 import Section from '../components/Section.astro';
-import { channelLabel, crmLabel, medica, published } from '../lib/content';
+import { channelLabel, channelLink, identityLine, medica, published } from '../lib/content';
 import { section, sections, type SectionId } from '../lib/sections';
 
 // Every fact comes from the content model (issue 1.2). Formação, Atuação and
-// Sobre render from issues 2.3 and 2.4; the other channels from 2.2.
+// Sobre render from issues 2.3 and 2.4.
 const id = await medica();
 if (!id) throw new Error('medica is pending: the page cannot be built without identification.');
 
-const email = (await published('contato')).find((c) => c.tipo === 'email');
-const identification = `${id.titulo} · ${crmLabel(id)}`;
+const identification = identityLine(id);
+// Public channels in `ordem` (ADR-0007); a pending one is already dropped.
+const channels = await published('contato');
 
 // A section is on the page, and in the navigation, only with published content.
 const present: Record<SectionId, boolean> = {
   formacao: false,
   atuacao: false,
   sobre: false,
-  contato: Boolean(email),
+  contato: channels.length > 0,
 };
 const nav = sections.filter((s) => present[s.id]);
 ---
 
 <Base title={`${id.nome} · ${identification}`} nav={nav}>
   <main id="conteudo" tabindex="-1">
+    {/* DESIGN.md → Garden shapes: the path down the page. Decorative. */}
+    <span class="trail" aria-hidden="true"></span>
+    {/* DESIGN.md → First fold ("Caminho do jardim"): name and identity line as
+        real text; the portrait in an arch inside a verde-claro clearing, with
+        the sun and a leaf. The shapes are decorative and hidden from assistive
+        technology. */}
     <div class="identification wrap">
       <div class="identification-text">
         <h1>{id.nome}</h1>
-        <p>{identification}</p>
+        <p class="label identity-line">{identification}</p>
       </div>
-      <Portrait alt={`Foto de ${id.nome}`} />
+      <div class="scene">
+        <svg class="scene-clearing" viewBox="0 0 400 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <path d="M60 40C200-10 380 30 395 170c15 130-55 230-195 222C70 385 0 330 8 210 14 110 0 70 60 40Z" />
+        </svg>
+        <span class="scene-sun" aria-hidden="true"></span>
+        <Portrait alt={`Foto de ${id.nome}`} />
+        <svg class="scene-leaf" viewBox="0 0 120 90" aria-hidden="true" focusable="false">
+          <path class="leaf-blade" d="M6 84C10 30 60 4 116 8c-6 52-50 80-110 76Z" />
+          <path class="leaf-vein" d="M6 84C40 56 72 34 112 12" />
+        </svg>
+      </div>
     </div>
     {
-      email && (
+      channels.length > 0 && (
         <Section section={section('contato')}>
-          {/* DESIGN.md: the address is the link text and the channel its title.
-              A title is not a reliable name, so the channel is also in the
-              link text for assistive technology: "E-mail: <address>". */}
-          <p>
-            <a href={`mailto:${email.valor}`} title={channelLabel.email}>
-              <span class="visually-hidden">{channelLabel.email}: </span>
-              {email.valor}
-            </a>
-          </p>
+          {/* DESIGN.md → Contact: the channel as a label with its drawn icon,
+              the address as the link text. The dt names each link for
+              assistive technology. */}
+          <dl class="channels">
+            {channels.map((c) => {
+              const link = channelLink(c);
+              // On a narrow phone an address breaks only at a <wbr>: before the
+              // e-mail domain, after a dot in the handle; never mid-word.
+              const parts = c.tipo === 'email' ? link.text.split(/(?=@)/) : link.text.split(/(?<=\.)/);
+              return (
+                <div class="channel" data-channel={c.tipo}>
+                  <dt class="label channel-name">{channelLabel[c.tipo]}</dt>
+                  <dd>
+                    <a href={link.href}>
+                      {parts.map((part, i) => (
+                        <>
+                          {i > 0 && <wbr />}
+                          {part}
+                        </>
+                      ))}
+                    </a>
+                  </dd>
+                </div>
+              );
+            })}
+          </dl>
         </Section>
       )
     }

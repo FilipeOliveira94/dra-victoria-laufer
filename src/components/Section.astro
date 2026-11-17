@@ -4,6 +4,8 @@ import type { Section } from '../lib/sections';
 // A page section: its id is the navigation anchor, its h2 names it.
 // Render it only when it has published content; an empty section would be a
 // placeholder (AGENTS.md §5).
+// DESIGN.md → Sections: the label names the section as the navigation does; the
+// heading's gold stone sits on the garden path (the trail drawn on <main>).
 interface Props {
   section: Section;
 }
@@ -12,13 +14,14 @@ const { section } = Astro.props;
 const headingId = `${section.id}-titulo`;
 ---
 
-<section
-  class:list={['section', { 'section-alt': section.fundo === 'alt', 'section-sobre': section.fundo === 'sobre' }]}
-  id={section.id}
-  aria-labelledby={headingId}
->
-  <div class="wrap">
-    <h2 id={headingId}>{section.titulo}</h2>
-    <slot />
+<section class:list={['section', `section-${section.fundo}`]} id={section.id} aria-labelledby={headingId}>
+  <div class="wrap section-inner">
+    <div class:list={['section-head', { 'has-label': section.rotulo }]}>
+      {section.rotulo && <p class="label section-label">{section.titulo}</p>}
+      <h2 id={headingId}>{section.cabecalho}</h2>
+    </div>
+    <div class="section-body">
+      <slot />
+    </div>
   </div>
 </section>

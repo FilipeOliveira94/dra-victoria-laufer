@@ -15,13 +15,13 @@ const { alt } = Astro.props;
       src={portrait}
       alt={alt}
       formats={['avif', 'webp']}
-      widths={[320, 480, 640, 880]}
-      sizes="(min-width: 768px) 18rem, min(20rem, calc(100vw - 32px))"
+      widths={[320, 480, 570]}
+      sizes="(min-width: 900px) 21rem, min(15rem, calc(100vw - 96px))"
       priority
       class="portrait"
     />
   ) : (
-    // Neutral placeholder: same 4:5 box, no text, nothing for a screen reader.
+    // Neutral placeholder: same 3:4 arch, no text, nothing for a screen reader.
     <div class="portrait portrait-placeholder" aria-hidden="true" />
   )
 }

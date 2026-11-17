@@ -7,7 +7,8 @@
  * approved table in DESIGN.md (`make contrast`).
  *
  * Fields-Not-Ink: verde-marca, amarelo-marca, ouro, lilas and lilas-claro are
- * grounds or ornament, never text on white.
+ * grounds or ornament, never text on white. Lilas and lilas-claro stay in the
+ * brand but are not used on the page ("Caminho do jardim", issue 2.2).
  */
 :root {
   /* Brand palette (DESIGN.md → Colors) */
@@ -26,15 +27,24 @@
   /* Colour roles */
   --color-ground: var(--branco);
   --color-ground-alt: var(--verde-claro);
-  --color-ground-sobre: var(--lilas-claro);
+  --color-clearing: var(--verde-claro);
   --color-text: var(--azul-tinta);
   --color-text-muted: var(--azul-cinza);
   --color-heading: var(--verde-profundo);
   --color-link: var(--verde-profundo);
   --color-link-hover: var(--azul-noite);
   --color-hairline: var(--ouro);
-  --color-rule-sobre: var(--lilas);
   --color-footer: var(--verde-profundo);
+  --color-footer-text-accent: var(--amarelo-marca);
+
+  /* Garden shapes (DESIGN.md → Garden shapes): ornament only, never text. */
+  --color-path: var(--ouro);
+  --color-stone: var(--ouro);
+  --color-sun: var(--amarelo-marca);
+  --color-leaf: var(--verde-marca);
+  /* The footer hill: verde-marca mixed into the footer ground. White text on it
+     stays above 4.5:1 (DESIGN.md → Approved text pairs, footer). */
+  --color-hill: color-mix(in srgb, var(--verde-marca) 16%, var(--verde-profundo));
   --color-text-inverse: var(--branco);
   /* Selection: azul-tinta on amarelo-marca (7.47), distinct from every ground. */
   --color-selection: var(--amarelo-marca);
@@ -48,11 +58,11 @@
   --weight-regular: 400;
   --weight-strong: 600;
 
-  --display-size: clamp(2.25rem, 1.6rem + 3vw, 3.5rem);
-  --display-leading: 1.1;
+  --display-size: clamp(2.75rem, 1.9rem + 3.6vw, 4.75rem);
+  --display-leading: 1.02;
   --display-tracking: -0.01em;
-  --headline-size: clamp(1.625rem, 1.4rem + 1vw, 2rem);
-  --headline-leading: 1.2;
+  --headline-size: clamp(1.875rem, 1.5rem + 1.6vw, 2.75rem);
+  --headline-leading: 1.12;
   --title-size: 1.125rem;
   --title-leading: 1.4;
   --body-size: 1.0625rem;
@@ -60,14 +70,33 @@
   --label-size: 0.9375rem;
   --label-leading: 1.4;
   --label-tracking: 0.08em;
+  --label-small: 0.8125rem;
+  --title-size-footer: 1.5rem;
+
+  /* Motion (DESIGN.md → Motion): exponential ease-out. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Shape (DESIGN.md → Shapes) */
   --radius-none: 0;
   --radius-sm: 2px;
   --radius-md: 6px;
+  --radius-lg: 14px;
+  /* A garden card: three round corners and one nearly square (issues 2.3, 2.4). */
+  --radius-card: 22px 22px 22px 4px;
+  --radius-pill: 2rem;
+  --radius-clearing: 40px;
   --focus-width: 2px;
   --hairline: 2px;
-  --rule-sobre: 4px;
+  /* The portrait's white edge against the clearing. */
+  --portrait-edge: 8px;
+
+  /* The garden path (DESIGN.md → Garden shapes): a dotted gold line that winds
+     down the left edge of the page; each section heading sits on a stone. */
+  --trail-width: 44px;
+  --trail-x: 30px;
+  --trail-indent: 60px;
+  --stone: 22px;
+  --stone-ring: 6px;
 
   /* Space (DESIGN.md → spacing) */
   --space-xs: 4px;
@@ -80,10 +109,11 @@
 
   /* Layout (DESIGN.md → Layout) */
   --measure: 40rem;
+  --page-max: 70rem;
   --gutter: 16px;
   --gutter-wide: 24px;
-  --portrait-max: 20rem;
-  --portrait-wide: 18rem;
+  --portrait-max: 15rem;
+  --portrait-wide: 21rem;
   /* Logo height: small in the header, a signature in the footer. */
   --logo-header: 40px;
   --logo-header-wide: 48px;

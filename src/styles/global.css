@@ -1,4 +1,5 @@
-/* Page structure (issue 1.3) and brand frame (issue 2.1, DESIGN.md).
+/* Page structure (issue 1.3), brand frame (issue 2.1) and the "Caminho do
+   jardim" direction (issue 2.2, DESIGN.md).
    Every value comes from tokens.css. */
 @import './tokens.css';
 @import './fonts.css';
@@ -45,7 +46,7 @@ h1 {
   font-size: var(--display-size);
   line-height: var(--display-leading);
   letter-spacing: var(--display-tracking);
-  color: var(--color-text);
+  color: var(--color-heading);
 }
 
 h2 {
@@ -151,17 +152,24 @@ main:focus {
   }
 }
 
-/* One column: measure ~40rem, gutter 16 px, 24 px from 600 px, centred. */
+/* Page column: up to 70rem, gutter 16 px, 24 px from 600 px, centred.
+   Reading text keeps its own measure (--measure). */
 .wrap {
-  max-width: calc(var(--measure) + 2 * var(--gutter));
+  max-width: var(--page-max);
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
 
 @media (min-width: 600px) {
   .wrap {
-    max-width: calc(var(--measure) + 2 * var(--gutter-wide));
     padding-inline: var(--gutter-wide);
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --trail-x: 40px;
+    --trail-indent: 104px;
   }
 }
 
@@ -208,75 +216,357 @@ main:focus {
   }
 }
 
+/* The garden path (DESIGN.md → Garden shapes): a dotted gold line drawn down
+   the left edge of <main>, at --trail-x from the page column's edge. One tile,
+   repeated; the gold comes from the token through a mask. An empty element,
+   hidden from assistive technology (a pseudo-element would leave axe unable to
+   read the grounds behind the text). */
+main {
+  position: relative;
+}
+
+.trail {
+  position: absolute;
+  z-index: 0;
+  inset-block: 0;
+  inset-inline-start: calc(
+    max(0px, (100% - var(--page-max)) / 2) + var(--trail-x) - var(--trail-width) / 2
+  );
+  width: var(--trail-width);
+  background: var(--color-path);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='420'%3E%3Cpath d='M22 0C40 70 40 140 22 210S4 350 22 420' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-dasharray='0.1 12'/%3E%3C/svg%3E")
+    top center / var(--trail-width) 420px repeat-y;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='420'%3E%3Cpath d='M22 0C40 70 40 140 22 210S4 350 22 420' fill='none' stroke='black' stroke-width='3.5' stroke-linecap='round' stroke-dasharray='0.1 12'/%3E%3C/svg%3E")
+    top center / var(--trail-width) 420px repeat-y;
+  pointer-events: none;
+}
+
+/* Identification (issue 2.2; DESIGN.md → First fold): name and identity line,
+   then the portrait in its clearing. On a phone the text block is white, so
+   the path starts below it. */
 .identification {
-  padding-block: var(--space-3xl) var(--space-2xl);
+  padding-block-end: var(--space-xl);
 }
 
-.identification p {
-  margin-block-start: var(--space-sm);
-  color: var(--color-text-muted);
-  font-size: var(--title-size);
+.identification-text {
+  position: relative;
+  z-index: 1;
+  margin-inline-start: calc(-1 * var(--gutter));
+  padding-inline-start: var(--gutter);
+  padding-block: var(--space-lg) var(--space-sm);
+  background: var(--color-ground);
 }
 
-/* Portrait (issue 1.4): after the name on a phone, beside it from 768 px
-   (DESIGN.md → Layout). Box ratio fixed in CSS, so nothing shifts on load. */
+.identification h1 {
+  max-width: 9ch;
+}
+
+/* The gold hairline above the identity line (DESIGN.md → Elevation & Depth). */
+.identity-line {
+  display: inline-block;
+  margin: var(--space-md) 0 0;
+  padding-block-start: var(--space-md);
+  border-block-start: var(--hairline) solid var(--color-hairline);
+  color: var(--color-text);
+}
+
+/* The scene: clearing, sun, portrait, leaf, painted in that order. */
+.scene {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-block-start: var(--space-xl);
+  margin-inline-start: calc(var(--trail-indent) - var(--gutter));
+  padding: var(--space-lg) var(--space-sm) var(--space-lg) 0;
+}
+
+.scene-clearing {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: calc(-1 * var(--space-lg));
+  width: calc(100% + var(--space-lg));
+  height: 100%;
+  fill: var(--color-clearing);
+}
+
+.scene-sun {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  width: clamp(3.5rem, 22%, 7rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-sun);
+}
+
+.scene-leaf {
+  position: absolute;
+  inset-block-end: var(--space-md);
+  inset-inline-start: 0;
+  width: clamp(5.5rem, 32%, 10rem);
+  height: auto;
+}
+
+.leaf-blade {
+  fill: var(--color-leaf);
+}
+
+.leaf-vein {
+  fill: none;
+  stroke: var(--color-ground);
+  stroke-width: 3;
+}
+
+/* Portrait (issues 1.4, 2.2): a 3:4 arch with a white edge. The top corners are
+   half the width (50% across, 37.5% of the 3:4 height), so the arch is a true
+   semicircle at every size. Box ratio fixed in CSS: nothing shifts on load. */
 .portrait {
+  position: relative;
   display: block;
   width: 100%;
   max-width: var(--portrait-max);
   height: auto;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  margin-block-start: var(--space-xl);
+  border: var(--portrait-edge) solid var(--color-ground);
+  border-radius: 50% 50% var(--radius-lg) var(--radius-lg) / 37.5% 37.5% var(--radius-lg)
+    var(--radius-lg);
 }
 
 .portrait-placeholder {
-  background: var(--color-ground-alt);
-}
-
-@media (min-width: 768px) {
-  .identification {
-    display: grid;
-    grid-template-columns: 1fr var(--portrait-wide);
-    gap: var(--space-xl);
-    align-items: center;
-  }
-
-  .portrait {
-    margin-block-start: 0;
-  }
-}
-
-/* Section grounds (DESIGN.md → Sections). Each section names its ground in
-   src/lib/sections.ts; Filipe chose light grounds only, no bands (2026-11-16). */
-.section {
-  padding-block: var(--space-2xl);
   background: var(--color-ground);
 }
 
-.section-alt {
-  background: var(--color-ground-alt);
-}
+@media (min-width: 900px) {
+  .identification {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+    padding-block: var(--space-2xl);
+    padding-inline-start: var(--trail-indent);
+  }
 
-.section-sobre {
-  background: var(--color-ground-sobre);
-}
+  .identification-text {
+    margin: 0;
+    padding: 0;
+    background: none;
+  }
 
-.section-sobre .wrap {
-  border-inline-start: var(--rule-sobre) solid var(--color-rule-sobre);
-}
+  .scene {
+    justify-content: center;
+    margin: 0;
+    padding: var(--space-xl) var(--space-xl) var(--space-xl) 0;
+  }
 
-@media (min-width: 600px) {
-  .section {
-    padding-block: var(--space-3xl) var(--space-2xl);
+  .portrait {
+    max-width: var(--portrait-wide);
   }
 }
 
-/* Footer: verde-profundo field, white text and links, the white logo. */
+/* Sections (DESIGN.md → Sections). Each heading sits on a gold stone on the
+   path; the stone is centred on the first line of the h2. */
+.section {
+  padding-block: var(--space-xl) var(--space-2xl);
+}
+
+.section-inner {
+  padding-inline-start: var(--trail-indent);
+}
+
+.section-head {
+  --label-block: 0px;
+  position: relative;
+  margin-block-end: var(--space-lg);
+}
+
+.section-head.has-label {
+  --label-block: calc(var(--label-small) * var(--label-leading) + var(--space-sm));
+}
+
+.section-label {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--label-small);
+  color: var(--color-text-muted);
+}
+
+.section-head h2 {
+  margin: 0;
+}
+
+.section-head::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: calc(var(--trail-x) - var(--trail-indent) - var(--stone) / 2 - var(--stone-ring));
+  inset-block-start: calc(
+    var(--label-block) + var(--headline-size) * var(--headline-leading) / 2 - var(--stone) / 2 -
+      var(--stone-ring)
+  );
+  width: calc(var(--stone) + 2 * var(--stone-ring));
+  aspect-ratio: 1;
+  border: var(--stone-ring) solid var(--stone-ground, var(--color-ground));
+  border-radius: 50%;
+  background: var(--color-stone);
+}
+
+.section-body > p {
+  max-width: var(--measure);
+}
+
+/* Sobre (issue 2.4): her words in a verde-claro clearing that covers the path;
+   its stone sits inside the clearing, on the path's line. */
+.section-clareira {
+  padding-block: var(--space-lg);
+}
+
+.section-clareira .section-inner {
+  --stone-ground: var(--color-clearing);
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  padding-block: var(--space-xl);
+}
+
+.section-clareira .section-inner::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset-block: 0;
+  inset-inline: var(--space-sm);
+  border-radius: var(--radius-clearing);
+  background: var(--color-clearing);
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding-block: var(--space-2xl) var(--space-3xl);
+  }
+
+  .section-default .section-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+
+  .section-default .section-head {
+    margin: 0;
+  }
+
+  .section-clareira .section-inner {
+    padding-block: var(--space-2xl);
+  }
+}
+
+/* Contato (issue 2.2; DESIGN.md → Contact): each channel a rounded row with its
+   drawn icon, the channel as a small label and the address as a text link. Not
+   buttons, not an invitation to schedule. The icon is a mask in the heading
+   colour on a verde-claro disc, so it carries no text and no request. */
+.channels {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.channel {
+  --icon-size: 2.5rem;
+  display: grid;
+  grid-template-columns: var(--icon-size) minmax(0, 1fr);
+  column-gap: var(--space-md);
+  align-items: center;
+  padding: var(--space-sm) var(--space-lg) var(--space-sm) var(--space-sm);
+  border: var(--hairline) solid var(--color-clearing);
+  border-radius: var(--radius-pill);
+}
+
+.channel::before,
+.channel::after {
+  content: '';
+  grid-area: 1 / 1 / 3 / 2;
+  place-self: center;
+}
+
+.channel::before {
+  width: var(--icon-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-clearing);
+}
+
+.channel::after {
+  width: 1.25rem;
+  aspect-ratio: 1;
+  background: var(--color-heading);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+
+.channel[data-channel='email'] {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='3'/%3E%3Cpath d='M4 7l8 6 8-6'/%3E%3C/svg%3E");
+}
+
+.channel[data-channel='whatsapp'] {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 20l1.3-4A8 8 0 1 1 8 18.7z'/%3E%3C/svg%3E");
+}
+
+.channel[data-channel='instagram'] {
+  --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='4' width='16' height='16' rx='5'/%3E%3Ccircle cx='12' cy='12' r='3.5'/%3E%3Ccircle cx='17' cy='7' r='0.5'/%3E%3C/svg%3E");
+}
+
+.channel-name {
+  grid-column: 2;
+  font-size: var(--label-small);
+  color: var(--color-text-muted);
+}
+
+.channel dd {
+  grid-column: 2;
+  margin: 0;
+  font-weight: var(--weight-strong);
+}
+
+/* Contact text breaks at the <wbr> in the markup, never inside a word. */
+.channel dd {
+  overflow-wrap: normal;
+}
+
+@media (max-width: 399px) {
+  .channel {
+    --icon-size: 2rem;
+    column-gap: var(--space-sm);
+    padding-inline-end: var(--space-md);
+  }
+}
+
+@media (min-width: 900px) {
+  .channels {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/* Footer: verde-profundo field with a lighter hill in the corner (an empty
+   element, like the trail), white text
+   and links, the white logo; the identity line in amarelo-marca. */
 .site-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: var(--color-footer);
   color: var(--color-text-inverse);
   padding-block: var(--space-2xl) var(--space-xl);
+}
+
+.footer-hill {
+  position: absolute;
+  z-index: -1;
+  inset-inline-end: -4rem;
+  inset-block-end: -5rem;
+  width: 16rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-hill);
 }
 
 .site-footer .wrap {
@@ -294,10 +584,96 @@ main:focus {
   margin: 0;
 }
 
+/* Footer identity (issue 2.2; DESIGN.md → Footer): name, then the identity line. */
+.footer-identity {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.footer-identity .title {
+  font-family: var(--font-display);
+  font-size: var(--headline-size);
+  line-height: var(--headline-leading);
+}
+
+.footer-identity .label {
+  color: var(--color-footer-text-accent);
+}
+
 .footer-logo {
   display: block;
   width: auto;
   height: var(--logo-footer);
+}
+
+@media (min-width: 900px) {
+  /* The year moves to the right: the hill moves to the left, behind the logo,
+     so no text sits on its edge. */
+  .footer-hill {
+    inset-inline: -5rem auto;
+  }
+
+  .site-footer .wrap {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    column-gap: var(--space-xl);
+  }
+
+  .footer-identity .title {
+    font-size: var(--title-size-footer);
+  }
+}
+
+/* Motion (DESIGN.md → Motion): one moment as the page opens (the clearing
+   opens, the sun rises, the leaf settles) and the stones set as each heading
+   comes into view. Transform only, from shapes already visible; text and the
+   portrait never move. Off for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .scene-clearing {
+    transform-origin: 60% 50%;
+    animation: clearing-open 1.1s var(--ease-out) both;
+  }
+
+  .scene-sun {
+    animation: sun-rise 1.4s var(--ease-out) 0.15s both;
+  }
+
+  .scene-leaf {
+    transform-origin: 0 100%;
+    animation: leaf-settle 1.2s var(--ease-out) 0.3s both;
+  }
+
+  @supports (animation-timeline: view()) {
+    .section-head::before {
+      animation: stone-set linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 30%;
+    }
+  }
+}
+
+@keyframes clearing-open {
+  from {
+    transform: scale(0.9) rotate(-2deg);
+  }
+}
+
+@keyframes sun-rise {
+  from {
+    transform: translateY(2.5rem) scale(0.85);
+  }
+}
+
+@keyframes leaf-settle {
+  from {
+    transform: rotate(-14deg) translateY(0.5rem);
+  }
+}
+
+@keyframes stone-set {
+  from {
+    transform: scale(0.3);
+  }
 }
 
 /* Error page (404) */
