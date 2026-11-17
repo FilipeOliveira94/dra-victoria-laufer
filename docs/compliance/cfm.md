@@ -2,7 +2,7 @@
 
 Checklist for medical advertising on this site under **CFM Resolution 2.336/2023**. It is mandatory for every pull request that touches content, metadata, alt text, structured data, file names or URLs ([`AGENTS.md`](../../AGENTS.md) §8).
 
-| | |
+| Checklist | Scope |
 | --- | --- |
 | Applies to | Every published page, its `<head>`, its JSON-LD, the social image, file names and URLs |
 | Run by | Dev before the PR; PO during review; again in issues 2.6 and 6.2 |

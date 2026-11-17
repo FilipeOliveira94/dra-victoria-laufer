@@ -4,6 +4,14 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-17 — Docs: every Markdown table names its columns
+
+The 2.2 merge (`04ebf57`, PR #15) published cleanly: `published` job of [run 44161929920](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161929920), success.
+
+35 key and value tables in the docs had an empty header row (`| | |`), which GFM renders as a blank row on top. The pattern came from the planning docs of another project, which this repository's were modelled on, and was then repeated by copying. Each table now has a header drawn from its context: `Issue 2.2 | Detail` on every issue in `ROADMAP.md`, `Project | Current`, `Validation | Detail`, `Decision log | Reference`, `ADRs | Location`, `Checklist | Scope`, `Ledger | Date`. `scripts/check-markdown-tables.mjs` fails on an empty header row in any tracked Markdown file, outside fenced code; `npm run lint` runs it, and so does CI. AGENTS.md §9 states the rule. No change to the site.
+
+---
+
 ### 2026-11-17 — Issue 2.2 verified: portrait CLS fixed, the path as a wave through the stones
 
 #14 was merged while its CI [run 44156463768](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156463768) on `3e5a178` was failing: Lighthouse mobile CLS 0.197 against a maximum of 0.1. The deploy of the merge (`a39f022`) passed, `published` job of [run 44156637063](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156637063) included, so the live page carries the defect only when the portrait loads late.

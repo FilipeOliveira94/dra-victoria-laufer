@@ -2,7 +2,7 @@
 
 Detailed records for the choices indexed in [`DECISIONS.md`](../../DECISIONS.md).
 
-| | |
+| ADRs | Location |
 | --- | --- |
 | Index | [`DECISIONS.md`](../../DECISIONS.md) — decision, implemented result, status |
 | Template | [`_template.md`](_template.md) |

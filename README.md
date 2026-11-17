@@ -52,7 +52,7 @@ make help
 | `make assets` | Crop the private assets in `.assets/` for the build (`make build` and `make dev` run it first). Without `.assets/`, the page gets a neutral placeholder and no favicon |
 | `make requests` | Serve `dist/` and request everything the pages reference (including `srcset` and font URLs in the CSS); fails on a non-200, a third-party request, or a published image above 200 KB. `BASE=/dra-victoria-laufer/` for a staging build |
 | `make contrast` | Check the colour pairs in `DESIGN.md` |
-| `make lint` | On a built `dist/`: valid HTML (`html-validate`, duplicate ids included); no "Lorem" and no vetoed term (`pediatra`, `especialista em`; `NÃO ESPECIALISTA` excepted) in the published text or file names; no photo or image source file tracked in the repository or added by a commit of the branch |
+| `make lint` | On a built `dist/`: valid HTML (`html-validate`, duplicate ids included); no "Lorem" and no vetoed term (`pediatra`, `especialista em`; `NÃO ESPECIALISTA` excepted) in the published text or file names; no photo or image source file tracked in the repository or added by a commit of the branch; no Markdown table with an empty header row (`scripts/check-markdown-tables.mjs`) |
 | `make axe` | axe (WCAG 2.1 A/AA and best practice) on the home and the 404 page at 360 and 1280 px; fails on any violation or undecided result. `BASE` as for `make requests` |
 | `make lighthouse` | Lighthouse CI mobile on the home, 3 runs: Performance ≥ 90, Accessibility ≥ 95, LCP < 2.5 s, CLS < 0.1. Reports in `.lighthouseci/`, nothing uploaded. `BASE` as for `make requests` |
 

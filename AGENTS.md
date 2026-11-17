@@ -111,6 +111,7 @@ When in doubt, do not publish. Ask Filipe; the open point may need the CREMESP.
 | Layout | No horizontal scroll from 320 px to 1600 px |
 | Third parties | No request to a third-party host |
 | Content | No "Lorem"; no vetoed term |
+| Docs | Every Markdown table has a header row that names its columns; never an empty `\| \| \|` header |
 
 - Run the narrowest relevant check first, then the full set before opening the PR.
 - Do not claim a check passed if it was not executed.
