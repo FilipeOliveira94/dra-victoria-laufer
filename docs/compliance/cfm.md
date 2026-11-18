@@ -11,7 +11,7 @@ Checklist for medical advertising on this site under **CFM Resolution 2.336/2023
 
 ## Limits of this checklist
 
-- It covers the points of the resolution that Filipe passed on during planning. It has **not** been checked against the full text. That check is part of issue 2.6.
+- Checked against the full text of Resolution CFM 2.336/2023 (DOU 13/09/2023, in force since March 2024; [official PDF](https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2023/2336_2023.pdf)) and the Manual de Publicidade Médica of the Codame (CFM, 2024), which Art. 2 makes binding, in issue 2.6 (2026-11-18). The Manual was read in the copy published by the CREMERO ([PDF](https://cremero.org.br/wp-content/uploads/2024/07/CODAME___MANUAL_2024.pdf)). No later resolution amending 2.336/2023 was found.
 - It is not legal advice. In case of doubt, do not publish and consult the CREMESP.
 - A rule here changes only with its source recorded in the changelog below.
 
@@ -31,16 +31,19 @@ Checklist for medical advertising on this site under **CFM Resolution 2.336/2023
 - [ ] The three appear as real text (not inside an image) in the first fold at 360 px width.
 - [ ] The same identification appears in the footer.
 - [ ] No RQE number is shown or implied.
+- [ ] `MÉDICA` and `CRM-SP 240550` are one run of text in one font, size and colour (Manual da Codame, CFM 2024, chapter 1: "Não pode haver diferença entre fonte, tamanho e cor"). The name may differ: the Manual's own examples set the name larger than the `MÉDICA`/CRM line (business card, 1.1, p. 62; the approved Twitter profile, 6.4, p. 74). The page keeps the `DESIGN.md` hierarchy, the name in `display` and the identity line in `label` (Filipe, 2026-11-18, issue 2.6).
 
 ## B. Postgraduate courses (Art. 13)
 
-- [ ] Each course is written `MÉDICA com pós-graduação em (área)`, with the official course name and the institution.
+- [ ] Each course is written `MÉDICA com pós-graduação em (área)`, with the official course name and the institution (the Manual requires area and institution).
 - [ ] Each is followed by `NÃO ESPECIALISTA`, in capitals.
-- [ ] `NÃO ESPECIALISTA` has the same font size and the same contrast as the text next to it. It is not hidden, shrunk, greyed out or moved away from the course.
+- [ ] `NÃO ESPECIALISTA` has the same font, size and colour as the course line next to it (Manual da Codame, chapter 11, p. 95). It is not hidden, shrunk, greyed out or moved away from the course.
 - [ ] A course without its official name is `pendente` and does not appear on the page.
 - [ ] A course not yet completed carries the `EM CURSO` marker in its card, as text read by screen readers and right after the institution, so the card does not state a completed course (Art. 11, XVI).
 - [ ] A course not registered at the CRM is shown only under a recorded decision by Filipe. Current decision: shown while the CREMESP keeps registration frozen, and the release in 2.6 does not wait for it ([`docs/inputs/0.2-pending-inputs.md`](../inputs/0.2-pending-inputs.md) → 2). Art. 13, §1, d reads "devidamente cadastrado no CRM"; this is a recorded risk.
 - [ ] No year, workload or course name was invented.
+- [ ] Any other mention of a postgraduate area, such as in "Sobre", is followed by `NÃO ESPECIALISTA` (Art. 13, §1, d; Filipe's decision, issue 2.6).
+- [ ] The degree is shown with its institution and year (Art. 13, §1, a), on the page that carries `MÉDICA`.
 
 ## C. Nothing suggests a specialty
 
@@ -69,6 +72,13 @@ A non-specialist may say **where she works and in what setting** (Art. 7: advert
 - [ ] No title, heading, service name or phrase reads as a specialty (the legacy site has "Atendimento Pediátrico", "Puericultura" and "Consultas de Emergência"; none of these returns).
 - [ ] The check covers visible text, `<title>`, meta description, Open Graph tags, the social image, image `alt` text, JSON-LD, file names and URLs.
 - [ ] Structured data is `Person` with `jobTitle: Médica`. It has no `medicalSpecialty`. `Physician` is used only with acquisition switched on (issue 6.2).
+
+### Points from the full text (issue 2.6)
+
+- [ ] Her portrait is her own image (Art. 9, I; Art. 8, III), sober, with no before-and-after, no patient and no image bank (Art. 14 does not apply).
+- [ ] No award, ranking or "melhor médico" style title (Art. 11, XIII), no promise of results (Art. 11, XII), no free service on offer (Art. 11, §4, c).
+- [ ] The text "Sobre" stays within Art. 9, XV: a generic comment on her work that identifies no patient.
+- [ ] Instagram and WhatsApp are her own social networks under Art. 8, §1, so the same rules bind them. Her Instagram bio carries name, `MÉDICA` and CRM on its main page (Art. 6; Manual, chapter 6). This is outside the site and is Filipe's and her responsibility; the site only links to it.
 
 ## D. Site rules that protect the above
 
@@ -101,3 +111,5 @@ Copy sections A to D into the PR description, tick each item, and state how it w
 | 2026-11-15 | Planning record "two registered" corrected: none is registered, registration frozen by the CREMESP. Unregistered courses shown by Filipe's decision, and the release does not wait for registration; a course in progress is marked `(em curso)` | Art. 13, §1, d; Art. 11, XVI; facts and decision from Filipe |
 | 2026-11-16 | Instagram handle `pediatria.dravictoria` kept as is, recorded as a risk in C | Filipe's decision, 2026-11-16 |
 | 2026-11-17 | A course in progress is marked by the `EM CURSO` marker in its card instead of `(em curso)` inside the course line. The marker is text, read by screen readers, so the card still does not state a completed course (Art. 11, XVI) | Filipe's decision in issue 2.3, 2026-11-17 |
+| 2026-11-18 | Identification: `MÉDICA` and the CRM in one font, size and colour; the name may differ, as in the Manual's approved examples. The page keeps the `DESIGN.md` hierarchy | Manual da Codame (CFM, 2024), chapter 1 and examples 1.1 and 6.4; Filipe's decision in issue 2.6 |
+| 2026-11-18 | Checked against the full text and the Manual da Codame. B: same font, size and colour for `NÃO ESPECIALISTA`; area and institution; any other mention of a postgraduate area followed by `NÃO ESPECIALISTA` ("Sobre" amended); degree with institution and year. C: points from the full text (own image, Art. 11 XII and XIII, Art. 9 XV, own networks under Art. 8 §1) | Resolution CFM 2.336/2023, full text; Manual da Codame (CFM, 2024); Filipe's decisions in issue 2.6 |

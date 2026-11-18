@@ -8,7 +8,10 @@ victoria:
   crm:
     uf: SP
     numero: "240550"
-  # Approved by her (relayed by Filipe, 2026-11-15). Published as is.
+  # Approved by her (relayed by Filipe, 2026-11-15). Issue 2.6: "(NÃO
+  # ESPECIALISTA)" added after the postgraduate areas by Filipe's decision
+  # (Art. 13, §1, d; cfm.md → B); her final approval of the page covers it.
+  # The space inside it does not break (\_).
   sobre:
-    - Sou médica e trabalho no cuidado de recém-nascidos e crianças, em maternidade e em unidade de terapia intensiva. Ao longo da formação, busquei pós-graduações em pediatria clínica, neonatologia e terapia intensiva pediátrica, listadas em Formação.
+    - "Sou médica e trabalho no cuidado de recém-nascidos e crianças, em maternidade e em unidade de terapia intensiva. Ao longo da formação, busquei pós-graduações em pediatria clínica, neonatologia e terapia intensiva pediátrica (NÃO\_ESPECIALISTA), listadas em Formação."
     - No dia a dia, procuro explicar com clareza cada etapa do cuidado e responder às dúvidas das famílias com calma e respeito.
