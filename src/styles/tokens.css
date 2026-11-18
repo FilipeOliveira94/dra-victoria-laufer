@@ -74,6 +74,10 @@
   --label-tracking: 0.08em;
   --label-small: 0.8125rem;
   --title-size-footer: 1.5rem;
+  /* "Sobre": her text, one step above body (DESIGN.md → Sections). */
+  --sobre-size: 1.1875rem;
+  --sobre-lead-size: 1.4375rem;
+  --sobre-lead-leading: 1.45;
 
   /* Motion (DESIGN.md → Motion): exponential ease-out. */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -85,12 +89,16 @@
   --radius-lg: 14px;
   /* A garden card: three round corners and one nearly square (issues 2.3, 2.4). */
   --radius-card: 22px 22px 22px 4px;
+  /* The Atuação leaf marker: a leaf with its round corners on one diagonal. */
+  --radius-leaf: 14px 0;
   --radius-pill: 2rem;
   --radius-clearing: 40px;
   --focus-width: 2px;
   --hairline: 2px;
   /* The portrait's white edge against the clearing. */
   --portrait-edge: 8px;
+  /* The Atuação leaf marker (DESIGN.md → Garden shapes). */
+  --leaf-marker: 14px;
 
   /* The garden path (DESIGN.md → Garden shapes): a dotted gold line that winds
      down the left edge of the page as a wave; each section heading sits on a

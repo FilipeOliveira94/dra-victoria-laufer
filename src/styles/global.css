@@ -210,12 +210,28 @@ main:focus {
   text-decoration: underline;
 }
 
-/* On a phone the links always take their own row under the logo. Whether they
-   fit beside it would depend on which font has loaded, and the swap would
-   move the whole page (CLS, issue 2.3). */
+/* On a phone the links always take their own row under the logo, and that
+   row is always one line. Whether they fit beside the logo, or on one line,
+   would otherwise depend on which font has loaded, and the swap would move the
+   whole page (CLS, issues 2.3 and 2.4). The four links are set small; with a
+   wide fallback font on a 320 px screen the row scrolls inside itself instead
+   of wrapping. */
 @media (max-width: 599px) {
   .site-nav {
     flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .site-nav ul {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: var(--space-md);
+    overflow-x: auto;
+    /* Room for the focus ring inside the scroll box. */
+    padding: calc(2 * var(--focus-width));
+    margin: calc(-2 * var(--focus-width));
+    font-size: var(--label-small);
+    white-space: nowrap;
   }
 }
 
@@ -480,14 +496,19 @@ main:focus {
   padding-block: var(--inner-start);
 }
 
-.section-clareira .section-inner::before {
-  content: '';
+.clearing-field {
   position: absolute;
   z-index: -1;
   inset-block: 0;
   inset-inline: var(--space-sm);
   border-radius: var(--radius-clearing);
   background: var(--color-clearing);
+}
+
+/* The body stacks above the field as a positioned box, like the head, so axe
+   finds the field behind her text instead of an overlap. */
+.section-clareira .section-body {
+  position: relative;
 }
 
 @media (min-width: 900px) {
@@ -564,6 +585,62 @@ main:focus {
   .courses {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+}
+
+/* Atuação (issue 2.4; DESIGN.md → Role list): each line marked by a small
+   verde-marca leaf (rounded.card turned), lines parted by a verde-claro rule.
+   The start year in the secondary colour. */
+.roles {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: var(--measure);
+}
+
+.role {
+  position: relative;
+  padding: var(--space-md) 0 var(--space-md) calc(var(--leaf-marker) + var(--space-md));
+  border-block-end: 1px solid var(--color-clearing);
+}
+
+.role::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  /* Centred on the first line of text. */
+  inset-block-start: calc(var(--space-md) + (var(--body-size) * var(--body-leading) - var(--leaf-marker)) / 2);
+  width: var(--leaf-marker);
+  aspect-ratio: 1;
+  border-radius: var(--radius-leaf);
+  background: var(--color-leaf);
+}
+
+.role-since {
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.roles-group {
+  margin: var(--space-xl) 0 0;
+  font-size: var(--label-small);
+  color: var(--color-text-muted);
+}
+
+/* Sobre (issue 2.4): her text in the clearing; the first sentence in the
+   serif face, in the heading colour, set on its own line. It stays inside her
+   paragraph, so the text keeps the paragraphs she approved. */
+.sobre-text {
+  font-size: var(--sobre-size);
+}
+
+.sobre-lead {
+  display: block;
+  margin-block-end: var(--space-md);
+  font-family: var(--font-display);
+  font-size: var(--sobre-lead-size);
+  line-height: var(--sobre-lead-leading);
+  font-weight: var(--weight-strong);
+  color: var(--color-heading);
 }
 
 /* Contato (issue 2.2; DESIGN.md → Contact): each channel a rounded row with its
