@@ -434,8 +434,9 @@ main:focus {
 .figure-arch {
   inset-block-start: 22%;
   background: var(--color-ground);
-  border-radius: 50% 50% var(--radius-lg) var(--radius-lg) / 52.7778% 52.7778% var(--radius-lg)
-    var(--radius-lg);
+  /* Bottom corners: a 200 × 170 ellipse, wide enough to read as soft, clear of
+     her hands, the phone and her elbow. */
+  border-radius: 50% 50% 26.3158% 26.3158% / 52.7778% 52.7778% 23.6111% 23.6111%;
 }
 
 .portrait-figure picture {
@@ -453,7 +454,8 @@ main:focus {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  /* The arch's bottom corners on the photo's taller box (170 / 900). */
+  border-radius: 0 0 26.3158% 26.3158% / 0 0 18.8889% 18.8889%;
 }
 
 @media (min-width: 900px) {

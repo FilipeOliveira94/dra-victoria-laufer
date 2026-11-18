@@ -226,8 +226,8 @@ Issue 2.5. Her photo without its background, set on graphics drawn from the bran
 
 1. The **clearing**, `verde-claro`, organic.
 2. The **sun**, `amarelo-marca`, top right, and the **ring** with its two **sprigs** in `ouro`.
-3. The **arch**: a white field, its top a true semicircle, its bottom corners `rounded.lg`.
-4. **Her**, cut out from the waist up. The arch's top stops at eye height, so her head rises above it onto the clearing; the photo is cut by the arch's bottom edge, nowhere else.
+3. The **arch**: a white field, its top a true semicircle, its bottom corners wide soft curves (an ellipse about a quarter of its width across), never a hard square cut; they clear her hands, the phone and her arms.
+4. **Her**, cut out from the waist up. The arch's top stops at eye height, so her head rises above it onto the clearing; the photo is cut by the arch's bottom edge and its soft corners, nowhere else.
 5. The **leaf**, `verde-marca`, over the arch's lower left.
 
 - **Source:** `photos/portrait-main.jpg`, background removed once, outside the site, on a local machine; the transparent file lives only in `dra-victoria-laufer-assets` (`photos/portrait-cutout.png`). She approves the cut-out before it is published.
