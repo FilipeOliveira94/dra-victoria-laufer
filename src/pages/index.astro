@@ -7,14 +7,15 @@ import {
   channelLink,
   courseLine,
   identityLine,
+  leadSentence,
   medica,
   NOT_SPECIALIST,
   published,
+  roleSince,
 } from '../lib/content';
 import { section, sections, type SectionId } from '../lib/sections';
 
-// Every fact comes from the content model (issue 1.2). Atuação and Sobre render
-// from issue 2.4.
+// Every fact comes from the content model (issue 1.2).
 const id = await medica();
 if (!id) throw new Error('medica is pending: the page cannot be built without identification.');
 
@@ -24,12 +25,19 @@ const identification = identityLine(id);
 const courses = await published('formacao');
 // Public channels in `ordem` (ADR-0007); a pending one is already dropped.
 const channels = await published('contato');
+// Role lines in `ordem` (cfm.md → C): current workplaces, then the "Experiência"
+// group with its start years. A pending line is already dropped.
+const roles = await published('atuacao');
+const workplaces = roles.filter((r) => r.grupo === 'local');
+const experience = roles.filter((r) => r.grupo === 'experiencia');
+// "Sobre": her paragraphs, as approved; the first sentence in the serif face.
+const [sobreLead, sobreRest] = leadSentence(id.sobre[0]);
 
 // A section is on the page, and in the navigation, only with published content.
 const present: Record<SectionId, boolean> = {
   formacao: courses.length > 0,
-  atuacao: false,
-  sobre: false,
+  atuacao: roles.length > 0,
+  sobre: id.sobre.length > 0,
   contato: channels.length > 0,
 };
 const nav = sections.filter((s) => present[s.id]);
@@ -91,6 +99,55 @@ const nav = sections.filter((s) => present[s.id]);
               ),
             )}
           </ul>
+        </Section>
+      )
+    }
+    {
+      roles.length > 0 && (
+        <Section section={section('atuacao')}>
+          {/* DESIGN.md → Role list: each line marked by a small leaf. Where she
+              works, then the "Experiência" group with its start years. Plain
+              facts, never an invitation to a consultation. */}
+          {workplaces.length > 0 && (
+            <ul class="roles">
+              {workplaces.map((r) => (
+                <li class="role">
+                  {r.texto}
+                  {r.desde && <span class="role-since">{roleSince(r)}</span>}
+                </li>
+              ))}
+            </ul>
+          )}
+          {experience.length > 0 && (
+            <>
+              <h3 class="label roles-group" id="atuacao-experiencia">
+                Experiência
+              </h3>
+              <ul class="roles" aria-labelledby="atuacao-experiencia">
+                {experience.map((r) => (
+                  <li class="role">
+                    {r.texto}
+                    {r.desde && <span class="role-since">{roleSince(r)}</span>}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </Section>
+      )
+    }
+    {
+      id.sobre.length > 0 && (
+        <Section section={section('sobre')}>
+          {/* Her text, published as she approved it (AGENTS.md §6). Only the
+              first sentence changes face: the serif, in the heading colour. */}
+          <p class="sobre-text">
+            <span class="sobre-lead">{sobreLead}</span>
+            {sobreRest && ` ${sobreRest}`}
+          </p>
+          {id.sobre.slice(1).map((p) => (
+            <p class="sobre-text">{p}</p>
+          ))}
         </Section>
       )
     }

@@ -33,6 +33,20 @@ export const crmLabel = ({ crm }: Published<'medica'>) => `CRM-${crm.uf} ${crm.n
 /** "MÉDICA · CRM-SP 240550": the identity line (DESIGN.md → Label). */
 export const identityLine = (id: Published<'medica'>) => `${id.titulo} · ${crmLabel(id)}`;
 
+type Role = Published<'atuacao'>;
+
+/** ", desde 2022": the start year of a role (cfm.md → C), or nothing. */
+export const roleSince = (r: Role) => (r.desde ? `, desde ${r.desde}` : '');
+
+/**
+ * Her first sentence and the rest of the paragraph (DESIGN.md → Sections: the
+ * first sentence of "Sobre" in the serif face). The words are not changed.
+ */
+export function leadSentence(paragraph: string): [string, string] {
+  const [lead, ...rest] = paragraph.split(/(?<=[.!?])\s+/);
+  return [lead, rest.join(' ')];
+}
+
 type Postgraduate = Extract<Published<'formacao'>, { tipo: 'pos-graduacao' }>;
 
 /**

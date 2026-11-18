@@ -173,8 +173,8 @@ The logo's own faces (a commercial script and Lucida Sans Unicode) stay inside t
 - **Display** (`display`): her name, once, in the first fold, in `verde-profundo`, at most 9 characters a line so it sets on three lines. The only `h1`.
 - **Headline** (`headline`): section headings in `verde-profundo`, descriptive and approved by her (Filipe, 2026-11-17): "Graduação e pós-graduações", "Onde trabalho", "Sobre mim", "Canais de contato".
 - **Section label** (`label` at 0.8125rem, `azul-cinza`): the section's navigation name above its heading — Formação, Atuação, Contato — so the anchor and the heading read as one. "Sobre mim" has none: it already names the section.
-- **Title** (`title`): a course name, a workplace.
-- **Body** (`body`): everything else; 17 px base for long reading on phones; measure 60–70 characters.
+- **Title** (`title`): a course name.
+- **Body** (`body`): everything else, the Atuação lines included; 17 px base for long reading on phones; measure 60–70 characters. Her text in "Sobre" is one step larger (1.1875rem), its first sentence in Source Serif 4 600 at 1.4375rem, `verde-profundo` (2.4).
 - **Label** (`label`): the identity line `MÉDICA · CRM-SP 240550`, in capitals with open tracking, in `azul-tinta`; the contact channel names, small, in `azul-cinza`.
 
 ### Named Rules
@@ -213,7 +213,7 @@ All decorative, `aria-hidden`, drawn in CSS or inline SVG from the tokens; no st
 - **Stone:** a 22 px `ouro` disc on the path, centred on the first line of each section heading. It sits at the wave's right crest, 12 px (`--stone-shift`) right of the path's line. The section's label, heading and content move with the stone. A 10 px ring of the ground around it is the gap the dots leave, the same on every side.
 - **Clearing:** `verde-claro`, organic outline behind the portrait; a rounded field around "Sobre".
 - **Sun:** an `amarelo-marca` disc, top right of the portrait, partly behind it.
-- **Leaf:** `verde-marca` with a white vein, at the portrait's lower left; small leaf shapes (`rounded.card` turned) mark the Atuação list (2.4).
+- **Leaf:** `verde-marca` with a white vein, at the portrait's lower left; small 14 px leaf shapes, two opposite corners round (`14px 0`), mark the Atuação lines (2.4).
 - **Hill:** a lighter disc in a corner of the footer.
 
 ### Motion
@@ -230,13 +230,17 @@ One moment as the page opens: the clearing opens, the sun rises and the leaf set
 
 Each channel is a row in a `rounded.pill` outline: a drawn icon on a `verde-claro` disc (one stroke set, 2 px, in `verde-profundo`, as a CSS mask: no text, no request), the channel name as a small label, the address as an underlined text link. Not buttons, not an invitation to schedule. Rows stack on a phone and sit side by side from 900 px. On a narrow phone an address breaks only before the e-mail domain or after a dot in the handle.
 
+### Role list
+
+Atuação (2.4): the current workplaces, then a group headed "Experiência" (`label` at 0.8125rem, `azul-cinza`, an `h3`) with the lines that carry a start year. Each line is `body` in `azul-tinta`, marked by a small `verde-marca` leaf on its first line, with a 1 px `verde-claro` rule below it. The start year (", desde 2022") follows in `azul-cinza` and never breaks across lines. Plain facts under `docs/compliance/cfm.md` → C: no invitation, no count of patients.
+
 ### Navigation
 
-Anchor links to the four sections, in `label` style, no JavaScript. Current section is not tracked (no script). Underline on hover and focus.
+Anchor links to the four sections, in `label` style, no JavaScript. Current section is not tracked (no script). Underline on hover and focus. On a phone (below 600 px) the links take one row under the logo, at 0.8125rem, and that row never wraps: its height does not depend on which font has loaded (CLS). With a wide fallback font on a 320 px screen the row scrolls inside itself.
 
 ### Sections
 
-Fixed per section, so a missing section never shifts the others: Formação, Atuação and Contato on white (`section-default`), with label, heading and stone; "Sobre" in `section-clareira`, a rounded `verde-claro` field that covers the path, its stone inside on the path's line, and the first sentence of her text in the serif face (2.4). No bands (The Light-Grounds Rule).
+Fixed per section, so a missing section never shifts the others: Formação, Atuação and Contato on white (`section-default`), with label, heading and stone; "Sobre" in `section-clareira`, a rounded `verde-claro` field with the path running over it, unbroken, and its stone inside on the path's line, and the first sentence of her text in the serif face, on its own line inside her first paragraph, so her paragraphs stay as she approved them (2.4). No bands (The Light-Grounds Rule).
 
 ### Footer
 

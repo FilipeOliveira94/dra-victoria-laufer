@@ -34,6 +34,9 @@ const headingId = `${section.id}-titulo`;
     <path d="M34 0C34 50 10 50 10 100" />
   </svg>
   <div class="wrap section-inner">
+    {/* The clearing's field: an element, not a pseudo-element, so axe reads
+        the ground behind her text. */}
+    {section.fundo === 'clareira' && <span class="clearing-field" aria-hidden="true"></span>}
     <div class="section-head">
       {/* An element, not a pseudo-element: axe could not read the ground
           behind the label next to one this size. */}
