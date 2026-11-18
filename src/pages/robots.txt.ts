@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
 
-// Crawling is allowed on purpose (issue 1.6): a robot must fetch the page to
-// read its noindex, which controls indexing until issue 2.6 (ADR-0006).
-// Under the GitHub Pages project path this file is not at the host root, so
-// robots ignore it there; the noindex still applies.
+// Crawling is allowed (issue 1.6). Indexing is controlled by `indexable` in
+// src/config/release.ts (ADR-0006), released in issue 2.6. Under the GitHub
+// Pages project path this file is not at the host root, so robots ignore it
+// there; it takes effect on the domain (issue 3.2).
 export const GET: APIRoute = ({ site }) => {
   const sitemap = new URL(`${import.meta.env.BASE_URL}sitemap.xml`, site).href;
   return new Response(`User-agent: *\nAllow: /\n\nSitemap: ${sitemap}\n`, {
