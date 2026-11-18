@@ -131,7 +131,7 @@
   --portrait-max: 15rem;
   --portrait-wide: 21rem;
   /* Logo height: small in the header, a signature in the footer. */
-  --logo-header: 40px;
-  --logo-header-wide: 48px;
+  --logo-header: 48px;
+  --touch-target: 44px;
   --logo-footer: 44px;
 }

@@ -49,10 +49,24 @@ const SYMBOL = {
 // the monogram's vertical centre; at Filipe's request (2026-11-16) the name is
 // moved down so both share one centre line. Moved only: never recoloured,
 // stretched or redrawn. Then trimmed, so the page sets the spacing.
+// The header and the footer use `logo-horizontal-cor-header.png` and
+// `logo-horizontal-branco-footer.png`: the logos with their strokes thickened
+// once, outside the site, so the script name reads at 44–48 px (issue 2.6,
+// Filipe's decision). Without them the build falls back to the originals. The
+// Open Graph image always uses the original.
 const LOGOS = [
-  { file: 'brand/logo/logo-horizontal-cor.png', out: 'logo-cor.png' },
-  { file: 'brand/logo/logo-horizontal-branco.png', out: 'logo-branco.png' },
+  {
+    file: 'brand/logo/logo-horizontal-cor-header.png',
+    fallback: 'brand/logo/logo-horizontal-cor.png',
+    out: 'logo-cor.png',
+  },
+  {
+    file: 'brand/logo/logo-horizontal-branco-footer.png',
+    fallback: 'brand/logo/logo-horizontal-branco.png',
+    out: 'logo-branco.png',
+  },
 ];
+const SOCIAL_LOGO = 'brand/logo/logo-horizontal-cor.png';
 
 // Open Graph image (issues 1.6 and 2.1): the centred colour logo on white, a
 // verde-marca field along the bottom and an ouro hairline above it
@@ -168,20 +182,21 @@ if (existsSync(symbolSrc)) {
 }
 
 const logos = {};
-for (const { file, out } of LOGOS) {
-  const src = join(SRC, file);
-  if (!existsSync(src)) {
+for (const { file, fallback, out } of LOGOS) {
+  const src = [file, fallback].filter(Boolean).map((f) => join(SRC, f)).find((f) => existsSync(f));
+  if (!src) {
     console.log(`[assets] ${file} not found: no logo.`);
     continue;
   }
   logos[out] = await centredLogo(src);
   await sharp(logos[out]).toFile(join(OUT, out));
-  console.log(`[assets] ${out}`);
+  console.log(`[assets] ${out} (from ${src.slice(SRC.length + 1)})`);
 }
 
-if (logos['logo-cor.png']) {
+const socialSource = join(SRC, SOCIAL_LOGO);
+if (existsSync(socialSource)) {
   const { width, height, band, hairline, logoWidth } = { ...SOCIAL.size, ...SOCIAL };
-  const logo = await sharp(logos['logo-cor.png']).resize({ width: logoWidth }).png().toBuffer();
+  const logo = await sharp(await centredLogo(socialSource)).resize({ width: logoWidth }).png().toBuffer();
   const { height: logoHeight } = await sharp(logo).metadata();
   const field = height - band - hairline;
   const solid = (w, h, colour) => ({ create: { width: w, height: h, channels: 3, background: colour } });

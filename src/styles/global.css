@@ -74,6 +74,8 @@ h2 {
 
 p {
   margin: 0 0 var(--space-md);
+  /* No word alone on a paragraph's last line ("respeito."). */
+  text-wrap: pretty;
 }
 
 /* DESIGN.md → Links: verde-profundo, underlined; hover azul-noite, 2px. */
@@ -233,11 +235,13 @@ main:focus {
     font-size: var(--label-small);
     white-space: nowrap;
   }
-}
 
-@media (min-width: 600px) {
-  .site-logo {
-    height: var(--logo-header-wide);
+  /* A 44 px touch target on a phone, whatever font has loaded. */
+  .site-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-target);
+    padding-block: 0;
   }
 }
 
@@ -603,7 +607,7 @@ main:focus {
 
   .section-default .section-inner {
     display: grid;
-    grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
     gap: var(--space-2xl);
     align-items: start;
   }
@@ -640,6 +644,7 @@ main:focus {
 }
 
 .course-degree {
+  border-color: var(--color-marker);
   background: var(--color-ground);
 }
 
@@ -686,6 +691,7 @@ main:focus {
 
 .role {
   position: relative;
+  text-wrap: pretty;
   padding: var(--space-md) 0 var(--space-md) calc(var(--leaf-marker) + var(--space-md));
   border-block-end: 1px solid var(--color-clearing);
 }
@@ -747,7 +753,7 @@ main:focus {
   column-gap: var(--space-md);
   align-items: center;
   padding: var(--space-sm) var(--space-lg) var(--space-sm) var(--space-sm);
-  border: var(--hairline) solid var(--color-clearing);
+  border: var(--hairline) solid var(--color-marker);
   border-radius: var(--radius-pill);
 }
 
