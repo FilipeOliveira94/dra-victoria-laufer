@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1; `noindex` until the 2.6 merge) |
-| Last updated | 2026-11-18 (2.6 built; awaiting the PR's CI) |
+| Last updated | 2026-11-18 (2.6 verified) |
 | Current phase | Phase 2 — Credibility content under the CFM rules (MVP), the last phase before the initial release |
-| Phase status | Phase 2 in progress (2.1 to 2.5 verified; 2.6 built, awaiting the PR's CI). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
+| Phase status | Phase 2 verified (2.1 to 2.6); it closes with the 2.6 merge. Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**2.6** — CFM review and release. Critique and polish done, the checklist checked against the full text of Resolution 2.336/2023 and the Manual da Codame, her written approval received, `noindex` removed. Waiting for the PR's CI, then Filipe's OK to merge: the merge releases the page for indexing.
+**2.6** — CFM review and release. Critique and polish done, the checklist checked against the full text of Resolution 2.336/2023 and the Manual da Codame, her written approval received, `noindex` removed. PR #20 CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) passed. Waiting for Filipe's OK to merge: the merge releases the page for indexing.
 
 The last merge (`abc4b5a`, 2.5) published cleanly: `published` job of [run 44404232762](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44404232762), success.
 
 ## Next work
 
-1. **2.6** PR CI, Filipe's OK, merge, then the `published` job of its run. That closes Phase 2.
+1. **2.6** Filipe's OK, merge of PR #20, then the `published` job of its run. That closes Phase 2.
 2. **Phase 3** domain and DNS (3.1).
 
 ## Blockers
@@ -46,7 +46,7 @@ None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inp
 | 2.3 | Training ("Formação") | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093). `docs/status-log.md` |
 | 2.4 | Roles ("Atuação") and "Sobre" | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #18 CI [run 44234277781](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234277781). `docs/status-log.md` |
 | 2.5 | Cut-out portrait on brand graphics | Verified | Local builds, both targets, with and without the assets: every check passes; cut-out approved by her; approved by Filipe. PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237). `docs/status-log.md` |
-| 2.6 | CFM review and release | In progress | Local builds, both targets, with and without the assets: every check passes; her written approval and Filipe's review, 2026-11-18. PR CI pending. `docs/status-log.md` |
+| 2.6 | CFM review and release | Verified | Local builds, both targets, with and without the assets: every check passes; her written approval and Filipe's review, 2026-11-18. PR #20 CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830). `docs/status-log.md` |
 
 Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `docs/status-log.md`.
 
@@ -57,7 +57,7 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Local build, branch `feat/2.6-cfm-release`: production and `DEPLOY_TARGET=ghpages` with the private assets (`ASSETS_DIR` on `dra-victoria-laufer-assets` at `1f30925`), `DEPLOY_TARGET=ghpages` with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 (outside the repository). Not deployed. CI: pending |
+| Environment | Local build, branch `feat/2.6-cfm-release`: production and `DEPLOY_TARGET=ghpages` with the private assets (`ASSETS_DIR` on `dra-victoria-laufer-assets` at `1f30925`), `DEPLOY_TARGET=ghpages` with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 (outside the repository). Not deployed. CI: [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) on `8a08d79` (`pull_request`), assets and thickened logos fetched |
 | Checks | `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse` on each build; `impeccable detect` on the source; scroll width every 40 px from 320 to 1600 px; `<meta name="robots">` absent; screenshots at 360 and 1280 px |
 | Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, photos and tables 0 failing. Requests: 65, 0 failing (19 without the assets). axe 0 violations, 0 incomplete on 4 runs per build. Lighthouse mobile Performance 100, Accessibility 100, LCP 1429–1505 ms (902–1355 ms on the placeholder), CLS ≤ 0.0003. Detector 0 findings. No horizontal scroll at 320–1600 px. No `noindex` in any build. Nav touch targets 44 px at 360 px |
 
@@ -76,7 +76,7 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 
 ## Decisions (active)
 
-All eleven decisions are `approved`. Implemented: D-008 (license) and, from 1.1, D-001, D-003, D-004 and D-006: [`DECISIONS.md`](DECISIONS.md). The ones that gate the current work:
+All eleven decisions are `approved`. Implemented: D-008 (license) and, from 1.1, D-001, D-003, D-004 and D-006 (release of indexing in 2.6): [`DECISIONS.md`](DECISIONS.md). The ones that gate the current work:
 
 | ID | Topic | Gates |
 | --- | --- | --- |

@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-18 (2.6 built, `noindex` removed; awaiting the PR's CI) |
+| Last updated | 2026-11-18 (2.6 verified; Phase 2 complete on merge) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -26,7 +26,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Verified (1.1 to 1.8) |
-| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | In progress (2.1 to 2.5 verified, 2.6 built); the active phase |
+| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | Verified (2.1 to 2.6); closes with the 2.6 merge |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
 | 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Not started |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Not started |
@@ -292,7 +292,7 @@ Phase 2 is the active phase. 2.6 removes `noindex`; the site is indexable once i
 
 | Issue 2.6 | Detail |
 | --- | --- |
-| Status | `in progress` (critique, polish and CFM review done; her written approval and Filipe's review of the page received, 2026-11-18; `noindex` removed; awaiting the PR's CI) |
+| Status | `verified` (local builds and the CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) of PR #20, assets fetched; her written approval and Filipe's review of the page, 2026-11-18) |
 | Size | P |
 | Depends on | 2.1 to 2.5 |
 | ADRs | [0006](docs/decisions/0006-noindex-until-release.md) |
@@ -517,3 +517,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-18 | 2.5 delivered: the arch's bottom corners softened after Filipe's review; she approved the cut-out, now in `dra-victoria-laufer-assets` (`8761caa`) |
 | 2026-11-18 | 2.5 verified: PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237) passed with the private assets and the cut-out; Filipe approved the issue |
 | 2026-11-18 | 2.6 built: critique (17/24, no P0) and polish on Filipe's choices; checklist checked against the full text of Resolution 2.336/2023 and the Manual da Codame; "(NÃO ESPECIALISTA)" added in "Sobre"; her written approval of the full page text; pending report empty; `noindex` removed. `docs/status-log.md` |
+| 2026-11-18 | 2.6 verified: PR #20 CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) passed with the private assets and the thickened logos; Filipe approved the page. `docs/status-log.md` |

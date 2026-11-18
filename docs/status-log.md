@@ -4,7 +4,7 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
-### 2026-11-18 — Issue 2.6: CFM review and release
+### 2026-11-18 — Issue 2.6 verified: CFM review and release
 
 Built on `feat/2.6-cfm-release`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 outside the repository). Not deployed. The 2.5 merge (`abc4b5a`, PR #19) published cleanly: `published` job of [run 44404232762](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44404232762), success.
 
@@ -14,7 +14,7 @@ Built on `feat/2.6-cfm-release`, checked on local builds of both targets, with a
 - **Approval and release:** she approved the full text of the page in writing on 2026-11-18 (through Filipe). Pending report: 0 pending items in every collection. `indexable = true` in `src/config/release.ts`: no build carries `noindex`.
 - **Dependabot alert 1:** `picomatch` 4.0.7 (GHSA-fc5q-39xc-vjpf), a build-time dependency of Astro. The advisory was withdrawn on 2026-11-18 and has no patched version; the alert was dismissed as inaccurate with Filipe's OK. No dependency changed.
 
-Checks, on production, `DEPLOY_TARGET=ghpages` and the placeholder build: `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, photos and tables 0 failing; requests 65, 0 failing (19 without the assets); axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404; Lighthouse mobile Performance 100, Accessibility 100, LCP 1429–1505 ms (902–1355 ms without the assets), CLS ≤ 0.0003. No `<meta name="robots">` in `index.html` or `404.html`. No published image above 200 KB. No horizontal scroll at any width from 320 to 1600 px in 40 px steps. CFM checklist: pass.
+Checks, on production, `DEPLOY_TARGET=ghpages` and the placeholder build: `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, photos and tables 0 failing; requests 65, 0 failing (19 without the assets); axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404; Lighthouse mobile Performance 100, Accessibility 100, LCP 1429–1505 ms (902–1355 ms without the assets), CLS ≤ 0.0003. No `<meta name="robots">` in `index.html` or `404.html`. No published image above 200 KB. No horizontal scroll at any width from 320 to 1600 px in 40 px steps. CFM checklist: pass. PR #20 CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) on `8a08d79` passed with the private-assets step executed and the thickened logos fetched (`[assets] logo-cor.png (from brand/logo/logo-horizontal-cor-header.png)`, `logo-branco.png` likewise): requests 65, 0 failing; html, content, photo and table checks pass; axe 4 runs, 0 failing; Lighthouse assertions pass. Filipe approved the page at 360 and 1280 px on 2026-11-18. Every acceptance item is met: 2.6 verified. The merge releases the staging page for indexing.
 
 ---
 
