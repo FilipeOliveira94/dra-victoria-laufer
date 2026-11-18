@@ -240,7 +240,7 @@ Anchor links to the four sections, in `label` style, no JavaScript. Current sect
 
 ### Sections
 
-Fixed per section, so a missing section never shifts the others: Formação, Atuação and Contato on white (`section-default`), with label, heading and stone; "Sobre" in `section-clareira`, a rounded `verde-claro` field that covers the path, its stone inside on the path's line, and the first sentence of her text in the serif face, on its own line inside her first paragraph, so her paragraphs stay as she approved them (2.4). No bands (The Light-Grounds Rule).
+Fixed per section, so a missing section never shifts the others: Formação, Atuação and Contato on white (`section-default`), with label, heading and stone; "Sobre" in `section-clareira`, a rounded `verde-claro` field with the path running over it, unbroken, and its stone inside on the path's line, and the first sentence of her text in the serif face, on its own line inside her first paragraph, so her paragraphs stay as she approved them (2.4). No bands (The Light-Grounds Rule).
 
 ### Footer
 

@@ -480,12 +480,20 @@ main:focus {
   max-width: var(--measure);
 }
 
-/* Sobre (issue 2.4): her words in a verde-claro clearing that covers the path;
-   its stone sits inside the clearing, on the path's line. */
+/* Sobre (issue 2.4): her words in a verde-claro clearing; the path runs over
+   it, unbroken, and its stone sits inside the clearing, on the path's line
+   (Filipe's choice, 2.4). The next section's stretch into its stone starts
+   inside the clearing too, so it is lifted with it. The path never reaches
+   her text: it stays left of --trail-indent. */
 .section-clareira {
   --pad-start: var(--space-lg);
   --pad-end: var(--space-lg);
   --inner-start: var(--space-xl);
+}
+
+.section-clareira .trail,
+.section-clareira + .section .trail-in {
+  z-index: 2;
 }
 
 .section-clareira .section-inner {
@@ -514,7 +522,7 @@ main:focus {
 @media (min-width: 900px) {
   .section {
     --pad-start: var(--space-2xl);
-    --pad-end: var(--space-3xl);
+    --pad-end: calc(var(--space-2xl) + var(--space-md));
   }
 
   .section-default .section-inner {
@@ -528,7 +536,10 @@ main:focus {
     margin: 0;
   }
 
+  /* The clearing carries its own inner space, so less outside it. */
   .section-clareira {
+    --pad-start: var(--space-xl);
+    --pad-end: var(--space-xl);
     --inner-start: var(--space-2xl);
   }
 }

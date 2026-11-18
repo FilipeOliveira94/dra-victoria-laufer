@@ -22,7 +22,7 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**2.4** — Atuação and Sobre, each a complete section on the 2.2 frame. Built on `feat/2.4-atuacao-sobre`; local builds pass every check. Awaiting the PR's CI run and Filipe's review of the screenshots.
+**2.4** — Atuação and Sobre, each a complete section on the 2.2 frame. Built on `feat/2.4-atuacao-sobre`; local builds pass every check. Filipe reviewed the screenshots: less section space on wide screens and the path over the "Sobre" clearing, both applied. Awaiting the PR's CI run.
 
 The last merge (`3efdfc3`, 2.3) published cleanly: `published` job of [run 44230389406](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44230389406), success.
 
@@ -60,7 +60,7 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 | Date | 2026-11-18 |
 | Environment | Local build, branch `feat/2.4-atuacao-sobre`: production and `DEPLOY_TARGET=ghpages` with the private assets, `DEPLOY_TARGET=ghpages` with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 (outside the repository; the only system sans fallback is DejaVu Sans). Not deployed. CI: pending |
 | Checks | `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse` on each build; three role lines marked `pendente`; vetoed and promotional terms in the page text; "Sobre" text against the approved text; header and nav geometry at 320, 360 and 412 px with fonts blocked or loaded; scroll width every 40 px from 320 to 1600 px; keyboard path; screenshots at 360 and 1280 px |
-| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content and photos 0 failing. Requests: 68, 0 failing (19 without the assets). axe 0 violations, 0 incomplete on 4 runs per build. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1430 ms (902 ms on the placeholder), CLS 0.0002. Pending lines absent from `dist/` and listed in the build report; an empty group drops its "Experiência" heading. No vetoed term, no "agend", "consulta", "domicil", "referência", "melhor". "Sobre" identical to the approved text, in its two paragraphs. Header 106 px at 320, 360 and 412 px with or without the fonts; nav one row. No horizontal scroll at 320–1600 px. Tab: skip link, Formação, Atuação, Sobre, Contato, e-mail, WhatsApp, Instagram |
+| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content and photos 0 failing. Requests: 68, 0 failing (19 without the assets). axe 0 violations, 0 incomplete on 4 runs per build. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms (902–903 ms on the placeholder), CLS ≤ 0.0002. Pending lines absent from `dist/` and listed in the build report; an empty group drops its "Experiência" heading. No vetoed term, no "agend", "consulta", "domicil", "referência", "melhor". "Sobre" identical to the approved text, in its two paragraphs. Header 106 px at 320, 360 and 412 px with or without the fonts; nav one row. No horizontal scroll at 320–1600 px. Tab: skip link, Formação, Atuação, Sobre, Contato, e-mail, WhatsApp, Instagram |
 
 ---
 
