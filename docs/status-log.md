@@ -4,6 +4,19 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-18 — Issue 2.4 delivered: Atuação and Sobre
+
+Built on `feat/2.4-atuacao-sobre`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 outside the repository; the only system sans fallback is DejaVu Sans). Not deployed. The 2.3 merge (`3efdfc3`, PR #17) published cleanly: `published` job of [run 44230389406](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44230389406), success.
+
+- **Atuação:** renders from `atuacao.yaml`, in `ordem`, and appears in the navigation. The four current workplaces, then the group "Experiência" (an `h3` in the small label style) with the two lines that carry a start year, rendered ", desde 2022" in `azul-cinza` on one line. Each line in `body`, marked by a 14 px `verde-marca` leaf, as in the approved mock-up. A group with no published line drops its heading.
+- **Sobre:** her two paragraphs from `medica.yaml`, unchanged, in the `section-clareira` field. The first sentence is a span set on its own line in Source Serif 4 600, `verde-profundo`; it stays inside her first paragraph, so the paragraphs are the ones she approved (the mock-up had split it into its own paragraph). The field is now an element, not a pseudo-element, and the section body is a positioned box above it: otherwise axe could not determine the ground behind her text (incomplete, `bgOverlap`).
+- **Navigation:** with four links, the phone row wrapped to two lines (62 px) at 320 and 360 px, and at 412 px in the fallback font only: a CLS risk of the kind fixed in 2.3. Below 600 px the links are now set at 0.8125rem with a 16 px gap and never wrap; with a wide fallback font on a narrow screen the row scrolls inside itself.
+- **Tokens:** `--radius-leaf`, `--leaf-marker`, `--sobre-size`, `--sobre-lead-size`, `--sobre-lead-leading`. `DESIGN.md` records the Role list component, the Sobre type sizes and the phone navigation; the Atuação lines move from `title` to `body`, as in the mock-up.
+
+Checks, on production, `DEPLOY_TARGET=ghpages` and the placeholder build: `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, photos and tables 0 failing; requests 68, 0 failing (19 without the assets); axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404; Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1430 ms (902 ms without the assets), CLS 0.0002 on every run. On production: no horizontal scroll at any width from 320 to 1600 px in 40 px steps; header 106 px at 320, 360 and 412 px with fonts blocked or loaded; Tab order skip link, Formação, Atuação, Sobre, Contato, e-mail, WhatsApp, Instagram. Three role lines set `pendente` (one workplace, both experience lines) were absent from `dist/`, listed in the build's pending report, and the "Experiência" heading was gone. The page text has no vetoed term and none of "agend", "consulta", "domicil", "referência", "melhor", "ampla experiência", "anos de". The rendered "Sobre" equals the approved text. CFM checklist: pass (see the PR).
+
+---
+
 ### 2026-11-18 — Issue 2.3 verified: Formação
 
 Built on `feat/2.3-formacao`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless in a scratch directory). Not deployed. The docs merge (`3655ad7`, PR #16) published cleanly: `published` job of [run 44165512281](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44165512281), success.
