@@ -28,6 +28,15 @@ const PORTRAIT = {
   crop: { left: 610, top: 70, width: 570, height: 760 },
 };
 
+// The cut-out (issue 2.5, DESIGN.md → Portrait treatment): the same photo with
+// its background removed once, outside the site, on the original's 2000 x 1333
+// canvas. Cropped from the waist up, 20 px of head room: the arch cuts it at the
+// bottom; her head rises above the arch. Without it the page uses the arch crop.
+const CUTOUT = {
+  file: 'photos/portrait-cutout.png',
+  crop: { left: 492, top: 110, width: 760, height: 900 },
+};
+
 // The monogram fills about 60% of its 2000 x 2000 canvas. Cropped to the ring
 // so it is legible at 16 and 32 px. Cropped only: never recoloured (DESIGN.md).
 const SYMBOL = {
@@ -124,7 +133,14 @@ if (!existsSync(portraitSrc) && !existsSync(symbolSrc) && !LOGOS.some((l) => exi
 
 await mkdir(OUT, { recursive: true });
 
-if (existsSync(portraitSrc)) {
+// The cut-out wins; the arch crop is written only without it, so dist/ never
+// carries an unused copy of the photo.
+const cutoutSrc = join(SRC, CUTOUT.file);
+if (existsSync(cutoutSrc)) {
+  await sharp(cutoutSrc).extract(CUTOUT.crop).png().toFile(join(OUT, 'portrait-cutout.png'));
+  console.log('[assets] portrait-cutout.png');
+} else if (existsSync(portraitSrc)) {
+  console.log(`[assets] ${CUTOUT.file} not found: the portrait keeps the arch crop.`);
   await sharp(portraitSrc)
     .extract(PORTRAIT.crop)
     .jpeg({ quality: 92, mozjpeg: true })

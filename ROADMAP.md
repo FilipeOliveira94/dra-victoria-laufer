@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-18 (2.4 delivered) |
+| Last updated | 2026-11-18 (2.5 verified) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -265,7 +265,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | Issue 2.4 | Detail |
 | --- | --- |
-| Status | `delivered` (local builds; awaiting the PR's CI run and Filipe's review) |
+| Status | `verified` |
 | Size | P |
 | Depends on | 2.3; 0.2 |
 
@@ -278,7 +278,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | Issue 2.5 | Detail |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` |
 | Size | M |
 | Depends on | 1.4; 2.1 |
 | Required before | 2.6: Filipe made it a condition for publication (2026-11-16), so indexing waits for it |
@@ -512,3 +512,7 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-17 | 2.3 delivered: Formação as leaf-shaped course cards, each postgraduate course in the Art. 13 line with `— NÃO ESPECIALISTA` in the same `title` run, the institution below, and the `EM CURSO` marker as text on Neonatologia instead of `(em curso)` in the line (Filipe). Two columns from 900 px. On phones the header links always take their own row, which removes a CLS of 0.23 from the font swap. Local builds of both targets, with and without the assets: every check passes |
 | 2026-11-18 | 2.3 verified: PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093) passed with the private assets; Filipe approved the section |
 | 2026-11-18 | 2.4 delivered: Atuação as the approved role lines with leaf markers, current workplaces then the "Experiência" group with start years; "Sobre" in the clearing, her two paragraphs as approved, the first sentence in the serif face. With four header links the phone nav row is set at 0.8125rem and never wraps, so its height does not depend on the font. After Filipe's review: slightly less section space on wide screens, and the path runs over the "Sobre" clearing instead of under it. Local builds of both targets, with and without the assets: every check passes |
+| 2026-11-18 | 2.4 verified: PR #18 CI [run 44234277781](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234277781) passed with the private assets; Filipe approved the section; the merge published cleanly ([run 44234478918](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234478918)) |
+| 2026-11-18 | 2.5 built: `DESIGN.md` → Portrait treatment (white arch in the clearing, her head above it, a gold ring and two sprigs drawn from the monogram, the leaf lower and smaller); background removed locally, the cut-out kept in the assets checkout only; the arch crop stays as the fallback. Local builds of both targets, with and without the assets: every check passes. Awaiting her approval of the cut-out |
+| 2026-11-18 | 2.5 delivered: the arch's bottom corners softened after Filipe's review; she approved the cut-out, now in `dra-victoria-laufer-assets` (`8761caa`) |
+| 2026-11-18 | 2.5 verified: PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237) passed with the private assets and the cut-out; Filipe approved the issue |

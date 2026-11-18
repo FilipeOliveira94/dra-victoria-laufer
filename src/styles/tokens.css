@@ -42,6 +42,7 @@
   --color-stone: var(--ouro);
   --color-sun: var(--amarelo-marca);
   --color-leaf: var(--verde-marca);
+  --color-ring: var(--ouro);
   /* Outline of the EM CURSO marker on a course card (ornament, not text). */
   --color-marker: var(--verde-marca);
   /* The footer hill: verde-marca mixed into the footer ground. White text on it
