@@ -33,6 +33,17 @@ export const crmLabel = ({ crm }: Published<'medica'>) => `CRM-${crm.uf} ${crm.n
 /** "MÉDICA · CRM-SP 240550": the identity line (DESIGN.md → Label). */
 export const identityLine = (id: Published<'medica'>) => `${id.titulo} · ${crmLabel(id)}`;
 
+type Postgraduate = Extract<Published<'formacao'>, { tipo: 'pos-graduacao' }>;
+
+/**
+ * "MÉDICA com pós-graduação em Neonatologia" (CFM Art. 13; docs/compliance/cfm.md
+ * → B). The page follows it with NOT_SPECIALIST in the same run of text.
+ */
+export const courseLine = (c: Postgraduate) => `MÉDICA com pós-graduação em ${c.area}`;
+
+/** Art. 13: in capitals, right after the course line. */
+export const NOT_SPECIALIST = '— NÃO ESPECIALISTA';
+
 type Channel = Published<'contato'>;
 
 // Channel names, shown in `title` above each address (DESIGN.md → Links).

@@ -4,6 +4,19 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-18 — Issue 2.3 verified: Formação
+
+Built on `feat/2.3-formacao`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, Chrome for Testing 157.0.8103.78 headless in a scratch directory). Not deployed. The docs merge (`3655ad7`, PR #16) published cleanly: `published` job of [run 44165512281](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44165512281), success.
+
+- **Section:** Formação renders from `formacao.yaml`, in `ordem`, and appears in the navigation. The degree card reads "Medicina" with the institution and year; each postgraduate card reads `MÉDICA com pós-graduação em (área) — NÃO ESPECIALISTA` in `title`, with the institution below. Cards in `rounded.card`, the degree outlined in `verde-claro` on white, the courses filled `verde-claro`; one column, two from 900 px, as in the approved mock-up.
+- **Same-Size Rule:** `— NÃO ESPECIALISTA` sits in the course line inside a span that only prevents a line break, so it never splits or drifts away from the course; its computed font, size, weight, colour, transform, opacity and tracking equal the line's.
+- **In progress:** Filipe chose the `EM CURSO` marker on the card in place of `(em curso)` in the line. The marker is text read by screen readers, after the institution, so the card does not state a completed course (Art. 11, XVI). `docs/compliance/cfm.md` → B, its changelog, `DESIGN.md`, `PRODUCT.md` and the 0.2 inputs record carry the change. The marker outline is the new semantic token `--color-marker` (`verde-marca`).
+- **CLS:** in one Lighthouse run in three the header shrank from 109 to 72 px when Source Sans 3 replaced the fallback font: with two links, the navigation wrapped under the logo in the fallback font and fit beside it in Source Sans (CLS 0.23 on `main`). Below 600 px the links now always take their own row; the header measures 109 px at 360 and 412 px with fonts blocked or loaded.
+
+Checks, on production, `DEPLOY_TARGET=ghpages` and the placeholder build: `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content and photos 0 failing; requests 68, 0 failing (19 without the assets); axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404; Lighthouse mobile Performance 100, Accessibility 100, LCP 1504–1582 ms (902–903 ms without the assets), CLS ≤ 0.0003 on every run. On production: no horizontal scroll at any width from 320 to 1600 px in 40 px steps; 1 column at 899 px, 2 at 900 px; Tab order skip link, Formação, Contato, e-mail, WhatsApp, Instagram, with the 2 px focus ring; the accessibility tree reads each course line, `— NÃO ESPECIALISTA`, the institution and `EM CURSO`. A course added with `pendente: true` was absent from `dist/` and listed in the build's pending report; a course without `nomeOficial` and without `pendente` broke the build. No vetoed term in `dist/`. PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093) on `40c9e29` passed with the private-assets step executed: requests 68, 0 failing; html, content, photo and table checks pass; axe 4 runs, 0 failing; Lighthouse assertions pass. Filipe approved the section on 2026-11-18. Every acceptance item is met: 2.3 verified.
+
+---
+
 ### 2026-11-17 — Docs: every Markdown table names its columns
 
 The 2.2 merge (`04ebf57`, PR #15) published cleanly: `published` job of [run 44161929920](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161929920), success.

@@ -210,6 +210,15 @@ main:focus {
   text-decoration: underline;
 }
 
+/* On a phone the links always take their own row under the logo. Whether they
+   fit beside it would depend on which font has loaded, and the swap would
+   move the whole page (CLS, issue 2.3). */
+@media (max-width: 599px) {
+  .site-nav {
+    flex-basis: 100%;
+  }
+}
+
 @media (min-width: 600px) {
   .site-logo {
     height: var(--logo-header-wide);
@@ -500,6 +509,60 @@ main:focus {
 
   .section-clareira {
     --inner-start: var(--space-2xl);
+  }
+}
+
+/* Formação (issue 2.3; DESIGN.md → Course card): leaf-shaped cards, the
+   degree outlined in verde-claro on white, each postgraduate course filled
+   verde-claro. The course line, NÃO ESPECIALISTA included, is one `title` run
+   in the heading colour (the Same-Size Rule). */
+.courses {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course {
+  padding: var(--space-md) var(--space-lg);
+  border: var(--hairline) solid var(--color-clearing);
+  border-radius: var(--radius-card);
+  background: var(--color-clearing);
+}
+
+.course-degree {
+  background: var(--color-ground);
+}
+
+.course-line {
+  margin: 0;
+  color: var(--color-heading);
+}
+
+/* Layout only: no font, size, weight or colour of its own. */
+.not-specialist {
+  white-space: nowrap;
+}
+
+.course-meta {
+  margin: var(--space-xs) 0 0;
+  color: var(--color-text-muted);
+}
+
+.course-flag {
+  display: inline-block;
+  margin: var(--space-sm) 0 0;
+  padding: 0 var(--space-sm);
+  border: var(--hairline) solid var(--color-marker);
+  border-radius: var(--radius-pill);
+  font-size: var(--label-small);
+  color: var(--color-heading);
+}
+
+@media (min-width: 900px) {
+  .courses {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
