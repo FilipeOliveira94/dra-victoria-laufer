@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-18 (2.4 verified; 2.5 delivered, PR open) |
+| Last updated | 2026-11-18 (2.5 verified) |
 | Current phase | Phase 2 — Credibility content under the CFM rules (MVP), the last phase before the initial release |
-| Phase status | Phase 2 in progress (2.1 to 2.4 verified, 2.5 delivered). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
+| Phase status | Phase 2 in progress (2.1 to 2.5 verified; 2.6 next). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**2.5** — cut-out portrait on brand graphics, on `feat/2.5-cutout-portrait`. `DESIGN.md` → Portrait treatment written and built; local builds pass every check. Filipe approved the result; she approved the cut-out, now in the assets repository. PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237) passed with the cut-out.
+**2.6** — design critique and polish on the whole page, CFM review and release (removal of `noindex`). 2.5 is verified: the cut-out portrait on brand graphics, PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237), approved by Filipe.
 
 The last merge (`9a74d62`, 2.4) published cleanly: `published` job of [run 44234478918](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234478918), success.
 
 ## Next work
 
-1. **2.5** PR #19: PO and Reviewer approval, Filipe's OK; then the merge and the `published` job of its run.
+1. **2.5** merge of PR #19, then the `published` job of its run.
 2. **2.6** design critique and polish on the whole page, CFM review and release (removal of `noindex`).
 
 ## Blockers
@@ -45,7 +45,7 @@ None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inp
 | 2.2 | Identification and contact | Verified | PR #15 CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315); local builds, both targets, with and without the assets: every check passes; screenshots approved by Filipe. `docs/status-log.md` |
 | 2.3 | Training ("Formação") | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093). `docs/status-log.md` |
 | 2.4 | Roles ("Atuação") and "Sobre" | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #18 CI [run 44234277781](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234277781). `docs/status-log.md` |
-| 2.5 | Cut-out portrait on brand graphics | Delivered | Local builds, both targets, with and without the assets: every check passes; cut-out approved by her. PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237). `docs/status-log.md` |
+| 2.5 | Cut-out portrait on brand graphics | Verified | Local builds, both targets, with and without the assets: every check passes; cut-out approved by her; approved by Filipe. PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237). `docs/status-log.md` |
 | 2.6 | CFM review and release | Not started | Depends on 2.1 to 2.5 |
 
 Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `docs/status-log.md`.
