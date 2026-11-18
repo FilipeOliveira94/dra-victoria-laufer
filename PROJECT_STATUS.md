@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-18 (2.4 delivered, PR open) |
+| Last updated | 2026-11-18 (2.4 verified; 2.5 started) |
 | Current phase | Phase 2 — Credibility content under the CFM rules (MVP), the last phase before the initial release |
-| Phase status | Phase 2 in progress (2.1 to 2.3 verified, 2.4 delivered). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
+| Phase status | Phase 2 in progress (2.1 to 2.4 verified, 2.5 in progress). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,15 +22,14 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**2.4** — Atuação and Sobre, each a complete section on the 2.2 frame. Built on `feat/2.4-atuacao-sobre`; local builds pass every check. Filipe reviewed the screenshots: less section space on wide screens and the path over the "Sobre" clearing, both applied. Awaiting the PR's CI run.
+**2.5** — cut-out portrait on brand graphics, on `feat/2.5-cutout-portrait`. First step: the portrait treatment in `DESIGN.md`, for Filipe's approval.
 
-The last merge (`3efdfc3`, 2.3) published cleanly: `published` job of [run 44230389406](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44230389406), success.
+The last merge (`9a74d62`, 2.4) published cleanly: `published` job of [run 44234478918](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234478918), success.
 
 ## Next work
 
-1. **2.4** PR: CI run, PO and Reviewer approval, Filipe's review of the 360 and 1280 px screenshots; then the merge and the `published` job of its run.
-2. **2.5** cut-out portrait on brand graphics: Filipe made it a condition for publication.
-3. **2.6** design critique and polish on the whole page, CFM review and release (removal of `noindex`).
+1. **2.5** cut-out portrait on brand graphics: Filipe made it a condition for publication. The `DESIGN.md` amendment, then the cut-out for her approval.
+2. **2.6** design critique and polish on the whole page, CFM review and release (removal of `noindex`).
 
 ## Blockers
 
@@ -45,8 +44,8 @@ None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inp
 | 2.1 | Apply the confirmed visual identity | Verified | PR CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307); local builds, both targets, with and without the assets: every check passes; screenshots approved by Filipe as the base. `docs/status-log.md` |
 | 2.2 | Identification and contact | Verified | PR #15 CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315); local builds, both targets, with and without the assets: every check passes; screenshots approved by Filipe. `docs/status-log.md` |
 | 2.3 | Training ("Formação") | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093). `docs/status-log.md` |
-| 2.4 | Roles ("Atuação") and "Sobre" | Delivered | Local builds, both targets, with and without the assets: every check passes. `docs/status-log.md` |
-| 2.5 | Cut-out portrait on brand graphics | Not started | — |
+| 2.4 | Roles ("Atuação") and "Sobre" | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #18 CI [run 44234277781](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234277781). `docs/status-log.md` |
+| 2.5 | Cut-out portrait on brand graphics | In progress | — |
 | 2.6 | CFM review and release | Not started | Depends on 2.1 to 2.5 |
 
 Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `docs/status-log.md`.
