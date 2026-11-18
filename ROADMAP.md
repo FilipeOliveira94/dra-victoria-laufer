@@ -278,7 +278,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | Issue 2.5 | Detail |
 | --- | --- |
-| Status | `delivered` (cut-out approved by her; awaiting the PR's CI run) |
+| Status | `delivered` (cut-out approved by her; PR #19 CI passed; awaiting Filipe's OK) |
 | Size | M |
 | Depends on | 1.4; 2.1 |
 | Required before | 2.6: Filipe made it a condition for publication (2026-11-16), so indexing waits for it |

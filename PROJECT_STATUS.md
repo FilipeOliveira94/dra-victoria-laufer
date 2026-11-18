@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**2.5** — cut-out portrait on brand graphics, on `feat/2.5-cutout-portrait`. `DESIGN.md` → Portrait treatment written and built; local builds pass every check. Filipe approved the result; she approved the cut-out, now in the assets repository. Awaiting the PR's CI run.
+**2.5** — cut-out portrait on brand graphics, on `feat/2.5-cutout-portrait`. `DESIGN.md` → Portrait treatment written and built; local builds pass every check. Filipe approved the result; she approved the cut-out, now in the assets repository. PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237) passed with the cut-out.
 
 The last merge (`9a74d62`, 2.4) published cleanly: `published` job of [run 44234478918](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234478918), success.
 
 ## Next work
 
-1. **2.5** PR: CI run with the cut-out, PO and Reviewer approval, Filipe's OK; then the merge and the `published` job of its run.
+1. **2.5** PR #19: PO and Reviewer approval, Filipe's OK; then the merge and the `published` job of its run.
 2. **2.6** design critique and polish on the whole page, CFM review and release (removal of `noindex`).
 
 ## Blockers
@@ -45,7 +45,7 @@ None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inp
 | 2.2 | Identification and contact | Verified | PR #15 CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315); local builds, both targets, with and without the assets: every check passes; screenshots approved by Filipe. `docs/status-log.md` |
 | 2.3 | Training ("Formação") | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093). `docs/status-log.md` |
 | 2.4 | Roles ("Atuação") and "Sobre" | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #18 CI [run 44234277781](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234277781). `docs/status-log.md` |
-| 2.5 | Cut-out portrait on brand graphics | Delivered | Local builds, both targets, with and without the assets: every check passes; cut-out approved by her. `docs/status-log.md` |
+| 2.5 | Cut-out portrait on brand graphics | Delivered | Local builds, both targets, with and without the assets: every check passes; cut-out approved by her. PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237). `docs/status-log.md` |
 | 2.6 | CFM review and release | Not started | Depends on 2.1 to 2.5 |
 
 Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `docs/status-log.md`.
@@ -57,7 +57,7 @@ Acceptance detail: `ROADMAP.md` → Phase 2. Phases 0 and 1: `ROADMAP.md` and `d
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Local build, branch `feat/2.5-cutout-portrait`: production and `DEPLOY_TARGET=ghpages` with the private assets and the cut-out, `DEPLOY_TARGET=ghpages` with `ASSETS_DIR=/nonexistent`, and production with the assets but no cut-out. WSL2, Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 (outside the repository). Not deployed. CI: pending |
+| Environment | Local build, branch `feat/2.5-cutout-portrait`: production and `DEPLOY_TARGET=ghpages` with the private assets and the cut-out, `DEPLOY_TARGET=ghpages` with `ASSETS_DIR=/nonexistent`, and production with the assets but no cut-out. WSL2, Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 (outside the repository). Not deployed. CI: [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237) on `bbbb669` (`pull_request`), assets and cut-out fetched |
 | Checks | `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse` on each build; fallback build without the cut-out; portrait box with images blocked and loaded; scroll width every 40 px from 320 to 1600 px; screenshots at 320, 360, 900, 1280 and 1600 px |
 | Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content and photos 0 failing. Requests: 65, 0 failing (19 without the assets). axe 0 violations, 0 incomplete on 4 runs per build, the fallback build included. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1429 ms (902–903 ms on the placeholder), CLS 0.0002. Largest portrait file 55 KB. Portrait box 276 × 287.5 px at 360 px, images blocked or loaded. No horizontal scroll at 320–1600 px. The fallback renders the 3:4 arch crop |
 
