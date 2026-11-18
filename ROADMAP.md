@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-18 (2.5 verified) |
+| Last updated | 2026-11-18 (2.6 verified; Phase 2 complete on merge) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -26,14 +26,14 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Verified (1.1 to 1.8) |
-| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | In progress (2.1 verified); the active phase |
+| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | Verified (2.1 to 2.6); closes with the 2.6 merge |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
 | 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Not started |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Not started |
 | 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Not started |
 | 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | Not started |
 
-Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+Phase 2 is the active phase. 2.6 removes `noindex`; the site is indexable once its PR is merged. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
 
 ### Design brief (confirmed by Filipe)
 
@@ -292,7 +292,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | Issue 2.6 | Detail |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` (local builds and the CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) of PR #20, assets fetched; her written approval and Filipe's review of the page, 2026-11-18) |
 | Size | P |
 | Depends on | 2.1 to 2.5 |
 | ADRs | [0006](docs/decisions/0006-noindex-until-release.md) |
@@ -476,7 +476,7 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | CFM: suggesting a specialty in text, alt, metadata or schema | Ethical infraction | Vetoed terms in CI (1.7); checklist in 2.6 and 6.2 |
 | CFM: Art. 13 with a wrong course name or a barely visible notice | Ethical infraction | Publish only with the official name; acceptance of 2.3 |
 | "Atuação" read as advertising of care | Goes against her guidance and the CFM | Acceptance of 2.4; modality only in 6.2 |
-| The reading of the resolution is limited to the points Filipe passed on | Incomplete checklist | Check the full text in 2.6; in doubt, consult the CREMESP |
+| The reading of the resolution is limited to the points Filipe passed on | Incomplete checklist | Closed 2026-11-18: checked against the full text and the Manual da Codame in 2.6; in doubt, consult the CREMESP |
 | Domain with her name registered under Filipe's CPF | His name appears in WHOIS; she depends on him to keep the domain | Written agreement; ownership can be transferred at Registro.br |
 | Brand unconfirmed for a long time | MVP ready but not released | Closed 2026-11-16: brand confirmed in 0.3 |
 | Content inputs arrive late | Empty sections | Pending items stay hidden; identification and contact already carry the page |
@@ -516,3 +516,5 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-18 | 2.5 built: `DESIGN.md` → Portrait treatment (white arch in the clearing, her head above it, a gold ring and two sprigs drawn from the monogram, the leaf lower and smaller); background removed locally, the cut-out kept in the assets checkout only; the arch crop stays as the fallback. Local builds of both targets, with and without the assets: every check passes. Awaiting her approval of the cut-out |
 | 2026-11-18 | 2.5 delivered: the arch's bottom corners softened after Filipe's review; she approved the cut-out, now in `dra-victoria-laufer-assets` (`8761caa`) |
 | 2026-11-18 | 2.5 verified: PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237) passed with the private assets and the cut-out; Filipe approved the issue |
+| 2026-11-18 | 2.6 built: critique (17/24, no P0) and polish on Filipe's choices; checklist checked against the full text of Resolution 2.336/2023 and the Manual da Codame; "(NÃO ESPECIALISTA)" added in "Sobre"; her written approval of the full page text; pending report empty; `noindex` removed. `docs/status-log.md` |
+| 2026-11-18 | 2.6 verified: PR #20 CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) passed with the private assets and the thickened logos; Filipe approved the page. `docs/status-log.md` |

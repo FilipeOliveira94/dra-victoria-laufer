@@ -11,9 +11,9 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 | Field | Now |
 | --- | --- |
-| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2), the **page structure** (issue 1.3), **images, favicon and fonts** (issue 1.4), **accessibility** (issue 1.5: skip link, visible focus, named contact link, reduced motion), **technical SEO** (issue 1.6: description, Open Graph `pt_BR` with the logo as social image, `sitemap.xml`, `robots.txt`) and **automatic checks on pull requests** (issue 1.7: HTML, links and anchors, axe, Lighthouse mobile, 200 KB per image, vetoed terms, no photo in the repository): one `noindex` page with name, `MÉDICA`, `CRM-SP 240550`, her portrait (AVIF/WebP from the private assets repository) and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Since issue 2.1 the page wears the confirmed brand: `DESIGN.md` tokens, header with the colour logo, light section grounds, deep green footer with the white logo, social image with the brand field. Since issue 2.2 it follows the "Caminho do jardim" direction: a dotted gold path that waves down the page with each section heading on a stone, the name and identity line in the first fold, the portrait as an arch in a clearing with a sun and a leaf, Contato as rows with drawn icons, and the identity line in the footer |
+| In the repository | The **Astro base** (issue 1.1), the **typed content model** (issue 1.2), the **page structure** (issue 1.3), **images, favicon and fonts** (issue 1.4), **accessibility** (issue 1.5: skip link, visible focus, named contact link, reduced motion), **technical SEO** (issue 1.6: description, Open Graph `pt_BR` with the logo as social image, `sitemap.xml`, `robots.txt`) and **automatic checks on pull requests** (issue 1.7: HTML, links and anchors, axe, Lighthouse mobile, 200 KB per image, vetoed terms, no photo in the repository): one page with name, `MÉDICA`, `CRM-SP 240550`, her portrait (AVIF/WebP from the private assets repository) and the Contato section, read from the collections in `src/content/data/`, with anchor navigation, footer and a 404 page. Since issue 2.1 the page wears the confirmed brand: `DESIGN.md` tokens, header with the colour logo, light section grounds, deep green footer with the white logo, social image with the brand field. Since issue 2.2 it follows the "Caminho do jardim" direction: a dotted gold path that waves down the page with each section heading on a stone, the name and identity line in the first fold, the portrait as an arch in a clearing with a sun and a leaf, Contato as rows with drawn icons, and the identity line in the footer. Formação, Atuação and Sobre followed (2.3, 2.4), then the cut-out portrait (2.5). Issue 2.6 reviewed the page against the full CFM resolution, polished it and removed `noindex`: the page is indexable once 2.6 is merged |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> |
-| Next | Issue 2.3 |
+| Next | Issue 2.6 merge, then Phase 3 (domain) |
 | Brand | Confirmed in [`DESIGN.md`](DESIGN.md) (issue 0.3); applied to the site in issue 2.1. `make contrast` checks its colour pairs |
 | Ledger | [`PROJECT_STATUS.md`](PROJECT_STATUS.md) · scope in [`ROADMAP.md`](ROADMAP.md) |
 
@@ -21,7 +21,7 @@ The portfolio site of Dra. Victória Laufer, MÉDICA, CRM-SP 240550. One static 
 
 ## ⚙️ Target stack
 
-Generator, hosting, `DEPLOY_TARGET` and `noindex` are built (issue 1.1), and so are the content model (issue 1.2) and the page structure (issue 1.3); the rest is planned. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`docs/architecture/target-site.md`](docs/architecture/target-site.md).
+Generator, hosting, `DEPLOY_TARGET` and the indexing switch are built (issue 1.1), and so are the content model (issue 1.2) and the page structure (issue 1.3); the rest is planned. Rationale in [`DECISIONS.md`](DECISIONS.md); overview in [`docs/architecture/target-site.md`](docs/architecture/target-site.md).
 
 | Layer | Choice |
 | --- | --- |
@@ -30,7 +30,7 @@ Generator, hosting, `DEPLOY_TARGET` and `noindex` are built (issue 1.1), and so 
 | Content | Typed collections. A pending item is hidden and reported by the build |
 | Hosting | GitHub Pages, built and deployed by GitHub Actions |
 | Domain | `dravictorialaufer.com.br`, switched on by removing `DEPLOY_TARGET` from the workflow |
-| Indexing | `noindex` until the CFM review releases the site (issue 2.6) |
+| Indexing | Released by the CFM review (issue 2.6); one constant puts it back under `noindex` |
 | Assets | Original photos in a private repository, fetched at build time |
 | Quality | Lighthouse mobile ≥ 90, LCP < 2.5 s, valid HTML, WCAG 2.1 AA, images ≤ 200 KB |
 
@@ -60,8 +60,8 @@ make help
 - `make axe` and `make lighthouse` need Chrome: `CHROME_PATH`, or `google-chrome` on `PATH`.
 - Every pull request runs the build and all the checks above in the `build` job of [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) (issue 1.7); any failure fails the job, and on `main` it stops the deploy. Pull requests from forks get no assets secret and are checked on the placeholder.
 - A push to `main` builds and deploys through [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). The repository's Pages source is "GitHub Actions".
-- Every build carries `noindex` until issue 2.6 sets `indexable` in [`src/config/release.ts`](src/config/release.ts).
-- Photos and brand files live in the private repository `dra-victoria-laufer-assets` (ADR-0010), never here. The deploy workflow checks it out into `.assets/` with the read-only deploy key in the `ASSETS_DEPLOY_KEY` secret. Locally, with access to that repository, clone it into `.assets/`; without it, the build completes with the neutral placeholder.
+- Indexing is set by `indexable` in [`src/config/release.ts`](src/config/release.ts): `true` since issue 2.6, so no build carries `noindex`; `false` puts every build under `noindex`.
+- Photos and brand files live in the private repository `dra-victoria-laufer-assets` (ADR-0010), never here. The deploy workflow checks it out into `.assets/` with the read-only deploy key in the `ASSETS_DEPLOY_KEY` secret. Locally, with access to that repository, clone it into `.assets/` and keep it pulled, or point `ASSETS_DIR` at a checkout; without it, the build completes with the neutral placeholder.
 - Facts about her live only in [`src/content/data/`](src/content/data/), checked by the schemas in [`src/content.config.ts`](src/content.config.ts). Invalid data stops the build. A missing fact is `pendente: true` with a `motivo`: it stays off the page and `make build` lists it as `[pendente] <collection>/<id>: <motivo>`.
 
 ---

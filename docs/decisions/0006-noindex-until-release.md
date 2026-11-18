@@ -38,6 +38,8 @@ The site is published with **`noindex` until issue 2.6**. Issue 2.6 removes it o
 
 Issue 1.1, local builds on 2026-11-16: both targets emit `<meta name="robots" content="noindex">`. The published staging page carries the same tag after the 1.1 merge (2026-11-16).
 
+Issue 2.6, 2026-11-18: the checklist was checked against the full resolution and the Manual da Codame, she approved the page in writing, and the pending report was empty; `indexable` became `true`. Local builds of both targets carry no `<meta name="robots">`; PR #20 CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) passed.
+
 ## Revisit when
 
 Filipe decides to release with the provisional identity, which would change the dependencies of 2.6.

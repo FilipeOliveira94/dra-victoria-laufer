@@ -115,9 +115,9 @@ Full palette, four roles: green leads, yellow supports, blue carries the text, l
 
 ### Primary
 
-- **Verde da marca** (`verde-marca`): the monogram's turquoise. Ornament: the leaf in the first fold, the leaf markers of Atuação, the "EM CURSO" outline, the field along the bottom of the social image. Not a section ground on the page. Text on it would be `azul-noite`, never white.
+- **Verde da marca** (`verde-marca`): the monogram's turquoise. Ornament: the leaf in the first fold, the leaf markers of Atuação, the "EM CURSO" outline, the 2 px outline of the degree card and of the contact rows (2.6), the field along the bottom of the social image. Not a section ground on the page. Text on it would be `azul-noite`, never white.
 - **Verde profundo** (`verde-profundo`): the same hue at text strength. Section headings, links, focus ring, footer ground.
-- **Verde claro** (`verde-claro`): the clearing — behind the portrait, around "Sobre", inside course cards, the contact rows' outline and icon discs.
+- **Verde claro** (`verde-claro`): the clearing — behind the portrait, around "Sobre", inside course cards, the contact rows' icon discs.
 
 ### Secondary
 
@@ -202,8 +202,8 @@ Flat. No shadows, no blur. Depth comes from overlap: the sun and the gold ring b
 Rounded and organic, never sharp-cornered boxes:
 
 - **Portrait:** the cut-out in a white arch (→ Portrait treatment). Fallback when the cut-out is missing: the photo cropped to a 3:4 arch — the top a true semicircle, the bottom corners `rounded.lg` — with an 8 px white edge.
-- **Course card** (2.3): `rounded.card`, three round corners and one nearly square, like a leaf. The degree has a `verde-claro` outline on white; each postgraduate course a `verde-claro` fill. The course line reads `MÉDICA com pós-graduação em (área) — NÃO ESPECIALISTA` in `title`, `verde-profundo`; "— NÃO ESPECIALISTA" never breaks across lines. The institution follows in `azul-cinza`. A course in progress ends with the "EM CURSO" marker: `label` at 0.8125rem, `verde-profundo` text in a `rounded.pill` `verde-marca` outline, real text read by screen readers. Two columns from 900 px.
-- **Contact row:** `rounded.pill`, a `verde-claro` 2 px outline.
+- **Course card** (2.3): `rounded.card`, three round corners and one nearly square, like a leaf. The degree has a `verde-marca` 2 px outline on white (2.6: `verde-claro` all but vanished on white); each postgraduate course a `verde-claro` fill. The course line reads `MÉDICA com pós-graduação em (área) — NÃO ESPECIALISTA` in `title`, `verde-profundo`; "— NÃO ESPECIALISTA" never breaks across lines. The institution follows in `azul-cinza`. A course in progress ends with the "EM CURSO" marker: `label` at 0.8125rem, `verde-profundo` text in a `rounded.pill` `verde-marca` outline, real text read by screen readers. Two columns from 900 px.
+- **Contact row:** `rounded.pill`, a `verde-marca` 2 px outline (2.6).
 - **Clearing** ("Sobre"): `rounded.clearing`. The first-fold clearing is a free organic SVG shape.
 - `rounded.sm` for the focus ring.
 
@@ -255,7 +255,7 @@ Atuação (2.4): the current workplaces, then a group headed "Experiência" (`la
 
 ### Navigation
 
-Anchor links to the four sections, in `label` style, no JavaScript. Current section is not tracked (no script). Underline on hover and focus. On a phone (below 600 px) the links take one row under the logo, at 0.8125rem, and that row never wraps: its height does not depend on which font has loaded (CLS). With a wide fallback font on a 320 px screen the row scrolls inside itself.
+Anchor links to the four sections, in `label` style, no JavaScript. Current section is not tracked (no script). Underline on hover and focus. On a phone (below 600 px) the links take one row under the logo, at 0.8125rem, each a 44 px touch target (2.6), and that row never wraps: its height does not depend on which font has loaded (CLS). With a wide fallback font on a 320 px screen the row scrolls inside itself.
 
 ### Sections
 
@@ -271,15 +271,17 @@ Files live in the private repository `dra-victoria-laufer-assets` (ADR-0010) and
 
 | Use | File | Notes |
 | --- | --- | --- |
-| Header, on white | `brand/logo/logo-horizontal-cor.png` | Small; decorative next to the real-text name, so `alt=""` |
-| Footer, on `verde-profundo` | `brand/logo/logo-horizontal-branco.png` | `alt=""` for the same reason |
+| Header, on white | `brand/logo/logo-horizontal-cor-header.png` (falls back to `logo-horizontal-cor.png`) | Small; decorative next to the real-text name, so `alt=""` |
+| Footer, on `verde-profundo` | `brand/logo/logo-horizontal-branco-footer.png` (falls back to `logo-horizontal-branco.png`) | `alt=""` for the same reason |
 | Favicon, app icon | `brand/symbol/simbolo-cor.png` | The monogram; dark fallback `simbolo-preto.png` |
 | Social image (Open Graph) | `brand/logo/logo-horizontal-cor.png` | 1200 × 630: the logo centred on white, a `verde-marca` field along the bottom with a 4px `ouro` hairline above it (Filipe, 2026-11-16). No text in the image; any text added later passes the CFM checklist |
 | Never on the site | everything in `brand/source/` | Their tagline does not follow the Art. 13 format and one variant drops the accent from "Victória" |
 
 The horizontal and vertical logos in `brand/logo/` were derived from her originals by removing the professional tagline, nothing else; the monogram and the name are untouched. Only PNG exists (no vector source). The logo is never recoloured, stretched, outlined or placed on `verde-marca` or `amarelo-marca`, where its own turquoise and gold disappear.
 
-On the site, the horizontal logos have the written name moved down so it shares the monogram's vertical centre; in the originals it sits about 50 px higher (Filipe, 2026-11-16). The build does this from the originals (`scripts/prepare-assets.mjs`): moved and trimmed only, never recoloured, stretched or redrawn. Sizes: 40 px high in the header on a phone, 48 px from 600 px, 44 px in the footer.
+On the site, the horizontal logos have the written name moved down so it shares the monogram's vertical centre; in the originals it sits about 50 px higher (Filipe, 2026-11-16). The build does this from the originals (`scripts/prepare-assets.mjs`): moved and trimmed only, never recoloured, stretched or redrawn. Sizes: 48 px high in the header (2.6; 40 px before), 44 px in the footer.
+
+The header and footer logos are the one exception to "never outlined": at 44–48 px the script name of the originals drew strokes about 1 px wide. `logo-horizontal-cor-header.png` and `logo-horizontal-branco-footer.png` are `logo-horizontal-cor.png` and `logo-horizontal-branco.png` with every stroke thickened by a 3 px disc at source resolution, made once outside the site and stored only in `dra-victoria-laufer-assets` (Filipe's decision, issue 2.6). Colours, shapes and proportions are unchanged. The social image keeps the original.
 
 ## Do's and Don'ts
 

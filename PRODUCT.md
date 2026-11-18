@@ -37,7 +37,7 @@ The proof is checkable fact, not claims: her CRM registration, her degree, her p
 
 - Medical advertising in Brazil follows **CFM Resolution 2.336/2023**. Every published word, title, meta tag, `alt` text, JSON-LD field, file name and URL passes the checklist in [`docs/compliance/cfm.md`](docs/compliance/cfm.md), and a pull request that fails one item is not merged.
 - Dra. Victória owns the content. Her texts, photo and approvals arrive through Filipe, who owns scope, brand and every merge ([`AGENTS.md`](AGENTS.md) §3).
-- A push to `main` publishes the site. The site stays `noindex` until the release in issue 2.6 (D-006).
+- A push to `main` publishes the site. Issue 2.6 released it for indexing after the CFM review and her written approval (D-006).
 - The site moves from `filipeoliveira94.github.io/dra-victoria-laufer/` to `dravictorialaufer.com.br` by one variable, `DEPLOY_TARGET` (D-004).
 
 ## Capabilities and Constraints

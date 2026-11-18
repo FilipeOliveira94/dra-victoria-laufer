@@ -70,9 +70,9 @@ Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src
 | URL | `https://filipeoliveira94.github.io/dra-victoria-laufer/` | `https://dravictorialaufer.com.br/` |
 | Base path | `/dra-victoria-laufer` | `/` |
 | `DEPLOY_TARGET` | `ghpages` | not set |
-| Indexing | `noindex` | `noindex` until 2.6 sets `indexable` in `src/config/release.ts` |
+| Indexing | Indexable since 2.6 | Indexable since 2.6 (`indexable` in `src/config/release.ts`) |
 
-`astro.config.mjs` maps the variable to `site` and `base`; an unknown value stops the build. `noindex` does not depend on it. A build without `DEPLOY_TARGET` produces the production URLs. Canonical, sitemap and Open Graph URLs follow the target by themselves. The domain switch is a one-line diff in the workflow.
+`astro.config.mjs` maps the variable to `site` and `base`; an unknown value stops the build. Indexing does not depend on it. A build without `DEPLOY_TARGET` produces the production URLs. Canonical, sitemap and Open Graph URLs follow the target by themselves. The domain switch is a one-line diff in the workflow.
 
 ## Build and deploy
 
