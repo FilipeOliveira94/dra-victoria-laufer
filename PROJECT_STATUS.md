@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (Astro base from 1.1, `noindex`) |
-| Last updated | 2026-11-18 (2.3 PR CI passed; awaiting reviews and Filipe's screenshot approval) |
+| Last updated | 2026-11-18 (2.3 verified, PR #17 awaiting merge) |
 | Current phase | Phase 2 — Credibility content under the CFM rules (MVP), the last phase before the initial release |
-| Phase status | Phase 2 in progress (2.1 and 2.2 verified). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
+| Phase status | Phase 2 in progress (2.1 to 2.3 verified). Phases 0 and 1 closed: 0.1 to 0.3 and 1.1 to 1.8 verified |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**2.3** — Formação: the course cards in the Art. 13 format, on the 2.2 frame. Delivered in PR #17; its CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093) passed with the private assets. Verified once Filipe approves the screenshots.
+**2.3** — Formação: the course cards in the Art. 13 format, on the 2.2 frame. Delivered in PR #17; its CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093) passed with the private assets. Filipe approved it on 2026-11-18: verified.
 
 The last merge (`3655ad7`, docs table headers) published cleanly: `published` job of [run 44165512281](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44165512281), success.
 
 ## Next work
 
-1. **2.3** PR #17: PO and Reviewer approval, Filipe's OK on the screenshots.
+1. **2.3** PR #17: merge by the Reviewer; read the `published` job of its run.
 2. **2.4** Atuação (leaf markers) and Sobre (clearing), each a complete section on the 2.2 frame. With four header links, check that the phone nav row does not change height between the fallback font and Source Sans 3 (the cause of the CLS fixed in 2.3).
 3. **2.5** cut-out portrait on brand graphics: Filipe made it a condition for publication.
 4. **2.6** design critique and polish on the whole page, CFM review and release (removal of `noindex`).
@@ -45,7 +45,7 @@ None. Content inputs for Phase 2 are all received: [`docs/inputs/0.2-pending-inp
 | --- | --- | --- | --- |
 | 2.1 | Apply the confirmed visual identity | Verified | PR CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307); local builds, both targets, with and without the assets: every check passes; screenshots approved by Filipe as the base. `docs/status-log.md` |
 | 2.2 | Identification and contact | Verified | PR #15 CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315); local builds, both targets, with and without the assets: every check passes; screenshots approved by Filipe. `docs/status-log.md` |
-| 2.3 | Training ("Formação") | Delivered | Local builds, both targets, with and without the assets: every check passes. PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093). `docs/status-log.md` |
+| 2.3 | Training ("Formação") | Verified | Local builds, both targets, with and without the assets: every check passes; approved by Filipe. PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093). `docs/status-log.md` |
 | 2.4 | Roles ("Atuação") and "Sobre" | Not started | — |
 | 2.5 | Cut-out portrait on brand graphics | Not started | — |
 | 2.6 | CFM review and release | Not started | Depends on 2.1 to 2.5 |

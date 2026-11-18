@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-17 (2.3 delivered) |
+| Last updated | 2026-11-18 (2.3 verified) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -252,7 +252,7 @@ Phase 2 is the active phase, with the site in `noindex` until 2.6. Blockers are 
 
 | Issue 2.3 | Detail |
 | --- | --- |
-| Status | `delivered` |
+| Status | `verified` |
 | Size | P |
 | Depends on | 2.2; 0.2 |
 
@@ -510,3 +510,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-17 | 2.2 built in the "Caminho do jardim" direction chosen by Filipe (variant A1): garden path and stones, descriptive section headings, portrait arch in a clearing with sun and leaf, Contato rows with drawn icons, footer with the identity line in `amarelo-marca`, motion; lilac off the page. Scope widened to the frame and size P → M (Filipe). `DESIGN.md`, ADR-0011 updated. Local builds of both targets, with and without the assets: every check passes |
 | 2026-11-17 | 2.2 verified. #14 had been merged while its CI [run 44156463768](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44156463768) was failing (Lighthouse CLS 0.197, from the portrait box resizing on load); PR #15 fixes the portrait box and, at Filipe's request, draws the path as a smooth wave whose right crests are the stones, with each section shifted with its stone. Local builds of both targets and the PR's CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315) pass |
 | 2026-11-17 | 2.3 delivered: Formação as leaf-shaped course cards, each postgraduate course in the Art. 13 line with `— NÃO ESPECIALISTA` in the same `title` run, the institution below, and the `EM CURSO` marker as text on Neonatologia instead of `(em curso)` in the line (Filipe). Two columns from 900 px. On phones the header links always take their own row, which removes a CLS of 0.23 from the font swap. Local builds of both targets, with and without the assets: every check passes |
+| 2026-11-18 | 2.3 verified: PR #17 CI [run 44229777093](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44229777093) passed with the private assets; Filipe approved the section |
