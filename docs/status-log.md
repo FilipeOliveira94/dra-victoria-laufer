@@ -4,6 +4,18 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-18 — Issue 2.5 built: cut-out portrait on brand graphics
+
+Built on `feat/2.5-cutout-portrait`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 outside the repository). Not deployed. The 2.4 merge (`9a74d62`, PR #18) published cleanly: `published` job of [run 44234478918](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44234478918), success.
+
+- **Treatment:** `DESIGN.md` → Portrait treatment; Filipe approved it as a plan, and the built result awaits his review. Back to front: the clearing, the sun, a 2 px `ouro` ring open at the upper and lower right with a sprig in each opening (stem, berries, outlined leaves, drawn from the monogram's flourishes as inline SVG), a white arch, her photo from the waist up, the leaf. The arch starts at eye height, so her head rises above it; the photo is cut only by the arch's bottom edge. New semantic token `--color-ring` (`ouro`).
+- **Cut-out:** background removed once on this machine with `rembg` (model BiRefNet-portrait), outside the repository; the photo was not sent to any service. The transparent file is `photos/portrait-cutout.png` on the original's canvas, in the local checkout of `dra-victoria-laufer-assets`, not committed: it is pushed only after her approval. `scripts/prepare-assets.mjs` crops it (760 × 900 from x 492, y 110). With the cut-out the arch crop is not written, so `dist/` carries no unused copy of the photo; without it the page keeps the 3:4 arch crop, and without the assets the placeholder.
+- **Layout:** one 960 × 1000 box holds ring, sprigs, arch and photo, so nothing leaves it and its size is fixed before the image loads. Served as AVIF and WebP with alpha (320, 480, 760 w), largest file 55 KB. The leaf sits lower and smaller with the cut-out, off her hands.
+
+Checks, on production, `DEPLOY_TARGET=ghpages` and the placeholder build: `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, photos and tables 0 failing; requests 65, 0 failing (19 without the assets); axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404; Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1429 ms (902–903 ms without the assets), CLS 0.0002 on every run. A build with the assets but without the cut-out renders the arch crop; axe 0 failing. On production: no horizontal scroll at any width from 320 to 1600 px in 40 px steps; at 360 px the portrait box measures 276 × 287.5 px with images blocked and loaded; alt text `Foto de Dra. Victória Laufer`, unchanged. No text sits in or next to the composition. CFM checklist: pass. Open: her approval of the cut-out, its push to the assets repository, and the PR's CI run with it.
+
+---
+
 ### 2026-11-18 — Issue 2.4 verified: Atuação and Sobre
 
 Built on `feat/2.4-atuacao-sobre`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 outside the repository; the only system sans fallback is DejaVu Sans). Not deployed. The 2.3 merge (`3efdfc3`, PR #17) published cleanly: `published` job of [run 44230389406](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44230389406), success.

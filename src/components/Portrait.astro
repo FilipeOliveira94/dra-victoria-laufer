@@ -1,16 +1,63 @@
 ---
 import { Picture } from 'astro:assets';
-import { portrait } from '../lib/assets';
+import { portrait, portraitCutout } from '../lib/assets';
 
 interface Props {
   alt: string;
 }
 
 const { alt } = Astro.props;
+
+// The sprig (DESIGN.md → Garden shapes), drawn from the monogram's flourishes:
+// a curved stem, berries on short stalks and narrow outlined leaves. Local
+// coordinates, the stem leaving the origin up and to the right.
+const stem = 'M0 0C34-8 70-34 104-74';
+const stalks = 'M44-16l4-22M70-38l20-4M88-58l-4-22M100-68l16 2M100-70l6-24';
+const berries: [number, number][] = [
+  [48, -38],
+  [90, -42],
+  [84, -80],
+  [116, -66],
+  [106, -94],
+];
+const leaves =
+  'M18-4c12 0 26 8 30 22c-14 0-26-8-30-22ZM58-28c-6-10-6-24 2-34c6 10 6 24-2 34ZM80-50c12-4 26 0 34 10c-12 4-26 0-34-10Z';
 ---
 
 {
-  portrait ? (
+  portraitCutout ? (
+    // DESIGN.md → Portrait treatment, back to front: the gold ring and its two
+    // sprigs, the white arch, then her. In the scene's 960 × 1000 box her
+    // photo spans x 100–860 and y 40–940; the arch shares its width and bottom
+    // and starts at y 220, at eye height, so her head rises above it.
+    <div class="portrait-figure">
+      <svg class="figure-ring" viewBox="0 0 960 1000" aria-hidden="true" focusable="false">
+        <path class="ring-line" d="M85.3 743.6A420 420 0 0 1 720.9 255.9M860.6 422.5A420 420 0 0 1 885.7 708.7" />
+        {[
+          'translate(801.7 330) scale(1.5)',
+          'translate(824 841) scale(1.3 -1.3)',
+        ].map((transform) => (
+          <g class="sprig" transform={transform}>
+            <path class="sprig-line" d={`${stem}${stalks}${leaves}`} />
+            {berries.map(([cx, cy]) => (
+              <circle cx={cx} cy={cy} r="5" />
+            ))}
+          </g>
+        ))}
+      </svg>
+      <span class="figure-arch" aria-hidden="true" />
+      <Picture
+        src={portraitCutout}
+        alt={alt}
+        formats={['avif', 'webp']}
+        fallbackFormat="webp"
+        widths={[320, 480, 760]}
+        sizes="(min-width: 900px) 21rem, 15rem"
+        priority
+        class="portrait-cutout"
+      />
+    </div>
+  ) : portrait ? (
     <Picture
       src={portrait}
       alt={alt}

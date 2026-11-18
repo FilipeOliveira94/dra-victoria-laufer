@@ -382,6 +382,80 @@ main:focus {
   background: var(--color-ground);
 }
 
+/* The cut-out (issue 2.5; DESIGN.md → Portrait treatment). One 960 × 1000 box
+   holds the ring, the sprigs, the arch and her photo, so the decorations never
+   leave it and its size is fixed before the image loads. Her photo spans
+   x 100–860 and y 40–940 of the box (10.42% to 89.58%, 4% to 94%); the arch
+   shares that width and bottom and starts at y 220 (22%). Its top is a true
+   semicircle: a vertical radius of 380 / 720 of its height. */
+.scene > .portrait-figure {
+  position: relative;
+  display: block;
+  width: min(calc(var(--portrait-size) * 960 / 760), 100%);
+  aspect-ratio: 960 / 1000;
+}
+
+.figure-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.ring-line,
+.sprig-line {
+  fill: none;
+  stroke: var(--color-ring);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.ring-line {
+  stroke-width: var(--hairline);
+}
+
+.sprig-line {
+  stroke-width: 1.5px;
+}
+
+.sprig circle {
+  fill: var(--color-ring);
+}
+
+.figure-arch,
+.portrait-figure picture {
+  position: absolute;
+  inset-inline: 10.4167%;
+  inset-block-end: 6%;
+}
+
+.figure-arch {
+  inset-block-start: 22%;
+  background: var(--color-ground);
+  border-radius: 50% 50% var(--radius-lg) var(--radius-lg) / 52.7778% 52.7778% var(--radius-lg)
+    var(--radius-lg);
+}
+
+.portrait-figure picture {
+  inset-block-start: 4%;
+}
+
+/* With the cut-out, the leaf sits lower and smaller, over the arch's corner,
+   so it never covers her hands. */
+.scene:has(.portrait-figure) .scene-leaf {
+  inset-block-end: 0;
+  width: clamp(4.5rem, 24%, 7.5rem);
+}
+
+.portrait-cutout {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
 @media (min-width: 900px) {
   .identification {
     display: grid;

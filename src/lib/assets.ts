@@ -11,6 +11,8 @@ const generated = import.meta.glob<ImageMetadata>('../assets/generated/*.{jpg,pn
 const pick = (name: string): ImageMetadata | undefined => generated[`../assets/generated/${name}`];
 
 export const portrait = pick('portrait.jpg');
+// Her photo without its background (issue 2.5); the arch crop is the fallback.
+export const portraitCutout = pick('portrait-cutout.png');
 export const icon = pick('icon.png');
 export const iconTouch = pick('icon-touch.png');
 export const social = pick('social.png');
