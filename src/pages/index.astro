@@ -2,21 +2,32 @@
 import Base from '../layouts/Base.astro';
 import Portrait from '../components/Portrait.astro';
 import Section from '../components/Section.astro';
-import { channelLabel, channelLink, identityLine, medica, published } from '../lib/content';
+import {
+  channelLabel,
+  channelLink,
+  courseLine,
+  identityLine,
+  medica,
+  NOT_SPECIALIST,
+  published,
+} from '../lib/content';
 import { section, sections, type SectionId } from '../lib/sections';
 
-// Every fact comes from the content model (issue 1.2). Formação, Atuação and
-// Sobre render from issues 2.3 and 2.4.
+// Every fact comes from the content model (issue 1.2). Atuação and Sobre render
+// from issue 2.4.
 const id = await medica();
 if (!id) throw new Error('medica is pending: the page cannot be built without identification.');
 
 const identification = identityLine(id);
+// Degree and postgraduate courses in `ordem`; a pending one (no official name)
+// is already dropped.
+const courses = await published('formacao');
 // Public channels in `ordem` (ADR-0007); a pending one is already dropped.
 const channels = await published('contato');
 
 // A section is on the page, and in the navigation, only with published content.
 const present: Record<SectionId, boolean> = {
-  formacao: false,
+  formacao: courses.length > 0,
   atuacao: false,
   sobre: false,
   contato: channels.length > 0,
@@ -53,6 +64,36 @@ const nav = sections.filter((s) => present[s.id]);
         </svg>
       </div>
     </div>
+    {
+      courses.length > 0 && (
+        <Section section={section('formacao')}>
+          {/* DESIGN.md → Course card. Each postgraduate course is one `title`
+              line: NÃO ESPECIALISTA inherits its size, weight and colour (the
+              Same-Size Rule); its span only keeps it on one line, never apart
+              from the course. A course in progress
+              carries the EM CURSO marker as real text, read after the
+              institution, so the card never states a completed course. */}
+          <ul class="courses">
+            {courses.map((c) =>
+              c.tipo === 'graduacao' ? (
+                <li class="course course-degree">
+                  <p class="title course-line">{c.curso}</p>
+                  <p class="course-meta">{`${c.instituicao} · ${c.ano}`}</p>
+                </li>
+              ) : (
+                <li class="course">
+                  <p class="title course-line">
+                    {courseLine(c)} <span class="not-specialist">{NOT_SPECIALIST}</span>
+                  </p>
+                  <p class="course-meta">{c.instituicao}</p>
+                  {c.emCurso && <p class="label course-flag">EM CURSO</p>}
+                </li>
+              ),
+            )}
+          </ul>
+        </Section>
+      )
+    }
     {
       channels.length > 0 && (
         <Section section={section('contato')}>

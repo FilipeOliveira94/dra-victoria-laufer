@@ -42,6 +42,8 @@
   --color-stone: var(--ouro);
   --color-sun: var(--amarelo-marca);
   --color-leaf: var(--verde-marca);
+  /* Outline of the EM CURSO marker on a course card (ornament, not text). */
+  --color-marker: var(--verde-marca);
   /* The footer hill: verde-marca mixed into the footer ground. White text on it
      stays above 4.5:1 (DESIGN.md → Approved text pairs, footer). */
   --color-hill: color-mix(in srgb, var(--verde-marca) 16%, var(--verde-profundo));
