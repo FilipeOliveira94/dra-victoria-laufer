@@ -38,7 +38,7 @@ Checklist for medical advertising on this site under **CFM Resolution 2.336/2023
 - [ ] Each is followed by `NÃO ESPECIALISTA`, in capitals.
 - [ ] `NÃO ESPECIALISTA` has the same font size and the same contrast as the text next to it. It is not hidden, shrunk, greyed out or moved away from the course.
 - [ ] A course without its official name is `pendente` and does not appear on the page.
-- [ ] A course not yet completed is marked `(em curso)` right after the area, so the line does not state a completed course (Art. 11, XVI).
+- [ ] A course not yet completed carries the `EM CURSO` marker in its card, as text read by screen readers and right after the institution, so the card does not state a completed course (Art. 11, XVI).
 - [ ] A course not registered at the CRM is shown only under a recorded decision by Filipe. Current decision: shown while the CREMESP keeps registration frozen, and the release in 2.6 does not wait for it ([`docs/inputs/0.2-pending-inputs.md`](../inputs/0.2-pending-inputs.md) → 2). Art. 13, §1, d reads "devidamente cadastrado no CRM"; this is a recorded risk.
 - [ ] No year, workload or course name was invented.
 
@@ -100,3 +100,4 @@ Copy sections A to D into the PR description, tick each item, and state how it w
 | 2026-11-15 | Course names recorded. Wording rule for roles and experience added; `neonatologista`, `intensivista` and `área de atuação` vetoed. "Atuação" may name current workplaces and a start year; "no numbers" narrowed to statistics | Text of Resolution CFM 2.336/2023 (Art. 4, 7, 11, 13), read in issue 0.2; decision by Filipe |
 | 2026-11-15 | Planning record "two registered" corrected: none is registered, registration frozen by the CREMESP. Unregistered courses shown by Filipe's decision, and the release does not wait for registration; a course in progress is marked `(em curso)` | Art. 13, §1, d; Art. 11, XVI; facts and decision from Filipe |
 | 2026-11-16 | Instagram handle `pediatria.dravictoria` kept as is, recorded as a risk in C | Filipe's decision, 2026-11-16 |
+| 2026-11-17 | A course in progress is marked by the `EM CURSO` marker in its card instead of `(em curso)` inside the course line. The marker is text, read by screen readers, so the card still does not state a completed course (Art. 11, XVI) | Filipe's decision in issue 2.3, 2026-11-17 |

@@ -77,7 +77,7 @@ Received and recorded in [`docs/inputs/0.2-pending-inputs.md`](docs/inputs/0.2-p
 
 - Registration: CRM 240550, São Paulo. No RQE.
 - Degree: Medicina, Universidade Federal do Vale do São Francisco (UNIVASF), 2021.
-- Three postgraduate courses with official names and institutions (HCX Fmusp; Faculdade Sírio-Libanês). Neonatologia is in progress and shown "(em curso)". None is registered at the CREMESP.
+- Three postgraduate courses with official names and institutions (HCX Fmusp; Faculdade Sírio-Libanês). Neonatologia is in progress and its card carries the "EM CURSO" marker. None is registered at the CREMESP.
 - Four current workplaces in Guarulhos and Jacareí, with start years 2022 and 2024, in approved lines.
 - The approved text "Sobre".
 - One professional portrait with right of use, stored in the private repository `dra-victoria-laufer-assets`, never in this one (D-010). A build without the deploy key uses a neutral placeholder.

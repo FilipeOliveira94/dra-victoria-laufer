@@ -200,7 +200,7 @@ Flat. No shadows, no blur. Depth comes from overlap: the sun behind the portrait
 Rounded and organic, never sharp-cornered boxes:
 
 - **Portrait:** a 3:4 arch — the top a true semicircle, the bottom corners `rounded.lg` — with an 8 px white edge.
-- **Course card** (2.3): `rounded.card`, three round corners and one nearly square, like a leaf. The degree has a `verde-claro` outline on white; each postgraduate course a `verde-claro` fill.
+- **Course card** (2.3): `rounded.card`, three round corners and one nearly square, like a leaf. The degree has a `verde-claro` outline on white; each postgraduate course a `verde-claro` fill. The course line reads `MÉDICA com pós-graduação em (área) — NÃO ESPECIALISTA` in `title`, `verde-profundo`; "— NÃO ESPECIALISTA" never breaks across lines. The institution follows in `azul-cinza`. A course in progress ends with the "EM CURSO" marker: `label` at 0.8125rem, `verde-profundo` text in a `rounded.pill` `verde-marca` outline, real text read by screen readers. Two columns from 900 px.
 - **Contact row:** `rounded.pill`, a `verde-claro` 2 px outline.
 - **Clearing** ("Sobre"): `rounded.clearing`. The first-fold clearing is a free organic SVG shape.
 - `rounded.sm` for the focus ring.
