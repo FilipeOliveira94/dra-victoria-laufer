@@ -21,6 +21,21 @@ export async function published<C extends CollectionKey>(collection: C): Promise
     .sort(byOrder);
 }
 
+/**
+ * Published pages of `paginas` (issue 5.1), in `ordem`, with their id: the
+ * URL path. The footer links and the routes both come from here.
+ */
+export async function pages() {
+  const entries = await getCollection('paginas');
+  return entries
+    .flatMap((entry) => (isPublished(entry.data) ? [{ id: entry.id, ...entry.data }] : []))
+    .sort(byOrder);
+}
+
+/** "18 de novembro de 2026": a review date written for the reader. */
+export const longDate = (iso: string) =>
+  new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(iso));
+
 /** The identification entry, or undefined while it is pending. */
 export async function medica(): Promise<Published<'medica'> | undefined> {
   const [entry] = await published('medica');

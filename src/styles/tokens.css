@@ -75,6 +75,8 @@
   --label-tracking: 0.08em;
   --label-small: 0.8125rem;
   --title-size-footer: 1.5rem;
+  /* Section headings of the privacy and legal notice pages (issue 5.1). */
+  --legal-heading-size: 1.5rem;
   /* "Sobre": her text, one step above body (DESIGN.md → Sections). */
   --sobre-size: 1.1875rem;
   --sobre-lead-size: 1.4375rem;

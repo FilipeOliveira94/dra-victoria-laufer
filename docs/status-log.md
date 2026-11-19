@@ -4,6 +4,29 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-19 — Issue 5.1 verified: privacy and legal notice
+
+Built on `feat/5.1-privacy-legal-notice`, checked on local production builds (Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 outside the repository). Not deployed. Plan approved by Filipe, with two pages.
+
+- **Content:** a `paginas` collection (`src/content/data/paginas.yaml`, schema in `src/content.config.ts`): per page a title, a review date and sections of paragraphs, with optional cited links (https) and flags that add the public e-mail and the identity line from their own collections. The text is a draft from verifiable facts and waits on her approval.
+- **Privacy (`/privacidade/`):** no cookies, forms or analytics; fonts and images from the site. Third parties actually used: GitHub Pages as host (access logs with IP, under GitHub's statement), and the contact channels Gmail (Google), WhatsApp and Instagram (Meta), which the site does not receive, store or forward. How she handles messages; LGPD rights through the e-mail.
+- **Legal notice (`/aviso-legal/`):** who keeps the site (identity line); the content does not replace a consultation; a message is not a consultation, with 192 (SAMU) for urgencies; Resolution CFM 2.336/2023 and the postgraduate courses not being specialist titles.
+- **Site:** `src/pages/[pagina].astro` renders each published entry; `Base.astro` links them in every footer (`nav` "Informações legais") and now gives each page its own canonical and `og:url`; the sitemap lists them. axe and Lighthouse now include both pages.
+
+Checks, with the assets, without them (`ASSETS_DIR=/nonexistent`) and on staging (`DEPLOY_TARGET=ghpages`): `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, JSON-LD, photos and tables 0 failing; requests 133, 0 failing (47 without the assets; 133 on staging, canonical `/dra-victoria-laufer/privacidade/`); axe 8 runs, 0 violations, 0 incomplete; Lighthouse mobile on the three pages: Performance 100, Accessibility 100, LCP 1503 ms (home) and 902 ms (legal pages), CLS 0.0003 (home) and up to 0.0497 (legal pages). No horizontal scroll from 320 to 1600 px. Marking `aviso-legal` pending removed its page, its footer link and its sitemap entry. The four cited external links answer 200 (`curl -L`). CFM checklist: pass (identification in the footer of both pages, no vetoed term, the only e-mail). PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982) on `69b610f` passed with the private-assets step executed: requests 133, 0 failing; content and JSON-LD checks 0 failing; axe 8 runs, 0 failing; Lighthouse assertions pass on the three pages. Dra. Victória approved the text (relayed by Filipe, 2026-11-19); PO, Reviewer and Filipe approved the PR. Every acceptance item is met: 5.1 verified.
+
+---
+
+### 2026-11-18 — Issue 4.1 published; Phase 5 opened: content and E-E-A-T
+
+The 4.1 merge (`60adb20`, PR #23) published cleanly: `deploy.yml` [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964), jobs `build`, `deploy` and `published` all success.
+
+Checked on the published site from this machine on 2026-11-18: the `<script type="application/ld+json">` block of `https://dravictorialaufer.com.br/` is byte-identical to the block of a local production build of `60adb20` with the private assets, the block the Schema Markup Validator passed with 0 errors and 0 warnings. `@type` `Person`, `jobTitle` `Médica`, no `medicalSpecialty`.
+
+Phase 4 is closed (4.1 verified). Phase 5 is the active phase. 5.1 (privacy and legal notice) is in progress on `feat/5.1-privacy-legal-notice`, as two pages linked in the footer (Filipe); its dependency, 2.2, is verified. 5.2 follows.
+
+---
+
 ### 2026-11-18 — Issue 4.1 verified: JSON-LD Person
 
 Built on `feat/4.1-json-ld-person`, checked on local production builds with and without the private assets (Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 outside the repository). Not deployed. Plan approved by Filipe.

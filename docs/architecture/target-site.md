@@ -19,11 +19,12 @@ One page, in `pt-BR`, in this order:
 | 5 | Contato | `victorialaufersaude@gmail.com`, WhatsApp, Instagram | 2.2 |
 | — | Footer | Identification again, the build year, links to privacy and legal notice | 1.3, 2.1, 2.2, 5.1 |
 
-Structure (issue 1.3, built): one `h1`, one `h2` per section, a `<main>`, anchor navigation without JavaScript, a footer with the build year, and a 404 page that works at any URL depth. The skip-navigation link is issue 1.5. Later pages: privacy and legal notice (5.1).
+Structure (issue 1.3, built): one `h1`, one `h2` per section, a `<main>`, anchor navigation without JavaScript, a footer with the build year, and a 404 page that works at any URL depth. The skip-navigation link is issue 1.5. Since 5.1, two more pages: `/privacidade/` and `/aviso-legal/`.
 
 - `src/lib/sections.ts` lists the four sections in page order (id and name). The navigation and the section ids come from that list, so an id is never typed twice.
 - `src/components/Section.astro` renders `<section id aria-labelledby>` with its `h2`. `index.astro` renders a section, and lists it in the navigation, only when it has published content: an empty section would be a placeholder. Today only Contato (the e-mail) is on the page; Formação, Atuação and Sobre appear with 2.3 and 2.4.
 - `src/layouts/Base.astro` holds the head, the navigation and the footer (`© <build year> <name>`). The year is computed at build time.
+- `src/pages/[pagina].astro` renders one page per published entry of the `paginas` collection (`src/content/data/paginas.yaml`, issue 5.1): title, review date, sections of paragraphs, cited external links, and the e-mail or identity line taken from their own collections. The footer links and the sitemap come from the same list, so a pending page has no route and no link. Each page carries its own canonical URL.
 - `src/pages/404.astro` uses the same layout without navigation or canonical. Its links and CSS are absolute from the base path, so the page renders the same at `/x` and `/a/b/c/`. GitHub Pages serves `404.html` for any missing path.
 - CSS: `src/styles/tokens.css` (every value: the `DESIGN.md` palette, type roles, spacing and shape, issue 2.1) and `src/styles/global.css` (layout: one column, measure 40rem, gutter 16 px, 24 px from 600 px). The build inlines it in each page; no extra request.
 

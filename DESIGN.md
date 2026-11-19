@@ -263,7 +263,11 @@ Fixed per section, so a missing section never shifts the others: Formação, Atu
 
 ### Footer
 
-`verde-profundo` ground with the hill, `branco` text, `logo-horizontal-branco`, the name in the serif face and the identity line in `amarelo-marca` (`MÉDICA · CRM-SP 240550`), and the build year. From 900 px: logo, identity and year in one row.
+`verde-profundo` ground with the hill, `branco` text, `logo-horizontal-branco`, the name in the serif face and the identity line in `amarelo-marca` (`MÉDICA · CRM-SP 240550`), the links to Privacidade and Aviso legal (`branco`, underlined; issue 5.1), and the build year. From 900 px: logo, identity, and the links above the year, in one row.
+
+### Legal pages
+
+Privacidade and Aviso legal (issue 5.1): the same header and footer, one reading column at the 40rem measure, the page title in `headline` size, section headings in the serif at 1.5rem, the review date in `azul-cinza`, and a link back to the home page. No garden shapes.
 
 ### Logo
 

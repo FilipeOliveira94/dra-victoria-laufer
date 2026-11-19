@@ -1,6 +1,7 @@
 // Lighthouse CI, mobile (Lighthouse's default form factor), on the built
-// home page. Thresholds from AGENTS.md §9. Reports stay in .lighthouseci/
-// (and in the CI run's artifacts): nothing is uploaded to a third party.
+// home page and the privacy and legal notice pages (issue 5.1). Thresholds
+// from AGENTS.md §9. Reports stay in .lighthouseci/ (and in the CI run's
+// artifacts): nothing is uploaded to a third party.
 //
 // BASE is the base path the site was built for, as in `make requests`:
 // "/" for production (default), "/dra-victoria-laufer/" for staging.
@@ -14,7 +15,11 @@ module.exports = {
     collect: {
       startServerCommand: `node scripts/lib/serve-dist.mjs ${base} ${port}`,
       startServerReadyPattern: 'Serving',
-      url: [`http://127.0.0.1:${port}${base}`],
+      url: [
+        `http://127.0.0.1:${port}${base}`,
+        `http://127.0.0.1:${port}${base}privacidade/`,
+        `http://127.0.0.1:${port}${base}aviso-legal/`,
+      ],
       numberOfRuns: 3,
       settings: { chromeFlags: '--no-sandbox --headless=new' },
     },

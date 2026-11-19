@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-18 (4.1 verified; Phase 4 complete on merge) |
+| Last updated | 2026-11-19 (5.1 verified) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -33,7 +33,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Not started |
 | 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | Not started |
 
-Phase 4 is the active phase: 4.1 verified; the phase closes with its merge. Phase 3 closed with 3.2: the site is served at `https://dravictorialaufer.com.br/`. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+Phase 5 is the active phase: 5.1 verified, 5.2 next. Phase 4 closed with the 4.1 merge: the JSON-LD `Person` is on the live page. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
 
 ### Design brief (confirmed by Filipe)
 
@@ -371,7 +371,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 | Issue 5.1 | Detail |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` (local builds; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982); text approved by her) |
 | Size | P |
 | Depends on | 2.2 |
 
@@ -528,3 +528,7 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-18 | 3.2 verified: the merge (`25358b1`) published cleanly (`published` job of [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883), attempt 2, on the domain); custom domain and enforced HTTPS set in Pages, certificate approved; github.io, `http://` and `www` redirect to `https://dravictorialaufer.com.br/`; live canonical, `og:url`, sitemap and `robots.txt` on the domain. Phase 3 closed. Phase 4 is the active phase; 4.1 in progress on `feat/4.1-json-ld-person` |
 | 2026-11-18 | 4.1 built: JSON-LD `Person` on the home page from the collections (`src/lib/person.ts`), the degree and the two finished postgraduate courses as credentials in the Art. 13 line, Neonatologia left out until finished; `scripts/check-jsonld.mjs` added to `npm run lint`. Schema Markup Validator 0 errors, 0 warnings. Local builds, with and without the assets: every check passes |
 | 2026-11-18 | 4.1 verified: PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697) passed with the private assets; JSON-LD check 0 failing. Filipe approved the issue |
+| 2026-11-18 | 4.1 published: the merge (`60adb20`) published cleanly (`published` job of [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964)); the live JSON-LD block is identical to the one checked in the Schema Markup Validator. Phase 4 closed. Phase 5 is the active phase; 5.1 in progress on `feat/5.1-privacy-legal-notice` (two pages, Filipe) |
+| 2026-11-18 | 5.1 built: `/privacidade/` and `/aviso-legal/` from a new `paginas` collection, linked in every footer and listed in the sitemap; each page has its own canonical. Privacy names GitHub Pages (hosting) and Gmail, WhatsApp and Instagram (contact channels), the only third parties; no cookies, forms or analytics. The legal notice says the content does not replace a consultation. axe and Lighthouse now cover both pages. Local builds: every check passes. The text waits on her approval |
+| 2026-11-18 | 5.1: PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982) passed with the private assets; axe and Lighthouse on the three pages. Waiting on her approval of the text |
+| 2026-11-19 | 5.1 verified: Dra. Victória approved the text (relayed by Filipe); PO, Reviewer and Filipe approved PR #24 |

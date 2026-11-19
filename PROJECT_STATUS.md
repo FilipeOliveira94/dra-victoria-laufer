@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://dravictorialaufer.com.br/> (since 3.2; the github.io address redirects) |
-| Last updated | 2026-11-18 (4.1 verified) |
-| Current phase | Phase 4 — Structured data |
-| Phase status | 4.1 verified; Phase 4 closes with its merge. Phases 0 to 3 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1 and 3.2 verified (3.3 withdrawn) |
+| Last updated | 2026-11-19 (5.1 verified) |
+| Current phase | Phase 5 — Content and E-E-A-T |
+| Phase status | 5.1 verified; 5.2 next. Phases 0 to 4 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2 and 4.1 verified (3.3 withdrawn) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,14 +22,15 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**4.1** — JSON-LD `Person` on the page ([ADR-0009](docs/decisions/0009-schema-person.md)): name, `jobTitle: Médica`, the CRM as identifier, training, image, URL and Instagram in `sameAs`, built from the typed collections so no pending field reaches it. No `medicalSpecialty`, no `Physician`, no rating. Built on `feat/4.1-json-ld-person` (`src/lib/person.ts`, `scripts/check-jsonld.mjs`): the degree and the two finished postgraduate courses in the Art. 13 line; Neonatologia enters once finished (Filipe). Local builds: every check passes; Schema Markup Validator 0 errors, 0 warnings. PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697) passed with the private assets; Filipe approved. Left: the merge, then the `published` run and the validator on the live page.
+**5.1** (verified) — Privacy and legal notice: two pages, `/privacidade/` and `/aviso-legal/` (Filipe), linked in the footer. Privacy states what the site collects and how she handles the messages she receives, naming only the third parties actually used; the legal notice says the content does not replace a consultation. No cookie banner: the site sets no cookies. Built on `feat/5.1-privacy-legal-notice`: a `paginas` collection (`src/content/data/paginas.yaml`) rendered by `src/pages/[pagina].astro`, footer links and sitemap from the same list. Local builds: every check passes; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982) passed with the private assets. Dra. Victória approved the text (relayed by Filipe, 2026-11-19); PO, Reviewer and Filipe approved the PR. Left: the merge, then its `published` run, recorded by the next PR.
 
-The last merge (`25358b1`, 3.2) published cleanly: `published` job of [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883), success, on the domain.
+The last merge (`60adb20`, 4.1) published cleanly: `published` job of [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964); the live JSON-LD is identical to the validated block.
 
 ## Next work
 
-1. **4.1** Merge of PR #23; then the `published` run and the validator on the live page, recorded by the next PR.
-2. Then Phase 5 (privacy and legal notice, further evidence) or Phase 7 (Search Console, maintenance), both unblocked; Filipe chooses.
+1. **5.1** Merge of PR #24; its `published` run is recorded by the next PR.
+2. **5.2** Further evidence: the CREMESP lookup link and a visible review date; courses, events or publications as she provides them, each with a verifiable source.
+3. Then Phase 7 (Search Console, maintenance).
 
 ## Blockers
 
@@ -37,13 +38,14 @@ None.
 
 ---
 
-## Phase 4 progress
+## Phase 5 progress
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 4.1 | JSON-LD `Person` | Verified | Local builds: every check passes, Schema Markup Validator 0 errors. PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697). `docs/status-log.md` |
+| 5.1 | Privacy and legal notice | Verified | Local builds pass every check; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982). Text approved by her. `docs/status-log.md` |
+| 5.2 | Further evidence | Not started | — |
 
-Acceptance detail: `ROADMAP.md` → Phase 4. Phases 0 to 3: `ROADMAP.md` and `docs/status-log.md`.
+Acceptance detail: `ROADMAP.md` → Phase 5. Phases 0 to 4: `ROADMAP.md` and `docs/status-log.md`.
 
 ---
 
@@ -52,9 +54,9 @@ Acceptance detail: `ROADMAP.md` → Phase 4. Phases 0 to 3: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Local production build, branch `feat/4.1-json-ld-person`, with the private assets and with `ASSETS_DIR=/nonexistent`. Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 (outside the repository). Not deployed |
-| Checks | `make check`, `make contrast`, `make lint` (with the new JSON-LD check), `make requests`, `make axe`, `make lighthouse`; the JSON-LD block in the Schema Markup Validator |
-| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, JSON-LD, photos and tables 0 failing. Requests 65, 0 failing (19 without the assets). axe 4 runs, 0 violations. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003. Validator: 1 `Person`, 0 errors, 0 warnings |
+| Environment | Local production builds, branch `feat/5.1-privacy-legal-notice`: with the private assets, with `ASSETS_DIR=/nonexistent`, and with `DEPLOY_TARGET=ghpages`. Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 (outside the repository). Not deployed |
+| Checks | `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse`; horizontal scroll at 320 to 1600 px; a pending page; `curl` of the four cited external links |
+| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, JSON-LD, photos and tables 0 failing. Requests 133, 0 failing (47 without the assets; 133 on staging). axe 8 runs, 0 violations. Lighthouse mobile, all three pages: Performance 100, Accessibility 100; LCP 1503 ms home, 902 ms legal pages; CLS 0.0003 home, up to 0.0497 legal pages. No overflow. A pending page has no route, no footer link and no sitemap entry. External links 200 |
 
 ---
 
@@ -63,9 +65,11 @@ Acceptance detail: `ROADMAP.md` → Phase 4. Phases 0 to 3: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Published site, after the 3.2 merge (`25358b1`): `deploy.yml` [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883) (attempt 2), the Pages API and `curl` (issue 3.2) |
-| Checks | The `published` job; Pages domain, HTTPS and certificate; redirects; canonical, sitemap and `robots.txt` of the live page |
-| Result | All three jobs success. Certificate approved, HTTPS enforced; `http://`, `www` and github.io redirect to `https://dravictorialaufer.com.br/`; canonical, sitemap and `robots.txt` on the domain |
+| Environment | Published site, after the 4.1 merge (`60adb20`): `deploy.yml` [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964); `curl` of the live page compared with a local production build of `60adb20` with the private assets |
+| Checks | The `published` job; the JSON-LD block of the live page |
+| Result | All three jobs success. The live JSON-LD block is byte-identical to the block the Schema Markup Validator passed (0 errors, 0 warnings): `Person`, `jobTitle` `Médica`, no `medicalSpecialty` |
+
+---
 
 ---
 
@@ -75,13 +79,14 @@ All eleven decisions are `approved`. Implemented: D-008 (license) and, from 1.1,
 
 | ID | Topic | Gates |
 | --- | --- | --- |
-| D-009 | schema.org `Person` without `medicalSpecialty`; `Physician` only with acquisition on | 4.1 |
-| D-005 | Typed collections; pending items never reach the JSON-LD | 4.1 |
-| D-001 | No JavaScript shipped: the JSON-LD block is data, not script | 4.1 |
+| D-007 | Public contact channels and the single e-mail; the notice about messages | 5.1 |
+| D-005 | Typed collections: the pages' text is content, pending items never rendered | 5.1, 5.2 |
+| D-001 | No JavaScript shipped, no third party at page load: what the privacy page states | 5.1 |
 
 ## Active risks
 
 The full table is in `ROADMAP.md` → Risks. The ones that apply today:
 
-- CFM: a specialty suggested in structured data (a postgraduate area without `NÃO ESPECIALISTA`, `medicalSpecialty`, `Physician`). Checklist in `docs/compliance/cfm.md`.
+- Public e-mail and WhatsApp attract clinical messages through an informal channel: the notice is 5.1 (ADR-0007).
+- CFM: every new text (privacy, legal notice, evidence) runs the checklist in `docs/compliance/cfm.md`; no specialty suggested.
 - Courses not registered at the CRM (Art. 13, §1, d) and the Instagram handle with "pediatria": recorded risks in `docs/compliance/cfm.md`.

@@ -32,7 +32,7 @@ lint: ## Valid HTML, no Lorem or vetoed term in dist/, no photo in the repositor
 check: ## Type-check the project
 	$(NPM) run check
 
-axe: ## axe on the home and the 404, 360 and 1280 px (BASE=/dra-victoria-laufer/ for staging)
+axe: ## axe on the home, the 5.1 pages and the 404, 360 and 1280 px (BASE=/dra-victoria-laufer/ for staging)
 	node scripts/check-axe.mjs $(or $(BASE),/)
 
 lighthouse: ## Lighthouse CI mobile: Performance >= 90, Accessibility >= 95, LCP < 2.5 s, CLS < 0.1 (BASE as above)
