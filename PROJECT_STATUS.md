@@ -5,10 +5,10 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | Project | Current |
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
-| Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (indexable since the 2.6 merge; moves to `dravictorialaufer.com.br` in 3.2) |
-| Last updated | 2026-11-18 (3.1 verified; 3.2 workflow switched) |
-| Current phase | Phase 3 — Domain and DNS |
-| Phase status | 3.1 verified; 3.2 in progress; 3.3 withdrawn. Phases 0, 1 and 2 closed: 0.1 to 0.3, 1.1 to 1.8 and 2.1 to 2.6 verified |
+| Published at | <https://dravictorialaufer.com.br/> (since 3.2; the github.io address redirects) |
+| Last updated | 2026-11-18 (4.1 built on local builds) |
+| Current phase | Phase 4 — Structured data |
+| Phase status | 4.1 in progress. Phases 0 to 3 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1 and 3.2 verified (3.3 withdrawn) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,14 +22,14 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**3.2** — Switch to the domain. On `feat/3.2-domain-switch`: `DEPLOY_TARGET` removed from the workflow, and the check steps no longer pass the staging base path. The local production build carries `https://dravictorialaufer.com.br/` in the canonical, sitemap, `robots.txt` and Open Graph; every check passes. PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306) passed. Left: PO and Reviewer review, Filipe's OK and merge; then, right after the deploy, the custom domain and enforced HTTPS in Pages, the redirect checks and the Instagram bio link. Filipe accepted a few minutes of downtime between the deploy and the domain setting.
+**4.1** — JSON-LD `Person` on the page ([ADR-0009](docs/decisions/0009-schema-person.md)): name, `jobTitle: Médica`, the CRM as identifier, training, image, URL and Instagram in `sameAs`, built from the typed collections so no pending field reaches it. No `medicalSpecialty`, no `Physician`, no rating. Built on `feat/4.1-json-ld-person` (`src/lib/person.ts`, `scripts/check-jsonld.mjs`): the degree and the two finished postgraduate courses in the Art. 13 line; Neonatologia enters once finished (Filipe). Local builds: every check passes; Schema Markup Validator 0 errors, 0 warnings. Left: the PR and its CI run, PO and Reviewer review, Filipe's OK and merge.
 
-The last merge (`30120bf`, 3.1) published cleanly: `published` job of [run 44436668017](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436668017), success.
+The last merge (`25358b1`, 3.2) published cleanly: `published` job of [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883), success, on the domain.
 
 ## Next work
 
-1. **3.2** Review of PR #22, Filipe's OK and merge. Then: `cname` and `https_enforced` in Pages, rerun of the `published` job on the domain, `curl -I` on the github.io URL, `http://` and `www`; her Instagram bio link (outside the repository). Steps in [`docs/architecture/domain-dns.md`](docs/architecture/domain-dns.md).
-2. **Phase 4** JSON-LD `Person` (4.1), which depends on 3.2.
+1. **4.1** PR and its CI run; review; Filipe's OK and merge. After the merge, the `published` run and the validator on the live page.
+2. Then Phase 5 (privacy and legal notice, further evidence) or Phase 7 (Search Console, maintenance), both unblocked; Filipe chooses.
 
 ## Blockers
 
@@ -37,15 +37,13 @@ None.
 
 ---
 
-## Phase 3 progress
+## Phase 4 progress
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 3.1 | Register the domain and configure DNS | Verified | Domain `active` in the registry RDAP; verified in GitHub; root and `www` resolve to GitHub Pages; no MX (2026-11-18). PR #21 CI [run 44436305170](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436305170). `docs/status-log.md` |
-| 3.2 | Switch to the domain | In progress | Local production build: every check passes. PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306); redirects and certificate after the merge. `docs/status-log.md` |
-| 3.3 | E-mail on the domain | Withdrawn | No mailbox on the domain ([ADR-0007](docs/decisions/0007-contact-and-single-email.md)) |
+| 4.1 | JSON-LD `Person` | In progress | Local builds: every check passes, JSON-LD check 0 failing, Schema Markup Validator 0 errors. PR CI pending. `docs/status-log.md` |
 
-Acceptance detail: `ROADMAP.md` → Phase 3. Phases 0 to 2: `ROADMAP.md` and `docs/status-log.md`.
+Acceptance detail: `ROADMAP.md` → Phase 4. Phases 0 to 3: `ROADMAP.md` and `docs/status-log.md`.
 
 ---
 
@@ -54,9 +52,9 @@ Acceptance detail: `ROADMAP.md` → Phase 3. Phases 0 to 2: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Local build, branch `feat/3.2-domain-switch`: production (no `DEPLOY_TARGET`) with the private assets (`ASSETS_DIR` on `dra-victoria-laufer-assets` at `1f30925`), and production with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 (outside the repository). Not deployed |
-| Checks | The workflow's portrait and favicon grep with the root path; `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse` with the default base `/`; canonical, `og:url`, `og:image`, `sitemap.xml` and `robots.txt` read from `dist/`; search of `dist/` for `github.io` and `/dra-victoria-laufer/` |
-| Result | Canonical and `og:url` `https://dravictorialaufer.com.br/`; sitemap `<loc>` and `robots.txt` `Sitemap:` on the domain; no `github.io` or staging path in `dist/`. Favicon grep passes. `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, photos and tables 0 failing. Requests 65, 0 failing (19 without the assets). axe 4 runs, 0 violations, 0 incomplete. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003 |
+| Environment | Local production build, branch `feat/4.1-json-ld-person`, with the private assets and with `ASSETS_DIR=/nonexistent`. Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 (outside the repository). Not deployed |
+| Checks | `make check`, `make contrast`, `make lint` (with the new JSON-LD check), `make requests`, `make axe`, `make lighthouse`; the JSON-LD block in the Schema Markup Validator |
+| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, JSON-LD, photos and tables 0 failing. Requests 65, 0 failing (19 without the assets). axe 4 runs, 0 violations. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003. Validator: 1 `Person`, 0 errors, 0 warnings |
 
 ---
 
@@ -65,24 +63,25 @@ Acceptance detail: `ROADMAP.md` → Phase 3. Phases 0 to 2: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Public DNS, from this machine: system resolver (`getent`), the Registro.br RDAP and Google DNS-over-HTTPS (issue 3.1) |
-| Checks | Registry status; A, AAAA and `www` records; GitHub verification TXT; MX; HTTP answer at the root |
-| Result | Domain `active`, expires 2028-11-18. Root A: the four GitHub Pages IPv4 addresses only. Root AAAA: the four GitHub Pages IPv6 addresses. `www`: CNAME `filipeoliveira94.github.io`. Verification TXT answers. MX: none. `http://` root: GitHub 404, expected until 3.2 |
+| Environment | Published site, after the 3.2 merge (`25358b1`): `deploy.yml` [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883) (attempt 2), the Pages API and `curl` (issue 3.2) |
+| Checks | The `published` job; Pages domain, HTTPS and certificate; redirects; canonical, sitemap and `robots.txt` of the live page |
+| Result | All three jobs success. Certificate approved, HTTPS enforced; `http://`, `www` and github.io redirect to `https://dravictorialaufer.com.br/`; canonical, sitemap and `robots.txt` on the domain |
 
 ---
 
 ## Decisions (active)
 
-All eleven decisions are `approved`. Implemented: D-008 (license) and, from 1.1, D-001, D-003, D-004 and D-006 (release of indexing in 2.6): [`DECISIONS.md`](DECISIONS.md). The ones that gate the current work:
+All eleven decisions are `approved`. Implemented: D-008 (license) and, from 1.1, D-001, D-003, D-004 and D-006 (release of indexing in 2.6; domain in 3.2): [`DECISIONS.md`](DECISIONS.md). The ones that gate the current work:
 
 | ID | Topic | Gates |
 | --- | --- | --- |
-| D-003 | GitHub Pages through Actions; root domain by A records in the Registro.br DNS | 3.1, 3.2 |
-| D-004 | `DEPLOY_TARGET`: removing it targets `dravictorialaufer.com.br` | 3.2 |
-| D-007 | Single e-mail, no mailbox on the domain | 3.1 (no MX, SPF, DKIM or DMARC record) |
+| D-009 | schema.org `Person` without `medicalSpecialty`; `Physician` only with acquisition on | 4.1 |
+| D-005 | Typed collections; pending items never reach the JSON-LD | 4.1 |
+| D-001 | No JavaScript shipped: the JSON-LD block is data, not script | 4.1 |
 
 ## Active risks
 
 The full table is in `ROADMAP.md` → Risks. The ones that apply today:
 
+- CFM: a specialty suggested in structured data (a postgraduate area without `NÃO ESPECIALISTA`, `medicalSpecialty`, `Physician`). Checklist in `docs/compliance/cfm.md`.
 - Courses not registered at the CRM (Art. 13, §1, d) and the Instagram handle with "pediatria": recorded risks in `docs/compliance/cfm.md`.

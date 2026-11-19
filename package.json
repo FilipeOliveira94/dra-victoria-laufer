@@ -10,7 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "lint": "html-validate \"dist/**/*.html\" && node scripts/check-content.mjs && node scripts/check-no-photos.mjs && node scripts/check-markdown-tables.mjs",
+    "lint": "html-validate \"dist/**/*.html\" && node scripts/check-content.mjs && node scripts/check-jsonld.mjs && node scripts/check-no-photos.mjs && node scripts/check-markdown-tables.mjs",
     "lighthouse": "lhci autorun --config=lighthouserc.cjs",
     "requests": "node scripts/check-requests.mjs",
     "assets": "node scripts/prepare-assets.mjs",

@@ -25,6 +25,8 @@ pos-anestesia-terapia-intensiva-pediatrica:
   instituicao: Faculdade Sírio-Libanês
   emCurso: false
 
+# In progress: on the page with EM CURSO, out of the JSON-LD (issue 4.1). When
+# she finishes it, set `emCurso: false`; the JSON-LD then lists it by itself.
 pos-neonatologia:
   tipo: pos-graduacao
   ordem: 3

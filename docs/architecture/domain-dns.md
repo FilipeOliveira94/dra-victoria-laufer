@@ -33,8 +33,10 @@ From any machine, with the system resolver or a DNS-over-HTTPS query:
 - `getent hosts www.dravictorialaufer.com.br`: an alias of `filipeoliveira94.github.io`.
 - The TXT record answers; the MX query has no answer.
 
-Until 3.2 sets the custom domain in Pages, `http://dravictorialaufer.com.br` answers GitHub's 404 and there is no HTTPS certificate. Both are expected.
+Since 3.2 the custom domain is set in Pages, the certificate is issued and HTTPS is enforced.
 
 ## Switch (issue 3.2)
 
 Order: merge the PR that removes `DEPLOY_TARGET` (its deploy serves the root build; the github.io address breaks until the next step), then set the custom domain with `gh api -X PUT repos/FilipeOliveira94/dra-victoria-laufer/pages -f cname=dravictorialaufer.com.br`, wait for the certificate, and turn on `https_enforced`. Because the site deploys from Actions, the custom domain lives in the Pages settings; no `CNAME` file is needed. Then rerun the `published` job, which checks the URL the deployment reports, and check with `curl -I` that the github.io URL, `http://` and `www` redirect to `https://dravictorialaufer.com.br/`.
+
+Result (2026-11-18, after the 3.2 merge `25358b1`): Pages `cname` `dravictorialaufer.com.br`, `https_enforced` true, certificate `approved` for the root and `www`, expiring 2027-02-16 (GitHub renews it). The `published` job of [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883) (attempt 2) passed on the domain. `curl -I`: `https://dravictorialaufer.com.br/` 200; `http://` 301 to `https://dravictorialaufer.com.br/`; `https://www.` 301 to the root; the github.io URL 301 to `http://dravictorialaufer.com.br/`, then to HTTPS.

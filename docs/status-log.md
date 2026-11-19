@@ -4,6 +4,35 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-18 — Issue 4.1 built: JSON-LD Person
+
+Built on `feat/4.1-json-ld-person`, checked on local production builds with and without the private assets (Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 outside the repository). Not deployed. Plan approved by Filipe.
+
+- **Data:** `src/lib/person.ts` builds a schema.org `Person` from the published collections only: `@id` `https://dravictorialaufer.com.br/#pessoa`, `honorificPrefix` `Dra.` and `name` `Victória Laufer` (split from `nome`, Filipe), `jobTitle` `Médica`, `identifier` a `PropertyValue` `CRM-SP` / `240550`, `hasCredential` with the degree (Medicina, UNIVASF) and the two finished postgraduate courses named `MÉDICA com pós-graduação em (área) — NÃO ESPECIALISTA` with the institution as `recognizedBy`, `image` the 760 w WebP of the portrait the page already serves (no new file; absent without the assets), `url` and the Instagram in `sameAs`. No `medicalSpecialty`, no `Physician`, no rating, no e-mail or telephone (not in ADR-0009).
+- **Neonatologia:** in progress, so it is not a credential yet and is left out (Filipe). It enters by itself once `emCurso` is false in `formacao.yaml`; the file, `ROADMAP.md` and ADR-0009 say so.
+- **Page:** one `<script type="application/ld+json">` in the home page `<head>`, passed through `Base.astro`; data, not script, so nothing runs in the browser (D-001). `<` is escaped in the JSON. The 404 has none.
+- **Check:** `scripts/check-jsonld.mjs`, in `npm run lint` (so in CI): one block on the home page and none elsewhere, valid JSON, `@context` schema.org, `@type` `Person`, `jobTitle` `Médica`, a CRM identifier, `name` and `url`; no `medicalSpecialty`, `aggregateRating`, `review`, `pendente` or `motivo` key and no `Physician`, `MedicalBusiness` or `MedicalOrganization` type at any depth; every string with "pós-graduação em" ends with `NÃO ESPECIALISTA`. Injecting `medicalSpecialty` and `Physician` into `dist/index.html` made it fail with 3 findings.
+
+Checks, on production with the assets and the placeholder build: `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, JSON-LD, photos and tables 0 failing; requests 65, 0 failing (19 without the assets); axe 4 runs, 0 violations, 0 incomplete; Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003. Schema Markup Validator (validator.schema.org, the JSON-LD block of the built page): 1 `Person`, 0 errors, 0 warnings. Without the assets the JSON-LD has no `image` and every check passes. CFM checklist: pass. PR CI pending.
+
+---
+
+### 2026-11-18 — Issue 3.2 verified; Phase 4 opened: structured data
+
+The 3.2 merge (`25358b1`, PR #22) published cleanly: `deploy.yml` [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883), jobs `build`, `deploy` and `published` all success. The `published` job ran in attempt 2, after the custom domain was set, so it checked the page on the domain.
+
+Checked on the published site from this machine on 2026-11-18:
+
+- **Pages:** `cname` `dravictorialaufer.com.br`; `https_enforced` true; certificate `approved` for `dravictorialaufer.com.br` and `www.dravictorialaufer.com.br`, expiring 2027-02-16.
+- **Redirects (`curl -I`):** `https://dravictorialaufer.com.br/` 200; `http://dravictorialaufer.com.br/` 301 to `https://dravictorialaufer.com.br/`; `https://www.dravictorialaufer.com.br/` 301 to the root; `https://filipeoliveira94.github.io/dra-victoria-laufer/` 301 to `http://dravictorialaufer.com.br/`, which then redirects to HTTPS.
+- **Live page:** canonical and `og:url` `https://dravictorialaufer.com.br/`; the sitemap `<loc>` and the `robots.txt` `Sitemap:` line on the domain. No JSON-LD on the page yet.
+
+Every acceptance item of 3.2 is met: 3.2 verified. Filipe confirmed the link to the domain in her Instagram bio (outside the repository). Phase 3 is closed (3.1 and 3.2 verified, 3.3 withdrawn). D-003 and D-004 updated in `DECISIONS.md`.
+
+Phase 4 is the active phase. 4.1 (JSON-LD `Person`, ADR-0009) is in progress on `feat/4.1-json-ld-person`; both dependencies, 2.6 and 3.2, are verified.
+
+---
+
 ### 2026-11-18 — Issue 3.2 in progress: switch to the domain
 
 3.1 verified: PR #21 CI [run 44436305170](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436305170) passed; the merge (`30120bf`) published cleanly: `deploy.yml` [run 44436668017](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436668017), jobs `build`, `deploy` and `published` all success.
