@@ -21,10 +21,10 @@ The target stack and its rationale are in [`DECISIONS.md`](DECISIONS.md). Issue 
 
 | Role | Who | Does |
 | --- | --- | --- |
-| Owner | Filipe | Final say on scope, architecture, brand and every merge. Relays content and approvals from Dra. Victória |
+| Owner | Filipe | Final say on scope, architecture, brand and every merge. May merge himself or order a specific bot to merge. Relays content and approvals from Dra. Victória |
 | PO | Agent | Checks an issue against its roadmap scope, acceptance criteria and the CFM checklist. Approves or rejects the PR on those grounds |
-| Dev | Agent | Implements one issue on its own feature branch and opens the PR |
-| Reviewer | Agent | Reviews the diff and the check results. Merges, and only after Filipe's OK |
+| Dev | Agent | Implements one issue on its own feature branch, opens the PR, reads the CI and tells PO and Reviewer it is ready |
+| Reviewer | Agent | Reviews the diff and the check results. Owns merge, branch deletion and deploy, only after Filipe's OK |
 
 Dra. Victória is the content owner. Her texts, photo and written approvals arrive through Filipe.
 
@@ -41,8 +41,9 @@ One issue, one feature branch, one pull request.
 7. Run the checks in §9 and the CFM checklist in §8. Fix regressions caused by the change.
 8. Update documentation and `PROJECT_STATUS.md` (current-phase ledger only; older narrative goes to `docs/status-log.md`).
 9. Push the feature branch and open the PR. The PR description lists the issue ID, the acceptance criteria with how each was verified, the check results, and the CFM checklist result. The PR's CI run (`deploy.yml`, build job) runs the same build as a deploy, private assets included; it must pass, and its run is cited as evidence.
-10. PO and Reviewer each review the PR. Both approvals are required.
-11. Filipe gives the OK. Only then does the Reviewer merge.
+10. Once the CI is read, tell the PO and the Reviewer the PR is ready. They review only after that signal and approve the same PR head. Any objection blocks. Each fix (new commits, CI read again, new signal) is a round. After two rounds of disagreement, Filipe decides.
+11. Small change (docs, text, config tweak, patch dependency bump, or a contained bugfix of up to ~50 lines in up to 3 files that touches no architecture, data model/schema, auth/security, infra/deploy, public API or pipeline logic; when in doubt, it is large; the Dev classifies it on delivery): PO approval is enough, and the Reviewer merges without reviewing. A change to content, metadata or alt text still runs the CFM checklist (§8).
+12. Filipe gives the OK. Only then does the Reviewer merge.
 
 Do not mark an issue complete unless its acceptance criteria have been verified.
 
@@ -159,9 +160,9 @@ Prompts for planning, implementing and closing an issue are in [`docs/agent-work
 
 - Branch per issue, from `main`: `<type>/<issue-id>-<short-slug>`, for example `feat/1.1-astro-base`.
 - Use Conventional Commits.
-- The Dev pushes only its own feature branch. Never push `main`. Never force-push a branch someone else is reviewing.
+- Filipe's order to implement authorizes the Dev to commit, push its own feature branch, open the PR and read the CI. Never push `main`. Never force-push a branch someone else is reviewing.
 - Open one PR per issue. Do not merge your own PR.
-- Merge is done by the Reviewer, after PO and Reviewer approval and Filipe's OK.
+- Merge, branch deletion and deploy are the Reviewer's job, after the required approvals and Filipe's explicit OK. Filipe may do it himself or order a specific bot to do it.
 - A push to `main` publishes the site. Treat every merge as a deploy, and read the `published` job of its run.
 - Documentation-only bootstrap commits made directly on `main` need Filipe's explicit authorization and a status-log entry.
 
