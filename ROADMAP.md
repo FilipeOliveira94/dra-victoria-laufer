@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-18 (2.6 verified; Phase 2 complete on merge) |
+| Last updated | 2026-11-18 (3.1 DNS configured; awaiting the PR's CI run) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -26,14 +26,14 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | --- | --- | --- | --- |
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Verified (1.1 to 1.8) |
-| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | Verified (2.1 to 2.6); closes with the 2.6 merge |
-| 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Not started |
+| 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | Verified (2.1 to 2.6); closed with the 2.6 merge |
+| 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | In progress (3.1) |
 | 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Not started |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Not started |
 | 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Not started |
 | 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | Not started |
 
-Phase 2 is the active phase. 2.6 removes `noindex`; the site is indexable once its PR is merged. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+Phase 3 is the active phase. Phase 2 closed with the 2.6 merge, which published the page for indexing at the staging address. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
 
 ### Design brief (confirmed by Filipe)
 
@@ -312,14 +312,14 @@ Phase 2 is the active phase. 2.6 removes `noindex`; the site is indexable once i
 
 | Issue 3.1 | Detail |
 | --- | --- |
-| Status | `not started` |
+| Status | `in progress` (DNS configured and checked 2026-11-18; branch `feat/3.1-domain-dns`) |
 | Size | P |
 | Depends on | — |
 
 - **Objective:** `dravictorialaufer.com.br` pointing at GitHub Pages.
-- **Scope:** registration under Filipe's CPF; A and AAAA records for the root domain and a CNAME for `www` in the Registro.br DNS; domain verified in the GitHub account. The DNS holds only the site records.
-- **Out of scope:** e-mail on the domain (none; see 3.3).
-- **Acceptance:** root and `www` resolve; HTTPS certificate issued.
+- **Scope:** registration at Registro.br under her CPF (done 2026-11-18; Filipe changed it from his CPF); A and AAAA records for the root domain and a CNAME for `www` in the Registro.br DNS; domain verified in the GitHub account. The DNS holds only the site records.
+- **Out of scope:** e-mail on the domain (none; see 3.3); the HTTPS certificate, which GitHub issues only once the custom domain is set in Pages (moved to 3.2 by Filipe, 2026-11-18).
+- **Acceptance:** root and `www` resolve to GitHub Pages; domain verified in the GitHub account.
 
 ### 3.2 Switch to the domain
 
@@ -333,7 +333,7 @@ Phase 2 is the active phase. 2.6 removes `noindex`; the site is indexable once i
 - **Objective:** the site served at the root of the final domain.
 - **Scope:** remove `DEPLOY_TARGET` from the workflow; custom domain and enforced HTTPS in Pages; link in the Instagram bio.
 - **Out of scope:** content changes.
-- **Acceptance:** one-line diff; the old github.io URL, `http://` and `www` redirect; canonical and sitemap use the new domain.
+- **Acceptance:** one-line diff; HTTPS certificate issued (moved from 3.1); the old github.io URL, `http://` and `www` redirect; canonical and sitemap use the new domain.
 
 ### 3.3 E-mail on the domain
 
@@ -477,7 +477,7 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | CFM: Art. 13 with a wrong course name or a barely visible notice | Ethical infraction | Publish only with the official name; acceptance of 2.3 |
 | "Atuação" read as advertising of care | Goes against her guidance and the CFM | Acceptance of 2.4; modality only in 6.2 |
 | The reading of the resolution is limited to the points Filipe passed on | Incomplete checklist | Closed 2026-11-18: checked against the full text and the Manual da Codame in 2.6; in doubt, consult the CREMESP |
-| Domain with her name registered under Filipe's CPF | His name appears in WHOIS; she depends on him to keep the domain | Written agreement; ownership can be transferred at Registro.br |
+| Domain with her name registered under Filipe's CPF | His name appears in WHOIS; she depends on him to keep the domain | Closed 2026-11-18: the domain was registered under her CPF |
 | Brand unconfirmed for a long time | MVP ready but not released | Closed 2026-11-16: brand confirmed in 0.3 |
 | Content inputs arrive late | Empty sections | Pending items stay hidden; identification and contact already carry the page |
 | Public e-mail and WhatsApp | Spam and clinical messages through an informal channel | Notice in 5.1 |
@@ -518,3 +518,6 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-18 | 2.5 verified: PR #19 CI [run 44389698237](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44389698237) passed with the private assets and the cut-out; Filipe approved the issue |
 | 2026-11-18 | 2.6 built: critique (17/24, no P0) and polish on Filipe's choices; checklist checked against the full text of Resolution 2.336/2023 and the Manual da Codame; "(NÃO ESPECIALISTA)" added in "Sobre"; her written approval of the full page text; pending report empty; `noindex` removed. `docs/status-log.md` |
 | 2026-11-18 | 2.6 verified: PR #20 CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) passed with the private assets and the thickened logos; Filipe approved the page. `docs/status-log.md` |
+| 2026-11-18 | Phase 2 closed: the 2.6 merge (`d404fd7`) published cleanly (`published` job of [run 44414546420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44414546420)); the staging page is indexable. Phase 3 is the active phase; 3.1 in progress on `feat/3.1-domain-dns` |
+| 2026-11-18 | 3.1: `dravictorialaufer.com.br` registered at Registro.br under her CPF (not Filipe's, as first planned), expiring 2028-11-18. The HTTPS certificate moves from the acceptance of 3.1 to 3.2 (Filipe). The WHOIS risk is closed |
+| 2026-11-18 | 3.1: domain verified in Filipe's GitHub account; A, AAAA and `www` CNAME records in the Registro.br DNS resolve to GitHub Pages; no MX. Setup and checks in `docs/architecture/domain-dns.md` |

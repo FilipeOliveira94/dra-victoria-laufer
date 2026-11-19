@@ -4,6 +4,18 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-18 — Phase 3 opened: domain and DNS
+
+The 2.6 merge (`d404fd7`, PR #20) published cleanly: `deploy.yml` [run 44414546420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44414546420), jobs `build`, `deploy` and `published` all success. The staging page at `/dra-victoria-laufer/` is indexable from that deploy. Phase 2 is closed (2.1 to 2.6 verified).
+
+Phase 3 is the active phase. 3.1 (register `dravictorialaufer.com.br` and configure its DNS) is in progress on `feat/3.1-domain-dns`; 3.2 waits on it; 3.3 stays withdrawn.
+
+- **Registration:** `dravictorialaufer.com.br` registered at Registro.br under her CPF on 2026-11-18, not Filipe's as the roadmap first said (Filipe's decision). Registry RDAP: status `active`, registered 2026-11-18, expires 2028-11-18, name servers `a.auto.dns.br` and `b.auto.dns.br` (Registro.br DNS). The root still resolves to Registro.br's default address (`200.160.2.95`); the GitHub Pages records are not created yet.
+- **Scope:** the HTTPS certificate moves from the acceptance of 3.1 to 3.2, because GitHub issues it only once the custom domain is set in Pages (Filipe). The risk "domain under Filipe's CPF" is closed.
+- **DNS:** Filipe verified the domain in his GitHub account (TXT `_github-pages-challenge-FilipeOliveira94`) and created the site records in the Registro.br DNS. Checked from this machine with the system resolver and Google DNS-over-HTTPS: the root resolves to the four GitHub Pages IPv4 addresses (`185.199.108–111.153`) and nothing else, the Registro.br default address gone; IPv6 to `2606:50c0:8000–8003::153`; `www` is a CNAME to `filipeoliveira94.github.io`; the TXT record answers; no MX record. `http://dravictorialaufer.com.br` answers GitHub's 404, expected until 3.2 sets the custom domain. `docs/architecture/domain-dns.md` records the zone and the checks. Both acceptance items of 3.1 are met; the PR's CI run is pending. `ROADMAP.md`, `PROJECT_STATUS.md` and `README.md` updated. No change to the site.
+
+---
+
 ### 2026-11-18 — Issue 2.6 verified: CFM review and release
 
 Built on `feat/2.6-cfm-release`, checked on local builds of both targets, with and without the private assets (Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 outside the repository). Not deployed. The 2.5 merge (`abc4b5a`, PR #19) published cleanly: `published` job of [run 44404232762](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44404232762), success.

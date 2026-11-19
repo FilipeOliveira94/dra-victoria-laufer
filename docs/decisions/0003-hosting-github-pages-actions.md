@@ -37,6 +37,8 @@ Host on **GitHub Pages**, with the site **built and deployed by a GitHub Actions
 
 Issue 1.1 replaces `jekyll-gh-pages.yml` with `.github/workflows/deploy.yml` (build with `DEPLOY_TARGET: ghpages`, request check, upload `dist/`, deploy). Filipe set the Pages source to "GitHub Actions". After the 1.1 merge (`d9bddfd`, 2026-11-16) the site at `/dra-victoria-laufer/` is the Astro build and the legacy files return 404.
 
+Issue 3.1 (2026-11-18): `dravictorialaufer.com.br` registered at Registro.br and kept on the Registro.br DNS; the root's A and AAAA records and the `www` CNAME point at GitHub Pages, and the domain is verified in the GitHub account. Zone and checks: [`docs/architecture/domain-dns.md`](../architecture/domain-dns.md).
+
 ## Revisit when
 
 GitHub Pages stops meeting a requirement (redirects, headers, private repository on the current plan).
