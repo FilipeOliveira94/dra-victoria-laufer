@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://dravictorialaufer.com.br/> (since 3.2; the github.io address redirects) |
-| Last updated | 2026-11-19 (5.1 verified) |
+| Last updated | 2026-11-19 (5.2 in progress; 5.1 published) |
 | Current phase | Phase 5 — Content and E-E-A-T |
-| Phase status | 5.1 verified; 5.2 next. Phases 0 to 4 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2 and 4.1 verified (3.3 withdrawn) |
+| Phase status | 5.1 verified and published; 5.2 in progress. Phases 0 to 4 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2 and 4.1 verified (3.3 withdrawn). Phase 6 deferred (Filipe, 2026-11-19) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,15 +22,15 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**5.1** (verified) — Privacy and legal notice: two pages, `/privacidade/` and `/aviso-legal/` (Filipe), linked in the footer. Privacy states what the site collects and how she handles the messages she receives, naming only the third parties actually used; the legal notice says the content does not replace a consultation. No cookie banner: the site sets no cookies. Built on `feat/5.1-privacy-legal-notice`: a `paginas` collection (`src/content/data/paginas.yaml`) rendered by `src/pages/[pagina].astro`, footer links and sitemap from the same list. Local builds: every check passes; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982) passed with the private assets. Dra. Victória approved the text (relayed by Filipe, 2026-11-19); PO, Reviewer and Filipe approved the PR. Left: the merge, then its `published` run, recorded by the next PR.
+**5.2** (in progress) — Further evidence, on `feat/5.2-further-evidence`. Scope closed by Filipe with the PO: a link to the CREMESP public physician lookup and a visible review date, both from the `medica` collection (`consultaCrm`, `revisao`). The lookup has no deep link by CRM (its per-physician route takes an encrypted QR token), so the page links the official search page, `https://guiamedico.cremesp.org.br/` (HTTP 200), under the identity line, naming the CRM to search for. "Revisado em 19 de novembro de 2026." closes the home page's `<main>`. Courses, events and publications: none today; recorded as pending in `ROADMAP.md` → 5.2.
 
-The last merge (`60adb20`, 4.1) published cleanly: `published` job of [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964); the live JSON-LD is identical to the validated block.
+5.1 is merged (PR #24) and published: `published` job of [run 44563264047](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44563264047) (merge `269a238`). PR #25 (AGENTS.md dev flow) followed: `published` job of [run 44577290522](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44577290522) (merge `3862822`) published `main` with both changes. Both runs: `build`, `deploy` and `published` success; the live check found 37 requests, 0 failing.
 
 ## Next work
 
-1. **5.1** Merge of PR #24; its `published` run is recorded by the next PR.
-2. **5.2** Further evidence: the CREMESP lookup link and a visible review date; courses, events or publications as she provides them, each with a verifiable source.
-3. Then Phase 7 (Search Console, maintenance).
+1. **5.2** PR review: PO and Reviewer on the same head, then Filipe's OK. Her approval of the new line under the identity line and of the review date.
+2. **Phase 7:** 7.2 (maintenance), then 7.1 (Search Console and Bing Webmaster).
+3. Phase 6 (acquisition) stays deferred until Filipe reopens it.
 
 ## Blockers
 
@@ -42,8 +42,8 @@ None.
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 5.1 | Privacy and legal notice | Verified | Local builds pass every check; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982). Text approved by her. `docs/status-log.md` |
-| 5.2 | Further evidence | Not started | — |
+| 5.1 | Privacy and legal notice | Verified; published | PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982); `published` job of [run 44563264047](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44563264047). Text approved by her. `docs/status-log.md` |
+| 5.2 | Further evidence | In progress | Local builds pass every check (below). `docs/status-log.md` |
 
 Acceptance detail: `ROADMAP.md` → Phase 5. Phases 0 to 4: `ROADMAP.md` and `docs/status-log.md`.
 
@@ -53,10 +53,10 @@ Acceptance detail: `ROADMAP.md` → Phase 5. Phases 0 to 4: `ROADMAP.md` and `do
 
 | Validation | Detail |
 | --- | --- |
-| Date | 2026-11-18 |
-| Environment | Local production builds, branch `feat/5.1-privacy-legal-notice`: with the private assets, with `ASSETS_DIR=/nonexistent`, and with `DEPLOY_TARGET=ghpages`. Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 (outside the repository). Not deployed |
-| Checks | `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse`; horizontal scroll at 320 to 1600 px; a pending page; `curl` of the four cited external links |
-| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, JSON-LD, photos and tables 0 failing. Requests 133, 0 failing (47 without the assets; 133 on staging). axe 8 runs, 0 violations. Lighthouse mobile, all three pages: Performance 100, Accessibility 100; LCP 1503 ms home, 902 ms legal pages; CLS 0.0003 home, up to 0.0497 legal pages. No overflow. A pending page has no route, no footer link and no sitemap entry. External links 200 |
+| Date | 2026-11-19 |
+| Environment | Local production builds, branch `feat/5.2-further-evidence`: with the private assets, with `ASSETS_DIR=/nonexistent`, and with `DEPLOY_TARGET=ghpages`. Node.js v22.23.4, chrome-headless-shell 157.0.8103.78 (outside the repository). Not deployed |
+| Checks | `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse`; horizontal scroll at 320 to 1600 px; schema rejection of a wrong `consultaCrm` host and of a non-ISO `revisao`; `curl -I -L` of the CREMESP lookup |
+| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, JSON-LD, photos and tables 0 failing. Requests 133, 0 failing (47 without the assets; 133 on staging). axe 8 runs, 0 violations, 0 incomplete. Lighthouse mobile: Performance 100 and Accessibility 100 on all three pages; LCP 1428–1431 ms home, 901–903 ms legal pages; CLS 0.0047 home, up to 0.0497 legal pages. No overflow. Both bad values stop the build. `https://guiamedico.cremesp.org.br/` HTTP/2 200 |
 
 ---
 
@@ -64,12 +64,10 @@ Acceptance detail: `ROADMAP.md` → Phase 5. Phases 0 to 4: `ROADMAP.md` and `do
 
 | Validation | Detail |
 | --- | --- |
-| Date | 2026-11-18 |
-| Environment | Published site, after the 4.1 merge (`60adb20`): `deploy.yml` [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964); `curl` of the live page compared with a local production build of `60adb20` with the private assets |
-| Checks | The `published` job; the JSON-LD block of the live page |
-| Result | All three jobs success. The live JSON-LD block is byte-identical to the block the Schema Markup Validator passed (0 errors, 0 warnings): `Person`, `jobTitle` `Médica`, no `medicalSpecialty` |
-
----
+| Date | 2026-11-19 |
+| Environment | Published site, after the 5.1 merge (`269a238`) and the #25 merge (`3862822`): `deploy.yml` runs [44563264047](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44563264047) and [44577290522](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44577290522) |
+| Checks | The `published` job of each run; `curl` of the two legal pages |
+| Result | All jobs success; `published` 37 requests, 0 failing, in both runs. `https://dravictorialaufer.com.br/privacidade/` and `/aviso-legal/` answer 200 |
 
 ---
 
@@ -80,7 +78,7 @@ All eleven decisions are `approved`. Implemented: D-008 (license) and, from 1.1,
 | ID | Topic | Gates |
 | --- | --- | --- |
 | D-007 | Public contact channels and the single e-mail; the notice about messages | 5.1 |
-| D-005 | Typed collections: the pages' text is content, pending items never rendered | 5.1, 5.2 |
+| D-005 | Typed collections: the pages' text is content, pending items never rendered; the CREMESP link and the review date are fields of `medica` | 5.1, 5.2 |
 | D-001 | No JavaScript shipped, no third party at page load: what the privacy page states | 5.1 |
 
 ## Active risks
