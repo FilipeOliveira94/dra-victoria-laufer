@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://filipeoliveira94.github.io/dra-victoria-laufer/> (indexable since the 2.6 merge; moves to `dravictorialaufer.com.br` in 3.2) |
-| Last updated | 2026-11-18 (3.1 DNS configured) |
+| Last updated | 2026-11-18 (3.1 verified; 3.2 workflow switched) |
 | Current phase | Phase 3 — Domain and DNS |
-| Phase status | 3.1 in progress; 3.2 not started; 3.3 withdrawn. Phases 0, 1 and 2 closed: 0.1 to 0.3, 1.1 to 1.8 and 2.1 to 2.6 verified |
+| Phase status | 3.1 verified; 3.2 in progress; 3.3 withdrawn. Phases 0, 1 and 2 closed: 0.1 to 0.3, 1.1 to 1.8 and 2.1 to 2.6 verified |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,15 +22,14 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**3.1** — Point `dravictorialaufer.com.br` at GitHub Pages. Done outside the repository on 2026-11-18: domain registered at Registro.br under her CPF (expires 2028-11-18), verified in Filipe's GitHub account, A, AAAA and `www` CNAME records created; root and `www` resolve to GitHub Pages. Setup and checks: [`docs/architecture/domain-dns.md`](docs/architecture/domain-dns.md). Left: the PR's CI run, then Filipe's OK. The HTTPS certificate moved to 3.2.
+**3.2** — Switch to the domain. On `feat/3.2-domain-switch`: `DEPLOY_TARGET` removed from the workflow, and the check steps no longer pass the staging base path. The local production build carries `https://dravictorialaufer.com.br/` in the canonical, sitemap, `robots.txt` and Open Graph; every check passes. PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306) passed. Left: PO and Reviewer review, Filipe's OK and merge; then, right after the deploy, the custom domain and enforced HTTPS in Pages, the redirect checks and the Instagram bio link. Filipe accepted a few minutes of downtime between the deploy and the domain setting.
 
-The last merge (`d404fd7`, 2.6) published cleanly: `published` job of [run 44414546420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44414546420), success. The staging page is indexable from that deploy.
+The last merge (`30120bf`, 3.1) published cleanly: `published` job of [run 44436668017](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436668017), success.
 
 ## Next work
 
-1. **3.1** PR, its CI run, PO and Reviewer review, Filipe's OK and merge.
-2. **3.2** Switch to the domain: remove `DEPLOY_TARGET` from the workflow, set the custom domain and enforced HTTPS in Pages (certificate issued), update the Instagram bio link. Depends on 3.1.
-3. **Phase 4** JSON-LD `Person` (4.1), which depends on 3.2.
+1. **3.2** Review of PR #22, Filipe's OK and merge. Then: `cname` and `https_enforced` in Pages, rerun of the `published` job on the domain, `curl -I` on the github.io URL, `http://` and `www`; her Instagram bio link (outside the repository). Steps in [`docs/architecture/domain-dns.md`](docs/architecture/domain-dns.md).
+2. **Phase 4** JSON-LD `Person` (4.1), which depends on 3.2.
 
 ## Blockers
 
@@ -42,8 +41,8 @@ None.
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 3.1 | Register the domain and configure DNS | In progress | Domain `active` in the registry RDAP; verified in GitHub; root and `www` resolve to GitHub Pages; no MX (2026-11-18). PR CI pending. `docs/status-log.md` |
-| 3.2 | Switch to the domain | Not started | — |
+| 3.1 | Register the domain and configure DNS | Verified | Domain `active` in the registry RDAP; verified in GitHub; root and `www` resolve to GitHub Pages; no MX (2026-11-18). PR #21 CI [run 44436305170](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436305170). `docs/status-log.md` |
+| 3.2 | Switch to the domain | In progress | Local production build: every check passes. PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306); redirects and certificate after the merge. `docs/status-log.md` |
 | 3.3 | E-mail on the domain | Withdrawn | No mailbox on the domain ([ADR-0007](docs/decisions/0007-contact-and-single-email.md)) |
 
 Acceptance detail: `ROADMAP.md` → Phase 3. Phases 0 to 2: `ROADMAP.md` and `docs/status-log.md`.
@@ -55,9 +54,9 @@ Acceptance detail: `ROADMAP.md` → Phase 3. Phases 0 to 2: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Public DNS, from this machine: system resolver (`getent`), the Registro.br RDAP and Google DNS-over-HTTPS |
-| Checks | Registry status; A, AAAA and `www` records; GitHub verification TXT; MX; HTTP answer at the root |
-| Result | Domain `active`, expires 2028-11-18, name servers `a.auto.dns.br` and `b.auto.dns.br`. Root A: the four GitHub Pages IPv4 addresses only (the Registro.br default `200.160.2.95` is gone). Root AAAA: the four GitHub Pages IPv6 addresses. `www`: CNAME `filipeoliveira94.github.io`. TXT `_github-pages-challenge-FilipeOliveira94`: 1 answer. MX: none. `http://` root: GitHub 404, expected until 3.2 |
+| Environment | Local build, branch `feat/3.2-domain-switch`: production (no `DEPLOY_TARGET`) with the private assets (`ASSETS_DIR` on `dra-victoria-laufer-assets` at `1f30925`), and production with `ASSETS_DIR=/nonexistent`. WSL2, Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 (outside the repository). Not deployed |
+| Checks | The workflow's portrait and favicon grep with the root path; `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse` with the default base `/`; canonical, `og:url`, `og:image`, `sitemap.xml` and `robots.txt` read from `dist/`; search of `dist/` for `github.io` and `/dra-victoria-laufer/` |
+| Result | Canonical and `og:url` `https://dravictorialaufer.com.br/`; sitemap `<loc>` and `robots.txt` `Sitemap:` on the domain; no `github.io` or staging path in `dist/`. Favicon grep passes. `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, photos and tables 0 failing. Requests 65, 0 failing (19 without the assets). axe 4 runs, 0 violations, 0 incomplete. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003 |
 
 ---
 
@@ -66,9 +65,9 @@ Acceptance detail: `ROADMAP.md` → Phase 3. Phases 0 to 2: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Published site, after the 2.6 merge (`d404fd7`): `deploy.yml` [run 44414546420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44414546420), jobs `build`, `deploy` and `published` |
-| Checks | The `published` job's check of the live page |
-| Result | Success on all three jobs |
+| Environment | Public DNS, from this machine: system resolver (`getent`), the Registro.br RDAP and Google DNS-over-HTTPS (issue 3.1) |
+| Checks | Registry status; A, AAAA and `www` records; GitHub verification TXT; MX; HTTP answer at the root |
+| Result | Domain `active`, expires 2028-11-18. Root A: the four GitHub Pages IPv4 addresses only. Root AAAA: the four GitHub Pages IPv6 addresses. `www`: CNAME `filipeoliveira94.github.io`. Verification TXT answers. MX: none. `http://` root: GitHub 404, expected until 3.2 |
 
 ---
 

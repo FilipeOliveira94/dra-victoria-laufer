@@ -30,7 +30,7 @@ One variable in the workflow, **`DEPLOY_TARGET: ghpages`**, sets the site URL an
 ## Consequences and trade-offs
 
 - No page, link or metadata value may hard-code a host or a base path.
-- Acceptance of 3.2 is a one-line diff.
+- Acceptance of 3.2 is a one-line diff in what decides the URLs. In the workflow, the check steps added by 1.7 also named the staging base path; 3.2 removes those arguments too, so the scripts use their default `/` (Filipe approved the wider workflow diff on 2026-11-18).
 - `noindex` is not carried by `DEPLOY_TARGET`. Issue 1.1 defined it as a separate constant, `indexable` in `src/config/release.ts`, so 2.6 and 3.2 can happen in either order ([ADR-0006](0006-noindex-until-release.md)). Plan approved by Filipe on 2026-11-16.
 
 ## Evidence / validation
