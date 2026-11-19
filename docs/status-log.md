@@ -4,6 +4,16 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-18 — Issue 4.1 published; Phase 5 opened: content and E-E-A-T
+
+The 4.1 merge (`60adb20`, PR #23) published cleanly: `deploy.yml` [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964), jobs `build`, `deploy` and `published` all success.
+
+Checked on the published site from this machine on 2026-11-18: the `<script type="application/ld+json">` block of `https://dravictorialaufer.com.br/` is byte-identical to the block of a local production build of `60adb20` with the private assets, the block the Schema Markup Validator passed with 0 errors and 0 warnings. `@type` `Person`, `jobTitle` `Médica`, no `medicalSpecialty`.
+
+Phase 4 is closed (4.1 verified). Phase 5 is the active phase. 5.1 (privacy and legal notice) is in progress on `feat/5.1-privacy-legal-notice`, as two pages linked in the footer (Filipe); its dependency, 2.2, is verified. 5.2 follows.
+
+---
+
 ### 2026-11-18 — Issue 4.1 verified: JSON-LD Person
 
 Built on `feat/4.1-json-ld-person`, checked on local production builds with and without the private assets (Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 outside the repository). Not deployed. Plan approved by Filipe.
