@@ -36,7 +36,7 @@ Publish schema.org **`Person`**, with `jobTitle: Médica`, the CRM as identifier
 
 ## Evidence / validation
 
-None yet.
+Issue 4.1 (2026-11-18), local builds: `src/lib/person.ts` builds the `Person` from the published collections; `scripts/check-jsonld.mjs` enforces one block on the home page, `@type` `Person`, `jobTitle` `Médica`, the CRM identifier, no `medicalSpecialty`, `Physician`, rating or pending marker, and `NÃO ESPECIALISTA` after every postgraduate course. Schema Markup Validator (validator.schema.org): 1 `Person`, 0 errors, 0 warnings. Implementation choices by Filipe: `honorificPrefix` `Dra.` separate from `name`; the finished postgraduate courses as credentials named in the Art. 13 line; the course in progress (Neonatologia) left out until she finishes it. PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697) passed. Record: `docs/status-log.md`.
 
 ## Revisit when
 

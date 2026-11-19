@@ -113,7 +113,7 @@ Compliance beyond what a script can check is the manual checklist in [`docs/comp
 ## SEO and structured data
 
 - Issue 1.6: title, description, canonical, Open Graph with `pt_BR`, social image, sitemap, `robots.txt`. No specialty term in any of them.
-- Issue 4.1: JSON-LD `Person` with `jobTitle: Médica` and the CRM as identifier, without `medicalSpecialty` ([ADR-0009](../decisions/0009-schema-person.md)). `Physician` only in issue 6.2.
+- Issue 4.1: JSON-LD `Person` on the home page only, built by `src/lib/person.ts` from the collections: `honorificPrefix` `Dra.` and `name`, `jobTitle: Médica`, the CRM as a `PropertyValue` identifier, `hasCredential` (the degree, and each finished postgraduate course named in the Art. 13 line with `NÃO ESPECIALISTA`), `image` (the portrait, only with the private assets), `url` and the Instagram in `sameAs`. No `medicalSpecialty` ([ADR-0009](../decisions/0009-schema-person.md)); `Physician` only in issue 6.2. A course in progress is left out and enters by itself when `emCurso` turns false. `scripts/check-jsonld.mjs` (in `npm run lint`) enforces the rules on `dist/`.
 
 ## What is not part of the site
 

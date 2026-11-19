@@ -14,9 +14,11 @@ interface Props {
   nav?: readonly Section[];
   // The 404 page is not a canonical document.
   canonical?: boolean;
+  // Structured data for this page (issue 4.1). Data, not a script: nothing runs.
+  structuredData?: string;
 }
 
-const { title, nav = [], canonical = true } = Astro.props;
+const { title, nav = [], canonical = true, structuredData } = Astro.props;
 const home = import.meta.env.BASE_URL;
 const canonicalUrl = new URL(home, Astro.site);
 const id = await medica();
@@ -73,6 +75,7 @@ const touchIcon =
     }
     {touchIcon && <link rel="apple-touch-icon" href={touchIcon.src} />}
     {!indexable && <meta name="robots" content="noindex" />}
+    {structuredData && <script type="application/ld+json" is:inline set:html={structuredData} />}
   </head>
   <body>
     {/* First stop for the keyboard (issue 1.5). Every page puts its <main> at #conteudo. */}

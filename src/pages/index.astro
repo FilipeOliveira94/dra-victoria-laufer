@@ -13,6 +13,7 @@ import {
   published,
   roleSince,
 } from '../lib/content';
+import { jsonLd, person } from '../lib/person';
 import { section, sections, type SectionId } from '../lib/sections';
 
 // Every fact comes from the content model (issue 1.2).
@@ -41,9 +42,11 @@ const present: Record<SectionId, boolean> = {
   contato: channels.length > 0,
 };
 const nav = sections.filter((s) => present[s.id]);
+// JSON-LD Person from the same collections (issue 4.1, ADR-0009).
+const structuredData = jsonLd((await person(Astro.site!))!);
 ---
 
-<Base title={`${id.nome} · ${identification}`} nav={nav}>
+<Base title={`${id.nome} · ${identification}`} nav={nav} structuredData={structuredData}>
   <main id="conteudo" tabindex="-1">
     {/* DESIGN.md → First fold ("Caminho do jardim"): name and identity line as
         real text; the portrait in an arch inside a verde-claro clearing, with

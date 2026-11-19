@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-18 (3.1 verified; 3.2 PR CI passed; switch after the merge) |
+| Last updated | 2026-11-18 (4.1 verified; Phase 4 complete on merge) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -27,13 +27,13 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | 0 | Product and brand: product context, pending inputs, visual identity | — | Verified (0.1, 0.2 and 0.3) |
 | 1 | New base (MVP): Astro, typed content, layout, media, accessibility, SEO, PR checks, license | — | Verified (1.1 to 1.8) |
 | 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | Verified (2.1 to 2.6); closed with the 2.6 merge |
-| 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | In progress (3.1 verified; 3.2 in progress) |
-| 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Not started |
+| 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Verified (3.1 and 3.2; 3.3 withdrawn); closed with the 3.2 published-site check |
+| 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Verified (4.1); closes with the 4.1 merge |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Not started |
 | 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Not started |
 | 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | Not started |
 
-Phase 3 is the active phase: 3.1 verified, 3.2 in progress. Phase 2 closed with the 2.6 merge, which published the page for indexing at the staging address. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+Phase 4 is the active phase: 4.1 verified; the phase closes with its merge. Phase 3 closed with 3.2: the site is served at `https://dravictorialaufer.com.br/`. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
 
 ### Design brief (confirmed by Filipe)
 
@@ -325,7 +325,7 @@ Phase 3 is the active phase: 3.1 verified, 3.2 in progress. Phase 2 closed with 
 
 | Issue 3.2 | Detail |
 | --- | --- |
-| Status | `in progress` (workflow switched on `feat/3.2-domain-switch`; the custom domain is set in Pages right after the merge) |
+| Status | `verified` (PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306); domain, certificate and redirects checked on the published site 2026-11-18) |
 | Size | P |
 | Depends on | 3.1 and 1.1 |
 | ADRs | [0004](docs/decisions/0004-deploy-target-switch.md) |
@@ -347,18 +347,20 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 ## Phase 4 — Structured data
 
+**Goal:** An identity readable by search engines on the final domain, stating only what the page states.
+
 ### 4.1 JSON-LD Person
 
 | Issue 4.1 | Detail |
 | --- | --- |
-| Status | `not started` |
+| Status | `verified` (local builds; PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697)) |
 | Size | P |
 | Depends on | 2.6 and 3.2 |
 | ADRs | [0009](docs/decisions/0009-schema-person.md) |
 
 - **Objective:** an identity readable by search engines, with real data only.
-- **Scope:** name, `jobTitle: Médica`, CRM as identifier, training, image, URL and Instagram in `sameAs`.
-- **Out of scope:** `medicalSpecialty`, ratings, `Physician`.
+- **Scope:** name (`honorificPrefix` `Dra.` separate, Filipe), `jobTitle: Médica`, CRM as identifier, training, image, URL and Instagram in `sameAs`. Training: the degree and the finished postgraduate courses, each named in the Art. 13 line with `NÃO ESPECIALISTA` (Filipe, 2026-11-18).
+- **Out of scope:** `medicalSpecialty`, ratings, `Physician`. The course in progress (Neonatologia): it enters the JSON-LD once she finishes it and `emCurso` is set to false in `formacao.yaml` (Filipe, 2026-11-18).
 - **Acceptance:** schema validator with no errors; no pending field in the JSON.
 
 ---
@@ -523,3 +525,6 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-18 | 3.1: domain verified in Filipe's GitHub account; A, AAAA and `www` CNAME records in the Registro.br DNS resolve to GitHub Pages; no MX. Setup and checks in `docs/architecture/domain-dns.md` |
 | 2026-11-18 | 3.1 verified: PR #21 CI [run 44436305170](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436305170) passed; the merge (`30120bf`) published cleanly (`published` job of [run 44436668017](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436668017)) |
 | 2026-11-18 | 3.2 in progress: `DEPLOY_TARGET` removed from the workflow, and the check steps no longer pass the staging base path; the acceptance's one-line diff widened accordingly (Filipe). Local production build: canonical, sitemap, `robots.txt` and Open Graph on `https://dravictorialaufer.com.br/`; every check passes. PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306) passed. `docs/status-log.md` |
+| 2026-11-18 | 3.2 verified: the merge (`25358b1`) published cleanly (`published` job of [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883), attempt 2, on the domain); custom domain and enforced HTTPS set in Pages, certificate approved; github.io, `http://` and `www` redirect to `https://dravictorialaufer.com.br/`; live canonical, `og:url`, sitemap and `robots.txt` on the domain. Phase 3 closed. Phase 4 is the active phase; 4.1 in progress on `feat/4.1-json-ld-person` |
+| 2026-11-18 | 4.1 built: JSON-LD `Person` on the home page from the collections (`src/lib/person.ts`), the degree and the two finished postgraduate courses as credentials in the Art. 13 line, Neonatologia left out until finished; `scripts/check-jsonld.mjs` added to `npm run lint`. Schema Markup Validator 0 errors, 0 warnings. Local builds, with and without the assets: every check passes |
+| 2026-11-18 | 4.1 verified: PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697) passed with the private assets; JSON-LD check 0 failing. Filipe approved the issue |
