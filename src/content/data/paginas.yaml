@@ -1,0 +1,56 @@
+# Privacy and legal notice pages (issue 5.1). The id is the URL path.
+# Schema and rules: src/content.config.ts.
+#
+# Draft written for issue 5.1 from verifiable facts only: the site sets no
+# cookies, has no form and no analytics, loads nothing from a third party
+# (make requests), and is hosted on GitHub Pages. It is her text: published
+# only after her approval, relayed by Filipe. Every external link must answer 200.
+
+privacidade:
+  ordem: 0
+  titulo: Privacidade
+  revisao: "2026-11-18"
+  secoes:
+    - titulo: O que este site coleta
+      paragrafos:
+        - Este site não usa cookies, não tem formulários e não usa ferramentas de análise de visitas. Ele não pede nem guarda dados de quem o visita.
+        - Fontes e imagens vêm do próprio site. Abrir a página não envia dados a nenhum outro serviço.
+    - titulo: Hospedagem
+      paragrafos:
+        - O site é hospedado no GitHub Pages, serviço da GitHub. Como todo servidor, o da GitHub registra dados técnicos de cada acesso, como o endereço IP, para manter o serviço seguro. Esse registro segue a declaração de privacidade da GitHub, e eu não tenho acesso a ele.
+      links:
+        - texto: Declaração de privacidade da GitHub
+          url: https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement
+    - titulo: Mensagens que você me envia
+      paragrafos:
+        - Os canais de contato levam a serviços de outras empresas. O e-mail é do Gmail, do Google; o WhatsApp e o Instagram são da Meta. O site não recebe, não guarda e não encaminha essas mensagens. Ao usar um desses canais, vale também a política de privacidade do serviço.
+        - Eu mesma leio as mensagens e as uso só para responder a quem escreveu. Não compartilho o conteúdo com ninguém e não o uso para divulgação.
+        - Evite enviar por esses canais exames, fotos ou detalhes de saúde. Eles não são o lugar de uma consulta.
+      links:
+        - texto: Política de privacidade do Google
+          url: https://policies.google.com/privacy?hl=pt-BR
+        - texto: Política de privacidade do WhatsApp
+          url: https://www.whatsapp.com/legal/privacy-policy
+        - texto: Política de privacidade do Instagram
+          url: https://privacycenter.instagram.com/policy
+    - titulo: Seus direitos
+      paragrafos:
+        - A Lei Geral de Proteção de Dados (Lei nº 13.709/2018) garante a você saber quais dados seus eu tenho, pedir que sejam corrigidos e pedir que sejam apagados. Para isso, escreva para o e-mail abaixo.
+      email: true
+
+aviso-legal:
+  ordem: 1
+  titulo: Aviso legal
+  revisao: "2026-11-18"
+  secoes:
+    - titulo: Responsável
+      paragrafos:
+        - Este site apresenta minha formação e minha atuação profissional. Ele é mantido por mim.
+      identificacao: true
+    - titulo: Não substitui uma consulta
+      paragrafos:
+        - O conteúdo deste site é informativo. Ele não substitui uma consulta médica e não traz diagnóstico, orientação de tratamento ou indicação para um caso específico.
+        - Uma mensagem por e-mail, WhatsApp ou Instagram também não é uma consulta, e a resposta pode demorar. Em uma urgência ou emergência, procure um pronto-socorro ou ligue 192 (SAMU).
+    - titulo: Publicidade médica
+      paragrafos:
+        - Este site segue a Resolução CFM nº 2.336/2023, que regula a publicidade médica. As pós-graduações listadas em Formação não são títulos de especialista.

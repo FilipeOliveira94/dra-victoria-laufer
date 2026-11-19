@@ -1,7 +1,8 @@
 // Runs axe (WCAG 2.0/2.1 A and AA, plus best practice) on the built pages in
-// a headless Chrome: the home and a missing path (the 404 page), at 360 and
-// 1280 px. Fails on any violation, and on any result axe could not decide
-// (incomplete), which then needs a person to look at it.
+// a headless Chrome: the home, the privacy and legal notice pages and a
+// missing path (the 404 page), at 360 and 1280 px. Fails on any violation,
+// and on any result axe could not decide (incomplete), which then needs a
+// person to look at it.
 //
 // Usage: node scripts/check-axe.mjs [base]   (default base "/")
 // Chrome: CHROME_PATH, else google-chrome on PATH (present on GitHub runners).
@@ -20,6 +21,8 @@ const server = await serveDist(process.argv[2]);
 const pages = [
   ['home', server.base],
   ['404', `${server.base}nao-existe/mais-fundo/`],
+  ['privacidade', `${server.base}privacidade/`],
+  ['aviso-legal', `${server.base}aviso-legal/`],
 ];
 const widths = [360, 1280];
 

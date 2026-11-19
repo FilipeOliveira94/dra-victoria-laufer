@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import { channelLink, identityLine, longDate, medica, pages, published } from '../lib/content';
+
+// Privacy and legal notice (issue 5.1): one page per published entry of
+// `paginas`, at /<id>/. A pending entry has no page and no footer link.
+export async function getStaticPaths() {
+  return (await pages()).map((page) => ({ params: { pagina: page.id }, props: { page } }));
+}
+
+type Page = Awaited<ReturnType<typeof pages>>[number];
+const { page } = Astro.props as { page: Page };
+
+const id = await medica();
+if (!id) throw new Error('medica is pending: the page cannot be built without identification.');
+const email = (await published('contato')).find((c) => c.tipo === 'email');
+const home = import.meta.env.BASE_URL;
+---
+
+<Base title={`${page.titulo} · ${id.nome}`}>
+  <main id="conteudo" tabindex="-1">
+    <article class="legal wrap">
+      <h1>{page.titulo}</h1>
+      <p class="legal-review">Revisado em {longDate(page.revisao)}.</p>
+      {
+        page.secoes.map((s) => (
+          <section>
+            <h2>{s.titulo}</h2>
+            {s.paragrafos.map((p) => (
+              <p>{p}</p>
+            ))}
+            {s.identificacao && (
+              <p class="legal-identity">
+                <span class="title">{id.nome}</span>
+                <span class="label">{identityLine(id)}</span>
+              </p>
+            )}
+            {s.email && email && (
+              <p>
+                <a href={channelLink(email).href}>{channelLink(email).text}</a>
+              </p>
+            )}
+            {s.links && (
+              <ul class="legal-links">
+                {s.links.map((l) => (
+                  <li>
+                    <a href={l.url}>{l.texto}</a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        ))
+      }
+      <p class="legal-back"><a href={home}>Voltar para a página inicial</a></p>
+    </article>
+  </main>
+</Base>

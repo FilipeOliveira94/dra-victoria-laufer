@@ -371,7 +371,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 | Issue 5.1 | Detail |
 | --- | --- |
-| Status | `in progress` (`feat/5.1-privacy-legal-notice`) |
+| Status | `in progress` (`feat/5.1-privacy-legal-notice`; built, text awaiting her approval) |
 | Size | P |
 | Depends on | 2.2 |
 
@@ -529,3 +529,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-18 | 4.1 built: JSON-LD `Person` on the home page from the collections (`src/lib/person.ts`), the degree and the two finished postgraduate courses as credentials in the Art. 13 line, Neonatologia left out until finished; `scripts/check-jsonld.mjs` added to `npm run lint`. Schema Markup Validator 0 errors, 0 warnings. Local builds, with and without the assets: every check passes |
 | 2026-11-18 | 4.1 verified: PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697) passed with the private assets; JSON-LD check 0 failing. Filipe approved the issue |
 | 2026-11-18 | 4.1 published: the merge (`60adb20`) published cleanly (`published` job of [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964)); the live JSON-LD block is identical to the one checked in the Schema Markup Validator. Phase 4 closed. Phase 5 is the active phase; 5.1 in progress on `feat/5.1-privacy-legal-notice` (two pages, Filipe) |
+| 2026-11-18 | 5.1 built: `/privacidade/` and `/aviso-legal/` from a new `paginas` collection, linked in every footer and listed in the sitemap; each page has its own canonical. Privacy names GitHub Pages (hosting) and Gmail, WhatsApp and Instagram (contact channels), the only third parties; no cookies, forms or analytics. The legal notice says the content does not replace a consultation. axe and Lighthouse now cover both pages. Local builds: every check passes. The text waits on her approval |

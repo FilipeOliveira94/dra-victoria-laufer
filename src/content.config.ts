@@ -102,4 +102,36 @@ const contato = defineCollection({
   ]),
 });
 
-export const collections = { medica, formacao, atuacao, contato };
+// paginas: the privacy and legal notice pages (issue 5.1). The entry id is the
+// URL path ("privacidade" → /privacidade/). Each section is plain paragraphs;
+// `links` are external pages it cites (each must answer 200); `email: true`
+// and `identificacao: true` add the public e-mail and the identity line from
+// their own collections, so neither fact is typed twice.
+const paginas = defineCollection({
+  loader: contentFile('src/content/data/paginas.yaml'),
+  schema: z.union([
+    pendente,
+    complete({
+      ordem: order,
+      titulo: text,
+      // Date of the text's last review, shown on the page.
+      revisao: z.iso.date(),
+      secoes: z
+        .array(
+          z.strictObject({
+            titulo: text,
+            paragrafos: z.array(text).min(1),
+            links: z
+              .array(z.strictObject({ texto: text, url: z.url({ protocol: /^https$/ }) }))
+              .optional(),
+            email: z.literal(true).optional(),
+            // Adds the identity line from `medica` (name · MÉDICA · CRM).
+            identificacao: z.literal(true).optional(),
+          }),
+        )
+        .min(1),
+    }),
+  ]),
+});
+
+export const collections = { medica, formacao, atuacao, contato, paginas };

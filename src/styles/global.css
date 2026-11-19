@@ -877,6 +877,27 @@ main:focus {
   color: var(--color-footer-text-accent);
 }
 
+/* Legal links (issue 5.1): white on verde-profundo (8.01:1), one per line on
+   a phone; with the year below them. */
+.footer-meta {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.footer-legal ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer-legal a {
+  display: inline-block;
+  padding-block: var(--space-xs);
+}
+
 .footer-logo {
   display: block;
   width: auto;
@@ -898,6 +919,10 @@ main:focus {
 
   .footer-identity .title {
     font-size: var(--title-size-footer);
+  }
+
+  .footer-meta {
+    justify-items: end;
   }
 }
 
@@ -960,4 +985,48 @@ main:focus {
 
 .error p {
   margin-block-start: var(--space-md);
+}
+
+/* Privacy and legal notice (issue 5.1): one reading column, the h1 in the
+   headline size (the display size belongs to her name on the home page). */
+.legal {
+  padding-block: var(--space-2xl) var(--space-3xl);
+}
+
+.legal > * {
+  max-width: var(--measure);
+}
+
+.legal h1 {
+  font-size: var(--headline-size);
+  line-height: var(--headline-leading);
+  letter-spacing: normal;
+}
+
+.legal-review {
+  color: var(--color-text-muted);
+  margin-block-end: var(--space-xl);
+}
+
+.legal section {
+  margin-block-end: var(--space-xl);
+}
+
+.legal h2 {
+  font-size: var(--legal-heading-size);
+  margin-block-end: var(--space-md);
+}
+
+.legal-identity {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.legal-links {
+  margin: 0;
+  padding-inline-start: var(--space-lg);
+}
+
+.legal-links li + li {
+  margin-block-start: var(--space-sm);
 }

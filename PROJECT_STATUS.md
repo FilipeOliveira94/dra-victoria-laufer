@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**5.1** — Privacy and legal notice: two pages, `/privacidade/` and `/aviso-legal/` (Filipe), linked in the footer. Privacy states what the site collects and how she handles the messages she receives, naming only the third parties actually used; the legal notice says the content does not replace a consultation. No cookie banner: the site sets no cookies. Built on `feat/5.1-privacy-legal-notice`. The text is a draft until Dra. Victória approves it, relayed by Filipe.
+**5.1** — Privacy and legal notice: two pages, `/privacidade/` and `/aviso-legal/` (Filipe), linked in the footer. Privacy states what the site collects and how she handles the messages she receives, naming only the third parties actually used; the legal notice says the content does not replace a consultation. No cookie banner: the site sets no cookies. Built on `feat/5.1-privacy-legal-notice`: a `paginas` collection (`src/content/data/paginas.yaml`) rendered by `src/pages/[pagina].astro`, footer links and sitemap from the same list. Local builds: every check passes. The text is a draft until Dra. Victória approves it, relayed by Filipe.
 
 The last merge (`60adb20`, 4.1) published cleanly: `published` job of [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964); the live JSON-LD is identical to the validated block.
 
 ## Next work
 
-1. **5.1** Build, checks, PR; her approval of the text before the merge.
+1. **5.1** PR and its CI run; her approval of the text, then PO and Reviewer approval and Filipe's OK.
 2. **5.2** Further evidence: the CREMESP lookup link and a visible review date; courses, events or publications as she provides them, each with a verifiable source.
 3. Then Phase 7 (Search Console, maintenance).
 
@@ -42,7 +42,7 @@ None. The 5.1 merge waits on her approval of the text.
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 5.1 | Privacy and legal notice | In progress | `feat/5.1-privacy-legal-notice` |
+| 5.1 | Privacy and legal notice | In progress | Built; local builds pass every check. Text awaiting her approval. `docs/status-log.md` |
 | 5.2 | Further evidence | Not started | — |
 
 Acceptance detail: `ROADMAP.md` → Phase 5. Phases 0 to 4: `ROADMAP.md` and `docs/status-log.md`.
@@ -54,9 +54,9 @@ Acceptance detail: `ROADMAP.md` → Phase 5. Phases 0 to 4: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Published site, after the 4.1 merge (`60adb20`): `deploy.yml` [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964); `curl` of the live page compared with a local production build of `60adb20` with the private assets |
-| Checks | The `published` job; the JSON-LD block of the live page |
-| Result | All three jobs success. The live JSON-LD block is byte-identical to the block the Schema Markup Validator passed (0 errors, 0 warnings): `Person`, `jobTitle` `Médica`, no `medicalSpecialty` |
+| Environment | Local production builds, branch `feat/5.1-privacy-legal-notice`: with the private assets, with `ASSETS_DIR=/nonexistent`, and with `DEPLOY_TARGET=ghpages`. Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 (outside the repository). Not deployed |
+| Checks | `make check`, `make contrast`, `make lint`, `make requests`, `make axe`, `make lighthouse`; horizontal scroll at 320 to 1600 px; a pending page; `curl` of the four cited external links |
+| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, JSON-LD, photos and tables 0 failing. Requests 133, 0 failing (47 without the assets; 133 on staging). axe 8 runs, 0 violations. Lighthouse mobile, all three pages: Performance 100, Accessibility 100; LCP 1503 ms home, 902 ms legal pages; CLS 0.0003 home, up to 0.0497 legal pages. No overflow. A pending page has no route, no footer link and no sitemap entry. External links 200 |
 
 ---
 
@@ -65,9 +65,9 @@ Acceptance detail: `ROADMAP.md` → Phase 5. Phases 0 to 4: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-18 |
-| Environment | Local production build, branch `feat/4.1-json-ld-person`, with the private assets and with `ASSETS_DIR=/nonexistent`. Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 (outside the repository). Not deployed |
-| Checks | `make check`, `make contrast`, `make lint` (with the new JSON-LD check), `make requests`, `make axe`, `make lighthouse`; the JSON-LD block in the Schema Markup Validator |
-| Result | `astro check` 0 errors. Contrast 12 pairs, 0 failing. html-validate 0 errors; content, JSON-LD, photos and tables 0 failing. Requests 65, 0 failing (19 without the assets). axe 4 runs, 0 violations. Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003. Validator: 1 `Person`, 0 errors, 0 warnings |
+| Environment | Published site, after the 4.1 merge (`60adb20`): `deploy.yml` [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964); `curl` of the live page compared with a local production build of `60adb20` with the private assets |
+| Checks | The `published` job; the JSON-LD block of the live page |
+| Result | All three jobs success. The live JSON-LD block is byte-identical to the block the Schema Markup Validator passed (0 errors, 0 warnings): `Person`, `jobTitle` `Médica`, no `medicalSpecialty` |
 
 ---
 
