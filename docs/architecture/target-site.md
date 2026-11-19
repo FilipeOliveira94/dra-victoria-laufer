@@ -65,14 +65,14 @@ Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src
 
 [ADR-0004](../decisions/0004-deploy-target-switch.md), [ADR-0006](../decisions/0006-noindex-until-release.md).
 
-| | Staging (now) | Production (after 3.2) |
+| Setting | Staging (until 3.2) | Production (from 3.2) |
 | --- | --- | --- |
 | URL | `https://filipeoliveira94.github.io/dra-victoria-laufer/` | `https://dravictorialaufer.com.br/` |
 | Base path | `/dra-victoria-laufer` | `/` |
 | `DEPLOY_TARGET` | `ghpages` | not set |
 | Indexing | Indexable since 2.6 | Indexable since 2.6 (`indexable` in `src/config/release.ts`) |
 
-`astro.config.mjs` maps the variable to `site` and `base`; an unknown value stops the build. Indexing does not depend on it. A build without `DEPLOY_TARGET` produces the production URLs. Canonical, sitemap and Open Graph URLs follow the target by themselves. The domain switch is a one-line diff in the workflow.
+`astro.config.mjs` maps the variable to `site` and `base`; an unknown value stops the build. Indexing does not depend on it. A build without `DEPLOY_TARGET` produces the production URLs. Canonical, sitemap and Open Graph URLs follow the target by themselves. Issue 3.2 removed the variable from the workflow; the check steps call the scripts with their default base `/`. `DEPLOY_TARGET=ghpages` remains for a local staging build.
 
 ## Build and deploy
 
@@ -82,7 +82,7 @@ pull request ──► checks (1.7) ──► PO + Reviewer approval ──► F
 private assets repo ──(read-only deploy key)──► fetch ──► build ──► GitHub Pages ◄┘
 ```
 
-- A push to `main` runs `.github/workflows/deploy.yml`: `npm ci`, build with `DEPLOY_TARGET: ghpages`, `scripts/check-requests.mjs` (every referenced request must return 200 from the site itself), upload `dist/`, deploy. The built site is not committed to any branch.
+- A push to `main` runs `.github/workflows/deploy.yml`: `npm ci`, build for `https://dravictorialaufer.com.br/` (no `DEPLOY_TARGET`, since 3.2), `scripts/check-requests.mjs` (every referenced request must return 200 from the site itself), upload `dist/`, deploy. The built site is not committed to any branch.
 - Astro 7.4.12 on Node.js 22.23.4 (`.nvmrc`); `package-lock.json` is committed.
 - The workflow fetches `dra-victoria-laufer-assets` before the build. Without the secret, the build uses a neutral placeholder and still completes.
 - The portrait is published as AVIF and WebP with `srcset` and declared dimensions, and the main image has high priority (issue 1.4).

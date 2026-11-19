@@ -4,6 +4,19 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-18 — Issue 3.2 in progress: switch to the domain
+
+3.1 verified: PR #21 CI [run 44436305170](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436305170) passed; the merge (`30120bf`) published cleanly: `deploy.yml` [run 44436668017](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436668017), jobs `build`, `deploy` and `published` all success.
+
+Built on `feat/3.2-domain-switch`, checked on local production builds with and without the private assets (Node.js v22.23.4, chrome-headless-shell 157.0.8103.38 outside the repository). Not deployed.
+
+- **Workflow:** `DEPLOY_TARGET: ghpages` and its comment removed from the `build` job, so the build targets `https://dravictorialaufer.com.br/` (ADR-0004). The check steps named the staging base path too: the favicon grep now looks for `/_astro/icon`, and `check-requests`, `check-axe` and Lighthouse run with their default base `/`. The acceptance's one-line diff holds for what decides the URLs; Filipe approved the wider workflow diff. The `published` job already checks the URL the deployment reports, so it follows the domain once Pages has it.
+- **Order of the switch:** Filipe accepted a few minutes of downtime. Merge first; once the deploy is done, set `cname` and then `https_enforced` in Pages (`docs/architecture/domain-dns.md`). Pages has no custom domain today (`cname: null`).
+
+Checks, on the production build: canonical and `og:url` `https://dravictorialaufer.com.br/`, `og:image` on the domain, sitemap `<loc>` and the `robots.txt` `Sitemap:` line on the domain; no `github.io` or `/dra-victoria-laufer/` anywhere in `dist/`. The workflow's portrait and favicon grep passes. `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, photos and tables 0 failing; requests 65, 0 failing (19 without the assets); axe 0 violations, 0 incomplete at 360 and 1280 px on the home and a 404; Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003. No content changed: CFM checklist not affected. Open: the PR's CI run; after the merge, the certificate, enforced HTTPS, the redirects of the github.io URL, `http://` and `www`, and the Instagram bio link.
+
+---
+
 ### 2026-11-18 — Phase 3 opened: domain and DNS
 
 The 2.6 merge (`d404fd7`, PR #20) published cleanly: `deploy.yml` [run 44414546420](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44414546420), jobs `build`, `deploy` and `published` all success. The staging page at `/dra-victoria-laufer/` is indexable from that deploy. Phase 2 is closed (2.1 to 2.6 verified).
