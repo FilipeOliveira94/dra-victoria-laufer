@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**3.2** — Switch to the domain. On `feat/3.2-domain-switch`: `DEPLOY_TARGET` removed from the workflow, and the check steps no longer pass the staging base path. The local production build carries `https://dravictorialaufer.com.br/` in the canonical, sitemap, `robots.txt` and Open Graph; every check passes. Left: the PR's CI run, PO and Reviewer review, Filipe's OK and merge; then, right after the deploy, the custom domain and enforced HTTPS in Pages, the redirect checks and the Instagram bio link. Filipe accepted a few minutes of downtime between the deploy and the domain setting.
+**3.2** — Switch to the domain. On `feat/3.2-domain-switch`: `DEPLOY_TARGET` removed from the workflow, and the check steps no longer pass the staging base path. The local production build carries `https://dravictorialaufer.com.br/` in the canonical, sitemap, `robots.txt` and Open Graph; every check passes. PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306) passed. Left: PO and Reviewer review, Filipe's OK and merge; then, right after the deploy, the custom domain and enforced HTTPS in Pages, the redirect checks and the Instagram bio link. Filipe accepted a few minutes of downtime between the deploy and the domain setting.
 
 The last merge (`30120bf`, 3.1) published cleanly: `published` job of [run 44436668017](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436668017), success.
 
 ## Next work
 
-1. **3.2** PR and its CI run, review, Filipe's OK and merge. Then: `cname` and `https_enforced` in Pages, rerun of the `published` job on the domain, `curl -I` on the github.io URL, `http://` and `www`; her Instagram bio link (outside the repository). Steps in [`docs/architecture/domain-dns.md`](docs/architecture/domain-dns.md).
+1. **3.2** Review of PR #22, Filipe's OK and merge. Then: `cname` and `https_enforced` in Pages, rerun of the `published` job on the domain, `curl -I` on the github.io URL, `http://` and `www`; her Instagram bio link (outside the repository). Steps in [`docs/architecture/domain-dns.md`](docs/architecture/domain-dns.md).
 2. **Phase 4** JSON-LD `Person` (4.1), which depends on 3.2.
 
 ## Blockers
@@ -42,7 +42,7 @@ None.
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
 | 3.1 | Register the domain and configure DNS | Verified | Domain `active` in the registry RDAP; verified in GitHub; root and `www` resolve to GitHub Pages; no MX (2026-11-18). PR #21 CI [run 44436305170](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436305170). `docs/status-log.md` |
-| 3.2 | Switch to the domain | In progress | Local production build: every check passes. PR CI pending; redirects and certificate after the merge. `docs/status-log.md` |
+| 3.2 | Switch to the domain | In progress | Local production build: every check passes. PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306); redirects and certificate after the merge. `docs/status-log.md` |
 | 3.3 | E-mail on the domain | Withdrawn | No mailbox on the domain ([ADR-0007](docs/decisions/0007-contact-and-single-email.md)) |
 
 Acceptance detail: `ROADMAP.md` → Phase 3. Phases 0 to 2: `ROADMAP.md` and `docs/status-log.md`.

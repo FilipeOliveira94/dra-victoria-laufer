@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-18 (3.1 verified; 3.2 workflow switched, awaiting the PR's CI run) |
+| Last updated | 2026-11-18 (3.1 verified; 3.2 PR CI passed; switch after the merge) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -522,4 +522,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-18 | 3.1: `dravictorialaufer.com.br` registered at Registro.br under her CPF (not Filipe's, as first planned), expiring 2028-11-18. The HTTPS certificate moves from the acceptance of 3.1 to 3.2 (Filipe). The WHOIS risk is closed |
 | 2026-11-18 | 3.1: domain verified in Filipe's GitHub account; A, AAAA and `www` CNAME records in the Registro.br DNS resolve to GitHub Pages; no MX. Setup and checks in `docs/architecture/domain-dns.md` |
 | 2026-11-18 | 3.1 verified: PR #21 CI [run 44436305170](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436305170) passed; the merge (`30120bf`) published cleanly (`published` job of [run 44436668017](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436668017)) |
-| 2026-11-18 | 3.2 in progress: `DEPLOY_TARGET` removed from the workflow, and the check steps no longer pass the staging base path; the acceptance's one-line diff widened accordingly (Filipe). Local production build: canonical, sitemap, `robots.txt` and Open Graph on `https://dravictorialaufer.com.br/`; every check passes. `docs/status-log.md` |
+| 2026-11-18 | 3.2 in progress: `DEPLOY_TARGET` removed from the workflow, and the check steps no longer pass the staging base path; the acceptance's one-line diff widened accordingly (Filipe). Local production build: canonical, sitemap, `robots.txt` and Open Graph on `https://dravictorialaufer.com.br/`; every check passes. PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306) passed. `docs/status-log.md` |
