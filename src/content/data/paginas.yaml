@@ -1,10 +1,11 @@
 # Privacy and legal notice pages (issue 5.1). The id is the URL path.
 # Schema and rules: src/content.config.ts.
 #
-# Draft written for issue 5.1 from verifiable facts only: the site sets no
-# cookies, has no form and no analytics, loads nothing from a third party
-# (make requests), and is hosted on GitHub Pages. It is her text: published
-# only after her approval, relayed by Filipe. Every external link must answer 200.
+# Written for issue 5.1 from verifiable facts only: the site sets no cookies,
+# has no form and no analytics, loads nothing from a third party (make
+# requests), and is hosted on GitHub Pages. Approved by her (relayed by Filipe,
+# 2026-11-19); a change of meaning needs her approval again. Every external
+# link must answer 200.
 
 privacidade:
   ordem: 0

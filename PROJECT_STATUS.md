@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://dravictorialaufer.com.br/> (since 3.2; the github.io address redirects) |
-| Last updated | 2026-11-18 (4.1 published; Phase 5 opened) |
+| Last updated | 2026-11-19 (5.1 verified) |
 | Current phase | Phase 5 — Content and E-E-A-T |
-| Phase status | 5.1 in progress. Phases 0 to 4 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2 and 4.1 verified (3.3 withdrawn) |
+| Phase status | 5.1 verified; 5.2 next. Phases 0 to 4 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2 and 4.1 verified (3.3 withdrawn) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,19 +22,19 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**5.1** — Privacy and legal notice: two pages, `/privacidade/` and `/aviso-legal/` (Filipe), linked in the footer. Privacy states what the site collects and how she handles the messages she receives, naming only the third parties actually used; the legal notice says the content does not replace a consultation. No cookie banner: the site sets no cookies. Built on `feat/5.1-privacy-legal-notice`: a `paginas` collection (`src/content/data/paginas.yaml`) rendered by `src/pages/[pagina].astro`, footer links and sitemap from the same list. Local builds: every check passes; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982) passed with the private assets. The text is a draft until Dra. Victória approves it, relayed by Filipe.
+**5.1** (verified) — Privacy and legal notice: two pages, `/privacidade/` and `/aviso-legal/` (Filipe), linked in the footer. Privacy states what the site collects and how she handles the messages she receives, naming only the third parties actually used; the legal notice says the content does not replace a consultation. No cookie banner: the site sets no cookies. Built on `feat/5.1-privacy-legal-notice`: a `paginas` collection (`src/content/data/paginas.yaml`) rendered by `src/pages/[pagina].astro`, footer links and sitemap from the same list. Local builds: every check passes; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982) passed with the private assets. Dra. Victória approved the text (relayed by Filipe, 2026-11-19); PO, Reviewer and Filipe approved the PR. Left: the merge, then its `published` run, recorded by the next PR.
 
 The last merge (`60adb20`, 4.1) published cleanly: `published` job of [run 44443969964](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44443969964); the live JSON-LD is identical to the validated block.
 
 ## Next work
 
-1. **5.1** PR #24: her approval of the text, then PO and Reviewer approval and Filipe's OK.
+1. **5.1** Merge of PR #24; its `published` run is recorded by the next PR.
 2. **5.2** Further evidence: the CREMESP lookup link and a visible review date; courses, events or publications as she provides them, each with a verifiable source.
 3. Then Phase 7 (Search Console, maintenance).
 
 ## Blockers
 
-None. The 5.1 merge waits on her approval of the text.
+None.
 
 ---
 
@@ -42,7 +42,7 @@ None. The 5.1 merge waits on her approval of the text.
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 5.1 | Privacy and legal notice | In progress | Built; local builds pass every check; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982). Text awaiting her approval. `docs/status-log.md` |
+| 5.1 | Privacy and legal notice | Verified | Local builds pass every check; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982). Text approved by her. `docs/status-log.md` |
 | 5.2 | Further evidence | Not started | — |
 
 Acceptance detail: `ROADMAP.md` → Phase 5. Phases 0 to 4: `ROADMAP.md` and `docs/status-log.md`.
