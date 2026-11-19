@@ -191,7 +191,7 @@ Reading order fixed by the brief: identification with portrait → Formação �
 
 The path runs at `--trail-x` from the column's edge (30 px, 40 px from 900 px); section content starts at `--trail-indent` (60 px, 104 px from 900 px), plus the stone's shift. From 900 px each section is two columns: label and heading on the left (up to 18 rem), content on the right. "Sobre" is one column inside its clearing.
 
-First fold on a phone: logo (horizontal, small) → name (`display`) → hairline and identity line (`label`) → the scene (clearing, sun, portrait, leaf), indented to the path. The name block is white, so the path starts below it. From 900 px: name and identity line on the left, the scene on the right; the portrait never sits behind the text and text never sits on the photo.
+First fold on a phone: logo (horizontal, small) → name (`display`) → hairline and identity line (`label`) → the CREMESP lookup line in `body`, its link in the link colour (issue 5.2) → the scene (clearing, sun, portrait, leaf), indented to the path. The name block is white, so the path starts below it. From 900 px: name and identity line on the left, the scene on the right; the portrait never sits behind the text and text never sits on the photo.
 
 ## Elevation & Depth
 
@@ -259,7 +259,7 @@ Anchor links to the four sections, in `label` style, no JavaScript. Current sect
 
 ### Sections
 
-Fixed per section, so a missing section never shifts the others: Formação, Atuação and Contato on white (`section-default`), with label, heading and stone; "Sobre" in `section-clareira`, a rounded `verde-claro` field with the path running over it, unbroken, and its stone inside on the path's line, and the first sentence of her text in the serif face, on its own line inside her first paragraph, so her paragraphs stay as she approved them (2.4). No bands (The Light-Grounds Rule).
+Fixed per section, so a missing section never shifts the others: Formação, Atuação and Contato on white (`section-default`), with label, heading and stone; "Sobre" in `section-clareira`, a rounded `verde-claro` field with the path running over it, unbroken, and its stone inside on the path's line, and the first sentence of her text in the serif face, on its own line inside her first paragraph, so her paragraphs stay as she approved them (2.4). No bands (The Light-Grounds Rule). After the last section, the review date ("Revisado em …", issue 5.2) in `body`, `azul-cinza` on white, aligned with the page column; the path runs out at the end of the last section, above it.
 
 ### Footer
 

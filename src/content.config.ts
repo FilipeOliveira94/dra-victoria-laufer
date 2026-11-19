@@ -38,6 +38,11 @@ const medica = defineCollection({
       }),
       // Paragraphs of "Sobre", published without a change of meaning.
       sobre: z.array(text).min(1),
+      // Issue 5.2: the CREMESP public physician lookup, where a visitor checks
+      // the CRM. Official host only. Linked under the identity line on the home.
+      consultaCrm: z.url({ protocol: /^https$/, hostname: /^guiamedico\.cremesp\.org\.br$/ }),
+      // Issue 5.2: date the home page content was last reviewed, shown on it.
+      revisao: z.iso.date(),
     }),
   ]),
 });

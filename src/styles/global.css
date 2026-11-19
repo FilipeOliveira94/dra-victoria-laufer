@@ -302,6 +302,13 @@ main:focus {
   max-width: 9ch;
 }
 
+/* Issue 5.2: the CREMESP lookup, under the identity line; body text, the
+   link in the link colour (DESIGN.md → Links). */
+.identity-check {
+  margin: var(--space-sm) 0 0;
+  max-width: 34ch;
+}
+
 /* The gold hairline above the identity line (DESIGN.md → Elevation & Depth). */
 .identity-line {
   display: inline-block;
@@ -518,8 +525,8 @@ main:focus {
   height: calc(100% - var(--stone-y) - var(--trail-lead));
 }
 
-/* After the last section the path runs out at the footer. */
-.section:last-child .trail-out {
+/* After the last section the path runs out (before the review date, issue 5.2). */
+.section:last-of-type .trail-out {
   height: calc(100% - var(--stone-y));
 }
 
@@ -1006,6 +1013,13 @@ main:focus {
 .legal-review {
   color: var(--color-text-muted);
   margin-block-end: var(--space-xl);
+}
+
+/* Issue 5.2: the home page's review date, after the last section. */
+.page-review {
+  color: var(--color-text-muted);
+  margin-block: 0;
+  padding-block: var(--space-lg) var(--space-xl);
 }
 
 .legal section {

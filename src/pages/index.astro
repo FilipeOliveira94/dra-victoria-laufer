@@ -6,8 +6,10 @@ import {
   channelLabel,
   channelLink,
   courseLine,
+  crmLabel,
   identityLine,
   leadSentence,
+  longDate,
   medica,
   NOT_SPECIALIST,
   published,
@@ -62,6 +64,11 @@ const structuredData = jsonLd((await person(Astro.site!))!);
       <div class="identification-text">
         <h1>{id.nome}</h1>
         <p class="label identity-line">{identification}</p>
+        {/* Issue 5.2: where a visitor checks the registration, next to the CRM.
+            The lookup has no deep link by CRM, so the sentence names it. */}
+        <p class="identity-check">
+          Confira o {crmLabel(id)} na <a href={id.consultaCrm}>consulta pública de médicos do CREMESP</a>.
+        </p>
       </div>
       <div class="scene">
         <svg class="scene-clearing" viewBox="0 0 400 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -186,5 +193,8 @@ const structuredData = jsonLd((await person(Astro.site!))!);
         </Section>
       )
     }
+    {/* Issue 5.2: the date of the last content review, from medica.yaml; the
+        legal pages show theirs under the h1. */}
+    <p class="page-review wrap">Revisado em {longDate(id.revisao)}.</p>
   </main>
 </Base>
