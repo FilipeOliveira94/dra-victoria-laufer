@@ -4,7 +4,7 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
-### 2026-11-18 — Issue 4.1 built: JSON-LD Person
+### 2026-11-18 — Issue 4.1 verified: JSON-LD Person
 
 Built on `feat/4.1-json-ld-person`, checked on local production builds with and without the private assets (Node.js v22.23.4, chrome-headless-shell 158.0.8127.36 outside the repository). Not deployed. Plan approved by Filipe.
 
@@ -13,7 +13,7 @@ Built on `feat/4.1-json-ld-person`, checked on local production builds with and 
 - **Page:** one `<script type="application/ld+json">` in the home page `<head>`, passed through `Base.astro`; data, not script, so nothing runs in the browser (D-001). `<` is escaped in the JSON. The 404 has none.
 - **Check:** `scripts/check-jsonld.mjs`, in `npm run lint` (so in CI): one block on the home page and none elsewhere, valid JSON, `@context` schema.org, `@type` `Person`, `jobTitle` `Médica`, a CRM identifier, `name` and `url`; no `medicalSpecialty`, `aggregateRating`, `review`, `pendente` or `motivo` key and no `Physician`, `MedicalBusiness` or `MedicalOrganization` type at any depth; every string with "pós-graduação em" ends with `NÃO ESPECIALISTA`. Injecting `medicalSpecialty` and `Physician` into `dist/index.html` made it fail with 3 findings.
 
-Checks, on production with the assets and the placeholder build: `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, JSON-LD, photos and tables 0 failing; requests 65, 0 failing (19 without the assets); axe 4 runs, 0 violations, 0 incomplete; Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003. Schema Markup Validator (validator.schema.org, the JSON-LD block of the built page): 1 `Person`, 0 errors, 0 warnings. Without the assets the JSON-LD has no `image` and every check passes. CFM checklist: pass. PR CI pending.
+Checks, on production with the assets and the placeholder build: `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, JSON-LD, photos and tables 0 failing; requests 65, 0 failing (19 without the assets); axe 4 runs, 0 violations, 0 incomplete; Lighthouse mobile Performance 100, Accessibility 100, LCP 1428–1503 ms, CLS 0.0003. Schema Markup Validator (validator.schema.org, the JSON-LD block of the built page): 1 `Person`, 0 errors, 0 warnings. Without the assets the JSON-LD has no `image` and every check passes. CFM checklist: pass. PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697) on `069ded6` passed with the private-assets step executed (cut-out, icons, logos and social image fetched): requests 65, 0 failing; content and JSON-LD checks 0 failing; axe 4 runs, 0 failing; Lighthouse assertions pass. Filipe approved the issue on 2026-11-18. Every acceptance item is met: 4.1 verified.
 
 ---
 

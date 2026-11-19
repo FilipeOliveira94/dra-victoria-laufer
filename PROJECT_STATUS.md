@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://dravictorialaufer.com.br/> (since 3.2; the github.io address redirects) |
-| Last updated | 2026-11-18 (4.1 built on local builds) |
+| Last updated | 2026-11-18 (4.1 verified) |
 | Current phase | Phase 4 — Structured data |
-| Phase status | 4.1 in progress. Phases 0 to 3 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1 and 3.2 verified (3.3 withdrawn) |
+| Phase status | 4.1 verified; Phase 4 closes with its merge. Phases 0 to 3 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1 and 3.2 verified (3.3 withdrawn) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,13 +22,13 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**4.1** — JSON-LD `Person` on the page ([ADR-0009](docs/decisions/0009-schema-person.md)): name, `jobTitle: Médica`, the CRM as identifier, training, image, URL and Instagram in `sameAs`, built from the typed collections so no pending field reaches it. No `medicalSpecialty`, no `Physician`, no rating. Built on `feat/4.1-json-ld-person` (`src/lib/person.ts`, `scripts/check-jsonld.mjs`): the degree and the two finished postgraduate courses in the Art. 13 line; Neonatologia enters once finished (Filipe). Local builds: every check passes; Schema Markup Validator 0 errors, 0 warnings. Left: the PR and its CI run, PO and Reviewer review, Filipe's OK and merge.
+**4.1** — JSON-LD `Person` on the page ([ADR-0009](docs/decisions/0009-schema-person.md)): name, `jobTitle: Médica`, the CRM as identifier, training, image, URL and Instagram in `sameAs`, built from the typed collections so no pending field reaches it. No `medicalSpecialty`, no `Physician`, no rating. Built on `feat/4.1-json-ld-person` (`src/lib/person.ts`, `scripts/check-jsonld.mjs`): the degree and the two finished postgraduate courses in the Art. 13 line; Neonatologia enters once finished (Filipe). Local builds: every check passes; Schema Markup Validator 0 errors, 0 warnings. PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697) passed with the private assets; Filipe approved. Left: the merge, then the `published` run and the validator on the live page.
 
 The last merge (`25358b1`, 3.2) published cleanly: `published` job of [run 44437975883](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437975883), success, on the domain.
 
 ## Next work
 
-1. **4.1** PR and its CI run; review; Filipe's OK and merge. After the merge, the `published` run and the validator on the live page.
+1. **4.1** Merge of PR #23; then the `published` run and the validator on the live page, recorded by the next PR.
 2. Then Phase 5 (privacy and legal notice, further evidence) or Phase 7 (Search Console, maintenance), both unblocked; Filipe chooses.
 
 ## Blockers
@@ -41,7 +41,7 @@ None.
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 4.1 | JSON-LD `Person` | In progress | Local builds: every check passes, JSON-LD check 0 failing, Schema Markup Validator 0 errors. PR CI pending. `docs/status-log.md` |
+| 4.1 | JSON-LD `Person` | Verified | Local builds: every check passes, Schema Markup Validator 0 errors. PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697). `docs/status-log.md` |
 
 Acceptance detail: `ROADMAP.md` → Phase 4. Phases 0 to 3: `ROADMAP.md` and `docs/status-log.md`.
 
