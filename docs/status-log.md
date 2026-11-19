@@ -18,6 +18,8 @@ Built on `feat/5.2-further-evidence`, checked on local production builds (Node.j
 
 Checks, with the assets, without them (`ASSETS_DIR=/nonexistent`) and on staging (`DEPLOY_TARGET=ghpages`): `astro check` 0 errors; contrast 12 pairs, 0 failing; html-validate 0 errors; content, JSON-LD, photos and tables 0 failing; requests 133, 0 failing (47 without the assets; 133 on staging); axe 8 runs, 0 violations, 0 incomplete; Lighthouse mobile: Performance 100 and Accessibility 100 on the three pages, LCP 1428–1431 ms (home) and 901–903 ms (legal pages), CLS 0.0047 (home) and up to 0.0497 (legal pages). No horizontal scroll from 320 to 1600 px in 40 px steps, home and privacy page, measured after the opening motion settles. CFM checklist: pass (A to D; the new sentences name no specialty and make no claim).
 
+PR #26 CI [run 44629224571](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44629224571) on `4d12cbc`, with the private-assets step executed (`[assets] portrait-cutout.png`, logos, icons, social). Attempt 1 failed in axe with a single *incomplete* result: color-contrast on the footer link "Aviso legal" on the 404 page at 360 px, next to the footer hill. This PR does not change the 404 page or the footer; the same check passed on PR #24 and PR #25 and in every local run. Attempt 2, re-run of the failed job, passed: requests 133, 0 failing; content, JSON-LD and photos 0 failing; axe 8 runs, 0 failing; Lighthouse assertions pass on the three pages. The flaky axe result is a recorded risk: the hill sits close to the footer links on a short page at 360 px.
+
 ---
 
 ### 2026-11-19 — Issue 5.1 verified: privacy and legal notice
