@@ -1,9 +1,9 @@
 # Agent workflow prompts
 
-Four prompts drive one issue: plan, implement, open the PR, review. The Dev is Claude in T3 Code (AGENTS.md §3); the prompts are tool-neutral and the rules live in [`AGENTS.md`](../AGENTS.md). Replace the placeholders, run the plan prompt first, and approve the plan before any file changes.
+Four prompts drive one issue: plan, implement, open the PR, review. The Dev is Claude in T3 Code (AGENTS.md §3); the prompts are tool-neutral and the rules live in [`AGENTS.md`](../AGENTS.md). Replace the placeholders and run the plan prompt first. A small task goes from plan to PR without stopping; a large task, or one in doubt, waits for Filipe's approval of the plan before any file changes (AGENTS.md §4 item 4).
 
 ```text
-Filipe picks the issue → plan → approval → feature branch → implement
+Filipe picks the issue → plan → approval (large only) → feature branch → implement
      → checks + CFM checklist → PR with summary → PR CI read
      → Filipe reviews (harder merge: Reviewer de Projetos asks Claude for a review)
      → Filipe merges and deletes the branch
@@ -13,7 +13,7 @@ The rules behind each arrow are in [`AGENTS.md`](../AGENTS.md) §4 and §13.
 
 ---
 
-## 1. Plan (Dev, no file edits)
+## 1. Plan (Dev, no file edits until the mode allows)
 
 ```text
 Follow AGENTS.md.
@@ -31,16 +31,17 @@ Return:
 6. Exact commands to run.
 7. Expected files to create or modify.
 8. Which items of the AGENTS.md §12 "Issue Close Checklist" this issue will touch.
+9. The classification, small or large (AGENTS.md §4 items 4 and 11), and whether planning changed it.
 
-Keep the scope limited to this issue. Do not implement future phases or silently change architecture. Wait for my approval before editing.
+Keep the scope limited to this issue. Do not implement future phases or silently change architecture. Small: go on to implement. Large: stop and wait for my approval before editing.
 ```
 
-## 2. Implement (Dev, after the plan is approved)
+## 2. Implement (Dev; a large task only after the plan is approved)
 
 ```text
 Follow AGENTS.md.
 
-Implement only the plan we just agreed on, on the feature branch <type>/<ISSUE-ID>-<slug> created from an up-to-date main.
+Implement only the plan above (for a large task, the approved plan with any adjustments), on the feature branch <type>/<ISSUE-ID>-<slug> created from an up-to-date main.
 - Keep the diff focused. Explain any necessary deviation before making it.
 - Do not invent personal data, biographical text, course names, palette or logo. Missing data stays pendente.
 - Do not add a portrait or a brand source file to this repository.
