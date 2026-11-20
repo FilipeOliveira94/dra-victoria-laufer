@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://dravictorialaufer.com.br/> (since 3.2; the github.io address redirects) |
-| Last updated | 2026-11-20 (7.2 on PR #28; phase 7 closes with its merge) |
-| Current phase | Phase 7 — Monitoring; maintenance after the 7.2 merge |
-| Phase status | 7.1 verified (home page indexing in URL Inspection still to be confirmed); 7.2 built on PR #28, verified by the `workflow_dispatch` tests right after the merge. Phases 0 to 5 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2, 4.1, 5.1 and 5.2 verified (3.3 withdrawn). Phase 6 deferred (Filipe, 2026-11-19) |
+| Last updated | 2026-11-20 (7.2 on PR #28; 7.1 delivered) |
+| Current phase | Phase 7 — Monitoring; maintenance once 7.1 and 7.2 are verified |
+| Phase status | 7.1 delivered, verified once URL Inspection shows the home page indexed; 7.2 built on PR #28, verified by the `workflow_dispatch` tests right after the merge. Phases 0 to 5 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2, 4.1, 5.1 and 5.2 verified (3.3 withdrawn). Phase 6 deferred (Filipe, 2026-11-19) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,16 +22,16 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**7.2** — Maintenance, PR #28 on `chore/7.2-maintenance`, ordered by Filipe on 2026-11-20: Dependabot (`.github/dependabot.yml`), the semiannual review issue (`semiannual-review.yml`) and the domain renewal reminder (`domain-renewal.yml`). `deploy.yml` does not change. Runbook: [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md). With its merge phase 7 closes and the project is in maintenance: the site changes only through those reminders, a Dependabot PR, or an issue Filipe orders.
+**7.2** — Maintenance, PR #28 on `chore/7.2-maintenance`, ordered by Filipe on 2026-11-20: Dependabot (`.github/dependabot.yml`), the semiannual review issue (`semiannual-review.yml`) and the domain renewal reminder (`domain-renewal.yml`). `deploy.yml` does not change. Runbook: [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md). Once 7.1 and 7.2 are verified, phase 7 closes and the project is in maintenance: the site changes only through those reminders, a Dependabot PR, or an issue Filipe orders.
 
-7.1 is merged (PR #27, `b91aaa7`) and published: `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666), `build`, `deploy` and `published` success. The Search Console property is verified; the home page shown as indexed in URL Inspection is still to be confirmed by Filipe.
+7.1 is merged (PR #27, `b91aaa7`) and published: `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666), `build`, `deploy` and `published` success. 7.1 is `delivered`: the Search Console property is verified, and its acceptance also asks for the home page shown as indexed in URL Inspection, which Filipe confirms; then 7.1 is `verified`.
 
 ## Next work
 
 1. **7.2** PR #28: PO and Reviewer approval on the same head (large change: workflows with `issues: write`), then Filipe's OK and the merge.
 2. **7.2 after the merge:** dispatch `domain-renewal.yml` (default threshold: no issue; `threshold_days=9999`: issue, then closed) and `semiannual-review.yml` (issue, then closed); confirm Dependabot's first run; record the runs.
 3. **Filipe, in the settings:** enable Dependabot security updates; never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets ([runbook](docs/runbooks/maintenance.md)).
-4. **7.1**: Filipe confirms the home page as indexed in URL Inspection.
+4. **7.1 → verified:** Filipe confirms the home page as indexed in URL Inspection; the next PR records it.
 5. Phase 6 (acquisition) stays deferred until Filipe reopens it.
 
 ## Blockers
@@ -44,7 +44,7 @@ None.
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 7.1 | Search Console and Bing Webmaster | Verified (home page indexing to be confirmed) | `docs/runbooks/search-console.md`; `docs/status-log.md` |
+| 7.1 | Search Console and Bing Webmaster | Delivered (verified when URL Inspection shows the home page indexed) | `docs/runbooks/search-console.md`; `docs/status-log.md` |
 | 7.2 | Maintenance | In progress: built on PR #28; dispatch tests after the merge | `docs/runbooks/maintenance.md`; `docs/status-log.md` |
 
 Acceptance detail: `ROADMAP.md` → Phase 7. Phases 0 to 5: `ROADMAP.md` and `docs/status-log.md`.

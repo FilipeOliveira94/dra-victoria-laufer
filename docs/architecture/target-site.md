@@ -90,7 +90,7 @@ private assets repo ──(read-only deploy key)──► fetch ──► build 
 - A push to `main` runs `.github/workflows/deploy.yml`: `npm ci`, build for `https://dravictorialaufer.com.br/` (no `DEPLOY_TARGET`, since 3.2), `scripts/check-requests.mjs` (every referenced request must return 200 from the site itself), upload `dist/`, deploy. The built site is not committed to any branch.
 - Astro 7.4.12 on Node.js 22.23.4 (`.nvmrc`); `package-lock.json` is committed.
 - The workflow fetches `dra-victoria-laufer-assets` before the build. Without the secret, the build uses a neutral placeholder and still completes.
-- Maintenance (issue 7.2) sits beside `deploy.yml` and does not change it: `.github/dependabot.yml` (npm weekly, GitHub Actions monthly, no auto-merge) and two scheduled workflows with only `contents: read` and `issues: write`, `semiannual-review.yml` and `domain-renewal.yml`, which open issues. Runbook: [`docs/runbooks/maintenance.md`](../runbooks/maintenance.md).
+- Maintenance (issue 7.2) sits beside `deploy.yml` and does not change it: `.github/dependabot.yml` (npm weekly, GitHub Actions monthly, no auto-merge) and two scheduled workflows with only `issues: write` (and `contents: read` where the template is checked out), `semiannual-review.yml` and `domain-renewal.yml`, which open issues. Runbook: [`docs/runbooks/maintenance.md`](../runbooks/maintenance.md).
 - The portrait is published as AVIF and WebP with `srcset` and declared dimensions, and the main image has high priority (issue 1.4).
 
 ## Assets and privacy

@@ -8,16 +8,16 @@ Three automatic reminders. None of them changes the site, merges a pull request 
 | --- | --- | --- | --- |
 | Dependency updates | [`.github/dependabot.yml`](../../.github/dependabot.yml) | npm weekly; GitHub Actions monthly | Pull requests |
 | Semiannual review | [`.github/workflows/semiannual-review.yml`](../../.github/workflows/semiannual-review.yml), checklist in [`.github/ISSUE_TEMPLATE/revisao-semestral.md`](../../.github/ISSUE_TEMPLATE/revisao-semestral.md) | January 1 and July 1, 12:00 UTC | Issue "Revisão semestral" |
-| Domain renewal | [`.github/workflows/domain-renewal.yml`](../../.github/workflows/domain-renewal.yml) | 1st of each month, 12:00 UTC | Issue "Renovar o domínio dravictorialaufer.com.br (vence em AAAA-MM-DD)" with 60 days or fewer left |
+| Domain renewal | [`.github/workflows/domain-renewal.yml`](../../.github/workflows/domain-renewal.yml) | 1st of each month, 12:00 UTC | Issue "Renovar o domínio dravictorialaufer.com.br (vence em AAAA-MM-DD)" with 90 days or fewer left |
 
-The two workflows have only `contents: read` and `issues: write`, use the automatic `GITHUB_TOKEN` and no secret, and post nothing when an issue with the same title (semiannual review) or the same title prefix (renewal) is already open. `deploy.yml` is not involved.
+The two workflows have only `issues: write`, plus `contents: read` in the semiannual review for the checkout of the template (`actions/checkout` pinned by commit SHA, v4.4.0), use the automatic `GITHUB_TOKEN` and no secret, and post nothing when an issue with the same title (semiannual review) or the same title prefix (renewal) is already open. `deploy.yml` is not involved.
 
 ## Dependabot
 
 - **npm**, weekly: every minor and patch bump of the week goes into one grouped pull request (`minor-and-patch`); each major bump gets its own pull request.
 - **GitHub Actions**, monthly: one pull request per action.
 - **No auto-merge.** Each Dependabot pull request follows the normal flow ([`AGENTS.md`](../../AGENTS.md) §4): its CI run (`deploy.yml`, `build` job) must pass, and the Reviewer merges after Filipe's OK. A merge deploys the site, so read the `published` job of its run.
-- **Classification** ([`AGENTS.md`](../../AGENTS.md) §4 item 11): a patch bump is a small change (PO approval is enough). A minor or major bump is small only if its CI passes and the changelog of each updated package shows no breaking change; otherwise it is large and needs PO and Reviewer on the same head. The Dev who delivers it records which changelogs were read.
+- **Classification** ([`AGENTS.md`](../../AGENTS.md) §4 item 11, unchanged): only a patch bump of an npm dependency is a small change (PO approval is enough). A minor or major bump, and any GitHub Actions bump, is large: PO and Reviewer approve the same head. The PR's CI runs the build and the checks but not the deploy, and on a Dependabot PR it builds on the placeholder (§12). The grouped `minor-and-patch` PR is large whenever it holds a minor bump.
 - **Never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets** (Filipe, 2026-11-20). A workflow run triggered by Dependabot reads Dependabot secrets, not Actions secrets, so the PR's CI skips the private-assets step and builds on the neutral placeholder. That is the accepted exception in [`AGENTS.md`](../../AGENTS.md) §12: code from updated dependencies runs in that build, and it must not run with the deploy key to the private assets.
 - **After each Dependabot merge, read the `deploy.yml` run on `main`.** Its `build` job is the first one with the real assets, and the evidence for the bump. `deploy` needs `build`, so a failing build publishes nothing and the live site stays as it was. If it fails, revert the merge or fix it, in its own PR.
 
@@ -42,7 +42,7 @@ Every January 1 and July 1 the workflow opens the issue "Revisão semestral" wit
 3. Dra. Victória re-approves the content (through Filipe). If she approves, `medica.revisao` in `src/content/data/medica.yaml` becomes the date of that approval, in its own pull request. If she does not, nothing changes until the correction is approved.
 4. Every external link answers 200, the CREMESP lookup (`https://guiamedico.cremesp.org.br/`) included.
 5. Search Console and Bing Webmaster show no errors ([`search-console.md`](search-console.md)).
-6. The domain's TXT records are in place: `google-site-verification` at the root and the GitHub Pages challenge ([`domain-dns.md`](../architecture/domain-dns.md)).
+6. The domain's TXT records are in place: `google-site-verification` at the root and `_github-pages-challenge-FilipeOliveira94` ([`domain-dns.md`](../architecture/domain-dns.md)).
 
 Close the issue when every item is checked. Each correction found is a pull request of its own. The same template is available under **New issue** for a review out of schedule.
 
@@ -52,7 +52,7 @@ Close the issue when every item is checked. Each correction found is a pull requ
 
 Two layers remind of the renewal: Registro.br's own expiration e-mail to the domain holder (Dra. Victória, as registrant), and this workflow, which does not depend on that mailbox.
 
-On the 1st of each month the workflow reads `https://rdap.registro.br/domain/dravictorialaufer.com.br`, takes the `expiration` event and counts the days left. With 60 days or fewer, it opens the renewal issue with the date and a short checklist: renew at Registro.br, confirm the new date in RDAP, record it here in a pull request. If RDAP does not answer, or answers without an expiration date, the job fails (red in Actions, and GitHub e-mails the failure) and nothing is posted.
+On the 1st of each month the workflow reads `https://rdap.registro.br/domain/dravictorialaufer.com.br`, takes the `expiration` event and counts the days left. Since it runs monthly, the first issue arrives 60 to 90 days before the expiration. With 90 days or fewer (the default threshold), it opens the renewal issue with the date and a short checklist: renew at Registro.br, confirm the new date in RDAP, record it here in a pull request. If RDAP does not answer, or answers without an expiration date, the job fails (red in Actions, and GitHub e-mails the failure) and nothing is posted.
 
 After renewing, update the date above.
 
@@ -62,7 +62,7 @@ Both workflows have `workflow_dispatch`:
 
 ```bash
 gh workflow run semiannual-review.yml
-gh workflow run domain-renewal.yml                      # threshold 60 days
+gh workflow run domain-renewal.yml                      # threshold 90 days
 gh workflow run domain-renewal.yml -f threshold_days=9999   # opens the issue now (test)
 gh run list --workflow domain-renewal.yml --limit 1
 ```
