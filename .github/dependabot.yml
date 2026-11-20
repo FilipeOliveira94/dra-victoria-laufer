@@ -1,5 +1,5 @@
 # Dependabot version updates (issue 7.2). No auto-merge: every Dependabot PR
-# follows AGENTS.md §4 and is merged by the Reviewer after Filipe's OK.
+# follows AGENTS.md §4; Filipe reviews and merges it.
 # Runbook: docs/runbooks/maintenance.md
 version: 2
 updates:

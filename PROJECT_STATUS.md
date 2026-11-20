@@ -28,7 +28,7 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Next work
 
-1. **7.2** PR #28: PO and Reviewer approval on the same head (large change: workflows with `issues: write`), then Filipe's OK and the merge.
+1. **7.2** PR #28 merged as `e93068b`; record its `deploy.yml` run (`published`) in the next PR.
 2. **7.2 after the merge:** dispatch `domain-renewal.yml` (default threshold: no issue; `threshold_days=9999`: issue, then closed) and `semiannual-review.yml` (issue, then closed); confirm Dependabot's first run; record the runs.
 3. **Filipe, in the settings:** enable Dependabot security updates; never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets ([runbook](docs/runbooks/maintenance.md)).
 4. **7.1 → verified:** Filipe confirms the home page as indexed in URL Inspection; the next PR records it.

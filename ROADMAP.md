@@ -12,7 +12,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 - Mark an issue **delivered** only when the change is merged into `main`.
 - Mark an issue **verified** only when its acceptance checks have been run and the result is recorded in `docs/status-log.md`; `PROJECT_STATUS.md` summarizes it.
-- Each issue is one feature branch and one pull request, approved by PO and Reviewer and merged by the Reviewer after Filipe's OK ([`AGENTS.md`](AGENTS.md) §4).
+- Each issue is one feature branch and one pull request, opened by the Dev (Claude in T3 Code), reviewed and merged by Filipe ([`AGENTS.md`](AGENTS.md) §3 and §4).
 - Do not start an issue until its dependencies are satisfied. A dependency on a person (content, brand) is a blocker, not something to fill in.
 - Issue IDs are stable. A removed issue keeps its ID and is marked `withdrawn`.
 
@@ -543,3 +543,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-19 | 7.1 in progress on `docs/7.1-search-console`: Search Console and Bing set up by Filipe outside the repository; runbook `docs/runbooks/search-console.md`. Home page indexing pending verification after the merge |
 | 2026-11-20 | 7.1 delivered: PR #27 merged as `b91aaa7`; `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666) succeeded (`build`, `deploy`, `published`). Verified when URL Inspection shows the home page indexed. 5.2 status now cites the PR head run 44646362550 and the deploy run 44662384821 instead of run 44629224571 (an earlier head). 7.2 in progress on `chore/7.2-maintenance` |
 | 2026-11-20 | 7.2 built on PR #28: Dependabot, semiannual review and domain renewal workflows, maintenance runbook, dependency-bump rule in `AGENTS.md`. PR #28 CI [run 44667244795](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44667244795) on `c555a64` passed with the private assets. The `workflow_dispatch` tests run right after the merge (GitHub returns 404 for a workflow not on the default branch). Phase 7 closes when 7.1 and 7.2 are verified |
+| 2026-11-20 | Docs aligned with Filipe's simplified development flow (in force since 2026-11-20): Claude in T3 Code is the Dev and opens the PR; Filipe reviews, merges and deletes the branch; PO de Projetos and Reviewer de Projetos act only when he asks, and never merge. No double approval (`AGENTS.md` §3, §4, §13) |
