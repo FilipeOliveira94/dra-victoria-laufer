@@ -14,14 +14,16 @@ import type { Section } from '../lib/sections';
 // moves with it.
 interface Props {
   section: Section;
+  // The last section present on the page: its path runs out at its end.
+  last?: boolean;
 }
 
-const { section } = Astro.props;
+const { section, last = false } = Astro.props;
 const headingId = `${section.id}-titulo`;
 ---
 
 <section
-  class:list={['section', `section-${section.fundo}`, { 'has-label': section.rotulo }]}
+  class:list={['section', `section-${section.fundo}`, { 'has-label': section.rotulo, 'section-last': last }]}
   id={section.id}
   aria-labelledby={headingId}
 >

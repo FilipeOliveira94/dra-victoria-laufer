@@ -19,7 +19,9 @@ victoria:
   # route takes an encrypted QR token), so this is the official search page;
   # the home page names the CRM to search for. Must answer 200 (curl -I -L).
   consultaCrm: https://guiamedico.cremesp.org.br/
-  # Last review of the home page content: her approval of the 5.2 lines (the
-  # CREMESP sentence and this date), relayed by Filipe, 2026-11-19. Update it
-  # with each content review she approves.
+  # The date Dra. Victória approved the home page content: the 5.2 lines (the
+  # CREMESP sentence and this date), relayed by Filipe, 2026-11-19. It is her
+  # approval date, not the date of a CFM check; update it with each content
+  # change she approves. Keep it quoted: unquoted, YAML reads a Date and the
+  # build fails.
   revisao: "2026-11-19"

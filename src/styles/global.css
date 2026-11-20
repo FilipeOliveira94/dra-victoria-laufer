@@ -525,8 +525,9 @@ main:focus {
   height: calc(100% - var(--stone-y) - var(--trail-lead));
 }
 
-/* After the last section the path runs out (before the review date, issue 5.2). */
-.section:last-of-type .trail-out {
+/* After the last section the path runs out (before the review date, issue 5.2).
+   index.astro marks the last section present with `section-last`. */
+.section-last .trail-out {
   height: calc(100% - var(--stone-y));
 }
 
