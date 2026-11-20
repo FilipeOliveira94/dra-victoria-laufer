@@ -28,7 +28,7 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Next work
 
-1. **5.2** PR review: PO and Reviewer on the same head, then Filipe's OK. Her approval of the new line under the identity line and of the review date.
+1. **5.2** PR review: PO and Reviewer on the same head, then Filipe's OK. She approved both new sentences (relayed by Filipe, 2026-11-19).
 2. **Phase 7:** 7.2 (maintenance), then 7.1 (Search Console and Bing Webmaster).
 3. Phase 6 (acquisition) stays deferred until Filipe reopens it.
 
