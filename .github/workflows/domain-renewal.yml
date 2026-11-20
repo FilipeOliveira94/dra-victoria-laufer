@@ -1,8 +1,8 @@
 # Domain renewal reminder (issue 7.2). Monthly, reads the expiration date of
 # dravictorialaufer.com.br from the Registro.br RDAP and, with THRESHOLD_DAYS
-# (default 90) or fewer left, opens a renewal issue unless one is already open.
-# With the monthly schedule the first issue comes 60 to 90 days ahead. If RDAP
-# fails or has no expiration date, the job fails and nothing is posted.
+# (default 60) or fewer left, opens a renewal issue unless one is already open.
+# If RDAP fails or has no expiration date, or threshold_days is not a whole
+# number without leading zeros, the job fails and nothing is posted.
 # Runbook: docs/runbooks/maintenance.md
 name: domain-renewal
 
@@ -12,9 +12,9 @@ on:
   workflow_dispatch:
     inputs:
       threshold_days:
-        description: Open the issue when this many days or fewer are left (default 90; raise it to test)
+        description: Open the issue when this many days or fewer are left (whole number, no leading zeros; raise it to test)
         required: false
-        default: "90"
+        default: "60"
 
 permissions:
   issues: write
@@ -29,16 +29,19 @@ jobs:
     timeout-minutes: 5
     env:
       DOMAIN: dravictorialaufer.com.br
-      THRESHOLD_DAYS: ${{ inputs.threshold_days || '90' }}
+      # Scheduled runs use 60; a manual run uses the input as typed, so an
+      # empty or malformed value is rejected below instead of replaced.
+      THRESHOLD_DAYS: ${{ github.event_name == 'schedule' && '60' || inputs.threshold_days }}
       TITLE_PREFIX: Renovar o domínio dravictorialaufer.com.br
     steps:
       - name: Read the expiration date from RDAP
         id: rdap
         run: |
           set -euo pipefail
-          case "$THRESHOLD_DAYS" in
-            ''|*[!0-9]*) echo "::error::threshold_days must be a whole number of days"; exit 1 ;;
-          esac
+          if ! [[ "$THRESHOLD_DAYS" =~ ^(0|[1-9][0-9]*)$ ]]; then
+            echo "::error::threshold_days must be a whole number of days without leading zeros (got '$THRESHOLD_DAYS')"
+            exit 1
+          fi
           curl -fsS --retry 3 --retry-all-errors --max-time 30 \
             -H 'Accept: application/rdap+json' \
             "https://rdap.registro.br/domain/$DOMAIN" > rdap.json

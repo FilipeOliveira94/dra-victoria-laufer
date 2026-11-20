@@ -1,6 +1,7 @@
 # Opens the "Revisão semestral" issue every January 1 and July 1 (issue 7.2).
 # The checklist is .github/ISSUE_TEMPLATE/revisao-semestral.md. If an issue
-# with that title is already open, nothing is posted.
+# with that title is already open, no new issue is opened: the run leaves one
+# comment on the open issue saying this review is still pending.
 # Runbook: docs/runbooks/maintenance.md
 name: semiannual-review
 
@@ -29,7 +30,7 @@ jobs:
           sparse-checkout: .github/ISSUE_TEMPLATE
           sparse-checkout-cone-mode: false
 
-      - name: Open the issue unless one is already open
+      - name: Open the issue, or comment on the one still open
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
@@ -40,7 +41,11 @@ jobs:
           open=$(gh issue list --state open --limit 200 --json number,title \
             --jq "[.[] | select(.title == env.TITLE)][0].number // empty")
           if [ -n "$open" ]; then
-            echo "Issue #$open \"$TITLE\" is already open; nothing posted."
+            months=(janeiro fevereiro março abril maio junho julho agosto setembro outubro novembro dezembro)
+            month=${months[$(( 10#$(date -u +%m) - 1 ))]}
+            gh issue comment "$open" \
+              --body "Revisão de $month/$(date -u +%Y) não aberta: esta ainda está pendente."
+            echo "Issue #$open \"$TITLE\" is still open; commented on it, no new issue."
             exit 0
           fi
           # Body: the template without its front matter (the first --- block).
