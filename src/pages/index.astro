@@ -6,8 +6,10 @@ import {
   channelLabel,
   channelLink,
   courseLine,
+  crmLabel,
   identityLine,
   leadSentence,
+  longDate,
   medica,
   NOT_SPECIALIST,
   published,
@@ -42,6 +44,8 @@ const present: Record<SectionId, boolean> = {
   contato: channels.length > 0,
 };
 const nav = sections.filter((s) => present[s.id]);
+// The last section present ends the garden path (DESIGN.md → Garden shapes).
+const lastId = nav.at(-1)?.id;
 // JSON-LD Person from the same collections (issue 4.1, ADR-0009).
 const structuredData = jsonLd((await person(Astro.site!))!);
 ---
@@ -62,6 +66,11 @@ const structuredData = jsonLd((await person(Astro.site!))!);
       <div class="identification-text">
         <h1>{id.nome}</h1>
         <p class="label identity-line">{identification}</p>
+        {/* Issue 5.2: where a visitor checks the registration, next to the CRM.
+            The lookup has no deep link by CRM, so the sentence names it. */}
+        <p class="identity-check">
+          Confira o {crmLabel(id)} na <a href={id.consultaCrm}>consulta pública de médicos do CREMESP</a>.
+        </p>
       </div>
       <div class="scene">
         <svg class="scene-clearing" viewBox="0 0 400 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">
@@ -77,7 +86,7 @@ const structuredData = jsonLd((await person(Astro.site!))!);
     </div>
     {
       courses.length > 0 && (
-        <Section section={section('formacao')}>
+        <Section section={section('formacao')} last={lastId === 'formacao'}>
           {/* DESIGN.md → Course card. Each postgraduate course is one `title`
               line: NÃO ESPECIALISTA inherits its size, weight and colour (the
               Same-Size Rule); its span only keeps it on one line, never apart
@@ -107,7 +116,7 @@ const structuredData = jsonLd((await person(Astro.site!))!);
     }
     {
       roles.length > 0 && (
-        <Section section={section('atuacao')}>
+        <Section section={section('atuacao')} last={lastId === 'atuacao'}>
           {/* DESIGN.md → Role list: each line marked by a small leaf. Where she
               works, then the "Experiência" group with its start years. Plain
               facts, never an invitation to a consultation. */}
@@ -141,7 +150,7 @@ const structuredData = jsonLd((await person(Astro.site!))!);
     }
     {
       id.sobre.length > 0 && (
-        <Section section={section('sobre')}>
+        <Section section={section('sobre')} last={lastId === 'sobre'}>
           {/* Her text, published as she approved it (AGENTS.md §6). Only the
               first sentence changes face: the serif, in the heading colour. */}
           <p class="sobre-text">
@@ -156,7 +165,7 @@ const structuredData = jsonLd((await person(Astro.site!))!);
     }
     {
       channels.length > 0 && (
-        <Section section={section('contato')}>
+        <Section section={section('contato')} last={lastId === 'contato'}>
           {/* DESIGN.md → Contact: the channel as a label with its drawn icon,
               the address as the link text. The dt names each link for
               assistive technology. */}
@@ -186,5 +195,8 @@ const structuredData = jsonLd((await person(Astro.site!))!);
         </Section>
       )
     }
+    {/* Issue 5.2: the date of the last content review, from medica.yaml; the
+        legal pages show theirs under the h1. */}
+    <p class="page-review wrap">Revisado em <time datetime={id.revisao}>{longDate(id.revisao)}</time>.</p>
   </main>
 </Base>

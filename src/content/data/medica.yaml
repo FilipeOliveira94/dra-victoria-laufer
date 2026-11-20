@@ -15,3 +15,13 @@ victoria:
   sobre:
     - "Sou médica e trabalho no cuidado de recém-nascidos e crianças, em maternidade e em unidade de terapia intensiva. Ao longo da formação, busquei pós-graduações em pediatria clínica, neonatologia e terapia intensiva pediátrica (NÃO\_ESPECIALISTA), listadas em Formação."
     - No dia a dia, procuro explicar com clareza cada etapa do cuidado e responder às dúvidas das famílias com calma e respeito.
+  # Issue 5.2. The CREMESP lookup has no deep link by CRM (its per-physician
+  # route takes an encrypted QR token), so this is the official search page;
+  # the home page names the CRM to search for. Must answer 200 (curl -I -L).
+  consultaCrm: https://guiamedico.cremesp.org.br/
+  # The date Dra. Victória approved the home page content: the 5.2 lines (the
+  # CREMESP sentence and this date), relayed by Filipe, 2026-11-19. It is her
+  # approval date, not the date of a CFM check; update it with each content
+  # change she approves. Keep it quoted: unquoted, YAML reads a Date and the
+  # build fails.
+  revisao: "2026-11-19"

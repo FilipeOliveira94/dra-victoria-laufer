@@ -4,8 +4,11 @@ Four prompts drive one issue: plan, implement, open the PR, review. They are too
 
 ```text
 plan → approval → feature branch → implement → checks + CFM checklist → PR
-     → PO approval + Reviewer approval → Filipe's OK → Reviewer merges
+     → PR CI read → Dev signals ready → PO + Reviewer approve the same head
+       (small change: PO only) → Filipe's OK → Reviewer merges
 ```
+
+The rules behind each arrow are in [`AGENTS.md`](../AGENTS.md) §4 and §13.
 
 ---
 
@@ -56,11 +59,12 @@ Follow AGENTS.md.
 Review the current diff against the agreed plan and acceptance criteria. Do not add features.
 - Check for unrelated changes, secrets, generated files, portrait or brand source files, and undocumented behavior.
 - Apply the AGENTS.md §12 "Issue Close Checklist".
-- Commit with Conventional Commits. Push only this feature branch. Never push main.
-- Open one PR for this issue. The description lists: issue ID, each acceptance criterion and how it was verified, check results with values, the CI run of the PR, and the CFM checklist result.
+- Commit with Conventional Commits. Push only this feature branch. Never push main. Never force-push a branch someone else is reviewing. Filipe's order to implement already authorizes the commit, the push of this branch, the PR and reading its CI.
+- Open one PR for this issue. The description lists: issue ID, each acceptance criterion and how it was verified, check results with values, the CI run of the PR, the CFM checklist result, and the change classification (small or large, AGENTS.md §4 item 11).
 - If the previous merge's `published` job has not been recorded yet, cite its run in this PR's `docs/status-log.md` entry. Never open a PR just for that.
+- Read the PR's CI run. When it passes, tell the PO and the Reviewer the PR is ready, with its head SHA.
 
-Do not merge. Return the PR link and the completion report.
+Do not merge. Return the PR link, its head SHA, the CI result and the completion report.
 ```
 
 ## 4. Review (PO and Reviewer, separately)
@@ -68,7 +72,7 @@ Do not merge. Return the PR link and the completion report.
 ```text
 Follow AGENTS.md.
 
-Review PR <link> for issue <ISSUE-ID> as <PO | Reviewer>. Do not change the branch.
+Review PR <link> at head <SHA> for issue <ISSUE-ID> as <PO | Reviewer>, after the Dev's ready signal. Do not change the branch.
 
 PO: compare the PR with the issue in ROADMAP.md: objective, scope, out of scope and each acceptance criterion. Run the CFM checklist yourself against the built page, including metadata, alt text and structured data.
 
@@ -77,7 +81,7 @@ Reviewer: review the diff for correctness, focus and maintainability. Confirm th
 Return approve or request changes, with each finding tied to a file and line or to an acceptance criterion.
 ```
 
-The Reviewer merges only when the PO has approved, the Reviewer has approved, and Filipe has given the OK in the PR.
+PO and Reviewer approve the same PR head; any objection blocks. Each fix (new commits, CI read again, new ready signal) is a round; after two rounds of disagreement, Filipe decides. A small change (AGENTS.md §4 item 11) needs only the PO's approval, and the Reviewer merges it without reviewing. Merge, branch deletion and deploy are the Reviewer's, only after the required approvals and Filipe's explicit OK; Filipe may do them himself or order a specific bot to.
 
 ---
 

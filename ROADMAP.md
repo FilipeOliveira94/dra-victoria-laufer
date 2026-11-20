@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-19 (5.1 verified) |
+| Last updated | 2026-11-19 (5.2 in progress; phase 6 deferred) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -29,11 +29,11 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | 2 | Credibility content under the CFM rules (MVP): brand, identification and contact, training, roles, cut-out portrait, release. The finished page; ends with the initial release | Phase 1; inputs from 0.2; brand from 0.3 | Verified (2.1 to 2.6); closed with the 2.6 merge |
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Verified (3.1 and 3.2; 3.3 withdrawn); closed with the 3.2 published-site check |
 | 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Verified (4.1); closes with the 4.1 merge |
-| 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Not started |
-| 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Not started |
+| 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | In progress (5.1 verified and published; 5.2 in progress) |
+| 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Deferred (Filipe, 2026-11-19); 6.1 and 6.2 unchanged. As planned, acquisition goes live only when she resumes seeing patients (Phase 6 goal) |
 | 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | Not started |
 
-Phase 5 is the active phase: 5.1 verified, 5.2 next. Phase 4 closed with the 4.1 merge: the JSON-LD `Person` is on the live page. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+Phase 5 is the active phase: 5.1 verified and published (PR #24), 5.2 in progress. Phase 6 is deferred by Filipe's decision (2026-11-19); its issues keep their scope and acceptance. After 5.2 comes phase 7: 7.2, then 7.1. Phase 4 closed with the 4.1 merge: the JSON-LD `Person` is on the live page. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
 
 ### Design brief (confirmed by Filipe)
 
@@ -384,7 +384,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 | Issue 5.2 | Detail |
 | --- | --- |
-| Status | `not started` |
+| Status | `in progress` (branch `feat/5.2-further-evidence`) |
 | Size | M |
 | Depends on | 2.6 |
 
@@ -392,6 +392,8 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 - **Scope:** courses, events or publications; link to the CREMESP public physician lookup; visible review date.
 - **Out of scope:** health articles.
 - **Acceptance:** each item with a verifiable source; external links answer 200.
+- **Delivered in this issue (Filipe and PO, 2026-11-19):** the CREMESP lookup link and the review date, both from `medica` in the content model. The lookup has no deep link by CRM, so the link is the official search page, `https://guiamedico.cremesp.org.br/`.
+- **Pending:** courses, events and publications. She has none today, and a collection for them is not cheap without its first item: it needs a section heading she approves, a place in the page sequence and in `DESIGN.md`, and CFM wording per item type. The model is built when the first item arrives, rendering nothing while empty.
 
 ---
 
@@ -532,3 +534,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-18 | 5.1 built: `/privacidade/` and `/aviso-legal/` from a new `paginas` collection, linked in every footer and listed in the sitemap; each page has its own canonical. Privacy names GitHub Pages (hosting) and Gmail, WhatsApp and Instagram (contact channels), the only third parties; no cookies, forms or analytics. The legal notice says the content does not replace a consultation. axe and Lighthouse now cover both pages. Local builds: every check passes. The text waits on her approval |
 | 2026-11-18 | 5.1: PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982) passed with the private assets; axe and Lighthouse on the three pages. Waiting on her approval of the text |
 | 2026-11-19 | 5.1 verified: Dra. Victória approved the text (relayed by Filipe); PO, Reviewer and Filipe approved PR #24 |
+| 2026-11-19 | Phase 5: 5.1 merged (PR #24) and published. 5.2 in progress: CREMESP lookup link and review date; courses, events and publications recorded as pending. Phase 6 deferred by Filipe; after 5.2 comes phase 7 (7.2, then 7.1) |

@@ -50,7 +50,7 @@ Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src
 
 | Collection | Holds | Fields |
 | --- | --- | --- |
-| `medica` | Name, registration, the word `MÉDICA`, the text "Sobre" | `nome`; `titulo` (only `MÉDICA`); `crm.uf`, `crm.numero`; `sobre` (list of paragraphs, her text as approved) |
+| `medica` | Name, registration, the word `MÉDICA`, the text "Sobre", where to check the CRM, the page's review date | `nome`; `titulo` (only `MÉDICA`); `crm.uf`, `crm.numero`; `sobre` (list of paragraphs, her text as approved); `consultaCrm` (the CREMESP public lookup, exactly `https://guiamedico.cremesp.org.br/`; issue 5.2); `revisao` (quoted ISO date on which she approved the home page content, shown as "Revisado em …" in a `<time>`; issue 5.2) |
 | `formacao` | The degree and the postgraduate courses | `tipo: graduacao` with `curso`, `instituicao`, `ano`; `tipo: pos-graduacao` with `nomeOficial`, `area`, `instituicao`, `emCurso`. Both carry `ordem` |
 | `atuacao` | Approved role lines | `grupo` (`local` or `experiencia`), `ordem`, `texto`, optional `desde` (rendered ", desde <ano>") |
 | `contato` | E-mail, WhatsApp, Instagram | `tipo` (`email`, `whatsapp` in E.164, `instagram` as an `https://www.instagram.com/` URL), `ordem`, `valor` |
@@ -60,6 +60,7 @@ Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src
 - A pending item is not rendered: `published()` in `src/lib/content.ts` drops it. The build log lists it as `[pendente] <collection>/<id>: <motivo>`, with a count per collection. The report is not written to `dist/`.
 - The loader (`src/content/loader.ts`) wraps Astro's `file()` and stops the build when the file is missing or unreadable, which `file()` alone only logs.
 - Pages and JSON-LD read from the collections. No fact is typed twice.
+- Issue 5.2: the home page links the CREMESP lookup under the identity line ("Confira o CRM-SP 240550 na consulta pública de médicos do CREMESP") and ends `<main>` with "Revisado em <date>". The lookup has no deep link by CRM (its per-physician route takes an encrypted QR token), so the link is the official search page and the sentence names the number. Neither field reaches the JSON-LD. Courses, events and publications have no collection yet: she has none, and the model waits for the first item (`ROADMAP.md` → 5.2).
 - Flags `captacao.cta` and `captacao.atendimento` in `src/config/captacao.ts` are off. Off means no HTML and no JSON-LD for those blocks (Phase 6).
 
 ## Environments
@@ -78,11 +79,14 @@ Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src
 ## Build and deploy
 
 ```text
-pull request ──► checks (1.7) ──► PO + Reviewer approval ──► Filipe's OK ──► merge to main
-                                                                                  │
-private assets repo ──(read-only deploy key)──► fetch ──► build ──► GitHub Pages ◄┘
+pull request ──► CI (1.7) ──► Dev's ready signal ──► PO + Reviewer approve the same head
+             ──► Filipe's OK ──► Reviewer merges to main
+                                                  │
+                                                  ▼
+private assets repo ──(read-only deploy key)──► fetch ──► build ──► GitHub Pages
 ```
 
+- Approvals follow [`AGENTS.md`](../../AGENTS.md) §4: a small change needs only the PO's approval. Merge, branch deletion and deploy are the Reviewer's, after Filipe's explicit OK; Filipe may do them himself or order a specific bot to.
 - A push to `main` runs `.github/workflows/deploy.yml`: `npm ci`, build for `https://dravictorialaufer.com.br/` (no `DEPLOY_TARGET`, since 3.2), `scripts/check-requests.mjs` (every referenced request must return 200 from the site itself), upload `dist/`, deploy. The built site is not committed to any branch.
 - Astro 7.4.12 on Node.js 22.23.4 (`.nvmrc`); `package-lock.json` is committed.
 - The workflow fetches `dra-victoria-laufer-assets` before the build. Without the secret, the build uses a neutral placeholder and still completes.

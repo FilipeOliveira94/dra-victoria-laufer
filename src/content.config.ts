@@ -38,6 +38,12 @@ const medica = defineCollection({
       }),
       // Paragraphs of "Sobre", published without a change of meaning.
       sobre: z.array(text).min(1),
+      // Issue 5.2: the CREMESP public physician lookup, where a visitor checks
+      // the CRM. Exactly the official search page (it has no deep link by CRM).
+      // Linked under the identity line on the home.
+      consultaCrm: z.literal('https://guiamedico.cremesp.org.br/'),
+      // Issue 5.2: the date she approved the home page content, shown on it.
+      revisao: z.iso.date(),
     }),
   ]),
 });
