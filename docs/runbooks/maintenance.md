@@ -18,7 +18,8 @@ The two workflows have only `contents: read` and `issues: write`, use the automa
 - **GitHub Actions**, monthly: one pull request per action.
 - **No auto-merge.** Each Dependabot pull request follows the normal flow ([`AGENTS.md`](../../AGENTS.md) §4): its CI run (`deploy.yml`, `build` job) must pass, and the Reviewer merges after Filipe's OK. A merge deploys the site, so read the `published` job of its run.
 - **Classification** ([`AGENTS.md`](../../AGENTS.md) §4 item 11): a patch bump is a small change (PO approval is enough). A minor or major bump is small only if its CI passes and the changelog of each updated package shows no breaking change; otherwise it is large and needs PO and Reviewer on the same head. The Dev who delivers it records which changelogs were read.
-- A workflow run triggered by Dependabot reads Dependabot secrets, not Actions secrets. Without an `ASSETS_DEPLOY_KEY` among the Dependabot secrets, the PR's CI skips the private-assets step and builds on the neutral placeholder, which does not meet [`AGENTS.md`](../../AGENTS.md) §12. Before merging, check that the step ran. To make it run, Filipe adds the same read-only deploy key as a Dependabot secret (step 5 below).
+- **Never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets** (Filipe, 2026-11-20). A workflow run triggered by Dependabot reads Dependabot secrets, not Actions secrets, so the PR's CI skips the private-assets step and builds on the neutral placeholder. That is the accepted exception in [`AGENTS.md`](../../AGENTS.md) §12: code from updated dependencies runs in that build, and it must not run with the deploy key to the private assets.
+- **After each Dependabot merge, read the `deploy.yml` run on `main`.** Its `build` job is the first one with the real assets, and the evidence for the bump. `deploy` needs `build`, so a failing build publishes nothing and the live site stays as it was. If it fails, revert the merge or fix it, in its own PR.
 
 ### Alerts and security updates (Filipe, in the repository settings)
 
@@ -27,8 +28,8 @@ The two workflows have only `contents: read` and `issues: write`, use the automa
 1. GitHub → the repository → **Settings** → **Code security** (or **Security & analysis**).
 2. **Dependabot alerts**: Enable. On 2026-11-20 the API reported alerts as already enabled.
 3. **Dependabot security updates**: Enable. On 2026-11-20 the API reported them as disabled.
-4. Leave any auto-merge rule off. A security update is a pull request like any other and follows the same flow.
-5. Optional, so Dependabot PRs build with the private assets: **Settings** → **Secrets and variables** → **Dependabot** → **New repository secret**, name `ASSETS_DEPLOY_KEY`, value the same private deploy key held in the Actions secret of that name (read-only, one repository). GitHub does not show a secret's value again: if that private key is no longer at hand, add a new read-only deploy key to `dra-victoria-laufer-assets` and set its private half in both secrets. The key is never pasted into an issue, a PR or a log.
+4. Leave any auto-merge rule off. A security update is a pull request like any other and follows the same flow, including the read of the `main` build after the merge.
+5. Do not add any secret under **Secrets and variables** → **Dependabot**; in particular never `ASSETS_DEPLOY_KEY` (see above).
 
 Read-only check of both settings: `gh api repos/FilipeOliveira94/dra-victoria-laufer/vulnerability-alerts -i` (204 means enabled) and `gh api repos/FilipeOliveira94/dra-victoria-laufer/automated-security-fixes`.
 
@@ -48,6 +49,8 @@ Close the issue when every item is checked. Each correction found is a pull requ
 ## Domain renewal
 
 `dravictorialaufer.com.br` is registered at Registro.br under Dra. Victória's CPF. Per the Registro.br RDAP (read on 2026-11-20), it expires on **2028-11-18T21:53:01Z**.
+
+Two layers remind of the renewal: Registro.br's own expiration e-mail to the domain holder (Dra. Victória, as registrant), and this workflow, which does not depend on that mailbox.
 
 On the 1st of each month the workflow reads `https://rdap.registro.br/domain/dravictorialaufer.com.br`, takes the `expiration` event and counts the days left. With 60 days or fewer, it opens the renewal issue with the date and a short checklist: renew at Registro.br, confirm the new date in RDAP, record it here in a pull request. If RDAP does not answer, or answers without an expiration date, the job fails (red in Actions, and GitHub e-mails the failure) and nothing is posted.
 

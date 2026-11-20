@@ -33,6 +33,7 @@ Keep this repository public. Store the **original photos and the brand source fi
 - The Actions deploy does not write the built site to a branch, so the portrait does not enter this repository's history ([ADR-0003](0003-hosting-github-pages-actions.md)).
 - Issue 1.7 fails a PR that adds a portrait image file here.
 - PRs from forks do not receive the secret; Lighthouse CI runs with the real photo only on PRs from this repository.
+- Dependabot PRs do not receive it either, by decision (Filipe, 2026-11-20, issue 7.2): `ASSETS_DEPLOY_KEY` is never added to the Dependabot secrets, so code from updated dependencies never runs with the key. Their CI builds on the placeholder; the evidence with the real assets is the `deploy.yml` build on `main` after the merge, which publishes nothing if it fails (`AGENTS.md` §12 exception).
 
 ## Evidence / validation
 

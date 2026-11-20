@@ -40,7 +40,7 @@ One issue, one feature branch, one pull request.
 6. Implement the smallest coherent increment that satisfies the issue.
 7. Run the checks in §9 and the CFM checklist in §8. Fix regressions caused by the change.
 8. Update documentation and `PROJECT_STATUS.md` (current-phase ledger only; older narrative goes to `docs/status-log.md`).
-9. Push the feature branch and open the PR. The PR description lists the issue ID, the acceptance criteria with how each was verified, the check results, and the CFM checklist result. The PR's CI run (`deploy.yml`, build job) runs the same build as a deploy, private assets included; it must pass, and its run is cited as evidence.
+9. Push the feature branch and open the PR. The PR description lists the issue ID, the acceptance criteria with how each was verified, the check results, and the CFM checklist result. The PR's CI run (`deploy.yml`, build job) runs the same build as a deploy, private assets included (Dependabot PRs excepted, §12); it must pass, and its run is cited as evidence.
 10. Once the CI is read, tell the PO and the Reviewer the PR is ready. They review only after that signal and approve the same PR head. Any objection blocks. Each fix (new commits, CI read again, new signal) is a round. After two rounds of disagreement, Filipe decides.
 11. Small change (docs, text, config tweak, patch dependency bump, or a contained bugfix of up to ~50 lines in up to 3 files that touches no architecture, data model/schema, auth/security, infra/deploy, public API or pipeline logic; when in doubt, it is large; the Dev classifies it on delivery): PO approval is enough, and the Reviewer merges without reviewing. A change to content, metadata or alt text still runs the CFM checklist (§8). Dependency bumps, Dependabot's included: a patch bump is small; a minor or major bump is small only if its CI passes and the changelog of each updated package shows no breaking change. Dependabot pull requests are never auto-merged ([`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md)).
 12. Filipe gives the OK. Only then does the Reviewer merge.
@@ -150,6 +150,7 @@ Before asking for the merge, check each item and update only what the verified e
 - `PROJECT_STATUS.md`: the phase table, Blockers, Next work, and Last updated.
 - `docs/status-log.md`: a new entry, with the PR's CI run and, if not yet recorded, the `published` run of the previous merge.
 - The PR's CI run passed, with the private-assets step executed (not skipped).
+  - **Exception, Dependabot pull requests** (Filipe, 2026-11-20): their CI builds on the neutral placeholder, because `ASSETS_DEPLOY_KEY` is never added to the Dependabot secrets: code from updated dependencies must not run with the deploy key. The evidence with the real assets is the `build` job of `deploy.yml` on `main` after the merge; `deploy` needs `build`, so a failing build publishes nothing. If that build fails, revert or fix in its own PR ([`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md)).
 - An ADR or `DECISIONS.md` row gets an Implemented value only with evidence from a verified issue.
 - `docs/compliance/cfm.md` changes only when a rule changes, with the source of the change.
 - `README.md` changes when how to run the site or the current state changes.

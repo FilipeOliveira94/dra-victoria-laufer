@@ -30,7 +30,7 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 1. **7.2** PR #28: PO and Reviewer approval on the same head (large change: workflows with `issues: write`), then Filipe's OK and the merge.
 2. **7.2 after the merge:** dispatch `domain-renewal.yml` (default threshold: no issue; `threshold_days=9999`: issue, then closed) and `semiannual-review.yml` (issue, then closed); confirm Dependabot's first run; record the runs.
-3. **Filipe, in the settings:** enable Dependabot security updates; optionally add `ASSETS_DEPLOY_KEY` as a Dependabot secret ([runbook](docs/runbooks/maintenance.md)).
+3. **Filipe, in the settings:** enable Dependabot security updates; never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets ([runbook](docs/runbooks/maintenance.md)).
 4. **7.1**: Filipe confirms the home page as indexed in URL Inspection.
 5. Phase 6 (acquisition) stays deferred until Filipe reopens it.
 
@@ -87,7 +87,7 @@ The full table is in `ROADMAP.md` → Risks. The ones that apply today:
 
 - Public e-mail and WhatsApp attract clinical messages through an informal channel: the notice is 5.1 (ADR-0007).
 - Scheduled workflows are disabled by GitHub after 60 days without repository activity: re-enable them (`docs/runbooks/maintenance.md`).
-- Dependabot PRs build on the placeholder unless `ASSETS_DEPLOY_KEY` is also a Dependabot secret: check the private-assets step before merging.
+- Dependabot PRs build on the placeholder by decision (`AGENTS.md` §12 exception; the deploy key stays away from updated dependencies): the evidence with the real assets is the `deploy.yml` build on `main` after the merge, which publishes nothing if it fails; a failure is reverted or fixed in its own PR.
 - Deleting a TXT record in Registro.br drops the Search Console and Bing verification: rule in `docs/runbooks/search-console.md`.
 - CFM: every new text runs the checklist in `docs/compliance/cfm.md`; no specialty suggested.
 - Courses not registered at the CRM (Art. 13, §1, d) and the Instagram handle with "pediatria": recorded risks in `docs/compliance/cfm.md`.

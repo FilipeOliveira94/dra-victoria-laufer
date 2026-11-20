@@ -72,7 +72,7 @@ The site is in maintenance (issue 7.2). Nothing below merges or deploys by itsel
 
 | Reminder | Does |
 | --- | --- |
-| Dependabot ([`.github/dependabot.yml`](.github/dependabot.yml)) | npm weekly (minor and patch in one PR, each major apart); GitHub Actions monthly. No auto-merge: the Reviewer merges after Filipe's OK. A patch bump is a small change; a minor or major one is small only if its CI passes and the changelog shows no breaking change |
+| Dependabot ([`.github/dependabot.yml`](.github/dependabot.yml)) | npm weekly (minor and patch in one PR, each major apart); GitHub Actions monthly. No auto-merge: the Reviewer merges after Filipe's OK. Their CI builds on the placeholder (the deploy key is never a Dependabot secret); the `deploy.yml` build on `main` after the merge is checked, and publishes nothing if it fails. A patch bump is a small change; a minor or major one is small only if its CI passes and the changelog shows no breaking change |
 | Semiannual review ([`semiannual-review.yml`](.github/workflows/semiannual-review.yml)) | January 1 and July 1: issue "Revisão semestral" with the checklist in [`.github/ISSUE_TEMPLATE/revisao-semestral.md`](.github/ISSUE_TEMPLATE/revisao-semestral.md): content still true, CFM checklist, her re-approval and `medica.revisao`, external links, Search Console and Bing, DNS TXT records |
 | Domain renewal ([`domain-renewal.yml`](.github/workflows/domain-renewal.yml)) | Monthly: reads the expiration of `dravictorialaufer.com.br` from the Registro.br RDAP (2028-11-18) and opens a renewal issue with 60 days or fewer left; fails without posting if RDAP fails |
 
