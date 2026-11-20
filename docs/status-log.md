@@ -13,6 +13,8 @@ Chronological history of project status updates, newest first. The operational l
 - **Docs:** runbook `docs/runbooks/search-console.md` (setup, owners, re-verification, sitemap resubmission, the two rules on TXT records and the token); `docs/architecture/domain-dns.md` gains the root TXT record and the current name servers. The open questions for Dra. Victória in `ROADMAP.md` are marked answered (0.2).
 - **Pending verification after the merge:** home page shown as indexed in URL Inspection.
 
+Checks on the branch: `make build` (4 pages), `make lint` (html-validate 0 errors; content, JSON-LD, photos 0 failing; Markdown tables 29 files, 0 with an empty header row), `make check` (0 errors); `git grep` finds no token. CFM checklist not needed: no visible text, metadata, alt text, structured data or URL changes. PR #27 CI [run 44664706839](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44664706839) on `3557fc3`: `build` passed with the private-assets step executed (`[assets] portrait-cutout.png`, icons, logos, social); axe 8 runs, 0 failing; Lighthouse assertions pass.
+
 ---
 
 ### 2026-11-19 — Issue 5.2 built: CREMESP lookup and review date; 5.1 published
