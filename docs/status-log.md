@@ -4,6 +4,26 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-20 — Issue 7.2 built: Dependabot, semiannual review, domain renewal reminder
+
+Built on `chore/7.2-maintenance` (PR #28), ordered by Filipe on 2026-11-20. Large change: new workflows with `issues: write`. `deploy.yml` unchanged; no site text changes.
+
+- **Dependabot** (`.github/dependabot.yml`): npm weekly, minor and patch in one grouped PR (`minor-and-patch`), each major in its own PR; GitHub Actions monthly; commit prefixes `chore(deps)` (`chore(deps-dev)` for dev dependencies) and `ci(deps)`. No auto-merge.
+- **Semiannual review** (`.github/workflows/semiannual-review.yml`): cron `0 12 1 1,7 *` and `workflow_dispatch`; opens "Revisão semestral" with the body of `.github/ISSUE_TEMPLATE/revisao-semestral.md` (front matter stripped); nothing posted if an open issue has that exact title.
+- **Domain renewal** (`.github/workflows/domain-renewal.yml`): cron `0 12 1 * *` and `workflow_dispatch` with `threshold_days` (default 60, whole numbers only); `curl -f` of `https://rdap.registro.br/domain/dravictorialaufer.com.br` with 3 retries, `expiration` event read with `jq -e`; an HTTP error or a missing date fails the job before any `gh` call. With the threshold met, opens "Renovar o domínio dravictorialaufer.com.br (vence em AAAA-MM-DD)" unless an open issue has that prefix. RDAP read on 2026-11-20: registration 2026-11-18T21:53:01Z, expiration 2028-11-18T21:53:01Z, status `active`.
+- **Workflows:** `permissions` only `contents: read` and `issues: write`; the automatic `GITHUB_TOKEN`, no secret; `actions/checkout@v4` (major, as in `deploy.yml`, `persist-credentials: false`) is the only action.
+- **Docs:** runbook `docs/runbooks/maintenance.md`, with Filipe's steps in the settings (enable Dependabot security updates; optionally `ASSETS_DEPLOY_KEY` as a Dependabot secret so Dependabot PRs build with the private assets). On 2026-11-20 the API reported Dependabot alerts enabled (`vulnerability-alerts` 204) and security updates disabled (`automated-security-fixes` `enabled: false`); no setting was changed. `AGENTS.md` §4 item 11: patch bumps small; minor or major small only with CI passing and no breaking change in the changelog; Dependabot PRs never auto-merged. `README.md` gains "Manutenção"; `ROADMAP.md`, `PROJECT_STATUS.md`, `docs/architecture/target-site.md` and `domain-dns.md` updated.
+
+Checks on the branch: `make build` (4 pages); `make lint` (html-validate 0 errors; content 43 paths, JSON-LD, photos 0 failing; Markdown tables 0 with an empty header row); `make check` (0 errors); actionlint 1.7.7 with shellcheck 0.11.0: no finding in the new workflows (one existing SC2034 warning in `deploy.yml`, untouched); `check-jsonschema` with the Dependabot and GitHub workflow schemas: valid. CFM checklist not needed: no visible text, metadata, alt text, structured data or URL changes.
+
+Workflow scripts run locally from the YAML, with a stub `gh` that never calls GitHub and jq 1.7.1, against the live RDAP: threshold 60 → 729 days left, no issue step; threshold 9999 → issue step creates the title and body above; an open renewal issue → "already open; nothing posted"; RDAP 404 (unknown domain) → `curl` exit 22, job fails, no `gh` call; RDAP JSON without `expiration` → `jq -e` exit 1; `threshold_days=abc` → error, exit 1. Semiannual: no open issue → issue with the template body; an open "Revisão semestral" → nothing posted.
+
+`gh workflow run domain-renewal.yml --ref chore/7.2-maintenance` → HTTP 404, "workflow domain-renewal.yml not found on the default branch": GitHub dispatches only workflows present on `main`. The dispatch tests (renewal with the default threshold and with `threshold_days=9999`, semiannual review, each test issue closed) run right after the merge and are recorded then.
+
+PR #28 CI [run 44667244795](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44667244795) on `c555a64` passed, with the private-assets step executed (`[assets] portrait-cutout.png`, icons, logos, social): requests 133, 0 failing; axe 8 runs, 0 failing; Lighthouse assertions pass on the three pages.
+
+---
+
 ### 2026-11-20 — Issue 7.2 in progress: maintenance; 7.1 published
 
 - **Previous merge published:** 7.1 (PR #27) merged as `b91aaa7` (2026-11-20T03:08:15Z). `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666) on `b91aaa7` succeeded: `build`, `deploy` and `published` (`gh run view`). 7.1 is verified; the home page shown as indexed in URL Inspection is still to be confirmed by Filipe.

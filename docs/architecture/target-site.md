@@ -1,6 +1,6 @@
 # Target site
 
-Overview of the site the roadmap builds. **Built so far:** the Astro base, the deploy workflow, `DEPLOY_TARGET` and `noindex` (issue 1.1); the content model (1.2); the page structure and the 404 page (1.3); images, favicon and fonts (1.4); accessibility (1.5); technical SEO (1.6); PR checks (1.7); the brand tokens and page frame (2.1). The rest does not exist yet; progress is in [`PROJECT_STATUS.md`](../../PROJECT_STATUS.md). Each section names the issue that builds it and the ADR that explains it. File paths and package versions are chosen in those issues and recorded here when they are verified.
+Overview of the site the roadmap builds. **Built:** phases 1 to 5 (base, content model, page, brand, credibility content, domain, JSON-LD `Person`, privacy and legal pages, CREMESP lookup and review date) and the maintenance reminders of 7.2. Acquisition (phase 6) is deferred and does not exist. Progress is in [`PROJECT_STATUS.md`](../../PROJECT_STATUS.md). Each section names the issue that builds it and the ADR that explains it. File paths and package versions are chosen in those issues and recorded here when they are verified.
 
 ## Purpose
 
@@ -90,6 +90,7 @@ private assets repo ──(read-only deploy key)──► fetch ──► build 
 - A push to `main` runs `.github/workflows/deploy.yml`: `npm ci`, build for `https://dravictorialaufer.com.br/` (no `DEPLOY_TARGET`, since 3.2), `scripts/check-requests.mjs` (every referenced request must return 200 from the site itself), upload `dist/`, deploy. The built site is not committed to any branch.
 - Astro 7.4.12 on Node.js 22.23.4 (`.nvmrc`); `package-lock.json` is committed.
 - The workflow fetches `dra-victoria-laufer-assets` before the build. Without the secret, the build uses a neutral placeholder and still completes.
+- Maintenance (issue 7.2) sits beside `deploy.yml` and does not change it: `.github/dependabot.yml` (npm weekly, GitHub Actions monthly, no auto-merge) and two scheduled workflows with only `contents: read` and `issues: write`, `semiannual-review.yml` and `domain-renewal.yml`, which open issues. Runbook: [`docs/runbooks/maintenance.md`](../runbooks/maintenance.md).
 - The portrait is published as AVIF and WebP with `srcset` and declared dimensions, and the main image has high priority (issue 1.4).
 
 ## Assets and privacy
