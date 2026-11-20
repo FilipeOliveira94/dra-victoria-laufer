@@ -1,0 +1,51 @@
+# Opens the "Revisão semestral" issue every January 1 and July 1 (issue 7.2).
+# The checklist is .github/ISSUE_TEMPLATE/revisao-semestral.md. If an issue
+# with that title is already open, nothing is posted.
+# Runbook: docs/runbooks/maintenance.md
+name: semiannual-review
+
+on:
+  schedule:
+    - cron: "0 12 1 1,7 *" # 12:00 UTC, 09:00 in São Paulo
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: semiannual-review
+  cancel-in-progress: false
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout the issue template
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          sparse-checkout: .github/ISSUE_TEMPLATE
+          sparse-checkout-cone-mode: false
+
+      - name: Open the issue unless one is already open
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TITLE: Revisão semestral
+          TEMPLATE: .github/ISSUE_TEMPLATE/revisao-semestral.md
+        run: |
+          set -euo pipefail
+          open=$(gh issue list --state open --limit 200 --json number,title \
+            --jq "[.[] | select(.title == env.TITLE)][0].number // empty")
+          if [ -n "$open" ]; then
+            echo "Issue #$open \"$TITLE\" is already open; nothing posted."
+            exit 0
+          fi
+          # Body: the template without its front matter (the first --- block).
+          awk 'NR==1 && $0=="---" {fm=1; next} fm && $0=="---" {fm=0; next} !fm' \
+            "$TEMPLATE" > body.md
+          test -s body.md
+          url=$(gh issue create --title "$TITLE" --body-file body.md)
+          echo "Opened $url"
