@@ -7,7 +7,7 @@ How `dravictorialaufer.com.br` reaches the site. Decision: [ADR-0003](../decisio
 | Name | `dravictorialaufer.com.br` |
 | Registrar | Registro.br, under her CPF |
 | Registered | 2026-11-18 |
-| Expires | 2028-11-18T21:53:01Z per the Registro.br RDAP; `domain-renewal.yml` opens a renewal issue with 90 days or fewer left (monthly, so 60 to 90 days ahead) ([`docs/runbooks/maintenance.md`](../runbooks/maintenance.md)) |
+| Expires | 2028-11-18T21:53:01Z per the Registro.br RDAP; `domain-renewal.yml` opens a renewal issue with 60 days or fewer left ([`docs/runbooks/maintenance.md`](../runbooks/maintenance.md)) |
 | Name servers | `a.sec.dns.br`, `b.sec.dns.br` (Registro.br DNS) |
 | GitHub verification | Verified in Filipe's GitHub account (Settings → Pages → Verified domains) |
 
