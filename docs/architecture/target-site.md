@@ -50,7 +50,7 @@ Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src
 
 | Collection | Holds | Fields |
 | --- | --- | --- |
-| `medica` | Name, registration, the word `MÉDICA`, the text "Sobre", where to check the CRM, the page's review date | `nome`; `titulo` (only `MÉDICA`); `crm.uf`, `crm.numero`; `sobre` (list of paragraphs, her text as approved); `consultaCrm` (the CREMESP public lookup, `https://guiamedico.cremesp.org.br/` only; issue 5.2); `revisao` (ISO date of the last content review of the home page, shown as "Revisado em …"; issue 5.2) |
+| `medica` | Name, registration, the word `MÉDICA`, the text "Sobre", where to check the CRM, the page's review date | `nome`; `titulo` (only `MÉDICA`); `crm.uf`, `crm.numero`; `sobre` (list of paragraphs, her text as approved); `consultaCrm` (the CREMESP public lookup, exactly `https://guiamedico.cremesp.org.br/`; issue 5.2); `revisao` (quoted ISO date on which she approved the home page content, shown as "Revisado em …" in a `<time>`; issue 5.2) |
 | `formacao` | The degree and the postgraduate courses | `tipo: graduacao` with `curso`, `instituicao`, `ano`; `tipo: pos-graduacao` with `nomeOficial`, `area`, `instituicao`, `emCurso`. Both carry `ordem` |
 | `atuacao` | Approved role lines | `grupo` (`local` or `experiencia`), `ordem`, `texto`, optional `desde` (rendered ", desde <ano>") |
 | `contato` | E-mail, WhatsApp, Instagram | `tipo` (`email`, `whatsapp` in E.164, `instagram` as an `https://www.instagram.com/` URL), `ordem`, `valor` |

@@ -30,7 +30,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | 3 | Domain and DNS: `dravictorialaufer.com.br` | 1.1 | Verified (3.1 and 3.2; 3.3 withdrawn); closed with the 3.2 published-site check |
 | 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Verified (4.1); closes with the 4.1 merge |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | In progress (5.1 verified and published; 5.2 in progress) |
-| 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Deferred (Filipe, 2026-11-19): she is seeing few patients; 6.1 and 6.2 unchanged |
+| 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Deferred (Filipe, 2026-11-19); 6.1 and 6.2 unchanged. As planned, acquisition goes live only when she resumes seeing patients (Phase 6 goal) |
 | 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | Not started |
 
 Phase 5 is the active phase: 5.1 verified and published (PR #24), 5.2 in progress. Phase 6 is deferred by Filipe's decision (2026-11-19); its issues keep their scope and acceptance. After 5.2 comes phase 7: 7.2, then 7.1. Phase 4 closed with the 4.1 merge: the JSON-LD `Person` is on the live page. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
