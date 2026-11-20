@@ -4,6 +4,19 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-19 — Issue 7.1 in progress: Search Console and Bing; 5.2 published, phase 5 closed
+
+- **Previous merge published:** 5.2 (PR #26) merged as `58e236d`. `deploy.yml` [run 44662384821](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44662384821) succeeded: `build` (axe 8 runs, 0 failing), `deploy` and `published`. 5.2 is verified and phase 5 is closed. Phase 7 is the active phase; Filipe ordered 7.1 ahead of 7.2.
+- **Set up by Filipe outside the repository (2026-11-19):** Google Search Console property of type Domain, `dravictorialaufer.com.br`, in his Google account, with Dra. Victória added as owner; TXT `google-site-verification` record in the Registro.br DNS (name servers `a.sec.dns.br`, `b.sec.dns.br`); sitemap `https://dravictorialaufer.com.br/sitemap.xml` submitted; indexing of the home page requested in URL Inspection; Bing Webmaster Tools imported the property from Search Console.
+- **Acceptance, as reported by Filipe from the consoles (2026-11-19):** Search Console property verified, Dra. Victória listed as owner, indexing of the home page requested; Bing Webmaster Tools import succeeded; sitemap status "Success", 3 pages discovered. The first TXT record had been created under the name `google-site-verification` (a subdomain); Filipe recreated it at the root, and a DNS-over-HTTPS query (`dns.google`) returns the `google-site-verification` value at `dravictorialaufer.com.br`.
+- **Site:** unchanged. `robots.txt` lists the sitemap, which answers HTTP/2 200 (`curl`). No verification meta tag or file, no script, tag or cookie; the token is not in the repository.
+- **Docs:** runbook `docs/runbooks/search-console.md` (setup, owners, re-verification, sitemap resubmission, the two rules on TXT records and the token); `docs/architecture/domain-dns.md` gains the root TXT record and the current name servers. The open questions for Dra. Victória in `ROADMAP.md` are marked answered (0.2).
+- **Pending verification after the merge:** home page shown as indexed in URL Inspection.
+
+Checks on the branch: `make build` (4 pages), `make lint` (html-validate 0 errors; content, JSON-LD, photos 0 failing; Markdown tables 29 files, 0 with an empty header row), `make check` (0 errors); `git grep` finds no token. CFM checklist not needed: no visible text, metadata, alt text, structured data or URL changes. PR #27 CI [run 44664706839](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44664706839) on `3557fc3`: `build` passed with the private-assets step executed (`[assets] portrait-cutout.png`, icons, logos, social); axe 8 runs, 0 failing; Lighthouse assertions pass.
+
+---
+
 ### 2026-11-19 — Issue 5.2 built: CREMESP lookup and review date; 5.1 published
 
 Built on `feat/5.2-further-evidence`, checked on local production builds (Node.js v22.23.4, chrome-headless-shell 157.0.8103.78 outside the repository). Not deployed. Scope closed by Filipe with the PO; implementation choices made by the Dev within `AGENTS.md`.
