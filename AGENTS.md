@@ -19,12 +19,16 @@ The target stack and its rationale are in [`DECISIONS.md`](DECISIONS.md). Issue 
 
 ## 3. Roles
 
+Simplified development flow, in force since 2026-11-20.
+
 | Role | Who | Does |
 | --- | --- | --- |
-| Owner | Filipe | Final say on scope, architecture, brand and every merge. May merge himself or order a specific bot to merge. Relays content and approvals from Dra. Victória |
-| PO | Agent | Checks an issue against its roadmap scope, acceptance criteria and the CFM checklist. Approves or rejects the PR on those grounds |
-| Dev | Agent | Implements one issue on its own feature branch, opens the PR, reads the CI and tells PO and Reviewer it is ready |
-| Reviewer | Agent | Reviews the diff and the check results. Owns merge, branch deletion and deploy, only after Filipe's OK |
+| Owner | Filipe | Asks for status, picks the issue, reviews the PR, merges it and deletes the branch. Final say on scope, architecture and brand. Relays content and approvals from Dra. Victória |
+| Dev | Claude in T3 Code (Claude Opus 5.5) | Per issue: plan, then implement on a new branch from an up-to-date `main`, run the checks, commit, push the branch and open the PR with a summary. Never merges. Fallback: Grok 4.7 through the Cursor provider in T3 Code, only when the Claude Pro limit runs out |
+| PO de Projetos | Bot, only when Filipe asks | Project status, sending an issue to T3 Code, a summary of what was done after a merge, product view |
+| Reviewer de Projetos | Bot, only when Filipe asks | For a harder merge: opens a T3 Code thread for Claude to review the PR and summarizes the verdict. Never merges and never deletes a branch |
+
+There is no separate PO approval, no per-project dev and no double approval. No agent or bot merges, deletes a branch or pushes `main`.
 
 Dra. Victória is the content owner. Her texts, photo and written approvals arrive through Filipe.
 
@@ -41,9 +45,9 @@ One issue, one feature branch, one pull request.
 7. Run the checks in §9 and the CFM checklist in §8. Fix regressions caused by the change.
 8. Update documentation and `PROJECT_STATUS.md` (current-phase ledger only; older narrative goes to `docs/status-log.md`).
 9. Push the feature branch and open the PR. The PR description lists the issue ID, the acceptance criteria with how each was verified, the check results, and the CFM checklist result. The PR's CI run (`deploy.yml`, build job) runs the same build as a deploy, private assets included (Dependabot PRs excepted, §12); it must pass, and its run is cited as evidence.
-10. Once the CI is read, tell the PO and the Reviewer the PR is ready. They review only after that signal and approve the same PR head. Any objection blocks. Each fix (new commits, CI read again, new signal) is a round. After two rounds of disagreement, Filipe decides.
-11. Small change (docs, text, config tweak, patch dependency bump, or a contained bugfix of up to ~50 lines in up to 3 files that touches no architecture, data model/schema, auth/security, infra/deploy, public API or pipeline logic; when in doubt, it is large; the Dev classifies it on delivery): PO approval is enough, and the Reviewer merges without reviewing. A change to content, metadata or alt text still runs the CFM checklist (§8). Dependency bumps, Dependabot's included (extension authorized by Filipe on 2026-11-20): an npm patch bump is small; an npm minor or major bump is small only if the PR's CI passed with the private-assets step executed and the changelog of each updated package shows no breaking change; a bump that changes a file in `.github/workflows/` (GitHub Actions bumps) is always large, because the PR's CI does not exercise `deploy` or `published`. Dependabot PRs build on the placeholder (§12 exception), so a Dependabot npm minor or major bump never meets the assets condition and is large. Dependabot pull requests are never auto-merged ([`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md)).
-12. Filipe gives the OK. Only then does the Reviewer merge.
+10. Once the CI is read, report the PR link, its head SHA, the CI result and the summary to Filipe. Filipe reviews the PR. For a harder merge he may ask the Reviewer de Projetos, which opens a T3 Code thread for Claude to review the PR and summarizes the verdict. Requested changes go as new commits on the same branch, with the CI read again.
+11. The Dev classifies the change on delivery as small or large, so Filipe knows how much review it needs; a large change is the kind he may send to the Reviewer de Projetos. Small change: docs, text, config tweak, patch dependency bump, or a contained bugfix of up to ~50 lines in up to 3 files that touches no architecture, data model/schema, auth/security, infra/deploy, public API or pipeline logic; when in doubt, it is large. A change to content, metadata or alt text still runs the CFM checklist (§8). Dependency bumps, Dependabot's included (extension authorized by Filipe on 2026-11-20): an npm patch bump is small; an npm minor or major bump is small only if the PR's CI passed with the private-assets step executed and the changelog of each updated package shows no breaking change; a bump that changes a file in `.github/workflows/` (GitHub Actions bumps) is always large, because the PR's CI does not exercise `deploy` or `published`. Dependabot PRs build on the placeholder (§12 exception), so a Dependabot npm minor or major bump never meets the assets condition and is large. Dependabot pull requests are never auto-merged ([`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md)).
+12. Filipe merges and deletes the branch. The Dev never merges.
 
 Do not mark an issue complete unless its acceptance criteria have been verified.
 
@@ -162,8 +166,8 @@ Prompts for planning, implementing and closing an issue are in [`docs/agent-work
 - Branch per issue, from `main`: `<type>/<issue-id>-<short-slug>`, for example `feat/1.1-astro-base`.
 - Use Conventional Commits.
 - Filipe's order to implement authorizes the Dev to commit, push its own feature branch, open the PR and read the CI. Never push `main`. Never force-push a branch someone else is reviewing.
-- Open one PR per issue. Do not merge your own PR.
-- Merge, branch deletion and deploy are the Reviewer's job, after the required approvals and Filipe's explicit OK. Filipe may do it himself or order a specific bot to do it.
+- Open one PR per issue. Never merge it.
+- Merge, branch deletion and deploy are Filipe's. No agent or bot merges, deletes a branch or pushes `main`.
 - A push to `main` publishes the site. Treat every merge as a deploy, and read the `published` job of its run.
 - Documentation-only bootstrap commits made directly on `main` need Filipe's explicit authorization and a status-log entry.
 

@@ -1,11 +1,12 @@
 # Agent workflow prompts
 
-Four prompts drive one issue: plan, implement, open the PR, review. They are tool-neutral; the rules live in [`AGENTS.md`](../AGENTS.md). Replace the placeholders, run the plan prompt first, and approve the plan before any file changes.
+Four prompts drive one issue: plan, implement, open the PR, review. The Dev is Claude in T3 Code (AGENTS.md §3); the prompts are tool-neutral and the rules live in [`AGENTS.md`](../AGENTS.md). Replace the placeholders, run the plan prompt first, and approve the plan before any file changes.
 
 ```text
-plan → approval → feature branch → implement → checks + CFM checklist → PR
-     → PR CI read → Dev signals ready → PO + Reviewer approve the same head
-       (small change: PO only) → Filipe's OK → Reviewer merges
+Filipe picks the issue → plan → approval → feature branch → implement
+     → checks + CFM checklist → PR with summary → PR CI read
+     → Filipe reviews (harder merge: Reviewer de Projetos asks Claude for a review)
+     → Filipe merges and deletes the branch
 ```
 
 The rules behind each arrow are in [`AGENTS.md`](../AGENTS.md) §4 and §13.
@@ -62,29 +63,29 @@ Review the current diff against the agreed plan and acceptance criteria. Do not 
 - Commit with Conventional Commits. Push only this feature branch. Never push main. Never force-push a branch someone else is reviewing. Filipe's order to implement already authorizes the commit, the push of this branch, the PR and reading its CI.
 - Open one PR for this issue. The description lists: issue ID, each acceptance criterion and how it was verified, check results with values, the CI run of the PR, the CFM checklist result, and the change classification (small or large, AGENTS.md §4 item 11).
 - If the previous merge's `published` job has not been recorded yet, cite its run in this PR's `docs/status-log.md` entry. Never open a PR just for that.
-- Read the PR's CI run. When it passes, tell the PO and the Reviewer the PR is ready, with its head SHA.
+- Read the PR's CI run. When it passes, report to Filipe that the PR is ready, with its head SHA.
 
 Do not merge. Return the PR link, its head SHA, the CI result and the completion report.
 ```
 
-## 4. Review (PO and Reviewer, separately)
+## 4. Review (Claude, only when Filipe asks through the Reviewer de Projetos)
 
 ```text
 Follow AGENTS.md.
 
-Review PR <link> at head <SHA> for issue <ISSUE-ID> as <PO | Reviewer>, after the Dev's ready signal. Do not change the branch.
+Review PR <link> at head <SHA> for issue <ISSUE-ID>. Do not change the branch, merge or delete it.
 
-PO: compare the PR with the issue in ROADMAP.md: objective, scope, out of scope and each acceptance criterion. Run the CFM checklist yourself against the built page, including metadata, alt text and structured data.
-
-Reviewer: review the diff for correctness, focus and maintainability. Confirm the checks in AGENTS.md §9 from the CI run or by running them. Confirm no secret, portrait or brand source file was added.
+- Compare the PR with the issue in ROADMAP.md: objective, scope, out of scope and each acceptance criterion.
+- Run the CFM checklist against the built page, including metadata, alt text and structured data.
+- Review the diff for correctness, focus and maintainability. Confirm the checks in AGENTS.md §9 from the CI run or by running them. Confirm no secret, portrait or brand source file was added.
 
 Return approve or request changes, with each finding tied to a file and line or to an acceptance criterion.
 ```
 
-PO and Reviewer approve the same PR head; any objection blocks. Each fix (new commits, CI read again, new ready signal) is a round; after two rounds of disagreement, Filipe decides. A small change (AGENTS.md §4 item 11) needs only the PO's approval, and the Reviewer merges it without reviewing. Merge, branch deletion and deploy are the Reviewer's, only after the required approvals and Filipe's explicit OK; Filipe may do them himself or order a specific bot to.
+The Reviewer de Projetos opens the review thread in T3 Code and summarizes the verdict for Filipe. Fixes go as new commits on the same branch, with the CI read again. Filipe decides, merges and deletes the branch; no agent or bot merges.
 
 ---
 
 ## Fallback to another tool
 
-Paste the same prompts into the other tool. Point it at `AGENTS.md`; do not keep that tool's own rule files in the repository, so the rules have one source. The git policy is in AGENTS.md §13, so the other tool gets it too.
+The fallback Dev is Grok 4.7 through the Cursor provider in T3 Code, only when the Claude Pro limit runs out. Paste the same prompts into it. Point it at `AGENTS.md`; do not keep that tool's own rule files in the repository, so the rules have one source. The git policy is in AGENTS.md §13, so the other tool gets it too.

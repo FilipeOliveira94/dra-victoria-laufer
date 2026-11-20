@@ -79,14 +79,14 @@ Data in `src/content/data/<collection>.yaml`, one entry per key; schemas in `src
 ## Build and deploy
 
 ```text
-pull request ──► CI (1.7) ──► Dev's ready signal ──► PO + Reviewer approve the same head
-             ──► Filipe's OK ──► Reviewer merges to main
+pull request ──► CI (1.7) ──► Dev reports the PR ready ──► Filipe reviews
+             ──► Filipe merges to main
                                                   │
                                                   ▼
 private assets repo ──(read-only deploy key)──► fetch ──► build ──► GitHub Pages
 ```
 
-- Approvals follow [`AGENTS.md`](../../AGENTS.md) §4: a small change needs only the PO's approval. Merge, branch deletion and deploy are the Reviewer's, after Filipe's explicit OK; Filipe may do them himself or order a specific bot to.
+- The flow follows [`AGENTS.md`](../../AGENTS.md) §3 and §4: Filipe reviews the PR (for a harder merge, the Reviewer de Projetos asks Claude for a review in T3 Code), merges it and deletes the branch. No agent or bot merges or pushes `main`.
 - A push to `main` runs `.github/workflows/deploy.yml`: `npm ci`, build for `https://dravictorialaufer.com.br/` (no `DEPLOY_TARGET`, since 3.2), `scripts/check-requests.mjs` (every referenced request must return 200 from the site itself), upload `dist/`, deploy. The built site is not committed to any branch.
 - Astro 7.4.12 on Node.js 22.23.4 (`.nvmrc`); `package-lock.json` is committed.
 - The workflow fetches `dra-victoria-laufer-assets` before the build. Without the secret, the build uses a neutral placeholder and still completes.

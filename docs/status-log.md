@@ -4,6 +4,15 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-20 — Docs aligned with the simplified development flow
+
+Branch `chore/fluxo-dev-simplificado`, ordered by Filipe. Docs only; no code, workflow or site text changes.
+
+- `AGENTS.md` §3 roles: Filipe asks for status, picks the issue, reviews the PR, merges and deletes the branch; the Dev is Claude in T3 Code (Claude Opus 5.5), with Grok 4.7 through the Cursor provider as fallback when the Claude Pro limit runs out; PO de Projetos and Reviewer de Projetos are bots that act only when Filipe asks and never merge. §4 items 10 to 12 and §13: no PO + Reviewer approval on the same head; the small or large classification tells Filipe how much review a PR needs.
+- Same flow in `docs/agent-workflow.md`, `docs/architecture/target-site.md`, `docs/runbooks/maintenance.md`, `docs/compliance/cfm.md` ("Run by"), `README.md`, `ROADMAP.md` (rules) and the comment in `.github/dependabot.yml`. `PROJECT_STATUS.md` next work: PR #28 (7.2) merged as `e93068b`.
+
+---
+
 ### 2026-11-20 — Issue 7.2 built: Dependabot, semiannual review, domain renewal reminder
 
 Built on `chore/7.2-maintenance` (PR #28), ordered by Filipe on 2026-11-20. Large change: new workflows with `issues: write`. `deploy.yml` unchanged; no site text changes.
