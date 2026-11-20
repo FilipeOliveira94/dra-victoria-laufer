@@ -53,6 +53,7 @@ Logo, palette and typography are recorded in [`DESIGN.md`](DESIGN.md) and ADR-00
 
 | Date | Change |
 | --- | --- |
+| 2026-11-20 | D-010: the deploy key is never a Dependabot secret; Dependabot PRs build on the placeholder and the `main` build after the merge carries the evidence (Filipe, issue 7.2; ADR-0010 consequences, `AGENTS.md` §12) |
 | 2026-11-18 | D-009 implemented by issue 4.1, local builds and PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697) |
 | 2026-11-18 | D-003 and D-004: issue 3.2 verified on the published site; the custom domain is set in Pages with enforced HTTPS, and the workflow has no `DEPLOY_TARGET` |
 | 2026-11-18 | D-006: indexing released by issue 2.6 after the CFM review and her written approval; local builds and PR #20 CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) |

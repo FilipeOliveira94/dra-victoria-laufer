@@ -1,0 +1,27 @@
+# Dependabot version updates (issue 7.2). No auto-merge: every Dependabot PR
+# follows AGENTS.md §4 and is merged by the Reviewer after Filipe's OK.
+# Runbook: docs/runbooks/maintenance.md
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      # Minor and patch bumps share one PR; a major bump gets its own PR.
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ci
+      include: scope

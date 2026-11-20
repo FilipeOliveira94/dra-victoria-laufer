@@ -1,0 +1,56 @@
+# Opens the "Revisão semestral" issue every January 1 and July 1 (issue 7.2).
+# The checklist is .github/ISSUE_TEMPLATE/revisao-semestral.md. If an issue
+# with that title is already open, no new issue is opened: the run leaves one
+# comment on the open issue saying this review is still pending.
+# Runbook: docs/runbooks/maintenance.md
+name: semiannual-review
+
+on:
+  schedule:
+    - cron: "0 12 1 1,7 *" # 12:00 UTC, 09:00 in São Paulo
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: semiannual-review
+  cancel-in-progress: false
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout the issue template
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+          sparse-checkout: .github/ISSUE_TEMPLATE
+          sparse-checkout-cone-mode: false
+
+      - name: Open the issue, or comment on the one still open
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TITLE: Revisão semestral
+          TEMPLATE: .github/ISSUE_TEMPLATE/revisao-semestral.md
+        run: |
+          set -euo pipefail
+          open=$(gh issue list --state open --limit 200 --json number,title \
+            --jq "[.[] | select(.title == env.TITLE)][0].number // empty")
+          if [ -n "$open" ]; then
+            months=(janeiro fevereiro março abril maio junho julho agosto setembro outubro novembro dezembro)
+            month=${months[$(( 10#$(date -u +%m) - 1 ))]}
+            gh issue comment "$open" \
+              --body "Revisão de $month/$(date -u +%Y) não aberta: esta ainda está pendente."
+            echo "Issue #$open \"$TITLE\" is still open; commented on it, no new issue."
+            exit 0
+          fi
+          # Body: the template without its front matter (the first --- block).
+          awk 'NR==1 && $0=="---" {fm=1; next} fm && $0=="---" {fm=0; next} !fm' \
+            "$TEMPLATE" > body.md
+          test -s body.md
+          url=$(gh issue create --title "$TITLE" --body-file body.md)
+          echo "Opened $url"

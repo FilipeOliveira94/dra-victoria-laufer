@@ -1,0 +1,85 @@
+# Domain renewal reminder (issue 7.2). Monthly, reads the expiration date of
+# dravictorialaufer.com.br from the Registro.br RDAP and, with THRESHOLD_DAYS
+# (default 60) or fewer left, opens a renewal issue unless one is already open.
+# If RDAP fails or has no expiration date, or threshold_days is not a whole
+# number without leading zeros, the job fails and nothing is posted.
+# Runbook: docs/runbooks/maintenance.md
+name: domain-renewal
+
+on:
+  schedule:
+    - cron: "0 12 1 * *" # 12:00 UTC on the 1st of each month
+  workflow_dispatch:
+    inputs:
+      threshold_days:
+        description: Open the issue when this many days or fewer are left (whole number, no leading zeros; raise it to test)
+        required: false
+        default: "60"
+
+permissions:
+  issues: write
+
+concurrency:
+  group: domain-renewal
+  cancel-in-progress: false
+
+jobs:
+  check-expiration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      DOMAIN: dravictorialaufer.com.br
+      # Scheduled runs use 60; a manual run uses the input as typed, so an
+      # empty or malformed value is rejected below instead of replaced.
+      THRESHOLD_DAYS: ${{ github.event_name == 'schedule' && '60' || inputs.threshold_days }}
+      TITLE_PREFIX: Renovar o domínio dravictorialaufer.com.br
+    steps:
+      - name: Read the expiration date from RDAP
+        id: rdap
+        run: |
+          set -euo pipefail
+          if ! [[ "$THRESHOLD_DAYS" =~ ^(0|[1-9][0-9]*)$ ]]; then
+            echo "::error::threshold_days must be a whole number of days without leading zeros (got '$THRESHOLD_DAYS')"
+            exit 1
+          fi
+          curl -fsS --retry 3 --retry-all-errors --max-time 30 \
+            -H 'Accept: application/rdap+json' \
+            "https://rdap.registro.br/domain/$DOMAIN" > rdap.json
+          expires=$(jq -er '[.events[] | select(.eventAction == "expiration") | .eventDate][0]' rdap.json) || {
+            echo "::error::RDAP answer has no expiration event"; exit 1; }
+          expires_epoch=$(date -u -d "$expires" +%s)
+          days_left=$(( (expires_epoch - $(date -u +%s)) / 86400 ))
+          echo "$DOMAIN expires $expires: $days_left days left (threshold $THRESHOLD_DAYS)."
+          {
+            echo "expires=$expires"
+            echo "expires_day=${expires%%T*}"
+            echo "days_left=$days_left"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Open the renewal issue unless one is already open
+        if: ${{ fromJSON(steps.rdap.outputs.days_left) <= fromJSON(env.THRESHOLD_DAYS) }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          EXPIRES: ${{ steps.rdap.outputs.expires }}
+          EXPIRES_DAY: ${{ steps.rdap.outputs.expires_day }}
+          DAYS_LEFT: ${{ steps.rdap.outputs.days_left }}
+        run: |
+          set -euo pipefail
+          open=$(gh issue list --state open --limit 200 --json number,title \
+            --jq "[.[] | select(.title | startswith(env.TITLE_PREFIX))][0].number // empty")
+          if [ -n "$open" ]; then
+            echo "Renewal issue #$open is already open; nothing posted."
+            exit 0
+          fi
+          cat > body.md <<BODY
+          O domínio \`$DOMAIN\` vence em **$EXPIRES** ($DAYS_LEFT dias), segundo o RDAP do Registro.br (<https://rdap.registro.br/domain/$DOMAIN>).
+
+          - [ ] Renovar no Registro.br (titular: CPF da Dra. Victória)
+          - [ ] Conferir a nova data de expiração no RDAP
+          - [ ] Registrar a nova data em \`docs/runbooks/maintenance.md\`, em um PR
+
+          Roteiro: [\`docs/runbooks/maintenance.md\`](https://github.com/$GH_REPO/blob/main/docs/runbooks/maintenance.md). Feche esta issue depois da renovação.
+          BODY
+          url=$(gh issue create --title "$TITLE_PREFIX (vence em $EXPIRES_DAY)" --body-file body.md)
+          echo "Opened $url"
