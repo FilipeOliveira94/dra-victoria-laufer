@@ -4,6 +4,12 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-20 — Small or large task rule in the flow
+
+Branch `chore/fluxo-pequena-grande`, ordered by Filipe. Docs only. `AGENTS.md` §4 item 4: the task is classified small or large up front; small goes from plan to PR, large stops after the plan until Filipe approves it in the thread (directly or relayed by the PO de Projetos); the issue prompt names the mode and the Dev may reclassify to large while planning. Item 11 keeps the definition and the delivery classification. Same rule in `docs/agent-workflow.md` (intro, flow, plan and implement prompts).
+
+---
+
 ### 2026-11-20 — Docs aligned with the simplified development flow
 
 Branch `chore/fluxo-dev-simplificado`, ordered by Filipe. Docs only; no code, workflow or site text changes.
