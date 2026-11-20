@@ -1,6 +1,7 @@
 # Domain renewal reminder (issue 7.2). Monthly, reads the expiration date of
 # dravictorialaufer.com.br from the Registro.br RDAP and, with THRESHOLD_DAYS
-# or fewer left, opens a renewal issue unless one is already open. If RDAP
+# (default 90) or fewer left, opens a renewal issue unless one is already open.
+# With the monthly schedule the first issue comes 60 to 90 days ahead. If RDAP
 # fails or has no expiration date, the job fails and nothing is posted.
 # Runbook: docs/runbooks/maintenance.md
 name: domain-renewal
@@ -11,12 +12,11 @@ on:
   workflow_dispatch:
     inputs:
       threshold_days:
-        description: Open the issue when this many days or fewer are left (for testing)
+        description: Open the issue when this many days or fewer are left (default 90; raise it to test)
         required: false
-        default: "60"
+        default: "90"
 
 permissions:
-  contents: read
   issues: write
 
 concurrency:
@@ -29,7 +29,7 @@ jobs:
     timeout-minutes: 5
     env:
       DOMAIN: dravictorialaufer.com.br
-      THRESHOLD_DAYS: ${{ inputs.threshold_days || '60' }}
+      THRESHOLD_DAYS: ${{ inputs.threshold_days || '90' }}
       TITLE_PREFIX: Renovar o domínio dravictorialaufer.com.br
     steps:
       - name: Read the expiration date from RDAP

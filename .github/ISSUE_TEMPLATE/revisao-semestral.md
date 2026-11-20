@@ -11,6 +11,6 @@ Revisão semestral do site <https://dravictorialaufer.com.br/> (issue 7.2). Rote
 - [ ] Dra. Victória reaprovou o conteúdo (via Filipe); se aprovou, `medica.revisao` atualizado para a data da aprovação, em um PR
 - [ ] Links externos respondem 200, consulta do CREMESP incluída (`https://guiamedico.cremesp.org.br/`)
 - [ ] Search Console e Bing Webmaster sem erros ([`docs/runbooks/search-console.md`](https://github.com/FilipeOliveira94/dra-victoria-laufer/blob/main/docs/runbooks/search-console.md))
-- [ ] Registros TXT do domínio no lugar (`google-site-verification` na raiz) ([`docs/architecture/domain-dns.md`](https://github.com/FilipeOliveira94/dra-victoria-laufer/blob/main/docs/architecture/domain-dns.md))
+- [ ] Registros TXT do domínio no lugar (`google-site-verification` na raiz e `_github-pages-challenge-FilipeOliveira94`) ([`docs/architecture/domain-dns.md`](https://github.com/FilipeOliveira94/dra-victoria-laufer/blob/main/docs/architecture/domain-dns.md))
 
 Feche esta issue quando todos os itens estiverem conferidos. Uma correção encontrada vira um PR próprio.
