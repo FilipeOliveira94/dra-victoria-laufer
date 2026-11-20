@@ -4,6 +4,14 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-20 — Issue 7.2 in progress: maintenance; 7.1 published
+
+- **Previous merge published:** 7.1 (PR #27) merged as `b91aaa7` (2026-11-20T03:08:15Z). `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666) on `b91aaa7` succeeded: `build`, `deploy` and `published` (`gh run view`). 7.1 is verified; the home page shown as indexed in URL Inspection is still to be confirmed by Filipe.
+- **Correction:** `ROADMAP.md` → 5.2 cited PR #26 CI run 44629224571, which ran on `4d12cbc`, an earlier head. The PR head was `1a4d122`, checked by [run 44646362550](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44646362550) (success); the merge was published by [run 44662384821](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44662384821). The 5.2 entry below keeps its original text.
+- **7.2:** in progress on `chore/7.2-maintenance`, ordered by Filipe on 2026-11-20.
+
+---
+
 ### 2026-11-19 — Issue 7.1 in progress: Search Console and Bing; 5.2 published, phase 5 closed
 
 - **Previous merge published:** 5.2 (PR #26) merged as `58e236d`. `deploy.yml` [run 44662384821](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44662384821) succeeded: `build` (axe 8 runs, 0 failing), `deploy` and `published`. 5.2 is verified and phase 5 is closed. Phase 7 is the active phase; Filipe ordered 7.1 ahead of 7.2.
