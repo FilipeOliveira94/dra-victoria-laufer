@@ -5,7 +5,7 @@ Four prompts drive one issue: plan, implement, open the PR, review. The Dev is C
 ```text
 Filipe picks the issue → plan → approval (large only) → feature branch → implement
      → checks + CFM checklist → PR with summary → PR CI read
-     → Filipe reviews (harder merge: Reviewer de Projetos asks Claude for a review)
+     → Filipe reviews (harder merge: he asks Claude for a review)
      → Filipe merges and deletes the branch
 ```
 
@@ -69,7 +69,7 @@ Review the current diff against the agreed plan and acceptance criteria. Do not 
 Do not merge. Return the PR link, its head SHA, the CI result and the completion report.
 ```
 
-## 4. Review (Claude, only when Filipe asks through the Reviewer de Projetos)
+## 4. Review (Claude, only when Filipe asks)
 
 ```text
 Follow AGENTS.md.
@@ -83,7 +83,7 @@ Review PR <link> at head <SHA> for issue <ISSUE-ID>. Do not change the branch, m
 Return approve or request changes, with each finding tied to a file and line or to an acceptance criterion.
 ```
 
-The Reviewer de Projetos opens the review thread in T3 Code and summarizes the verdict for Filipe. Fixes go as new commits on the same branch, with the CI read again. Filipe decides, merges and deletes the branch; no agent or bot merges.
+Filipe opens the review thread in T3 Code and reads the verdict. Fixes go as new commits on the same branch, with the CI read again. Filipe decides, merges and deletes the branch; no agent merges.
 
 ---
 
