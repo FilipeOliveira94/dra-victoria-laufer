@@ -46,10 +46,10 @@ One issue, one feature branch, one pull request.
 1. Inspect the existing code and the current project documentation.
 2. Read `PROJECT_STATUS.md`, the issue in `ROADMAP.md`, and the relevant ADRs.
 3. Identify dependencies, assumptions, risks and acceptance criteria. A blocked dependency stops the issue; say so and do not work around it.
-4. Check the issue's Size and Risk (`ROADMAP.md`; scale and rules in `~/.agents/claude/workflow.md`; item 11 for dependency bumps) and follow what it decides. While planning, the Dev may raise a rating and says why; it never lowers one without Filipe.
+4. Check the issue's Size and Risk (the roadmap's Expected rating, or rate it in the plan; scale and rules in `~/.agents/claude/workflow.md`; item 11 for dependency bumps) and follow what it decides. While planning, the Dev may raise a rating and says why; it never lowers one without Filipe.
    - S + Low: plan and implement straight through to the PR.
    - Anything else: present the plan in the thread and stop. Do not edit code until Filipe approves the plan in the same thread, sometimes with adjustments that the Dev applies.
-   - High risk or L size: the Dev starts at Opus high effort on its own. A High-risk plan names the CFM items or the deploy path at stake.
+   - High risk or L size: the thread runs at Opus high effort, set when it starts; the Dev never switches its own model or effort. A High-risk plan names the CFM items or the deploy path at stake; an L plan says whether to split the issue.
 5. Create the feature branch from an up-to-date `main` (§13).
 6. Implement the smallest coherent increment that satisfies the issue.
 7. Run the checks in §9 and the CFM checklist in §8. Fix regressions caused by the change.
