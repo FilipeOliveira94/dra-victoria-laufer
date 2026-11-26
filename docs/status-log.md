@@ -4,6 +4,28 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-26 — Dependabot: five GitHub Actions majors merged, TypeScript 7 ignored
+
+Branch `docs/dependabot-actions-record`, ordered by Filipe. Docs only. Filipe merged the five GitHub Actions PRs one at a time, each after the `main` run of the previous one had finished. Every run below has `build` (private assets fetched, portrait and favicon check passed), `deploy` and `published` success.
+
+| PR | Bump | Merge | `deploy.yml` on `main` |
+| --- | --- | --- | --- |
+| #29 | `actions/upload-artifact` 4 → 7 | `a88a1c8` | [run 45843124639](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45843124639) |
+| #31 | `actions/setup-node` 4 → 7 | `279e551` | [run 45843753752](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45843753752) |
+| #33 | `actions/checkout` 4 → 7; the pin in `semiannual-review.yml` from v4.4.0 to v7.0.1 (`3d3c42e`, the commit of tag v7.0.1) | `f304124` | [run 45845125721](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45845125721) |
+| #30 | `actions/deploy-pages` 4 → 5 | `3671ac4` | [run 45845821997](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45845821997) |
+| #32 | `actions/upload-pages-artifact` 3 → 5 | `ef46837` | [run 45846462762](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45846462762) |
+
+- **Review before the merges** (each Sm + Hi, `AGENTS.md` §4 item 11): the release notes of every major in between were read (checkout v5.0.0 to v7.0.1, setup-node v5.0.0 to v7.0.0, upload-artifact v5.0.0 to v7.0.0, upload-pages-artifact v4.0.0 and v5.0.0, deploy-pages v5.0.0). Most changes are the Node 24 runtime and ESM. The ones that could reach this workflow do not apply: setup-node v5 caches on its own only with a `packageManager` field (none in `package.json`); upload-pages-artifact v4 leaves dotfiles out of the Pages artifact (none in `public/` or `src/`); checkout v7 blocks fork checkouts under `pull_request_target` and `workflow_run` (neither is used). The upload-pages-artifact v5 README still pairs it with `deploy-pages@v4`, so #30 and #32 did not depend on each other.
+- Each PR's `build` passed on the placeholder (Dependabot exception, `AGENTS.md` §12). That build skips the private-assets checkout, `upload-pages-artifact`, `deploy-pages` and `published`, so the `main` runs above are their first evidence. Before the first merge, the five were merged in sequence onto `main` in a temporary worktree, without conflicts.
+- Node 20: earlier runs warned that GitHub forced the v4 actions onto Node 24; the run for #32 has no warning.
+- **#34**, `typescript` 6.0.3 → 7.0.2 (npm major, Sm + Med): its CI failed at `npm ci` with ERESOLVE, because `@astrojs/check` 0.9.12, the latest, accepts only `typescript` `^5.0.0 || ^6.0.0`. Closed with `@dependabot ignore this major version`, ordered by Filipe; Dependabot answered that it will not propose 7.x again unless the PR is reopened. Recorded in the runbook.
+- Not run: `semiannual-review.yml` with the new pin; its first scheduled run is 2027-01-01.
+
+`deploy.yml` runs on `main` before this round, each with `build`, `deploy` and `published` success: [run 45734064233](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45734064233) (`f97988d`, PR #41), [run 45735757754](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45735757754) (`c975bd7`, PR #37), [run 45738983324](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45738983324) (`841a952`, PR #42).
+
+---
+
 ### 2026-11-25 — Issue 7.2 verified; phase 7 closed
 
 Branch `docs/7.2-verified`, ordered by Filipe. Docs only. Acceptance of 7.2: Dependabot active; recurring issue created.

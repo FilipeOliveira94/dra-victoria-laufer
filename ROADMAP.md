@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-25 (7.2 verified; phase 7 closed) |
+| Last updated | 2026-11-26 (Dependabot PRs #29 to #34 handled) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -578,3 +578,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-24 | Agent workflow: PO and Reviewer bots removed; profile `solo` (Claude Opus 5.5 plans and implements, no review subagents), declared in `AGENTS.md` §3 "Agent workflow". Size and Risk replace the small/large task mode; every issue carries Expected/Seen Risk and Size rows. Replies in English; no fallback tool |
 | 2026-11-25 | 7.1 verified: Filipe confirmed the home page indexed in URL Inspection. Phase 7 now waits only on 7.2 |
 | 2026-11-25 | 7.2 verified: Dependabot active (PRs #29 to #34), dispatch tests on `main` opened and deduplicated issues #39 and #40, both closed. Phase 7 closed; the project is in maintenance |
+| 2026-11-26 | Dependabot: the five GitHub Actions majors merged one at a time (#29 `upload-artifact` 7, #31 `setup-node` 7, #33 `checkout` 7, #30 `deploy-pages` 5, #32 `upload-pages-artifact` 5), each `main` run with `build`, `deploy` and `published` success; #34 (TypeScript 7) closed and 7.x ignored until `@astrojs/check` accepts it |
