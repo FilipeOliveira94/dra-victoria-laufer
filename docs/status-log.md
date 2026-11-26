@@ -4,6 +4,30 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-25 — Issue 7.2 verified; phase 7 closed
+
+Branch `docs/7.2-verified`, ordered by Filipe. Docs only. Acceptance of 7.2: Dependabot active; recurring issue created.
+
+- **Dependabot:** first run on 2026-11-20 (the `Dependabot Updates` runs succeeded) opened PRs #29 to #34: `actions/upload-artifact` 4 → 7, `actions/deploy-pages` 4 → 5, `actions/setup-node` 4 → 7, `actions/upload-pages-artifact` 3 → 5, `actions/checkout` 4 → 7 and `typescript` 6.0.3 → 7.0.2. All open, none auto-merged.
+- **`domain-renewal.yml`**, dispatched on `main`: default threshold [run 45732311675](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732311675), RDAP read, issue step skipped; `threshold_days=9999` [run 45732325051](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732325051), opened issue #39 "Renovar o domínio dravictorialaufer.com.br (vence em 2028-11-18)" (723 days left); again with #39 open [run 45732424110](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732424110), log "Renewal issue #39 is already open; nothing posted."
+- **`semiannual-review.yml`**, dispatched on `main`: [run 45732338666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732338666) opened issue #40 "Revisão semestral" with the template body; again with #40 open [run 45732435707](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732435707), one comment on #40 and no new issue, as designed.
+- #39 and #40 closed as not planned, each with a comment saying it was a test.
+- Dependabot security updates: `automated-security-fixes` still `enabled: false` on 2026-11-25. A setting for Filipe (runbook), outside the acceptance.
+
+Phase 7 is closed with 7.1 and 7.2 verified; the project is in maintenance. `deploy.yml` [run 45732229190](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732229190) on `8cdfcfb` (PR #38 merge, 7.1 verified): `build`, `deploy` and `published` success.
+
+---
+
+### 2026-11-25 — Issue 7.1 verified: home page indexed
+
+Branch `docs/7.1-verified`. Docs only. On 2026-11-25 Filipe confirmed from Google Search Console that URL Inspection shows the home page `https://dravictorialaufer.com.br/` indexed, the last acceptance item of 7.1 (property verified; home page indexed). 7.1 moves from `delivered` to `verified` in `ROADMAP.md`, `PROJECT_STATUS.md` and the Search Console runbook. Phase 7 now waits only on 7.2's dispatch tests.
+
+Checks run the same day from this machine: a DNS-over-HTTPS TXT query for the root of the domain returns a `google-site-verification=` value (value not recorded); `https://dravictorialaufer.com.br/` returns HTTP 200 with no `robots` meta tag; `robots.txt` is `Allow: /` with the sitemap. The index status itself was read in Search Console by Filipe; no agent has access to the console.
+
+`deploy.yml` runs on `main` since the last recorded one, each with `build`, `deploy` and `published` success: [run 44671283048](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44671283048) (`e93068b`, PR #28, 7.2), [run 44674224167](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44674224167) (`3e5a5b7`, PR #35), [run 44675171339](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44675171339) (`a33ab68`, PR #36).
+
+---
+
 ### 2026-11-20 — Small or large task rule in the flow
 
 Branch `chore/fluxo-pequena-grande`, ordered by Filipe. Docs only. `AGENTS.md` §4 item 4: the task is classified small or large up front; small goes from plan to PR, large stops after the plan until Filipe approves it in the thread (directly or relayed by the PO de Projetos); the issue prompt names the mode and the Dev may reclassify to large while planning. Item 11 keeps the definition and the delivery classification. Same rule in `docs/agent-workflow.md` (intro, flow, plan and implement prompts).

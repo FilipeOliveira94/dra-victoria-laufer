@@ -53,4 +53,4 @@ After a change in the site's pages (a new page, a removed page), or when Search 
 | Property verified in Google Search Console | Done 2026-11-19 (Filipe); TXT record answers at the root. `docs/status-log.md` |
 | Site verified in Bing Webmaster Tools (import) | Done 2026-11-19 (Filipe). `docs/status-log.md` |
 | Sitemap submitted and read without errors | Done 2026-11-19: status "Success", 3 pages discovered (Filipe). `docs/status-log.md` |
-| Home page indexed (URL Inspection) | Pending verification after the merge; indexing can take days |
+| Home page indexed (URL Inspection) | Done 2026-11-25 (Filipe, from Search Console). `docs/status-log.md` |

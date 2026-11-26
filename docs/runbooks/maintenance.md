@@ -31,7 +31,7 @@ The two workflows have only `issues: write`, plus `contents: read` in the semian
 
 1. GitHub → the repository → **Settings** → **Code security** (or **Security & analysis**).
 2. **Dependabot alerts**: Enable. On 2026-11-20 the API reported alerts as already enabled.
-3. **Dependabot security updates**: Enable. On 2026-11-20 the API reported them as disabled.
+3. **Dependabot security updates**: Enable. On 2026-11-20 and again on 2026-11-25 the API reported them as disabled.
 4. Leave any auto-merge rule off. A security update is a pull request like any other and follows the same flow, including the read of the `main` build after the merge.
 5. Do not add any secret under **Secrets and variables** → **Dependabot**; in particular never `ASSETS_DEPLOY_KEY` (see above).
 
