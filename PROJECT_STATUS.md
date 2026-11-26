@@ -6,9 +6,9 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://dravictorialaufer.com.br/> (since 3.2; the github.io address redirects) |
-| Last updated | 2026-11-20 (7.2 on PR #28; 7.1 delivered) |
-| Current phase | Phase 7 — Monitoring; maintenance once 7.1 and 7.2 are verified |
-| Phase status | 7.1 delivered, verified once URL Inspection shows the home page indexed; 7.2 built on PR #28, verified by the `workflow_dispatch` tests right after the merge. Phases 0 to 5 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2, 4.1, 5.1 and 5.2 verified (3.3 withdrawn). Phase 6 deferred (Filipe, 2026-11-19) |
+| Last updated | 2026-11-25 (7.1 verified) |
+| Current phase | Phase 7 — Monitoring; maintenance once 7.2 is verified |
+| Phase status | 7.1 verified (home page indexed, 2026-11-25); 7.2 merged (PR #28, `e93068b`), verified by its `workflow_dispatch` tests. Phases 0 to 5 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2, 4.1, 5.1 and 5.2 verified (3.3 withdrawn). Phase 6 deferred (Filipe, 2026-11-19) |
 
 **Status values:** not started · in progress · delivered · verified · blocked · withdrawn
 
@@ -22,17 +22,16 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 
 ## Current objective
 
-**7.2** — Maintenance, PR #28 on `chore/7.2-maintenance`, ordered by Filipe on 2026-11-20: Dependabot (`.github/dependabot.yml`), the semiannual review issue (`semiannual-review.yml`) and the domain renewal reminder (`domain-renewal.yml`). `deploy.yml` does not change. Runbook: [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md). Once 7.1 and 7.2 are verified, phase 7 closes and the project is in maintenance: the site changes only through those reminders, a Dependabot PR, or an issue Filipe orders.
+**7.2** — Maintenance, merged as `e93068b` (PR #28), ordered by Filipe on 2026-11-20: Dependabot (`.github/dependabot.yml`), the semiannual review issue (`semiannual-review.yml`) and the domain renewal reminder (`domain-renewal.yml`). `deploy.yml` does not change. Runbook: [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md). Once 7.2 is verified, phase 7 closes and the project is in maintenance: the site changes only through those reminders, a Dependabot PR, or an issue Filipe orders.
 
-7.1 is merged (PR #27, `b91aaa7`) and published: `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666), `build`, `deploy` and `published` success. 7.1 is `delivered`: the Search Console property is verified, and its acceptance also asks for the home page shown as indexed in URL Inspection, which Filipe confirms; then 7.1 is `verified`.
+7.1 is `verified`: merged (PR #27, `b91aaa7`) and published by `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666); the Search Console property is verified and, on 2026-11-25, Filipe confirmed the home page indexed in URL Inspection.
 
 ## Next work
 
-1. **7.2** PR #28 merged as `e93068b`; record its `deploy.yml` run (`published`) in the next PR.
+1. **7.2** PR #28 merged as `e93068b`; its `deploy.yml` [run 44671283048](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44671283048) succeeded (recorded in `docs/status-log.md`).
 2. **7.2 after the merge:** dispatch `domain-renewal.yml` (default threshold: no issue; `threshold_days=9999`: issue, then closed) and `semiannual-review.yml` (issue, then closed); confirm Dependabot's first run; record the runs.
 3. **Filipe, in the settings:** enable Dependabot security updates; never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets ([runbook](docs/runbooks/maintenance.md)).
-4. **7.1 → verified:** Filipe confirms the home page as indexed in URL Inspection; the next PR records it.
-5. Phase 6 (acquisition) stays deferred until Filipe reopens it.
+4. Phase 6 (acquisition) stays deferred until Filipe reopens it.
 
 ## Blockers
 
@@ -44,8 +43,8 @@ None.
 
 | ID | Title | Status | Evidence |
 | --- | --- | --- | --- |
-| 7.1 | Search Console and Bing Webmaster | Delivered (verified when URL Inspection shows the home page indexed) | `docs/runbooks/search-console.md`; `docs/status-log.md` |
-| 7.2 | Maintenance | In progress: built on PR #28; dispatch tests after the merge | `docs/runbooks/maintenance.md`; `docs/status-log.md` |
+| 7.1 | Search Console and Bing Webmaster | Verified (home page indexed, 2026-11-25) | `docs/runbooks/search-console.md`; `docs/status-log.md` |
+| 7.2 | Maintenance | In progress: merged (PR #28, `e93068b`); dispatch tests pending | `docs/runbooks/maintenance.md`; `docs/status-log.md` |
 
 Acceptance detail: `ROADMAP.md` → Phase 7. Phases 0 to 5: `ROADMAP.md` and `docs/status-log.md`.
 
@@ -55,10 +54,10 @@ Acceptance detail: `ROADMAP.md` → Phase 7. Phases 0 to 5: `ROADMAP.md` and `do
 
 | Validation | Detail |
 | --- | --- |
-| Date | 2026-11-20 |
-| Environment | Branch `chore/7.2-maintenance`: local build, local runs of the workflow scripts with a stub `gh`, and PR #28 CI [run 44667244795](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44667244795) on `c555a64` |
-| Checks | `make build`, `make lint`, `make check`; actionlint 1.7.7 with shellcheck 0.11.0; `check-jsonschema` (Dependabot and workflow schemas); the PR's CI |
-| Result | Every check passed; detail in `docs/status-log.md` (7.2 entry) |
+| Date | 2026-11-25 |
+| Environment | Published site and Google Search Console (read by Filipe) |
+| Checks | URL Inspection of the home page (Filipe); DNS-over-HTTPS TXT query; HTTP status, `robots` meta and `robots.txt` of the live page |
+| Result | Home page indexed; verification record present; page 200 and indexable. 7.1 verified (`docs/status-log.md`) |
 
 ---
 
@@ -67,9 +66,9 @@ Acceptance detail: `ROADMAP.md` → Phase 7. Phases 0 to 5: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-20 |
-| Environment | Published site, after the 7.1 merge (`b91aaa7`): `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666) |
-| Checks | Jobs of the run (`gh run view`) |
-| Result | `build`, `deploy` and `published` success |
+| Environment | Branch `chore/7.2-maintenance`: local build, local runs of the workflow scripts with a stub `gh`, and PR #28 CI [run 44667244795](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44667244795) on `c555a64` |
+| Checks | `make build`, `make lint`, `make check`; actionlint 1.7.7 with shellcheck 0.11.0; `check-jsonschema` (Dependabot and workflow schemas); the PR's CI |
+| Result | Every check passed; detail in `docs/status-log.md` (7.2 entry) |
 
 ---
 

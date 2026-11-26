@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-20 (7.1 delivered; 7.2 on PR #28) |
+| Last updated | 2026-11-25 (7.1 verified) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -31,9 +31,9 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Verified (4.1); closes with the 4.1 merge |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Verified (5.1 and 5.2); closed with the 5.2 merge |
 | 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Deferred (Filipe, 2026-11-19); 6.1 and 6.2 unchanged. As planned, acquisition goes live only when she resumes seeing patients (Phase 6 goal) |
-| 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | 7.1 delivered (verified when URL Inspection shows the home page indexed); 7.2 built, verified by its `workflow_dispatch` tests right after the merge. Closes when both are verified |
+| 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | 7.1 verified (home page indexed, 2026-11-25); 7.2 merged, verified by its `workflow_dispatch` tests. Closes when 7.2 is verified |
 
-Phases 0 to 5 are closed. Phase 7 closes when 7.1 (home page indexed) and 7.2 (dispatch tests after the merge of PR #28) are verified: from then on the project is in maintenance, run by the reminders in [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md). Phase 5 closed with the 5.2 merge (PR #26). Phase 6 is deferred by Filipe's decision (2026-11-19); its issues keep their scope and acceptance. Phase 4 closed with the 4.1 merge: the JSON-LD `Person` is on the live page. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+Phases 0 to 5 are closed. Phase 7 closes when 7.2 (dispatch tests after the merge of PR #28) is verified; 7.1 is verified: from then on the project is in maintenance, run by the reminders in [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md). Phase 5 closed with the 5.2 merge (PR #26). Phase 6 is deferred by Filipe's decision (2026-11-19); its issues keep their scope and acceptance. Phase 4 closed with the 4.1 merge: the JSON-LD `Person` is on the live page. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
 
 ### Design brief (confirmed by Filipe)
 
@@ -435,7 +435,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 | Issue 7.1 | Detail |
 | --- | --- |
-| Status | `delivered` (PR #27 merged as `b91aaa7`, published by `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666)); `verified` when URL Inspection shows the home page indexed |
+| Status | `verified` (PR #27 merged as `b91aaa7`, published by `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666); home page indexed in URL Inspection, confirmed by Filipe on 2026-11-25) |
 | Size | P |
 | Depends on | 3.2 and 2.6 |
 
@@ -444,7 +444,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 - **Out of scope:** analytics with cookies.
 - **Acceptance:** property verified; home page indexed.
 - **Done outside the repository (Filipe, 2026-11-19):** Search Console Domain property with DNS verification, Dra. Victória added as owner, sitemap submitted, indexing of the home page requested, Bing Webmaster Tools imported from Search Console. No change to the site: `robots.txt` already lists the sitemap. Runbook: [`docs/runbooks/search-console.md`](docs/runbooks/search-console.md).
-- **Pending:** home page shown as indexed in URL Inspection (can take days); Filipe confirms it from the console.
+- **Verified (2026-11-25):** Filipe confirmed from Search Console that URL Inspection shows the home page indexed. Same day: the `google-site-verification` TXT record answers at the root of the domain, the home page returns HTTP 200 with no `robots` meta tag, and `robots.txt` allows all and lists the sitemap.
 
 ### 7.2 Maintenance
 
@@ -544,3 +544,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-20 | 7.1 delivered: PR #27 merged as `b91aaa7`; `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666) succeeded (`build`, `deploy`, `published`). Verified when URL Inspection shows the home page indexed. 5.2 status now cites the PR head run 44646362550 and the deploy run 44662384821 instead of run 44629224571 (an earlier head). 7.2 in progress on `chore/7.2-maintenance` |
 | 2026-11-20 | 7.2 built on PR #28: Dependabot, semiannual review and domain renewal workflows, maintenance runbook, dependency-bump rule in `AGENTS.md`. PR #28 CI [run 44667244795](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44667244795) on `c555a64` passed with the private assets. The `workflow_dispatch` tests run right after the merge (GitHub returns 404 for a workflow not on the default branch). Phase 7 closes when 7.1 and 7.2 are verified |
 | 2026-11-20 | Docs aligned with Filipe's simplified development flow (in force since 2026-11-20): Claude in T3 Code is the Dev and opens the PR; Filipe reviews, merges and deletes the branch; PO de Projetos and Reviewer de Projetos act only when he asks, and never merge. No double approval (`AGENTS.md` §3, §4, §13) |
+| 2026-11-25 | 7.1 verified: Filipe confirmed the home page indexed in URL Inspection. Phase 7 now waits only on 7.2 |
