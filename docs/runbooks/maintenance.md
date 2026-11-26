@@ -10,7 +10,7 @@ Three automatic reminders. None of them changes the site, merges a pull request 
 | Semiannual review | [`.github/workflows/semiannual-review.yml`](../../.github/workflows/semiannual-review.yml), checklist in [`.github/ISSUE_TEMPLATE/revisao-semestral.md`](../../.github/ISSUE_TEMPLATE/revisao-semestral.md) | January 1 and July 1, 12:00 UTC | Issue "Revisão semestral" |
 | Domain renewal | [`.github/workflows/domain-renewal.yml`](../../.github/workflows/domain-renewal.yml) | 1st of each month, 12:00 UTC | Issue "Renovar o domínio dravictorialaufer.com.br (vence em AAAA-MM-DD)" with 60 days or fewer left |
 
-The two workflows have only `issues: write`, plus `contents: read` in the semiannual review for the checkout of the template (`actions/checkout` pinned by commit SHA, v4.4.0), use the automatic `GITHUB_TOKEN` and no secret, and post nothing when an issue with the same title (semiannual review) or the same title prefix (renewal) is already open. `deploy.yml` is not involved.
+The two workflows have only `issues: write`, plus `contents: read` in the semiannual review for the checkout of the template (`actions/checkout` pinned by commit SHA, v7.0.1), use the automatic `GITHUB_TOKEN` and no secret, and post nothing when an issue with the same title (semiannual review) or the same title prefix (renewal) is already open. `deploy.yml` is not involved.
 
 ## Dependabot
 
@@ -24,6 +24,7 @@ The two workflows have only `issues: write`, plus `contents: read` in the semian
   - Dependabot PRs build on the placeholder (§12 exception), so a Dependabot npm minor or major bump never meets the assets condition and is Sm + Med. The grouped `minor-and-patch` PR is Sm + Med whenever it holds a minor bump.
 - **Never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets** (Filipe, 2026-11-20). A workflow run triggered by Dependabot reads Dependabot secrets, not Actions secrets, so the PR's CI skips the private-assets step and builds on the neutral placeholder. That is the accepted exception in [`AGENTS.md`](../../AGENTS.md) §12: code from updated dependencies runs in that build, and it must not run with the deploy key to the private assets.
 - **After each Dependabot merge, read the `deploy.yml` run on `main`.** Its `build` job is the first one with the real assets, and the evidence for the bump. `deploy` needs `build`, so a failing build publishes nothing and the live site stays as it was. If it fails, revert the merge or fix it, in its own PR.
+- **Ignored: TypeScript 7.x** (2026-11-26). `@astrojs/check` 0.9.12, its latest release, accepts only `typescript` `^5.0.0 || ^6.0.0`, so Dependabot's PR #34 (6.0.3 → 7.0.2) failed `npm ci` with ERESOLVE. It was closed with `@dependabot ignore this major version`; TypeScript 6 minor and patch bumps still come in the grouped PR. When `npm view @astrojs/check peerDependencies` accepts 7, reopen #34: Dependabot's reply there says reopening lifts the ignore.
 
 ### Alerts and security updates (Filipe, in the repository settings)
 

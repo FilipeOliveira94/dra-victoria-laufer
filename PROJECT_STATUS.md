@@ -6,7 +6,7 @@ Operational ledger for the **current phase**. Issue backlog and acceptance text 
 | --- | --- |
 | Repository | [FilipeOliveira94/dra-victoria-laufer](https://github.com/FilipeOliveira94/dra-victoria-laufer) |
 | Published at | <https://dravictorialaufer.com.br/> (since 3.2; the github.io address redirects) |
-| Last updated | 2026-11-25 (7.2 verified; phase 7 closed) |
+| Last updated | 2026-11-26 (Dependabot PRs #29 to #34 handled) |
 | Current phase | Maintenance (phase 7 closed on 2026-11-25) |
 | Phase status | Phase 7 closed: 7.1 and 7.2 verified on 2026-11-25. Phases 0 to 5 closed: 0.1 to 0.3, 1.1 to 1.8, 2.1 to 2.6, 3.1, 3.2, 4.1, 5.1 and 5.2 verified (3.3 withdrawn). Phase 6 deferred (Filipe, 2026-11-19) |
 
@@ -27,8 +27,8 @@ Maintenance. Phase 7 closed on 2026-11-25 with 7.1 (Search Console and Bing, hom
 ## Next work
 
 1. **Filipe, in the settings:** enable Dependabot security updates (the API still reports them disabled on 2026-11-25); never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets ([runbook](docs/runbooks/maintenance.md)).
-2. **Open Dependabot PRs #29 to #34:** five GitHub Actions majors and TypeScript 6 → 7 (npm major), all large under `AGENTS.md` §4 item 11. Each is an issue Filipe orders; none is auto-merged.
-3. **Reminders:** the first semiannual review opens on 2027-01-01; the renewal reminder runs monthly (domain expires 2028-11-18).
+2. **TypeScript 7:** Dependabot ignores 7.x since 2026-11-26 because `@astrojs/check` accepts only TypeScript 5 or 6; reopen #34 once a release accepts 7 ([runbook](docs/runbooks/maintenance.md)). The five GitHub Actions majors (#29 to #33) are merged.
+3. **Reminders:** the first semiannual review opens on 2027-01-01, the first run of its `actions/checkout` v7.0.1 pin; the renewal reminder runs monthly (domain expires 2028-11-18).
 4. Phase 6 (acquisition) stays deferred until Filipe reopens it.
 
 ## Blockers
@@ -52,10 +52,10 @@ Acceptance detail: `ROADMAP.md` → Phase 7. Phases 0 to 5: `ROADMAP.md` and `do
 
 | Validation | Detail |
 | --- | --- |
-| Date | 2026-11-25 |
-| Environment | GitHub Actions on `main` (`workflow_dispatch`) and the repository's Dependabot runs |
-| Checks | `domain-renewal.yml` with threshold 60 and 9999 and again with the issue open; `semiannual-review.yml` twice; Dependabot PR list |
-| Result | Every run succeeded with the expected outcome; issues #39 and #40 opened, deduplicated and closed; Dependabot PRs #29 to #34. 7.2 verified (`docs/status-log.md`) |
+| Date | 2026-11-26 |
+| Environment | GitHub Actions on `main`: the `deploy.yml` run after each Dependabot merge |
+| Checks | `build` with the private assets and the portrait check, `deploy` and `published`, after the merges of #29, #31, #33, #30 and #32 |
+| Result | All five runs succeeded, the last with no Node 20 deprecation warning. #34 (TypeScript 7) closed and 7.x ignored (`docs/status-log.md`) |
 
 ---
 
@@ -64,9 +64,9 @@ Acceptance detail: `ROADMAP.md` → Phase 7. Phases 0 to 5: `ROADMAP.md` and `do
 | Validation | Detail |
 | --- | --- |
 | Date | 2026-11-25 |
-| Environment | Published site and Google Search Console (read by Filipe) |
-| Checks | URL Inspection of the home page (Filipe); DNS-over-HTTPS TXT query; HTTP status, `robots` meta and `robots.txt` of the live page |
-| Result | Home page indexed; verification record present; page 200 and indexable. 7.1 verified (`docs/status-log.md`) |
+| Environment | GitHub Actions on `main` (`workflow_dispatch`) and the repository's Dependabot runs |
+| Checks | `domain-renewal.yml` with threshold 60 and 9999 and again with the issue open; `semiannual-review.yml` twice; Dependabot PR list |
+| Result | Every run succeeded with the expected outcome; issues #39 and #40 opened, deduplicated and closed; Dependabot PRs #29 to #34. 7.2 verified (`docs/status-log.md`) |
 
 ---
 
