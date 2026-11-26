@@ -1,9 +1,9 @@
 # Agent workflow prompts
 
-Four prompts drive one issue: plan, implement, open the PR, review. The Dev is Claude in T3 Code (AGENTS.md §3); the rules live in [`AGENTS.md`](../AGENTS.md). Replace the placeholders and run the plan prompt first. An S + Low issue goes from plan to PR without stopping; anything rated higher waits for Filipe's approval of the plan before any file changes (AGENTS.md §4 item 4).
+Four prompts drive one issue: plan, implement, open the PR, review. The Dev is Claude in T3 Code (AGENTS.md §3); the rules live in [`AGENTS.md`](../AGENTS.md). Replace the placeholders and run the plan prompt first. An Sm + Lo issue goes from plan to PR without stopping; anything rated higher waits for Filipe's approval of the plan before any file changes (AGENTS.md §4 item 4).
 
 ```text
-Filipe picks the issue → rating + plan → approval (above S + Low) → feature branch → implement
+Filipe picks the issue → rating + plan → approval (above Sm + Lo) → feature branch → implement
      → checks + CFM checklist → PR with summary → PR CI read
      → Filipe reviews (harder merge: he asks Claude for a review)
      → Filipe merges and deletes the branch
@@ -33,15 +33,15 @@ Return:
 8. Which items of the AGENTS.md §12 "Issue Close Checklist" this issue will touch.
 9. The Size and Risk (AGENTS.md §4 items 4 and 11), and whether planning raised either.
 
-Keep the scope limited to this issue. Do not implement future phases or silently change architecture. S + Low: go on to implement. Anything higher: stop and wait for my approval before editing.
+Keep the scope limited to this issue. Do not implement future phases or silently change architecture. Sm + Lo: go on to implement. Anything higher: stop and wait for my approval before editing.
 ```
 
-## 2. Implement (Dev; above S + Low only after the plan is approved)
+## 2. Implement (Dev; above Sm + Lo only after the plan is approved)
 
 ```text
 Follow AGENTS.md.
 
-Implement only the plan above (above S + Low, the approved plan with any adjustments), on the feature branch <type>/<ISSUE-ID>-<slug> created from an up-to-date main.
+Implement only the plan above (above Sm + Lo, the approved plan with any adjustments), on the feature branch <type>/<ISSUE-ID>-<slug> created from an up-to-date main.
 - Keep the diff focused. Explain any necessary deviation before making it.
 - Do not invent personal data, biographical text, course names, palette or logo. Missing data stays pendente.
 - Do not add a portrait or a brand source file to this repository.

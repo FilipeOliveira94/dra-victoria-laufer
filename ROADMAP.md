@@ -16,7 +16,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 - Do not start an issue until its dependencies are satisfied. A dependency on a person (content, brand) is a blocker, not something to fill in.
 - Issue IDs are stable. A removed issue keeps its ID and is marked `withdrawn`.
 
-**Expected/Seen Risk and Size:** each value is `expected/seen`. Risk is `Lo`, `Med` or `Hi`; Size is `Sm`, `Md` or `Lg` (scale in `~/.agents/claude/workflow.md`, repo `FilipeOliveira94/agent-config`; High risk here is listed in `AGENTS.md` §3). An open issue has only the expected half (`Hi/-`, `Sm/-`); the seen half is filled when it closes. Issues closed before 2026-11-24 have only the seen half (`-/Lo`, `-/Sm`), rated afterwards from the hand-written lines of the commits that cite the issue (docs excluded) and its scope. A withdrawn issue has `-/-`. These rows replace the old Size row (P/M/G).
+**Expected/Seen Risk and Size:** each value is `expected/seen`. Risk is `Lo`, `Med` or `Hi`; Size is `Sm`, `Md` or `Lg` (scale in `~/.agents/claude/workflow.md`, repo `FilipeOliveira94/agent-config`; Hi risk here is listed in `AGENTS.md` §3). An open issue has only the expected half (`Hi/-`, `Sm/-`); the seen half is filled when it closes. Issues closed before 2026-11-24 have only the seen half (`-/Lo`, `-/Sm`), rated afterwards from the hand-written lines of the commits that cite the issue (docs excluded) and its scope. A withdrawn issue has `-/-`. These rows replace the old Size row (P/M/G).
 
 ---
 

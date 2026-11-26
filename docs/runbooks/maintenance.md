@@ -18,10 +18,10 @@ The two workflows have only `issues: write`, plus `contents: read` in the semian
 - **GitHub Actions**, monthly: one pull request per action.
 - **No auto-merge.** Each Dependabot pull request follows the normal flow ([`AGENTS.md`](../../AGENTS.md) §4): its CI run (`deploy.yml`, `build` job) must pass, and Filipe reviews and merges it. A merge deploys the site, so read the `published` job of its run.
 - **Rating** (Size and Risk; [`AGENTS.md`](../../AGENTS.md) §4 item 11; extension authorized by Filipe on 2026-11-20):
-  - An npm **patch** bump is S + Low.
-  - An npm **minor or major** bump is S + Low only if the PR's CI passed with the private-assets step executed **and** the changelog of each updated package shows no breaking change; otherwise it is S + Med (Filipe may ask Claude for a review). The Dev records which changelogs were read.
-  - A bump that changes a file in `.github/workflows/` (every GitHub Actions bump) is **always S + High**: the PR's CI does not exercise `deploy` or `published`.
-  - Dependabot PRs build on the placeholder (§12 exception), so a Dependabot npm minor or major bump never meets the assets condition and is S + Med. The grouped `minor-and-patch` PR is S + Med whenever it holds a minor bump.
+  - An npm **patch** bump is Sm + Lo.
+  - An npm **minor or major** bump is Sm + Lo only if the PR's CI passed with the private-assets step executed **and** the changelog of each updated package shows no breaking change; otherwise it is Sm + Med (Filipe may ask Claude for a review). The Dev records which changelogs were read.
+  - A bump that changes a file in `.github/workflows/` (every GitHub Actions bump) is **always Sm + Hi**: the PR's CI does not exercise `deploy` or `published`.
+  - Dependabot PRs build on the placeholder (§12 exception), so a Dependabot npm minor or major bump never meets the assets condition and is Sm + Med. The grouped `minor-and-patch` PR is Sm + Med whenever it holds a minor bump.
 - **Never add `ASSETS_DEPLOY_KEY` to the Dependabot secrets** (Filipe, 2026-11-20). A workflow run triggered by Dependabot reads Dependabot secrets, not Actions secrets, so the PR's CI skips the private-assets step and builds on the neutral placeholder. That is the accepted exception in [`AGENTS.md`](../../AGENTS.md) §12: code from updated dependencies runs in that build, and it must not run with the deploy key to the private assets.
 - **After each Dependabot merge, read the `deploy.yml` run on `main`.** Its `build` job is the first one with the real assets, and the evidence for the bump. `deploy` needs `build`, so a failing build publishes nothing and the live site stays as it was. If it fails, revert the merge or fix it, in its own PR.
 
