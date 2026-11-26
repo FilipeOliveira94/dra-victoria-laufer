@@ -16,7 +16,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 - Do not start an issue until its dependencies are satisfied. A dependency on a person (content, brand) is a blocker, not something to fill in.
 - Issue IDs are stable. A removed issue keeps its ID and is marked `withdrawn`.
 
-**Size:** P (small) · M (medium) · G (large).
+**Expected/Seen Risk and Size:** each value is `expected/seen`. Risk is `Lo`, `Med` or `Hi`; Size is `Sm`, `Md` or `Lg` (scale in `~/.agents/claude/workflow.md`, repo `FilipeOliveira94/agent-config`; Hi risk here is listed in `AGENTS.md` §3). An open issue has only the expected half (`Hi/-`, `Sm/-`); the seen half is filled when it closes. Issues closed before 2026-11-24 have only the seen half (`-/Lo`, `-/Sm`), rated afterwards from the hand-written lines of the commits that cite the issue (docs excluded) and its scope. A withdrawn issue has `-/-`. These rows replace the old Size row (P/M/G).
 
 ---
 
@@ -55,7 +55,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 0.1 | Detail |
 | --- | --- |
 | Status | `verified` |
-| Size | P |
+| Expected/Seen Risk | -/Lo |
+| Expected/Seen Size | -/Sm |
 | Depends on | — |
 
 - **Objective:** fix the audience, the goal and the limits of the site before design.
@@ -68,7 +69,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 0.2 | Detail |
 | --- | --- |
 | Status | `verified` |
-| Size | P |
+| Expected/Seen Risk | -/Lo |
+| Expected/Seen Size | -/Sm |
 | Depends on | — |
 
 - **Objective:** unblock the content of Phase 2.
@@ -81,7 +83,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 0.3 | Detail |
 | --- | --- |
 | Status | `verified` |
-| Size | M |
+| Expected/Seen Risk | -/Lo |
+| Expected/Seen Size | -/Sm |
 | Depends on | Filipe's confirmation; 0.1 |
 
 - **Objective:** replace the provisional tokens with the confirmed brand.
@@ -102,7 +105,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 1.1 | Detail |
 | --- | --- |
 | Status | `verified` (local builds and the published site checked on 2026-11-16) |
-| Size | M |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Md |
 | Depends on | — |
 | ADRs | [0001](docs/decisions/0001-static-site-generator-astro.md), [0003](docs/decisions/0003-hosting-github-pages-actions.md), [0004](docs/decisions/0004-deploy-target-switch.md), [0006](docs/decisions/0006-noindex-until-release.md) |
 
@@ -116,7 +120,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 1.2 | Detail |
 | --- | --- |
 | Status | `verified` (local builds, 2026-11-16) |
-| Size | P |
+| Expected/Seen Risk | -/Med |
+| Expected/Seen Size | -/Sm |
 | Depends on | 1.1 |
 | ADRs | [0005](docs/decisions/0005-typed-content-collections.md), [0007](docs/decisions/0007-contact-and-single-email.md) |
 
@@ -130,7 +135,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 1.3 | Detail |
 | --- | --- |
 | Status | `verified` |
-| Size | M |
+| Expected/Seen Risk | -/Lo |
+| Expected/Seen Size | -/Sm |
 | Depends on | 1.2 |
 | ADRs | [0002](docs/decisions/0002-own-css-with-tokens.md) |
 
@@ -144,7 +150,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 1.4 | Detail |
 | --- | --- |
 | Status | `verified` (local builds and the PR's CI run, assets fetched) |
-| Size | M |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | 1.1 and 1.3; photo from 0.2 (neutral placeholder until then) |
 | ADRs | [0010](docs/decisions/0010-private-assets-repository.md) |
 
@@ -158,7 +165,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 1.5 | Detail |
 | --- | --- |
 | Status | `verified` (local builds, both targets, and the PR's CI run, assets fetched) |
-| Size | P |
+| Expected/Seen Risk | -/Lo |
+| Expected/Seen Size | -/Sm |
 | Depends on | 1.3 |
 
 - **Objective:** keyboard, screen reader and contrast in conformance.
@@ -171,7 +179,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 1.6 | Detail |
 | --- | --- |
 | Status | `verified` (local builds, both targets, and the PR's CI run, assets fetched) |
-| Size | P |
+| Expected/Seen Risk | -/Med |
+| Expected/Seen Size | -/Sm |
 | Depends on | 1.1 |
 
 - **Objective:** correct metadata and controlled indexing.
@@ -184,7 +193,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 1.7 | Detail |
 | --- | --- |
 | Status | `verified` (local builds, both targets, with and without the assets, and the PR's CI run, assets fetched) |
-| Size | M |
+| Expected/Seen Risk | -/Med |
+| Expected/Seen Size | -/Sm |
 | Depends on | 1.3 |
 
 - **Objective:** prevent regressions in quality and in compliance.
@@ -197,7 +207,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 1.8 | Detail |
 | --- | --- |
 | Status | `verified` (wording reviewed and approved by Filipe, 2026-11-16) |
-| Size | P |
+| Expected/Seen Risk | -/Med |
+| Expected/Seen Size | -/Sm |
 | Depends on | — |
 | ADRs | [0008](docs/decisions/0008-license-code-only.md) |
 
@@ -228,7 +239,9 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 
 | Issue 2.1 | Detail |
 | --- | --- |
-| Status | `verified` (local builds and the PR's CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307), assets fetched; screenshots approved by Filipe as the base, 2026-11-16) | Size | M |
+| Status | `verified` (local builds and the PR's CI [run 43981619307](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/43981619307), assets fetched; screenshots approved by Filipe as the base, 2026-11-16) |
+| Expected/Seen Risk | -/Lo |
+| Expected/Seen Size | -/Sm |
 | Depends on | 0.3 |
 
 - **Objective:** the brand under the whole page, before any section is finished on it.
@@ -240,7 +253,9 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 
 | Issue 2.2 | Detail |
 | --- | --- |
-| Status | `verified` (local builds and the CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315) of PR #15, assets fetched; screenshots approved by Filipe, 2026-11-17) | Size | M |
+| Status | `verified` (local builds and the CI [run 44161566315](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44161566315) of PR #15, assets fetched; screenshots approved by Filipe, 2026-11-17) |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Md |
 | Depends on | 2.1 |
 
 - **Objective:** meet the identification required by CFM Resolution 2.336/2023, with the first fold and the Contato section finished, in the "Caminho do jardim" direction (Filipe, 2026-11-17).
@@ -253,7 +268,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 2.3 | Detail |
 | --- | --- |
 | Status | `verified` |
-| Size | P |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | 2.2; 0.2 |
 
 - **Objective:** the Formação section finished, with the postgraduate courses in the Art. 13 format.
@@ -266,7 +282,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 2.4 | Detail |
 | --- | --- |
 | Status | `verified` |
-| Size | P |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | 2.3; 0.2 |
 
 - **Objective:** the Atuação and Sobre sections finished, demonstrating experience without advertising care.
@@ -279,7 +296,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 2.5 | Detail |
 | --- | --- |
 | Status | `verified` |
-| Size | M |
+| Expected/Seen Risk | -/Med |
+| Expected/Seen Size | -/Sm |
 | Depends on | 1.4; 2.1 |
 | Required before | 2.6: Filipe made it a condition for publication (2026-11-16), so indexing waits for it |
 
@@ -293,7 +311,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 2.6 | Detail |
 | --- | --- |
 | Status | `verified` (local builds and the CI [run 44413772830](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44413772830) of PR #20, assets fetched; her written approval and Filipe's review of the page, 2026-11-18) |
-| Size | P |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | 2.1 to 2.5 |
 | ADRs | [0006](docs/decisions/0006-noindex-until-release.md) |
 
@@ -313,7 +332,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 3.1 | Detail |
 | --- | --- |
 | Status | `verified` (DNS checked 2026-11-18; CI [run 44436305170](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44436305170) of PR #21) |
-| Size | P |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | — |
 
 - **Objective:** `dravictorialaufer.com.br` pointing at GitHub Pages.
@@ -326,7 +346,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 3.2 | Detail |
 | --- | --- |
 | Status | `verified` (PR #22 CI [run 44437660306](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44437660306); domain, certificate and redirects checked on the published site 2026-11-18) |
-| Size | P |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | 3.1 and 1.1 |
 | ADRs | [0004](docs/decisions/0004-deploy-target-switch.md) |
 
@@ -340,6 +361,8 @@ Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 ve
 | Issue 3.3 | Detail |
 | --- | --- |
 | Status | `withdrawn` |
+| Expected/Seen Risk | -/- |
+| Expected/Seen Size | -/- |
 
 Removed in the final adjustments of the plan. There is no mailbox on the domain and no MX, SPF, DKIM or DMARC record. The site uses `victorialaufersaude@gmail.com` ([ADR-0007](docs/decisions/0007-contact-and-single-email.md)).
 
@@ -354,7 +377,8 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | Issue 4.1 | Detail |
 | --- | --- |
 | Status | `verified` (local builds; PR #23 CI [run 44442139697](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44442139697)) |
-| Size | P |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | 2.6 and 3.2 |
 | ADRs | [0009](docs/decisions/0009-schema-person.md) |
 
@@ -372,7 +396,8 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | Issue 5.1 | Detail |
 | --- | --- |
 | Status | `verified` (local builds; PR #24 CI [run 44446030982](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44446030982); text approved by her) |
-| Size | P |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | 2.2 |
 
 - **Objective:** transparency and LGPD.
@@ -385,7 +410,8 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | Issue 5.2 | Detail |
 | --- | --- |
 | Status | `verified` (PR #26 CI [run 44646362550](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44646362550) on the PR head `1a4d122`; her approval of the two sentences; merged as `58e236d` and published by `deploy.yml` [run 44662384821](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44662384821)) |
-| Size | M |
+| Expected/Seen Risk | -/Hi |
+| Expected/Seen Size | -/Sm |
 | Depends on | 2.6 |
 
 - **Objective:** deepen credibility as she provides material.
@@ -406,7 +432,8 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | Issue 6.1 | Detail |
 | --- | --- |
 | Status | `not started` |
-| Size | P |
+| Expected/Seen Risk | Hi/- |
+| Expected/Seen Size | Sm/- |
 | Depends on | 2.6 |
 
 - **Objective:** switch acquisition on without rework.
@@ -419,7 +446,8 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | Issue 6.2 | Detail |
 | --- | --- |
 | Status | `not started` |
-| Size | M |
+| Expected/Seen Risk | Hi/- |
+| Expected/Seen Size | Md/- |
 | Depends on | 6.1 and 4.1 |
 
 - **Objective:** say how she sees patients when she resumes.
@@ -436,7 +464,8 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | Issue 7.1 | Detail |
 | --- | --- |
 | Status | `verified` (PR #27 merged as `b91aaa7`, published by `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666); home page indexed in URL Inspection, confirmed by Filipe on 2026-11-25) |
-| Size | P |
+| Expected/Seen Risk | -/Lo |
+| Expected/Seen Size | -/Sm |
 | Depends on | 3.2 and 2.6 |
 
 - **Objective:** follow indexing.
@@ -451,7 +480,8 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 | Issue 7.2 | Detail |
 | --- | --- |
 | Status | `verified` (PR #28 merged as `e93068b`, published by `deploy.yml` [run 44671283048](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44671283048); `workflow_dispatch` tests on `main` on 2026-11-25) |
-| Size | P |
+| Expected/Seen Risk | Med/Med |
+| Expected/Seen Size | Sm/Sm |
 | Depends on | 1.1 |
 
 - **Objective:** keep the site up to date and compliant.
@@ -545,5 +575,6 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-20 | 7.1 delivered: PR #27 merged as `b91aaa7`; `deploy.yml` [run 44665644666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44665644666) succeeded (`build`, `deploy`, `published`). Verified when URL Inspection shows the home page indexed. 5.2 status now cites the PR head run 44646362550 and the deploy run 44662384821 instead of run 44629224571 (an earlier head). 7.2 in progress on `chore/7.2-maintenance` |
 | 2026-11-20 | 7.2 built on PR #28: Dependabot, semiannual review and domain renewal workflows, maintenance runbook, dependency-bump rule in `AGENTS.md`. PR #28 CI [run 44667244795](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44667244795) on `c555a64` passed with the private assets. The `workflow_dispatch` tests run right after the merge (GitHub returns 404 for a workflow not on the default branch). Phase 7 closes when 7.1 and 7.2 are verified |
 | 2026-11-20 | Docs aligned with Filipe's simplified development flow (in force since 2026-11-20): Claude in T3 Code is the Dev and opens the PR; Filipe reviews, merges and deletes the branch; PO de Projetos and Reviewer de Projetos act only when he asks, and never merge. No double approval (`AGENTS.md` §3, §4, §13) |
+| 2026-11-24 | Agent workflow: PO and Reviewer bots removed; profile `solo` (Claude Opus 5.5 plans and implements, no review subagents), declared in `AGENTS.md` §3 "Agent workflow". Size and Risk replace the small/large task mode; every issue carries Expected/Seen Risk and Size rows. Replies in English; no fallback tool |
 | 2026-11-25 | 7.1 verified: Filipe confirmed the home page indexed in URL Inspection. Phase 7 now waits only on 7.2 |
 | 2026-11-25 | 7.2 verified: Dependabot active (PRs #29 to #34), dispatch tests on `main` opened and deduplicated issues #39 and #40, both closed. Phase 7 closed; the project is in maintenance |

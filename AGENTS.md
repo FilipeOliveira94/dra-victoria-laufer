@@ -14,21 +14,28 @@ The target stack and its rationale are in [`DECISIONS.md`](DECISIONS.md). Issue 
 
 - Use English for code, identifiers, comments, commit messages and technical documentation.
 - Site content is Brazilian Portuguese (`lang="pt-BR"`). Mandatory CFM strings are written exactly as the checklist gives them.
-- Communicate with the user in Brazilian Portuguese.
+- Reply to Filipe in English; he may write in Portuguese.
 - Explain decisions and trade-offs clearly.
 
 ## 3. Roles
 
-Simplified development flow, in force since 2026-11-20.
+Development flow in force since 2026-11-24.
 
 | Role | Who | Does |
 | --- | --- | --- |
-| Owner | Filipe | Asks for status, picks the issue, reviews the PR, merges it and deletes the branch. Final say on scope, architecture and brand. Relays content and approvals from Dra. Victória |
-| Dev | Claude in T3 Code (Claude Opus 5.5) | Per issue: plan, then implement on a new branch from an up-to-date `main`, run the checks, commit, push the branch and open the PR with a summary. Never merges. Fallback: Grok 4.7 through the Cursor provider in T3 Code, only when the Claude Pro limit runs out |
-| PO de Projetos | Bot, only when Filipe asks | Project status, sending an issue to T3 Code, a summary of what was done after a merge, product view |
-| Reviewer de Projetos | Bot, only when Filipe asks | For a harder merge: opens a T3 Code thread for Claude to review the PR and summarizes the verdict. Never merges and never deletes a branch |
+| Owner | Filipe | Picks the issue, approves plans, reviews the PR, merges it and deletes the branch. Final say on scope, architecture and brand. Relays content and approvals from Dra. Victória |
+| Dev | Claude in T3 Code (Claude Opus 5.5) | Per issue: plan, then implement on a new branch from an up-to-date `main`, run the checks, commit, push the branch and open the PR with a summary. Never merges |
 
-There is no separate PO approval, no per-project dev and no double approval. No agent or bot merges, deletes a branch or pushes `main`.
+There are no PO or Reviewer bots and no review subagents in this project (see "Agent workflow" below). No agent merges, deletes a branch or pushes `main`.
+
+### Agent workflow
+
+Language, size and risk, and model policy: `~/.agents/claude/workflow.md` (repo `FilipeOliveira94/agent-config`).
+
+- **Profile:** solo. Claude Opus 5.5 plans and implements; no reviewer subagents.
+- **Language:** English for everything; site content in pt-BR (§2).
+- **Hi risk here:** a new published section or claim about her registration, training or care, and structured data (CFM checklist, §8); deploy and the `published` job; the private assets and their deploy key; switching an acquisition flag on. A plain text edit that passes the CFM checklist can be Lo (item 11).
+- **Model exceptions:** none
 
 Dra. Victória is the content owner. Her texts, photo and written approvals arrive through Filipe.
 
@@ -39,16 +46,17 @@ One issue, one feature branch, one pull request.
 1. Inspect the existing code and the current project documentation.
 2. Read `PROJECT_STATUS.md`, the issue in `ROADMAP.md`, and the relevant ADRs.
 3. Identify dependencies, assumptions, risks and acceptance criteria. A blocked dependency stops the issue; say so and do not work around it.
-4. Classify the task as small or large (item 11) and follow its mode. The issue prompt says which mode applies; while planning, the Dev may reclassify a small task as large if it turns out bigger.
-   - Small: plan and implement straight through to the PR.
-   - Large: present the plan in the thread and stop. Do not edit code until Filipe approves the plan in the same thread, directly or relayed by the PO de Projetos as "Plano aprovado pelo Filipe: implemente.", sometimes with adjustments that the Dev applies.
+4. Check the issue's Size and Risk (the expected half of the roadmap's Risk and Size rows, or rate it in the plan; scale and rules in `~/.agents/claude/workflow.md`; item 11 for dependency bumps) and follow what it decides. While planning, the Dev may raise a rating and says why; it never lowers one without Filipe.
+   - Sm + Lo: plan and implement straight through to the PR.
+   - Anything else: present the plan in the thread and stop. Do not edit code until Filipe approves the plan in the same thread, sometimes with adjustments that the Dev applies.
+   - Hi risk or Lg size: the thread runs at Opus high effort, set when it starts; the Dev never switches its model or effort by itself; a switch happens only when Filipe decides it. A Hi-risk plan names the CFM items or the deploy path at stake; an Lg plan says whether to split the issue.
 5. Create the feature branch from an up-to-date `main` (§13).
 6. Implement the smallest coherent increment that satisfies the issue.
 7. Run the checks in §9 and the CFM checklist in §8. Fix regressions caused by the change.
 8. Update documentation and `PROJECT_STATUS.md` (current-phase ledger only; older narrative goes to `docs/status-log.md`).
 9. Push the feature branch and open the PR. The PR description lists the issue ID, the acceptance criteria with how each was verified, the check results, and the CFM checklist result. The PR's CI run (`deploy.yml`, build job) runs the same build as a deploy, private assets included (Dependabot PRs excepted, §12); it must pass, and its run is cited as evidence.
-10. Once the CI is read, report the PR link, its head SHA, the CI result and the summary to Filipe. Filipe reviews the PR. For a harder merge he may ask the Reviewer de Projetos, which opens a T3 Code thread for Claude to review the PR and summarizes the verdict. Requested changes go as new commits on the same branch, with the CI read again.
-11. The Dev states the small or large classification (item 4) again on delivery, so Filipe knows how much review it needs; a large change is the kind he may send to the Reviewer de Projetos. Small change: docs, text, config tweak, patch dependency bump, or a contained bugfix of up to ~50 lines in up to 3 files that touches no architecture, data model/schema, auth/security, infra/deploy, public API or pipeline logic; when in doubt, it is large. A change to content, metadata or alt text still runs the CFM checklist (§8). Dependency bumps, Dependabot's included (extension authorized by Filipe on 2026-11-20): an npm patch bump is small; an npm minor or major bump is small only if the PR's CI passed with the private-assets step executed and the changelog of each updated package shows no breaking change; a bump that changes a file in `.github/workflows/` (GitHub Actions bumps) is always large, because the PR's CI does not exercise `deploy` or `published`. Dependabot PRs build on the placeholder (§12 exception), so a Dependabot npm minor or major bump never meets the assets condition and is large. Dependabot pull requests are never auto-merged ([`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md)).
+10. Once the CI is read, report the PR link, its head SHA, the CI result and the summary to Filipe. Filipe reviews the PR. For a harder merge he may ask Claude for a review in a T3 Code thread (`docs/agent-workflow.md` §4). Requested changes go as new commits on the same branch, with the CI read again.
+11. The Dev states the Size and Risk (item 4) again on delivery, so Filipe knows how much review it needs; anything above Sm + Lo is the kind he may ask Claude to review. A change to content, metadata or alt text always runs the CFM checklist (§8); a plain text edit can be Sm + Lo (Filipe, 2026-11-19), while a new section, a new claim or structured data is Hi. Dependency bumps, Dependabot's included (extension authorized by Filipe on 2026-11-20): an npm patch bump is Sm + Lo; an npm minor or major bump is Sm + Lo only if the PR's CI passed with the private-assets step executed and the changelog of each updated package shows no breaking change, otherwise Sm + Med; a bump that changes a file in `.github/workflows/` (GitHub Actions bumps) is Sm + Hi, because the PR's CI does not exercise `deploy` or `published`. Dependabot PRs build on the placeholder (§12 exception), so a Dependabot npm minor or major bump never meets the assets condition and is Sm + Med. Dependabot pull requests are never auto-merged ([`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md)).
 12. Filipe merges and deletes the branch. The Dev never merges.
 
 Do not mark an issue complete unless its acceptance criteria have been verified.
