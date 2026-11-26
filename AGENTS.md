@@ -160,7 +160,7 @@ Filipe makes the final decisions and approves significant changes.
 
 Before asking for the merge, check each item and update only what the verified evidence supports:
 
-- `ROADMAP.md`: the issue status, a Changelog line, and Last updated.
+- `ROADMAP.md`: the issue status, the seen half of its Risk and Size, a Changelog line, and Last updated.
 - `PROJECT_STATUS.md`: the phase table, Blockers, Next work, and Last updated.
 - `docs/status-log.md`: a new entry, with the PR's CI run and, if not yet recorded, the `published` run of the previous merge.
 - The PR's CI run passed, with the private-assets step executed (not skipped).
