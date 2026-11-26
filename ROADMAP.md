@@ -4,7 +4,7 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 
 | Roadmap | Current |
 | --- | --- |
-| Last updated | 2026-11-25 (7.1 verified) |
+| Last updated | 2026-11-25 (7.2 verified; phase 7 closed) |
 | MVP | Phases 1 and 2 |
 | Related | [`PROJECT_STATUS.md`](PROJECT_STATUS.md), [`DECISIONS.md`](DECISIONS.md), [`AGENTS.md`](AGENTS.md), [`docs/compliance/cfm.md`](docs/compliance/cfm.md) |
 
@@ -31,9 +31,9 @@ Issue-level plan for the portfolio site of Dra. Victória Laufer. This file is t
 | 4 | Structured data: JSON-LD `Person` | 2.6 and 3.2 | Verified (4.1); closes with the 4.1 merge |
 | 5 | Content and E-E-A-T: privacy, legal notice, further evidence | 2.2, 2.6 | Verified (5.1 and 5.2); closed with the 5.2 merge |
 | 6 | Acquisition, off by default: invitation to schedule, care modality | 2.6, 4.1 | Deferred (Filipe, 2026-11-19); 6.1 and 6.2 unchanged. As planned, acquisition goes live only when she resumes seeing patients (Phase 6 goal) |
-| 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | 7.1 verified (home page indexed, 2026-11-25); 7.2 merged, verified by its `workflow_dispatch` tests. Closes when 7.2 is verified |
+| 7 | Monitoring: Search Console, maintenance | 1.1, 2.6, 3.2 | Verified (7.1 and 7.2); closed on 2026-11-25. The project is in maintenance |
 
-Phases 0 to 5 are closed. Phase 7 closes when 7.2 (dispatch tests after the merge of PR #28) is verified; 7.1 is verified: from then on the project is in maintenance, run by the reminders in [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md). Phase 5 closed with the 5.2 merge (PR #26). Phase 6 is deferred by Filipe's decision (2026-11-19); its issues keep their scope and acceptance. Phase 4 closed with the 4.1 merge: the JSON-LD `Person` is on the live page. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
+Phases 0 to 5 and 7 are closed. Phase 7 closed on 2026-11-25 with 7.1 and 7.2 verified: the project is in maintenance, run by the reminders in [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md). Phase 5 closed with the 5.2 merge (PR #26). Phase 6 is deferred by Filipe's decision (2026-11-19); its issues keep their scope and acceptance. Phase 4 closed with the 4.1 merge: the JSON-LD `Person` is on the live page. Blockers are listed in [`PROJECT_STATUS.md`](PROJECT_STATUS.md).
 
 ### Design brief (confirmed by Filipe)
 
@@ -450,7 +450,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 
 | Issue 7.2 | Detail |
 | --- | --- |
-| Status | `in progress`: built and checked on PR #28 (branch `chore/7.2-maintenance`); `verified` once the `workflow_dispatch` tests run right after the merge are recorded |
+| Status | `verified` (PR #28 merged as `e93068b`, published by `deploy.yml` [run 44671283048](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44671283048); `workflow_dispatch` tests on `main` on 2026-11-25) |
 | Size | P |
 | Depends on | 1.1 |
 
@@ -460,6 +460,7 @@ Removed in the final adjustments of the plan. There is no mailbox on the domain 
 - **Acceptance:** Dependabot active; recurring issue created.
 - **Built (ordered by Filipe on 2026-11-20):** `.github/dependabot.yml` (npm weekly with minor and patch in one grouped PR and each major apart; GitHub Actions monthly; no auto-merge); `semiannual-review.yml` (January 1 and July 1, issue "Revisão semestral" from `.github/ISSUE_TEMPLATE/revisao-semestral.md`; a comment on the previous one instead, if it is still open); `domain-renewal.yml` (monthly, Registro.br RDAP, renewal issue with 60 days or fewer left, fails without posting when RDAP fails). Both workflows: `workflow_dispatch`, no duplicate of an open issue, only `issues: write` (plus `contents: read` for the template checkout, `actions/checkout` pinned by SHA), no secret. Rule for dependency bumps in `AGENTS.md` §4 item 11. Runbook: [`docs/runbooks/maintenance.md`](docs/runbooks/maintenance.md).
 - **After the merge:** GitHub dispatches only workflows present on the default branch, so the tests run on `main`: `domain-renewal.yml` with the default threshold (no issue) and with `threshold_days=9999` (issue opened, then closed); `semiannual-review.yml` (issue opened, then closed); Dependabot's first run in **Insights → Dependency graph → Dependabot**. Filipe enables Dependabot security updates in the repository settings (runbook).
+- **Verified (2026-11-25):** Dependabot active: its first run on 2026-11-20 opened PRs #29 to #34 (five GitHub Actions majors, one npm major), none auto-merged. Dispatch tests on `main`: `domain-renewal.yml` default threshold [run 45732311675](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732311675), issue step skipped (723 days left); `threshold_days=9999` [run 45732325051](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732325051), opened issue #39; again with #39 open [run 45732424110](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732424110), nothing posted. `semiannual-review.yml` [run 45732338666](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732338666) opened issue #40 with the template body; again with #40 open [run 45732435707](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/45732435707), one comment on #40 and no new issue. #39 and #40 closed as tests. Dependabot security updates are still disabled (a setting for Filipe, outside the acceptance).
 
 ---
 
@@ -545,3 +546,4 @@ Answered during planning: the e-mail is `victorialaufersaude@gmail.com` (it may 
 | 2026-11-20 | 7.2 built on PR #28: Dependabot, semiannual review and domain renewal workflows, maintenance runbook, dependency-bump rule in `AGENTS.md`. PR #28 CI [run 44667244795](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44667244795) on `c555a64` passed with the private assets. The `workflow_dispatch` tests run right after the merge (GitHub returns 404 for a workflow not on the default branch). Phase 7 closes when 7.1 and 7.2 are verified |
 | 2026-11-20 | Docs aligned with Filipe's simplified development flow (in force since 2026-11-20): Claude in T3 Code is the Dev and opens the PR; Filipe reviews, merges and deletes the branch; PO de Projetos and Reviewer de Projetos act only when he asks, and never merge. No double approval (`AGENTS.md` §3, §4, §13) |
 | 2026-11-25 | 7.1 verified: Filipe confirmed the home page indexed in URL Inspection. Phase 7 now waits only on 7.2 |
+| 2026-11-25 | 7.2 verified: Dependabot active (PRs #29 to #34), dispatch tests on `main` opened and deduplicated issues #39 and #40, both closed. Phase 7 closed; the project is in maintenance |
