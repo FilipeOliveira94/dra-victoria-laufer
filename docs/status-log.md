@@ -4,6 +4,16 @@ Chronological history of project status updates, newest first. The operational l
 
 ---
 
+### 2026-11-25 — Issue 7.1 verified: home page indexed
+
+Branch `docs/7.1-verified`. Docs only. On 2026-11-25 Filipe confirmed from Google Search Console that URL Inspection shows the home page `https://dravictorialaufer.com.br/` indexed, the last acceptance item of 7.1 (property verified; home page indexed). 7.1 moves from `delivered` to `verified` in `ROADMAP.md`, `PROJECT_STATUS.md` and the Search Console runbook. Phase 7 now waits only on 7.2's dispatch tests.
+
+Checks run the same day from this machine: a DNS-over-HTTPS TXT query for the root of the domain returns a `google-site-verification=` value (value not recorded); `https://dravictorialaufer.com.br/` returns HTTP 200 with no `robots` meta tag; `robots.txt` is `Allow: /` with the sitemap. The index status itself was read in Search Console by Filipe; no agent has access to the console.
+
+`deploy.yml` runs on `main` since the last recorded one, each with `build`, `deploy` and `published` success: [run 44671283048](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44671283048) (`e93068b`, PR #28, 7.2), [run 44674224167](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44674224167) (`3e5a5b7`, PR #35), [run 44675171339](https://github.com/FilipeOliveira94/dra-victoria-laufer/actions/runs/44675171339) (`a33ab68`, PR #36).
+
+---
+
 ### 2026-11-20 — Small or large task rule in the flow
 
 Branch `chore/fluxo-pequena-grande`, ordered by Filipe. Docs only. `AGENTS.md` §4 item 4: the task is classified small or large up front; small goes from plan to PR, large stops after the plan until Filipe approves it in the thread (directly or relayed by the PO de Projetos); the issue prompt names the mode and the Dev may reclassify to large while planning. Item 11 keeps the definition and the delivery classification. Same rule in `docs/agent-workflow.md` (intro, flow, plan and implement prompts).
