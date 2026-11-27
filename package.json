@@ -19,14 +19,14 @@
     "axe": "node scripts/check-axe.mjs"
   },
   "dependencies": {
-    "astro": "7.4.12"
+    "astro": "7.4.13"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "@lhci/cli": "0.16.1",
     "axe-core": "4.14.1",
     "html-validate": "11.21.1",
-    "puppeteer-core": "25.17.0",
+    "puppeteer-core": "25.18.1",
     "sharp": "0.35.5",
     "typescript": "6.0.3"
   }
