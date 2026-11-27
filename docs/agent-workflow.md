@@ -6,7 +6,7 @@ Four prompts drive one issue: plan, implement, open the PR, review. The Dev is C
 Filipe picks the issue → rating + plan → approval (above Sm + Lo) → feature branch → implement
      → checks + CFM checklist → PR with summary → PR CI read
      → Filipe reviews (harder merge: he asks Claude for a review)
-     → Filipe merges and deletes the branch
+     → Filipe merges (GitHub deletes the branch)
 ```
 
 The rules behind each arrow are in [`AGENTS.md`](../AGENTS.md) §4 and §13.
@@ -83,4 +83,4 @@ Review PR <link> at head <SHA> for issue <ISSUE-ID>. Do not change the branch, m
 Return approve or request changes, with each finding tied to a file and line or to an acceptance criterion.
 ```
 
-Filipe opens the review thread in T3 Code and reads the verdict. Fixes go as new commits on the same branch, with the CI read again. Filipe decides, merges and deletes the branch; no agent merges.
+Filipe opens the review thread in T3 Code and reads the verdict. Fixes go as new commits on the same branch, with the CI read again. Filipe decides and merges, and GitHub deletes the merged branch automatically; no agent merges.
